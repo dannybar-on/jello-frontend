@@ -1,13 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { BoardPreview } from '../cmps/BoardPreview';
-import { loadBoards } from '../store/board.action';
+import { loadBoards, addBoard } from '../store/board.action';
 
 class _BoardList extends React.Component {
-    state = {}
+    state = {};
 
-    componentDidMount(){
-        this.props.loadBoards()
+    componentDidMount() {
+        this.props.loadBoards();
     }
 
     render() {
@@ -27,11 +27,12 @@ class _BoardList extends React.Component {
 function mapStateToProps(state) {
     return {
         boards: state.boardModule.boards
-    }
+    };
 }
 
 const mapDispatchToProps = {
-    loadBoards
-}
+    loadBoards,
+    addBoard,
+};
 
 export const BoardList = connect(mapStateToProps, mapDispatchToProps)(_BoardList);
