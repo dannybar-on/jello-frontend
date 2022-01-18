@@ -1,19 +1,17 @@
 // SETUP
-@import "setup/variables.scss";
-@import "setup/functions.scss";
-@import "setup/mixins.scss";
-@import "setup/typography.scss";
+@import 'setup/variables.scss';
+@import 'setup/functions.scss';
+@import 'setup/mixins.scss';
+@import 'setup/typography.scss';
 
 // BASICS
-@import "basics/helpers.scss";
+@import 'basics/helpers.scss';
 // @import "basics/layout.scss";
-@import "basics/base.scss";
+@import 'basics/base.scss';
 // @import "basics/buttons.scss";
 
-
-
 //  CMPS
-@import "cmps/app-header.scss";
-
-
+@import 'cmps/app-header.scss';
+@import 'cmps/hero.scss';
 //  PAGES
+@import 'pages/home.scss';
