@@ -14,7 +14,7 @@ class _BoardList extends React.Component {
         const { boards } = this.props;
         console.log('Boards', boards);
     return (
-    <section>
+    <section className='board-list flex'>
         <h1>Hello World! I am in BoardList</h1>
         {boards.map(board => {
             return <BoardPreview key={board._id} board={board}></BoardPreview>
