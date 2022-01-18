@@ -1,0 +1,104 @@
+.main-container {
+    display: grid;
+    grid-template-columns: $layoutPadding 1fr $layoutPadding;
+
+    > * {
+        grid-column: 2;
+    }
+
+    > *.full {
+        grid-column: 1 / -1;
+    }
+
+    @include for-narrow-layout {
+        @include layoutGTC($break-narrow);
+    }
+    
+    @include for-normal-layout {
+        @include layoutGTC($break-normal);
+    }
+    
+    @include for-wide-layout {
+        @include layoutGTC($break-wide);
+    }
+}
+
+// Main Header Layout
+
+.card-grid {
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    // grid-auto-rows: 300px;
+
+    > * {
+        @include aspect-ratio(1, 1);
+    }
+}
+
+
+.main-layout {
+    width: 290px;
+    margin: 0 auto;
+}
+
+@media (min-width: 360px) {
+    .main-layout {
+        width: 340px;
+    }
+}
+
+@media (min-width: 450px) {
+    .main-layout {
+        width: 390px;
+    }
+}
+
+@media (min-width: 600px) {
+    .main-layout {
+        width: 530px;
+    }
+}
+
+@media (min-width: 700px) {
+    .main-layout {
+        width: 620px;
+    }
+}
+
+@media (min-width: 780px) {
+    .main-layout {
+        width: 700px;
+    }
+}
+
+@media (min-width: 920px) {
+    .main-layout {
+        width: 880px;
+    }
+}
+
+@media (min-width: 1050px) {
+    .main-layout {
+        width: 980px;
+    }
+}
+
+@media (min-width: 1250px) {
+    .main-layout {
+        width: 1080px;
+    }
+}
+
+@media (min-width: 1460px) {
+    .main-layout {
+        width: 1100px;
+    }
+}
+
+@media (min-width: 1700px) {
+    .main-layout {
+        width: 1440px;
+    }
+}
