@@ -1,6 +1,8 @@
 .app-header {
-  background-color: #0065ff;
-  color: white;
+  background-color: #0066ffa4;
+  backdrop-filter: blur(6px);
+  color: $fnt3;
+ 
   ul {
     gap: 20px;
   }
