@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-
+import './assets/styles/styles.scss'
+import { AppHeader } from './cmps/AppHeader.jsx'
 import routes from './routes.js'
 
 export class RootCmp extends React.Component {
@@ -8,6 +9,7 @@ export class RootCmp extends React.Component {
     render() {
         return (
         <div>
+            <AppHeader />
         <main>
             <Switch>
                 {routes.map(route=> <Route key={route.path} exact component={route.component} path={route.path} /> )}

@@ -4,7 +4,7 @@
   display: flex;
 
   > *.full {
-      flex: 1;
+    flex: 1;
   }
   &.column {
     flex-direction: column;
@@ -100,4 +100,15 @@
 
 .hidden {
   display: none;
+}
+
+.clean-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.clean-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
