@@ -1,5 +1,5 @@
-import React from "react"
-
+import React from "react";
+import { Link } from 'react-router-dom';
 export function Hero() {
 
 
@@ -8,16 +8,17 @@ export function Hero() {
 
         <React.Fragment>
             <div className="hero-container">
-            <div className="hero-img-container  flex-column-center">
-            <div className="hero-title ">Welcome to Dickies toy shop</div>
-            <div className="hero-subtitle">Designer toys and collectibles </div>
-
-            </div>
+                <div className="hero-img-container">
+                    <div className="hero-title flex column">
+                        Elevate your Task Management to the sky
+                        <Link className="clean-link" to="/board">Try Demo Version</Link>
+                    </div>
+                </div>
 
             </div>
         </React.Fragment>
 
-    )
+    );
 
 
 }
