@@ -1,0 +1,163 @@
+[
+    {
+        "_id": "b101", 
+        "title": "Sprint 4",
+        "createdAt": 1589983468418,
+        "createdBy": {
+            "_id": "u101", 
+            "fullname": "Elad Eyal",
+            "imgUrl": "http://some-img"
+        },
+        "style": {},
+        "labels": [ 
+            {
+                "id": "l101",
+                "title": "Done",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l102",
+                "title": "In-Progress",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l103",
+                "title": "Todo",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l104",
+                "title": "",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l105",
+                "title": "",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l106",
+                "title": "",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l107",
+                "title": "",
+                "color": "#61bd4f"
+            }
+        ],
+        "members": [
+            {
+                "_id": "u101",
+                "fullname": "Elad Eyal",
+                "imgUrl": "https://www.google.com"
+            },
+            {
+                "_id": "u102",
+                "fullname": "Barak Lebowitz",
+                "imgUrl": "https://www.google.com"
+            },
+            {
+                "_id": "u103",
+                "fullname": "Daniel Bar-on",
+                "imgUrl": "https://www.google.com"
+            }
+        ],
+        "groups": [
+            {
+                "id": "g101",
+                "title": "In Development",
+                "tasks": [
+                    {
+                        "id": "c101",
+                        "title": "Draggable Components"
+                    },
+                    {
+                        "id": "c102",
+                        "title": "Get prepared for UI Demo with Asaf"
+                    }
+                ],
+                "style": {} 
+            },
+            {
+                "id": "g102",
+                "title": "Done",
+                "tasks": [
+                    {
+                        "id": "c103",
+                        "title": "Do that"
+                    },
+                    {
+                        "id": "c104",
+                        "title": "Help me",
+                        "status": "in-progress", 
+                        "description": "description",
+                        "comments": [
+                            {
+                                "id": "ZdPnm",
+                                "txt": "also @yaronb please CR this",
+                                "createdAt": 1590999817436.0,
+                                "byMember": { 
+                                    "_id": "u101",
+                                    "fullname": "Elad Ayal",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                }
+                            }
+                        ],
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "members": [ 
+                            {
+                                "_id": "u101",
+                                "username": "Elad",
+                                "fullname": "Elad Ayal",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            }
+                        ],
+                        "labelIds": ["l101", "l102"],
+                        "createdAt": 1590999730348,
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u101",
+                            "username": "Elad",
+                            "fullname": "Elad Ayal",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        "style": {
+                            "bgColor": "#26de81",
+                            "bgImg": "http://google.com"
+                        }
+                    }
+                ],
+                "style": {}
+            }
+        ],
+        "activities": [
+            {
+                "id": "a101",
+                "txt": "Changed Color",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Daniel Bar-on",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "c101",
+                    "title": "Replace Logo"
+                }
+            }
+        ]
+    }
+]
