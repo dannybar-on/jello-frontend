@@ -26,7 +26,6 @@ class _BoardList extends React.Component {
     render() {
         const { boards } = this.props;
         const { isAdd } = this.state;
-        console.log('state', this.state);
         return (
             <section className='board-list flex'>
                 <h1>Hello World! I am in BoardList</h1>

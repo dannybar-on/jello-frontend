@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import { updateBoard, onUpdateTask, onAddTask } from '../store/board.action.js'
+import { updateBoard, onAddTask } from '../store/board.action.js'
 import { utilService } from '../services/util-service.js';
 
 class _AddBoardItem extends React.Component {
@@ -64,7 +64,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     updateBoard,
-    onUpdateTask,
     onAddTask
 }
 

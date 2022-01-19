@@ -24,6 +24,8 @@ function remove(boardId) {
 }
 
 function save(board) {
+    console.log('board:', board);
+    
     if (board._id) return storageService.put(STORAGE_KEY, board);
 
     let newBoard = getEmptyBoard();
