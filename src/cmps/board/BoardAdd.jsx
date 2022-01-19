@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { boardService } from '../services/board.service';
-import { loadBoards, addBoard, removeBoard } from '../store/board.action';
+// import { boardService } from '../../services/board.service'
+import { loadBoards, addBoard, removeBoard } from '../../store/board.action';
 
 class _BoardAdd extends React.Component {
     state = {

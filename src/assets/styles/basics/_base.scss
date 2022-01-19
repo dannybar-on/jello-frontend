@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  color: #172b4d;
+  color: $fnt2;
   margin: 0;
   font-size: 14px;
 }
@@ -44,7 +44,10 @@ input,
 textarea {
     font-family: unset;
     font-size: 14px;
-    color: unset;
+    // color: unset;
+    color: $fnt2;
+    outline: none;
+    border: none;
 }
 
 a {

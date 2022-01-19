@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BoardPreview } from '../cmps/BoardPreview.jsx';
-import { BoardAdd } from '../cmps/BoardAdd.jsx';
+import { BoardPreview } from '../cmps/board/BoardPreview.jsx';
+import { BoardAdd } from '../cmps/board/BoardAdd.jsx';
 import { loadBoards, addBoard, removeBoard } from '../store/board.action';
 
 class _BoardList extends React.Component {

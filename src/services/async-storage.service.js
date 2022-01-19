@@ -19,6 +19,7 @@ function query(entityType, delay = 0) {
         setTimeout(() => {
             // reject('OOOOPs')
             resolve(entities)
+            _save(entityType, entities)
         }, delay)
     })
 }

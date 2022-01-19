@@ -1,5 +1,5 @@
 import React from 'react';
-import { TaskPreview } from './TaskPreview.jsx';
+import { TaskPreview } from './task/TaskPreview.jsx';
 
 export class GroupPreview extends React.Component {
     state = {

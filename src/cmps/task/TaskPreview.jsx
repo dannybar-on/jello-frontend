@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 function _TaskPreview({task}) {
     return (
         <p>{task.title}</p>
+
+        
     )
 }
 

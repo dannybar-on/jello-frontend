@@ -33,6 +33,7 @@ function save(board) {
 }
 
 
+
 function getEmptyBoard() {
     return {
         createdAt: Date.now(),
