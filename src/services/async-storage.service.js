@@ -102,10 +102,6 @@ function getDefaultLabels() {
     ]
 }
 
-
-
-
-
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }

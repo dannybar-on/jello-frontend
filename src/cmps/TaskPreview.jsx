@@ -1,8 +1,13 @@
 import {connect} from 'react-redux';
 
+import {TaskPreviewContent} from './TaskPreviewContent.jsx'
+
 function _TaskPreview({task}) {
     return (
-        <p>{task.title}</p>
+        <div className="task-wrapper">
+            <TaskPreviewContent task={task} />
+            {/* <p>{task.title}</p> */}
+        </div>
     )
 }
 
