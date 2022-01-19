@@ -16,6 +16,12 @@ class _BoardDetails extends React.Component {
         this.loadBoard();
     }
 
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.board !== this.state.board) {
+    //         this.loadBoard();
+    //     }
+    // }
+
     loadBoard = () => {
         const boardId = this.props.match.params.boardId;
         boardService.getById(boardId).then((board) => {
@@ -33,13 +39,12 @@ class _BoardDetails extends React.Component {
 
     render() {
         const { board, isAddOpen } = this.state;
+        // console.log('ssss');
         if (!board) return <>Loading....</>;
         return (
             <div className="board-details-container">
-                {/* <h1>{board.title}</h1>
-                <h1>{board.createdAt}</h1> */}
                 <GroupList groups={board.groups} />
-                {isAddOpen ? <AddBoardItem /> :
+                {isAddOpen ? <AddBoardItem type={'group'} loadBoard={this.loadBoard} onToggleAdd={this.onToggleAdd} /> :
                     <button onClick={this.onToggleAdd}>Add another list</button>
                 }
             </div>
@@ -49,8 +54,8 @@ class _BoardDetails extends React.Component {
 
 function mapStateToProps({ boardModule }) {
     return {
-        board: boardModule.boards,
-        currBoard: boardModule.currBoard,
+        // board: boardModule.boards,
+        board: boardModule.currBoard,
     };
 }
 

@@ -15,16 +15,8 @@ export function boardReducer(state = initialState, action) {
         case 'ADD_BOARD':
             newState = { ...state, boards: [...state.boards, action.board] };
             break;
-        case 'UPDATE_BOARD':
-            // newState = {
-            //     ...state, boards: state.board.map(board => {
-            //         return (board._id === action.updatedBoard._id) ? action.updatedBoard : board;
-            //     })
-            // };
-            newState = { ...state, currBoard: action.board };
-            break;
         case 'SET_CURR_BOARD':
-            newState = { ...state, currBoard: action.board };
+            newState = { ...state, currBoard: { ...action.board } };
             break;
         default:
     }
