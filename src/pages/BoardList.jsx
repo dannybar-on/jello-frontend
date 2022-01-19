@@ -10,18 +10,23 @@ class _BoardList extends React.Component {
         this.props.loadBoards();
     }
 
+    onCreateBoard = () => {
+        this.props.addBoard();
+    };
+
     render() {
         const { boards } = this.props;
         console.log('Boards', boards);
-    return (
-    <section className='board-list flex'>
-        <h1>Hello World! I am in BoardList</h1>
-        {boards.map(board => {
-            return <BoardPreview key={board._id} board={board}></BoardPreview>
-        })}
-    </section>
-    )
-}
+        return (
+            <section className='board-list flex'>
+                <h1>Hello World! I am in BoardList</h1>
+                <button onClick={() => this.onCreateBoard()}>Create new board</button>
+                {boards.map(board => {
+                    return <BoardPreview key={board._id} board={board}></BoardPreview>;
+                })}
+            </section>
+        );
+    }
 }
 
 function mapStateToProps(state) {
