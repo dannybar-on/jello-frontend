@@ -22,7 +22,6 @@ export class GroupPreview extends React.Component {
 
     render() {
         const { title, isAddOpen } = this.state;
-        console.log(title);
         const { group } = this.props;
         return (
             <div className="group-preview-container">
