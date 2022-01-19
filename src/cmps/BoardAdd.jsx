@@ -40,7 +40,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     loadBoards,
     addBoard,
-    removeBoard,
 };
 
 export const BoardAdd = connect(mapStateToProps, mapDispatchToProps)(_BoardAdd);

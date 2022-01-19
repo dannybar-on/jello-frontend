@@ -2,7 +2,7 @@ import { GroupPreview } from './GroupPreview.jsx';
 
 export function GroupList({groups}) {
     return (
-        <ul className="group-list">
+        <div className="group-list-container flex">
             {groups.map(group => {
                 return (
                     <GroupPreview 
@@ -10,6 +10,6 @@ export function GroupList({groups}) {
                     group={group} />
                 )
             })}
-        </ul>
+        </div>
     )
 }
