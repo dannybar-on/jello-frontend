@@ -16,6 +16,7 @@ export function boardReducer(state = initialState, action) {
             newState = { ...state, boards: [...state.boards, action.board] };
             break;
         case 'SET_CURR_BOARD':
+            // console.log(initi)
             newState = { ...state, currBoard: { ...action.board } };
             break;
         default:

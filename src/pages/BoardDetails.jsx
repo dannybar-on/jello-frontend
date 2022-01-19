@@ -5,6 +5,7 @@ import { boardService } from '../services/board.service.js';
 import { setCurrBoard } from '../store/board.action.js';
 import { GroupList } from '../cmps/GroupList.jsx';
 import { AddBoardItem } from '../cmps/AddBoardItem.jsx';
+import { BoardHeader } from '../cmps/board/BoardHeader.jsx';
 
 class _BoardDetails extends React.Component {
     state = {
@@ -16,11 +17,6 @@ class _BoardDetails extends React.Component {
         this.loadBoard();
     }
 
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.board !== this.state.board) {
-    //         this.loadBoard();
-    //     }
-    // }
 
     loadBoard = () => {
         const boardId = this.props.match.params.boardId;
@@ -43,8 +39,9 @@ class _BoardDetails extends React.Component {
         if (!board) return <>Loading....</>;
         return (
             <div className="board-details-container">
+                <BoardHeader board={this.props.board} />
                 <GroupList groups={board.groups} />
-                {isAddOpen ? <AddBoardItem type={'group'} loadBoard={this.loadBoard} onToggleAdd={this.onToggleAdd} /> :
+                {isAddOpen ? <AddBoardItem type={'group'} onToggleAdd={this.onToggleAdd} /> :
                     <button onClick={this.onToggleAdd}>Add another list</button>
                 }
             </div>
