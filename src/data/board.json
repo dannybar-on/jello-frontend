@@ -14,37 +14,32 @@
             {
                 "id": "l101",
                 "title": "Done",
-                "color": "#61bd4f"
+                "color": "#61bd4f "
             },
             {
                 "id": "l102",
                 "title": "In-Progress",
-                "color": "#61bd4f"
+                "color": "#f2d600 "
             },
             {
                 "id": "l103",
                 "title": "Todo",
-                "color": "#61bd4f"
+                "color": "#ff9f1a "
             },
             {
                 "id": "l104",
                 "title": "",
-                "color": "#61bd4f"
+                "color": "#eb5a46 "
             },
             {
                 "id": "l105",
                 "title": "",
-                "color": "#61bd4f"
+                "color": "#c377e0 "
             },
             {
                 "id": "l106",
                 "title": "",
-                "color": "#61bd4f"
-            },
-            {
-                "id": "l107",
-                "title": "",
-                "color": "#61bd4f"
+                "color": "#0079bf "
             }
         ],
         "members": [
@@ -176,37 +171,32 @@
             {
                 "id": "l101",
                 "title": "Done",
-                "color": "#61bd4f"
+                "color": "#61bd4f "
             },
             {
                 "id": "l102",
                 "title": "In-Progress",
-                "color": "#61bd4f"
+                "color": "#f2d600 "
             },
             {
                 "id": "l103",
                 "title": "Todo",
-                "color": "#61bd4f"
+                "color": "#ff9f1a "
             },
             {
                 "id": "l104",
                 "title": "",
-                "color": "#61bd4f"
+                "color": "#eb5a46 "
             },
             {
                 "id": "l105",
                 "title": "",
-                "color": "#61bd4f"
+                "color": "#c377e0 "
             },
             {
                 "id": "l106",
                 "title": "",
-                "color": "#61bd4f"
-            },
-            {
-                "id": "l107",
-                "title": "",
-                "color": "#61bd4f"
+                "color": "#0079bf "
             }
         ],
         "members": [

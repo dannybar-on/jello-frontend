@@ -42,6 +42,10 @@ function post(entityType, newEntity) {
     newEntity._id = utilService.makeId();
     newEntity.createdAt = Date.now();
     newEntity.isStarred = false;
+    newEntity.groups = []
+    newEntity.labels = getDefaultLabels()
+    newEntity.members = [] // should push the logged user 
+    newEntity.activities = [] // maybe board was first created by "user" "at"
     return query(entityType)
         .then(entities => {
             entities.push(newEntity)
@@ -61,6 +65,46 @@ function put(entityType, updatedEntity) {
             return updatedEntity
         })
 }
+
+
+function getDefaultLabels() {
+    return [
+        {
+            "id": "l101",
+            "title": "Done",
+            "color": "#61bd4f "
+        },
+        {
+            "id": "l102",
+            "title": "In-Progress",
+            "color": "#f2d600 "
+        },
+        {
+            "id": "l103",
+            "title": "Todo",
+            "color": "#ff9f1a "
+        },
+        {
+            "id": "l104",
+            "title": "",
+            "color": "#eb5a46 "
+        },
+        {
+            "id": "l105",
+            "title": "",
+            "color": "#c377e0 "
+        },
+        {
+            "id": "l106",
+            "title": "",
+            "color": "#0079bf "
+        }
+    ]
+}
+
+
+
+
 
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))

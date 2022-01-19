@@ -22,7 +22,7 @@ export class AppHeader extends React.Component {
             <header className="app-header ">
 
                 <div className="app-header-container flex space-between align-center">
-                    <NavLink className="clean-link" to="/"><h1>LOGO</h1></NavLink>
+                    <NavLink className="clean-link" to="/"><h1>Jello</h1></NavLink>
                     {/* <nav className="header-nav "> */}
                         <ul className='clean-list flex'>
                             <li>
