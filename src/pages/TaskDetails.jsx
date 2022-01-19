@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { Loader } from '../cmps/Loader'
+import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
-import { updateTask } from '../store/board.action'
+import { updateTask } from '../store/board.action';
 
 import { CgCreditCard } from 'react-icons/cg';
 
@@ -14,14 +14,11 @@ class _TaskDetails extends React.Component {
         currTask: null,
         currGroup: null,
 
-    }
+    };
 
 
     componentDidMount() {
-        this.setCurrTask()
-        console.log('sdfsdfdf:');
-
-
+        this.setCurrTask();
     }
 
 
@@ -29,31 +26,33 @@ class _TaskDetails extends React.Component {
         const { boardId, groupId, taskId } = this.props.match.params;
         boardService.getById(boardId)
             .then(board => {
-                const currGroup = board.groups.find(group => group.id === groupId)
-                const currTask = currGroup.tasks.find(task => task.id === taskId)
+                const currGroup = board.groups.find(group => group.id === groupId);
+                const currTask = currGroup.tasks.find(task => task.id === taskId);
                 this.setState({ currGroup, currTask });
 
             });
-    }
+    };
 
     handleChange = ({ target: { name, value } }) => {
         this.setState((prevState) => ({ currTask: { ...prevState.currTask, [name]: value } }));
 
-    }
+    };
 
     handleDetailsChange = () => {
-        const { currTask, currGroup } = this.state
-        this.props.updateTask(currGroup, currTask);
+        const { board } = this.props;
+        const { currTask, currGroup } = this.state;
+        console.log('board----', board);
+        this.props.updateTask(board, currGroup, currTask);
 
-    }
+    };
 
 
 
     render() {
 
-        const { currTask } = this.state
+        const { currTask } = this.state;
         const { boardId } = this.props.match.params;
-        if (!currTask) return <Loader />
+        if (!currTask) return <Loader />;
 
         return (
             <React.Fragment>
@@ -77,20 +76,20 @@ class _TaskDetails extends React.Component {
 
                 </section>
             </React.Fragment>
-        )
+        );
     }
 }
 
 function mapStateToProps({ boardModule }) {
     return {
         board: boardModule.currBoard
-    }
+    };
 }
 
 const mapDispatchToProps = {
     updateTask,
 };
 
-export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails)
+export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails);
 
 

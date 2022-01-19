@@ -88,12 +88,26 @@ export function addTask(task, groupId, board) {
 }
 
 
-export function updateTask(group, taskToSave) {
+export function updateTask(board, groupToSave, taskToSave) {
+    return async (dispatch) => {
 
-    const taskIdx = group.tasks.findIndex(task => task.id === taskToSave.id)
+        console.log('board,group,taskToSave:', board, groupToSave, taskToSave);
 
-    group.tasks.splice(taskIdx, 1, taskToSave)
-   
+        const taskIdx = groupToSave.tasks.findIndex(task => task.id === taskToSave.id);
+        groupToSave.tasks.splice(taskIdx, 1, taskToSave);
+        let boardToUpdate = { ...board };
+        boardToUpdate.groups = [...boardToUpdate.groups.map(currGroup => (currGroup.id === groupToSave.id) ? groupToSave : currGroup)];
+
+        console.log('sssss', boardToUpdate);
+        try {
+            const updatedBoard = await boardService.save(boardToUpdate);
+            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+        } catch (err) {
+
+            console.log('Couldnt update task', err);
+        }
+
+    };
 
 }
 

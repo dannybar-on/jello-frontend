@@ -21,7 +21,6 @@ class _BoardHeader extends React.Component {
     render() {
         const { board } = this.props;
         const { isClicked } = this.state;
-        console.log('header',board);
         if (!board) return <h1>Loading</h1>;
         return <section className='board-header-container'>
             <h1>{board.title}</h1>
