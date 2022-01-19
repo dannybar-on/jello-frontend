@@ -45,3 +45,17 @@ export function updateBoard(boardToUpdate) {
     };
 }
 
+
+
+//Tasks
+export function onAddTask(task, groupId, board) {
+    return async (dispatch) => {
+        const group = board.groups.find(group => group.id === groupId);
+        task = { ...task, createdAt: Date.now() };
+        group.tasks = (group.tasks) ? [...group.tasks, task] : [task];
+        // board.group = group;
+        let boardToUpdate = { ...board };
+        boardToUpdate.groups = [...boardToUpdate.groups.map(currGroup => (currGroup.id === groupId) ? group : currGroup)];
+        console.log(boardToUpdate);
+    };
+}

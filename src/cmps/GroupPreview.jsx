@@ -1,9 +1,11 @@
 import React from 'react';
-import { TaskPreview } from './task/TaskPreview.jsx';
+import { TaskPreview } from './TaskPreview.jsx';
+import { AddBoardItem } from './AddBoardItem.jsx';
 
 export class GroupPreview extends React.Component {
     state = {
-        title: ''
+        title: '',
+        isAddOpen: false,
     };
 
     componentDidMount() {
@@ -14,8 +16,12 @@ export class GroupPreview extends React.Component {
         this.setState((prevState) => ({ ...prevState, [name]: value }));
     };
 
+    onToggleAdd = () => {
+        this.setState({isAddOpen: !this.state.isAddOpen})
+    }
+
     render() {
-        const { title } = this.state;
+        const { title, isAddOpen } = this.state;
         console.log(title);
         const { group } = this.props;
         return (
@@ -28,6 +34,14 @@ export class GroupPreview extends React.Component {
                         <TaskPreview key={task.id} task={task} />
                     );
                 })}
+            {isAddOpen && <AddBoardItem onToggleAdd={this.onToggleAdd} type={'task'} groupId={group.id}/>}
+            {!isAddOpen && (
+                <div className="group-footer">
+                    <button className="add-board-task-btn" onClick={this.onToggleAdd}>
+                        <span>Add a task</span>
+                    </button>
+                </div>
+            )}    
             </div>
         );
     }
