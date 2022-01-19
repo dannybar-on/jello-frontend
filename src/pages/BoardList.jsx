@@ -29,29 +29,30 @@ class _BoardList extends React.Component {
         const { boards } = this.props;
         const { isAdd } = this.state;
         return (
-            <section className='board-list flex'>
-                <div>
+            <section className='board-list'>
+                {isAdd && <BoardAdd />}
                     <h1><FaStar /> Starred Boards</h1>
+                <div className='starred-container'>
                     {boards.map(board => {
 
-                        return board.isStarred && <div key={board._id}>
+                        return board.isStarred && <div className='board-card'  key={board._id}>
                             <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
                             <BoardPreview board={board}></BoardPreview>
                         </div>;
                     })}
                 </div>
-
-                <h1>Workspace </h1>
-                {boards.map(board => {
-                    return (
-                        <div key={board._id}>
-                            <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
-                            <BoardPreview board={board}></BoardPreview>
-                        </div>
-                    );
-                })}
-                <button onClick={() => this.toggleNewBoardForm()}>Create new board</button>
-                {isAdd && <BoardAdd />}
+                    <h1>Workspace </h1>
+                <div className='workspace-container'>
+                    {boards.map(board => {
+                        return (
+                            <div className='board-card' key={board._id}>
+                                <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
+                                <BoardPreview board={board}></BoardPreview>
+                            </div>
+                        );
+                    })}
+                <button className='create-board-btn board-card' onClick={() => this.toggleNewBoardForm()}>Create new board</button>
+                </div>
             </section>
         );
     }

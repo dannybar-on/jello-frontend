@@ -22,11 +22,15 @@ class _BoardHeader extends React.Component {
         const { board } = this.props;
         const { isClicked } = this.state;
         if (!board) return <h1>Loading</h1>;
-        return <section className='board-header-container'>
-            <h1>{board.title}</h1>
-            <button onClick={this.toggleIsStarred}>{(isClicked) ? <FaStar /> : <FiStar />} </button>
-            <div>
+        return <section className='board-header-container flex align-center space-between'>
+            <div className='flex'>
+                <h1>{board.title}</h1>
+                <button onClick={this.toggleIsStarred}>{(isClicked) ? <FaStar /> : <FiStar />} </button>
                 <h1>User avatars</h1>
+                <button>Invite</button>
+            </div>
+            <div>
+                <button>Show menu</button>
             </div>
         </section>;
     }

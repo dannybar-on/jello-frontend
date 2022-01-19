@@ -1,5 +1,25 @@
-.board-list{
+.board-list {
+    max-width: rem(980px);
+    margin: 0 auto;
+  .starred-container,
+  .workspace-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    flex-wrap: wrap;
-    flex-direction: row;
+  }
+  .board-card {
+    background-color: $silver-blue;
+    height: rem(80px);
+    width: rem(180px);
+    padding: 20px;
+    color: #fff;
+  }
+
+  .create-board-btn {
+      border: none;
+      
+    }
+    .create-board-btn:hover {
+    background-color: lightsalmon;
+    }
 }

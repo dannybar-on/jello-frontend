@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
 
 import { boardService } from '../services/board.service.js';
 
 import { setCurrBoard } from '../store/board.action.js';
+import { Loader } from '../cmps/Loader.jsx';
 import { GroupList } from '../cmps/GroupList.jsx';
 import { AddBoardItem } from '../cmps/AddBoardItem.jsx';
-import { TaskDetails } from '../pages/TaskDetails.jsx'
+import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { BoardHeader } from '../cmps/board/BoardHeader.jsx';
 
 class _BoardDetails extends React.Component {
@@ -39,7 +40,7 @@ class _BoardDetails extends React.Component {
     render() {
         const { board, isAddOpen } = this.state;
         // console.log('ssss');
-        if (!board) return <>Loading....</>;
+        if (!board) return <Loader />;
         return (
             <div className="board-details-container">
                 <BoardHeader board={this.props.board} />
