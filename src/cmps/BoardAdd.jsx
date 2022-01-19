@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { boardService } from '../services/board.service';
 import { loadBoards, addBoard, removeBoard } from '../store/board.action';
 
 class _BoardAdd extends React.Component {
@@ -8,13 +9,14 @@ class _BoardAdd extends React.Component {
             title: ''
         }
     };
+    // componentDidMount
 
     handleChange = ({ target: { name, value } }) => {
         this.setState((prevState) => ({ board: { ...prevState.board, [name]: value } }));
     };
 
     onCreateBoard = (board) => {
-
+        // let board = boardService.getEmptyBoard();
         this.props.addBoard(board);
     };
 
