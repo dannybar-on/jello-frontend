@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  color: $fnt2;
+  color: $silver-blue;
   margin: 0;
   font-size: 14px;
 }
@@ -26,7 +26,7 @@ h1,h2,h3,h4,h5,h6 {
 
 ::selection {
       background-color: #0065ff87;
-      color: $fnt3;
+      color: #ffffff;
   }
 
 
@@ -45,7 +45,7 @@ textarea {
     font-family: unset;
     font-size: 14px;
     // color: unset;
-    color: $fnt2;
+    color: $dark-blue;
     outline: none;
     border: none;
 }

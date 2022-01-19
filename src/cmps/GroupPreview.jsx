@@ -1,5 +1,5 @@
 import React from 'react';
-import { TaskPreview } from './TaskPreview.jsx';
+import { TaskPreview } from './task/TaskPreview.jsx';
 import { AddBoardItem } from './AddBoardItem.jsx';
 
 export class GroupPreview extends React.Component {
