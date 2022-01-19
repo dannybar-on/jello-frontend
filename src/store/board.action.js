@@ -65,7 +65,13 @@ export function addTask(task, groupId, board) {
         group.tasks = (group.tasks) ? [...group.tasks, task] : [task];
         let boardToUpdate = { ...board };
         boardToUpdate.groups = [...boardToUpdate.groups.map(currGroup => (currGroup.id === groupId) ? group : currGroup)];
-        dispatch({ type: 'SET_CURR_BOARD', board: boardToUpdate });
+        try {
+            const updatedBoard = await boardService.save(boardToUpdate);
+            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+        } catch (err) {
+            console.log(err);
+        }
+
     };
 }
 
