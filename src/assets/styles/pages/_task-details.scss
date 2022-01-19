@@ -1,12 +1,17 @@
 .task-details-container {
   background-color: $light-grey2;
   border-radius: 2px;
-  // display: none;
-  margin: 48px 0 80px;
-  overflow: hidden;
-  position: relative;
+  min-height: 600px;
   width: 768px;
-  z-index: 25;
+  height: fit-content;
+  overflow: hidden;
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 40;
+  // display: none;
 
   & .task-title {
     background: #0000;

@@ -88,15 +88,12 @@ export function addTask(task, groupId, board) {
 }
 
 
-export function updateTask(groupId, taskId) {
-//     return async (dispatch) => {
-//         try {
-//             const boards = await boardService.getTaskById(groupId,taskId);
-//             // dispatch({ type: 'RONALDO', boards });
-//         } catch (err) {
-//             console.log('Cannot load boards', err);
-//         }
-//     };
+export function updateTask(group, taskToSave) {
+
+    const taskIdx = group.tasks.findIndex(task => task.id === taskToSave.id)
+
+    group.tasks.splice(taskIdx, 1, taskToSave)
+   
 
 }
 

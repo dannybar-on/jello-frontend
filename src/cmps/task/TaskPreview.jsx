@@ -7,8 +7,10 @@ import { TaskPreviewContent } from './TaskPreviewContent.jsx'
 function _TaskPreview({ board, group, task }) {
     return (
         <div className="task-wrapper">
-            <TaskPreviewContent task={task} />
-            <Link to={`${board._id}/${group.id}/${task.id}`}>Link</Link>
+            <Link to={`${board._id}/${group.id}/${task.id}`}>
+                <TaskPreviewContent task={task} />
+            </Link>
+            
             {/* <p>{task.title}</p> */}
         </div>
     )
@@ -24,4 +26,3 @@ export const TaskPreview = connect(mapStateToProps)(_TaskPreview);
 
 
 
-  

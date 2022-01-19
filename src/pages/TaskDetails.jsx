@@ -2,92 +2,81 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-
 import { Loader } from '../cmps/Loader'
 import { boardService } from '../services/board.service.js';
 import { updateTask } from '../store/board.action'
 
+import { CgCreditCard } from 'react-icons/cg';
+
 class _TaskDetails extends React.Component {
 
     state = {
-        task: null,
-        group: null,
+        currTask: null,
+        currGroup: null,
 
     }
 
 
     componentDidMount() {
         this.setCurrTask()
+        console.log('sdfsdfdf:');
+
 
     }
 
 
     setCurrTask = () => {
         const { boardId, groupId, taskId } = this.props.match.params;
-
-        const board = boardService.getById(boardId)
+        boardService.getById(boardId)
             .then(board => {
-                const group = board.groups.find(group => group.id === groupId)
-                const task = group.tasks.find(task => task.id === taskId)
-                console.log('task:', task);
-                this.setState({ group, task });
-
+                const currGroup = board.groups.find(group => group.id === groupId)
+                const currTask = currGroup.tasks.find(task => task.id === taskId)
+                this.setState({ currGroup, currTask });
 
             });
     }
 
     handleChange = ({ target: { name, value } }) => {
-        this.setState((prevState) => ({ task: { ...prevState.task, [name]: value } }));
-        console.log('this,state,title:', this.state.task);
+        this.setState((prevState) => ({ currTask: { ...prevState.currTask, [name]: value } }));
 
     }
 
     handleDetailsChange = () => {
-        const { board } = this.group
-        const { task, group } = this.state
-        this.props.updateTask(this.state.task);
+        const { currTask, currGroup } = this.state
+        this.props.updateTask(currGroup, currTask);
 
     }
-
-
-
-    // goBack = () => {
-    //     const { board } = this.props
-    //     this.props.history.push(`/board/${board._id}`)
-    //   }
 
 
 
     render() {
 
-        const { task } = this.state
-        const {board} = this.props
-        if (!task) return <Loader />
+        const { currTask } = this.state
+        const { boardId } = this.props.match.params;
+        if (!currTask) return <Loader />
 
         return (
-            <Link to={`/board/${board._id}`}><div className="go-back-container">
+            <React.Fragment>
+                <Link to={`/board/${boardId}`} className="go-back-container" />
 
 
                 <section className="task-details-container" >
                     {/* <Link path={board/boardId}><button>X</button></Link> */}
                     <div className="task-details-header flex-row-center ">
-                        <span>icon</span>
+                        <span><CgCreditCard /></span>
                         <input
                             className="task-title"
                             type="text"
                             name="title"
                             onChange={this.handleChange}
-                            value={task.title}
-                            onBlur={this.handleDetailsChange}
+                            value={currTask.title}
+                            onBlur={() => this.handleDetailsChange()}
                         />
                         {/* <p>in List{task.title}</p> */}
-
-
-
                     </div>
 
                 </section>
-            </div></Link>
+            </React.Fragment>
         )
     }
 }

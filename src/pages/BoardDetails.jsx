@@ -43,7 +43,7 @@ class _BoardDetails extends React.Component {
         return (
             <div className="board-details-container">
                 <BoardHeader board={this.props.board} />
-                <GroupList groups={board.groups} />
+                <GroupList groups={board.groups} board={board}/>
                 {isAddOpen ? <AddBoardItem type={'group'} onToggleAdd={this.onToggleAdd} /> :
                     <button onClick={this.onToggleAdd}>Add another list</button>
                 }
