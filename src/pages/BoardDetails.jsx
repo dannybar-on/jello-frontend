@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import { boardService } from '../services/board.service.js';
+import { GroupList } from '../cmps/GroupList.jsx'
 
 class _BoardDetails extends React.Component {
     state = {
@@ -25,8 +26,9 @@ class _BoardDetails extends React.Component {
         if (!board) return <>Loading....</>
         return (
             <div className="board-details-container">
-                <h1>{board.title}</h1>
-                <h1>{board.createdAt}</h1>
+                {/* <h1>{board.title}</h1>
+                <h1>{board.createdAt}</h1> */}
+                <GroupList groups={board.groups} />
             </div>
         )
     }
