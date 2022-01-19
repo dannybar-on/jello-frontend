@@ -14,6 +14,8 @@ export class GroupPreview extends React.Component {
         this.setState((prevState) => ({ ...prevState, [name]: value }));
     };
 
+
+
     render() {
         const { title } = this.state;
         console.log(title);
@@ -28,6 +30,7 @@ export class GroupPreview extends React.Component {
                         <TaskPreview key={task.id} task={task} />
                     );
                 })}
+               
             </div>
         );
     }
