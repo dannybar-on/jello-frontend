@@ -10,14 +10,15 @@ class _TaskDetails extends React.Component {
 
         }
 
-
     }
 
 
     componentDidMount() {
+        const { boardId, groupI, taskId } = this.props.match.params;
+        console.log('this.props.match.params:', this.props.match.params);
 
+        console.log('this.props.board:', this.props.currBoard);
 
-        this.setState({})
 
     }
 
@@ -26,6 +27,8 @@ class _TaskDetails extends React.Component {
         console.log('this,state,title:', this.state.task);
 
     };
+
+
 
     // goBack = () => {
     //     const { board } = this.props
@@ -36,7 +39,7 @@ class _TaskDetails extends React.Component {
 
     render() {
         const { task: { title } } = this.state
-        
+
 
         return (
             <section className="task-details-container" >
@@ -62,9 +65,9 @@ class _TaskDetails extends React.Component {
     }
 }
 
-function mapStateToProps({ }) {
+function mapStateToProps({ boardModule }) {
     return {
-        // user: userModule.user
+        currBoard: boardModule.currBoard
     }
 }
 

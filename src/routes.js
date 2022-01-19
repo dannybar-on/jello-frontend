@@ -5,7 +5,7 @@ import {HomePage} from './pages/HomePage.jsx'
 
 const routes  = [
     {
-        path:'/board/:groupId/:taskId',
+        path:'/board/:boardId/:groupId/:taskId',
         component: TaskDetails,
     },
     {

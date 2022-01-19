@@ -49,7 +49,7 @@ class _BoardDetails extends React.Component {
 
 function mapStateToProps({ boardModule }) {
     return {
-        board: boardModule.boards,
+        boards: boardModule.boards,
         currBoard: boardModule.currBoard,
     };
 }
