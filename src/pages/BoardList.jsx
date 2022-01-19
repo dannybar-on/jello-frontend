@@ -13,6 +13,8 @@ class _BoardList extends React.Component {
         this.props.loadBoards();
     }
 
+// com
+
     toggleNewBoardForm = () => {
         let { isAdd } = this.state;
         this.setState({ isAdd: !isAdd });

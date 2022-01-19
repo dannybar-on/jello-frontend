@@ -17,12 +17,12 @@ export class GroupPreview extends React.Component {
     };
 
     onToggleAdd = () => {
-        this.setState({isAddOpen: !this.state.isAddOpen})
+        this.setState({ isAddOpen: !this.state.isAddOpen })
     }
 
     render() {
         const { title, isAddOpen } = this.state;
-        const { group } = this.props;
+        const { group, board } = this.props;
         return (
             <div className="group-preview-container">
                 <div className="group-header">
@@ -30,17 +30,17 @@ export class GroupPreview extends React.Component {
                 </div>
                 {group.tasks && group.tasks.map(task => {
                     return (
-                        <TaskPreview key={task.id} task={task} />
+                        <TaskPreview key={task.id} board={board} group={group} task={task} />
                     );
                 })}
-            {isAddOpen && <AddBoardItem onToggleAdd={this.onToggleAdd} type={'task'} groupId={group.id}/>}
-            {!isAddOpen && (
-                <div className="group-footer">
-                    <button className="add-board-task-btn" onClick={this.onToggleAdd}>
-                        <span>Add a task</span>
-                    </button>
-                </div>
-            )}    
+                {isAddOpen && <AddBoardItem onToggleAdd={this.onToggleAdd} type={'task'} groupId={group.id} />}
+                {!isAddOpen && (
+                    <div className="group-footer">
+                        <button className="add-board-task-btn" onClick={this.onToggleAdd}>
+                            <span>Add a task</span>
+                        </button>
+                    </div>
+                )}
             </div>
         );
     }

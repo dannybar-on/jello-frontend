@@ -12,7 +12,7 @@ export class RootCmp extends React.Component {
             <AppHeader />
         <main>
             <Switch>
-                {routes.map(route=> <Route key={route.path} exact component={route.component} path={route.path} /> )}
+                {routes.map(route=> <Route key={route.path} component={route.component} path={route.path} /> )}
             </Switch>
         </main>
         </div>

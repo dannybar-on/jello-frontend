@@ -40,7 +40,7 @@ export function updateBoard(boardToUpdate) {
             console.log('boardToUpdate:', boardToUpdate);
 
             const updatedBoard = await boardService.save(boardToUpdate);
-            dispatch({ type: 'UPDATE_BOARD', board: updatedBoard });
+            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
             console.log('Cannot update board', err);
         }
@@ -57,19 +57,40 @@ export function setCurrBoard(board) {
     };
 }
 
-//Tasks
-export function onAddTask(task, groupId, board) {
+export function addGroup(newGroup, board) {
     return async (dispatch) => {
-        // console.log(board);
+        board.groups.push(newGroup);
+        try {
+            const updatedBoard = await boardService.save(board);
+            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+}
+
+//Tasks
+export function addTask(task, groupId, board) {
+    return async (dispatch) => {
         const group = board.groups.find(group => group.id === groupId);
         task = { ...task, createdAt: Date.now() };
         group.tasks = (group.tasks) ? [...group.tasks, task] : [task];
-        // board.group = group;
         let boardToUpdate = { ...board };
         boardToUpdate.groups = [...boardToUpdate.groups.map(currGroup => (currGroup.id === groupId) ? group : currGroup)];
-        console.log(boardToUpdate);
-        dispatch({ type: 'UPDATE_BOARD', board: boardToUpdate });
-        // return updateBoard(boardToUpdate);
-
+        dispatch({ type: 'SET_CURR_BOARD', board: boardToUpdate });
     };
 }
+
+
+export function updateTask(groupId, taskId) {
+//     return async (dispatch) => {
+//         try {
+//             const boards = await boardService.getTaskById(groupId,taskId);
+//             // dispatch({ type: 'RONALDO', boards });
+//         } catch (err) {
+//             console.log('Cannot load boards', err);
+//         }
+//     };
+
+}
+

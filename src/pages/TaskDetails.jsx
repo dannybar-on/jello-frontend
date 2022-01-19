@@ -1,32 +1,53 @@
 import React from 'react';
 import { connect } from 'react-redux'
-// import { BrowserRouter as Router,Link, useRouteMatch, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+
+
+import { Loader } from '../cmps/Loader'
+import { boardService } from '../services/board.service.js';
+import { updateTask } from '../store/board.action'
 
 class _TaskDetails extends React.Component {
 
     state = {
-        task: {
-            title: "",
-
-        }
+        task: null,
+        group: null,
 
     }
 
 
     componentDidMount() {
-        const { boardId, groupI, taskId } = this.props.match.params;
-        console.log('this.props.match.params:', this.props.match.params);
+        this.setCurrTask()
 
-        console.log('this.props.board:', this.props.currBoard);
+    }
 
 
+    setCurrTask = () => {
+        const { boardId, groupId, taskId } = this.props.match.params;
+
+        const board = boardService.getById(boardId)
+            .then(board => {
+                const group = board.groups.find(group => group.id === groupId)
+                const task = group.tasks.find(task => task.id === taskId)
+                console.log('task:', task);
+                this.setState({ group, task });
+
+
+            });
     }
 
     handleChange = ({ target: { name, value } }) => {
         this.setState((prevState) => ({ task: { ...prevState.task, [name]: value } }));
         console.log('this,state,title:', this.state.task);
 
-    };
+    }
+
+    handleDetailsChange = () => {
+        const { board } = this.group
+        const { task, group } = this.state
+        this.props.updateTask(this.state.task);
+
+    }
 
 
 
@@ -38,41 +59,47 @@ class _TaskDetails extends React.Component {
 
 
     render() {
-        const { task: { title } } = this.state
 
+        const { task } = this.state
+        const {board} = this.props
+        if (!task) return <Loader />
 
         return (
-            <section className="task-details-container" >
-                {/* <Link path={board/boardId}><button>X</button></Link> */}
-                <div className="task-details-header flex-row-center ">
-                    <span>icon</span>
-                    <input
-                        className="task-title"
-                        type="text"
-                        name="title"
-                        onChange={this.handleChange}
-                        value={title}
-                    //    onBlur={}
-                    />
-                    {/* <p>in List{task.title}</p> */}
+            <Link to={`/board/${board._id}`}><div className="go-back-container">
+
+
+                <section className="task-details-container" >
+                    {/* <Link path={board/boardId}><button>X</button></Link> */}
+                    <div className="task-details-header flex-row-center ">
+                        <span>icon</span>
+                        <input
+                            className="task-title"
+                            type="text"
+                            name="title"
+                            onChange={this.handleChange}
+                            value={task.title}
+                            onBlur={this.handleDetailsChange}
+                        />
+                        {/* <p>in List{task.title}</p> */}
 
 
 
-                </div>
+                    </div>
 
-            </section>
+                </section>
+            </div></Link>
         )
     }
 }
 
 function mapStateToProps({ boardModule }) {
     return {
-        currBoard: boardModule.currBoard
+        board: boardModule.currBoard
     }
 }
 
 const mapDispatchToProps = {
-
+    updateTask,
 };
 
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails)

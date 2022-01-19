@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom'
 
 import { boardService } from '../services/board.service.js';
+
 import { setCurrBoard } from '../store/board.action.js';
 import { GroupList } from '../cmps/GroupList.jsx';
 import { AddBoardItem } from '../cmps/AddBoardItem.jsx';
+import { TaskDetails } from '../pages/TaskDetails.jsx'
 
 class _BoardDetails extends React.Component {
     state = {
@@ -15,6 +18,12 @@ class _BoardDetails extends React.Component {
     componentDidMount() {
         this.loadBoard();
     }
+
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.board !== this.state.board) {
+    //         this.loadBoard();
+    //     }
+    // }
 
     loadBoard = () => {
         const boardId = this.props.match.params.boardId;
@@ -33,15 +42,18 @@ class _BoardDetails extends React.Component {
 
     render() {
         const { board, isAddOpen } = this.state;
+        // console.log('ssss');
         if (!board) return <>Loading....</>;
         return (
             <div className="board-details-container">
-                {/* <h1>{board.title}</h1>
-                <h1>{board.createdAt}</h1> */}
-                <GroupList groups={board.groups} />
-                {isAddOpen ? <AddBoardItem /> :
+                <GroupList board={board} groups={board.groups} />
+                {isAddOpen ? <AddBoardItem type={'group'} loadBoard={this.loadBoard} onToggleAdd={this.onToggleAdd} /> :
                     <button onClick={this.onToggleAdd}>Add another list</button>
                 }
+                <Route
+                    component={TaskDetails}
+                    path='/board/:boardId/:groupId/:taskId'
+                />
             </div>
         );
     }
@@ -49,8 +61,8 @@ class _BoardDetails extends React.Component {
 
 function mapStateToProps({ boardModule }) {
     return {
-        boards: boardModule.boards,
-        currBoard: boardModule.currBoard,
+        // board: boardModule.boards,
+        board: boardModule.currBoard,
     };
 }
 
