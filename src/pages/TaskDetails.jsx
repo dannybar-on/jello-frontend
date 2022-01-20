@@ -35,6 +35,7 @@ class _TaskDetails extends React.Component {
 
     handleChange = ({ target: { name, value } }) => {
         this.setState((prevState) => ({ currTask: { ...prevState.currTask, [name]: value } }));
+        console.log('this.state.currTask:', this.state.currTask);
 
     };
 
@@ -59,7 +60,7 @@ class _TaskDetails extends React.Component {
 
                 <section className="task-details-container" >
                     {/* <Link path={board/boardId}><button>X</button></Link> */}
-                    <div className="task-details-header flex-row-center ">
+                    <div className="task-header flex-row-center ">
                         <span><CgCreditCard /></span>
                         <input
                             className="task-title"
@@ -70,6 +71,25 @@ class _TaskDetails extends React.Component {
                             onBlur={this.handleDetailsChange}
                         />
                         {/* <p>in List{task.title}</p> */}
+                    </div>
+
+                    <div className="task-main">
+                        <div className="task-description">
+                            <div className="description-header">
+                            Description
+                            </div>
+                            <textarea
+                             name="description" 
+                              onChange={this.handleChange}
+                              onBlur={this.handleDetailsChange}
+                             cols="30" 
+                              rows="10">
+
+                            </textarea>
+
+                        </div>
+
+
                     </div>
 
                 </section>
