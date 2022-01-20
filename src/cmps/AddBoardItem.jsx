@@ -26,7 +26,7 @@ class _AddBoardItem extends React.Component {
         const { newItem } = this.state;
         if (!newItem.title) return;
         newItem.id = utilService.makeId();
-        console.log(this.props);
+        // console.log(this.props);
         if (this.props.type === 'group') {
             if (!newItem.tasks) newItem.tasks = [];
             this.props.addGroup(newItem, this.props.board);
@@ -49,7 +49,7 @@ class _AddBoardItem extends React.Component {
                 <form onSubmit={this.onAddItem}>
                     <textarea placeholder={`Enter a title for this ${renderedType}`} name="title" value={title} ref={input => { this.textInput = input; }} onChange={this.handleChange} onBlur={this.onAddItem} />
                     <div className="form-btns">
-                        <button type='submit'>Add {renderedType}</button>
+                        <button className="add-btn-style" type='submit'>Add {renderedType}</button>
                         <button onClick={onToggleAdd}>X</button>
                     </div>
                 </form>

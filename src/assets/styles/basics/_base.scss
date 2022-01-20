@@ -14,6 +14,11 @@ body {
   font-size: 14px;
 }
 
+main{
+  display:flex;
+  flex-grow: 1;
+}
+
 img {
   width: 100%;
   object-fit: cover;
@@ -36,8 +41,10 @@ p {
 }
 
 button {
+  all:unset;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
     cursor: pointer;
+
 }
 
 input,
@@ -48,6 +55,7 @@ textarea {
     color: $dark-blue;
     outline: none;
     border: none;
+    width: 100%;
 }
 
 a {

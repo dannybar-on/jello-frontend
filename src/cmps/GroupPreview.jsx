@@ -4,6 +4,8 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { TaskPreview } from './task/TaskPreview.jsx';
 import { AddBoardItem } from './AddBoardItem.jsx';
 
+import { AiOutlinePlus } from 'react-icons/ai';
+
 export class GroupPreview extends React.Component {
   state = {
     title: '',
@@ -23,21 +25,21 @@ export class GroupPreview extends React.Component {
   };
 
   render() {
-    const { group, index } = this.props;
+    const { group, index, board } = this.props;
     const { title, isAddOpen } = this.state;
     return (
-      <div className={'group-wrapper'}>
+      <div className='group-wrapper'>
         <Draggable draggableId={group.id} index={index}>
           {(provided, snapshot) => (
             <div
-              className="group-preview-container"
+              className="group-preview-container flex column"
               {...provided.draggableProps}
               {...provided.dragHandleProps}
               ref={provided.innerRef}
             >
               <div className="group-header">
                 <input
-                  className="clean-input"
+                  className="group-title"
                   type="text"
                   value={title}
                   name="title"
@@ -46,22 +48,27 @@ export class GroupPreview extends React.Component {
               </div>
               <Droppable droppableId={group.id}>
                 {(provided) => (
-                  <ul
-                    className="task-list clean-list"
+                  <div
+                    className="task-list"
                     {...provided.droppableProps}
                     ref={provided.innerRef}
                   >
+                    <div className="group-content">
+
                     {group.tasks &&
                       group.tasks.map((task, index) => {
-                        return (
-                          <TaskPreview
-                            key={task.id}
-                            task={task}
-                            index={index}
-                            groupId={group.id}
-                          />
-                        );
-                      })}
+                          return (
+                              <TaskPreview
+                              key={task.id}
+                              task={task}
+                              index={index}
+                              board={board}
+                              group={group}
+                              groupId={group.id}
+                              />
+                              );
+                            })}
+                    </div>
                     {provided.placeholder}
                     {isAddOpen && (
                       <AddBoardItem
@@ -70,16 +77,17 @@ export class GroupPreview extends React.Component {
                         groupId={group.id}
                       />
                     )}
-                  </ul>
+                  </div>
                 )}
               </Droppable>
 
               {!isAddOpen && (
                 <div className="group-footer">
                   <button
-                    className="add-board-task-btn"
+                    className="add-boarditem"
                     onClick={this.onToggleAdd}
                   >
+                      <AiOutlinePlus/>
                     <span>Add a task</span>
                   </button>
                 </div>
@@ -91,3 +99,37 @@ export class GroupPreview extends React.Component {
     );
   }
 }
+
+//     render() {
+//         const { title, isAddOpen } = this.state;
+//         const { group, board } = this.props;
+//         return (
+//             <div className="group-wrapper">
+//                 <div className="group-preview-container flex column">
+//                     <div className="group-header">
+//                         <input className="group-title" type="text" value={title} name='title' onChange={this.handleChange} />
+//                     </div>
+
+//                     {/* <div className="card-wrapper"> */}
+//                     <div className="group-content">
+//                         {group.tasks && group.tasks.map(task => {
+//                             return (
+//                                 <TaskPreview key={task.id} board={board} group={group} task={task} />
+//                             );
+//                         })}
+//                     </div>
+//                     {isAddOpen && <AddBoardItem onToggleAdd={this.onToggleAdd} type={'task'} groupId={group.id} />}
+//                     {!isAddOpen && (
+//                         <div className="group-footer">
+//                             <button className="add-boarditem " onClick={this.onToggleAdd}>
+//                                 <AiOutlinePlus/>
+//                                 <span>Add a task</span>
+//                             </button>
+//                         </div>
+//                     )}
+//                     </div>
+//                 </div>
+//             // </div>
+//         )
+//     }
+// }

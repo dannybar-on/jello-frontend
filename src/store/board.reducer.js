@@ -16,9 +16,8 @@ export function boardReducer(state = initialState, action) {
             newState = { ...state, boards: [...state.boards, action.board] };
             break;
         case 'SET_CURR_BOARD':
-            newState = { ...state, currBoard: { ...action.board } };
+            newState = { ...state, currBoard: {...action.board}  };
             break;
-        default:
     }
     return newState;
 }

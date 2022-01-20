@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { BoardPreview } from '../cmps/board/BoardPreview.jsx';
 import { BoardAdd } from '../cmps/board/BoardAdd.jsx';
 import { loadBoards, addBoard, removeBoard } from '../store/board.action';
-
+import { FaStar } from 'react-icons/fa';
 class _BoardList extends React.Component {
     state = {
         isAdd: false,
@@ -13,7 +13,7 @@ class _BoardList extends React.Component {
         this.props.loadBoards();
     }
 
-// com
+
 
     toggleNewBoardForm = () => {
         let { isAdd } = this.state;
@@ -29,18 +29,30 @@ class _BoardList extends React.Component {
         const { boards } = this.props;
         const { isAdd } = this.state;
         return (
-            <section className='board-list flex'>
-                <h1>Hello World! I am in BoardList</h1>
-                <button onClick={() => this.toggleNewBoardForm()}>Create new board</button>
+            <section className='board-list'>
                 {isAdd && <BoardAdd />}
-                {boards.map((board, index) => {
-                    return (
-                        <div key={board._id}>
+                    <h1><FaStar /> Starred Boards</h1>
+                <div className='starred-container'>
+                    {boards.map((board, index) => {
+
+                        return board.isStarred && <div className='board-card'  key={board._id}>
                             <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
                             <BoardPreview board={board} index={index}></BoardPreview>
-                        </div>
-                    );
-                })}
+                        </div>;
+                    })}
+                </div>
+                    <h1>Workspace </h1>
+                <div className='workspace-container'>
+                    {boards.map((board, index) => {
+                        return (
+                            <div className='board-card' key={board._id}>
+                                <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
+                                <BoardPreview board={board} index={index}></BoardPreview>
+                            </div>
+                        );
+                    })}
+                <button className='create-board-btn board-card' onClick={() => this.toggleNewBoardForm()}>Create new board</button>
+                </div>
             </section>
         );
     }

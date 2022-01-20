@@ -37,8 +37,6 @@ export function addBoard(board) {
 export function updateBoard(boardToUpdate) {
     return async (dispatch) => {
         try {
-            console.log('boardToUpdate:', boardToUpdate);
-
             const updatedBoard = await boardService.save(boardToUpdate);
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
@@ -57,24 +55,6 @@ export function setCurrBoard(board) {
     };
 }
 
-//Tasks
-export function addTask(task, groupId, board) {
-    return async (dispatch) => {
-        const group = board.groups.find(group => group.id === groupId);
-        task = { ...task, createdAt: Date.now() };
-        group.tasks = (group.tasks) ? [...group.tasks, task] : [task];
-        let boardToUpdate = { ...board };
-        boardToUpdate.groups = [...boardToUpdate.groups.map(currGroup => (currGroup.id === groupId) ? group : currGroup)];
-        try {
-            const updatedBoard = await boardService.save(boardToUpdate);
-            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
-        } catch (err) {
-            console.log(err);
-        }
-
-    };
-}
-
 export function addGroup(newGroup, board) {
     return async (dispatch) => {
         board.groups.push(newGroup);
@@ -86,3 +66,42 @@ export function addGroup(newGroup, board) {
         }
     };
 }
+
+//Tasks
+export function addTask(task, groupId, board) {
+    return async (dispatch) => {
+        const group = board.groups.find(group => group.id === groupId);
+        task = { ...task, createdAt: Date.now() };
+        group.tasks = (group.tasks) ? [...group.tasks, task] : [task];
+        let boardToUpdate = { ...board };
+        boardToUpdate.groups = boardToUpdate.groups.map(currGroup => (currGroup.id === groupId) ? group : currGroup);// if doesnt work put in []
+        try {
+            const updatedBoard = await boardService.save(boardToUpdate);
+            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+        } catch (err) {
+            console.log(err);
+        }
+
+    };
+}
+
+
+export function updateTask(board, groupToSave, taskToSave) {
+    return async (dispatch) => {
+
+        const taskIdx = groupToSave.tasks.findIndex(task => task.id === taskToSave.id);
+        groupToSave.tasks.splice(taskIdx, 1, taskToSave);
+        let boardToUpdate = { ...board };
+        boardToUpdate.groups = boardToUpdate.groups.map(currGroup => (currGroup.id === groupToSave.id) ? groupToSave : currGroup);
+
+        try {
+            const updatedBoard = await boardService.save(boardToUpdate);
+            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+        } catch (err) {
+
+        }
+
+    };
+
+}
+
