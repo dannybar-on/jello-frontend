@@ -58,12 +58,24 @@ class _BoardDetails extends React.Component {
         const sourceGroup = {
             ...clonedBoard.groups.find(group => group.id === source.droppableId)
         };
-        clonedBoard.groups = clonedBoard.groups.map(currGroup => {
-            if (currGroup.id === source.droppableId) return sourceGroup;
-            return currGroup;
-        });
-        this.props.updateBoard(clonedBoard);
-    };
+        const sourceTask = sourceGroup.tasks.splice(source.index, 1)
+        if (source.droppableId === destination.droppableId) {
+            sourceGroup.tasks.splice(destination.index, 0, ...sourceTask)
+            this.props.updateBoard(clonedBoard)
+        } else {
+            const destinationGroup = {
+                ...clonedBoard.groups.find(group => group.id === destination.droppableId)
+            }
+            if (destinationGroup.tasks) destinationGroup.tasks.splice(destination.index, 0, ...sourceTask)
+            else destinationGroup.tasks = [sourceTask]
+            clonedBoard.groups = clonedBoard.groups.map(currGroup => {
+                if (currGroup.id === source.droppableId) return sourceGroup;
+                if (currGroup.id === destination.droppableId) return destinationGroup
+                return currGroup;
+            });
+            this.props.updateBoard(clonedBoard);
+        }
+    }
 
     render() {
         const { isAddOpen, isEditOpen } = this.state;
@@ -76,35 +88,36 @@ class _BoardDetails extends React.Component {
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className="group-list-wrapper">
                         <Droppable droppableId={board._id} direction='horizontal' type='group'>
-                            {(provided, snapshop) => (
-                                <div className='flex'
-                                {...provided.droppableProps}
-                                    ref={provided.innerRef}>
-                                    <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen}/>
-                                    {isAddOpen ? <AddBoardItem type={'group'} onToggleAdd={this.onToggleAdd} /> :
-                                        <button className='add-list-btn' onClick={this.onToggleAdd}>Add another list</button>
-                                    }
-                                    <Route
-                                        component={TaskDetails}
-                                        path='/board/:boardId/:groupId/:taskId'
+                            {(provided, snapshot) => (
+                                <div {...provided.droppableProps} ref={provided.innerRef} className='flex'>
+                                    <GroupList groups={board.groups} board={board} />
+                                    {provided.placeholder}
+                                    <div className="add-group-container">
+                                        {!isAddOpen && (
+                                            <button onClick={this.onToggleAdd}>
+                                                Add another list
+                                            </button>
+                                        )}
+                                        {isAddOpen && (
+                                            <AddBoardItem onToggleAdd={this.onToggleAdd} type={'group'} />
+                                        )}
+                                           <Route
+                                           component={TaskDetails}
+                                           path='/board/:boardId/:groupId/:taskId'
                                         />
-
-                                        {provided.placeholder}
+                                    </div>
                                 </div>
                             )}
                         </Droppable>
                     </div>
                 </DragDropContext>
-
-
             </div>
-        );
+        )
     }
 }
 
 function mapStateToProps({ boardModule }) {
     return {
-        // board: boardModule.boards,
         board: boardModule.currBoard,
     };
 }
