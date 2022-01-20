@@ -15,7 +15,8 @@ class _BoardAdd extends React.Component {
         this.setState((prevState) => ({ board: { ...prevState.board, [name]: value } }));
     };
 
-    onCreateBoard = (board) => {
+    onCreateBoard = (ev, board) => {
+        ev.preventDefault();
         // let board = boardService.getEmptyBoard();
         this.props.addBoard(board);
     };
@@ -24,7 +25,7 @@ class _BoardAdd extends React.Component {
         const { board } = this.state;
         console.log(this.state);
         return (
-            <form onSubmit={() => this.onCreateBoard(board)}>
+            <form onSubmit={(event) => this.onCreateBoard(event, board)}>
                 <textarea type="text" name="title" value={this.state.board.title} onChange={this.handleChange} />
                 <button type="submit">Create board</button>
             </form>

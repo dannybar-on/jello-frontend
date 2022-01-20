@@ -6,6 +6,7 @@ import { AddBoardItem } from './AddBoardItem.jsx';
 
 import { AiOutlinePlus } from 'react-icons/ai';
 
+
 export class GroupPreview extends React.Component {
   state = {
     title: '',
@@ -20,13 +21,15 @@ export class GroupPreview extends React.Component {
     this.setState((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  onToggleAdd = () => {
-    this.setState({ isAddOpen: !this.state.isAddOpen });
+  onToggleAdd = (ev) => {
+    let { isAddOpen } = this.state;
+    this.setState({ isAddOpen: !isAddOpen });
   };
 
   render() {
-    const { group, index, board } = this.props;
+    const { group, index, board, toggleEditOpen } = this.props;
     const { title, isAddOpen } = this.state;
+
     return (
       <div className='group-wrapper'>
         <Draggable draggableId={group.id} index={index}>
@@ -57,26 +60,29 @@ export class GroupPreview extends React.Component {
 
                     {group.tasks &&
                       group.tasks.map((task, index) => {
-                          return (
-                              <TaskPreview
-                              key={task.id}
-                              task={task}
-                              index={index}
-                              board={board}
-                              group={group}
-                              groupId={group.id}
-                              />
-                              );
-                            })}
+                        return (
+                          <TaskPreview
+                            key={task.id}
+                            task={task}
+                            index={index}
+                            board={board}
+                            group={group}
+                            groupId={group.id}
+                            toggleEditOpen={toggleEditOpen}
+                          />
+                          );
+                        })}
+                   
                     </div>
-                    {provided.placeholder}
                     {isAddOpen && (
                       <AddBoardItem
-                        onToggleAddPop={this.onToggleAdd}
-                        type={'task'}
-                        groupId={group.id}
+                      onToggleAdd={this.onToggleAdd}
+                      type={'task'}
+                      groupId={group.id}
                       />
-                    )}
+                      )}
+                      {/* {provided.placeholder} */}
+                   
                   </div>
                 )}
               </Droppable>
@@ -87,11 +93,12 @@ export class GroupPreview extends React.Component {
                     className="add-boarditem"
                     onClick={this.onToggleAdd}
                   >
-                      <AiOutlinePlus/>
+                    <AiOutlinePlus />
                     <span>Add a task</span>
                   </button>
                 </div>
               )}
+               {provided.placeholder}
             </div>
           )}
         </Draggable>
