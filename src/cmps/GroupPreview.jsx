@@ -6,6 +6,7 @@ import { AddBoardItem } from './AddBoardItem.jsx';
 
 import { AiOutlinePlus } from 'react-icons/ai';
 
+
 export class GroupPreview extends React.Component {
   state = {
     title: '',
@@ -20,8 +21,9 @@ export class GroupPreview extends React.Component {
     this.setState((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  onToggleAdd = () => {
-    this.setState({ isAddOpen: !this.state.isAddOpen });
+  onToggleAdd = (ev) => {
+    let { isAddOpen } = this.state;
+    this.setState({ isAddOpen: !isAddOpen });
   };
 
   render() {

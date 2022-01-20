@@ -1,16 +1,16 @@
 [
     {
-        "_id": "b101", 
+        "_id": "b101",
         "title": "Sprint 4",
         "createdAt": 1589983468418,
         "isStarred": false,
         "createdBy": {
-            "_id": "u101", 
+            "_id": "u101",
             "fullname": "Elad Eyal",
             "imgUrl": "http://some-img"
         },
         "style": {},
-        "labels": [ 
+        "labels": [
             {
                 "id": "l101",
                 "title": "Done",
@@ -73,7 +73,7 @@
                         "title": "Get prepared for UI Demo with Asaf"
                     }
                 ],
-                "style": {} 
+                "style": {}
             },
             {
                 "id": "g102",
@@ -86,14 +86,14 @@
                     {
                         "id": "c104",
                         "title": "Help me",
-                        "status": "in-progress", 
+                        "status": "in-progress",
                         "description": "description",
                         "comments": [
                             {
                                 "id": "ZdPnm",
                                 "txt": "also @yaronb please CR this",
                                 "createdAt": 1590999817436.0,
-                                "byMember": { 
+                                "byMember": {
                                     "_id": "u101",
                                     "fullname": "Elad Ayal",
                                     "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
@@ -113,7 +113,7 @@
                                 ]
                             }
                         ],
-                        "members": [ 
+                        "members": [
                             {
                                 "_id": "u101",
                                 "username": "Elad",
@@ -121,7 +121,10 @@
                                 "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                             }
                         ],
-                        "labelIds": ["l101", "l102"],
+                        "labelIds": [
+                            "l101",
+                            "l102"
+                        ],
                         "createdAt": 1590999730348,
                         "dueDate": 16156215211,
                         "byMember": {
@@ -157,17 +160,17 @@
         ]
     },
     {
-        "_id": "b102", 
+        "_id": "b102",
         "title": "Day-2-Day Tasks",
         "createdAt": 1589983468418,
         "isStarred": false,
         "createdBy": {
-            "_id": "u101", 
+            "_id": "u101",
             "fullname": "Daniel Bar-on",
             "imgUrl": "http://some-img"
         },
-        "style": {},
-        "labels": [ 
+        "style": {"backgroundColor": "#0071bf2a"},
+        "labels": [
             {
                 "id": "l101",
                 "title": "Done",
@@ -230,7 +233,7 @@
                         "title": "Get prepared for UI Demo with Asaf"
                     }
                 ],
-                "style": {} 
+                "style": {}
             },
             {
                 "id": "g102",
@@ -243,14 +246,14 @@
                     {
                         "id": "c104",
                         "title": "Help me",
-                        "status": "in-progress", 
+                        "status": "in-progress",
                         "description": "description",
                         "comments": [
                             {
                                 "id": "ZdPnm",
                                 "txt": "also @yaronb please CR this",
                                 "createdAt": 1590999817436.0,
-                                "byMember": { 
+                                "byMember": {
                                     "_id": "u101",
                                     "fullname": "Elad Ayal",
                                     "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
@@ -270,7 +273,7 @@
                                 ]
                             }
                         ],
-                        "members": [ 
+                        "members": [
                             {
                                 "_id": "u101",
                                 "username": "Elad",
@@ -278,7 +281,10 @@
                                 "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                             }
                         ],
-                        "labelIds": ["l101", "l102"],
+                        "labelIds": [
+                            "l101",
+                            "l102"
+                        ],
                         "createdAt": 1590999730348,
                         "dueDate": 16156215211,
                         "byMember": {
@@ -293,7 +299,9 @@
                         }
                     }
                 ],
-                "style": {}
+                "style": {
+                    
+                }
             }
         ],
         "activities": [

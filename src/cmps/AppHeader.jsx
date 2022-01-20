@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 // import { connect } from 'react-redux';
+import { LoggedAvatar } from './LoggedAvatar.jsx';
 
 
 
@@ -22,18 +23,21 @@ export class AppHeader extends React.Component {
             <header className="app-header ">
 
                 <div className="app-header-container flex space-between align-center">
-                    <NavLink className="clean-link" to="/"><h1>Jello</h1></NavLink>
+                    <NavLink className="clean-link" to="/"><h1 className='logo'>Jello</h1></NavLink>
                     {/* <nav className="header-nav "> */}
-                        <ul className='clean-list flex'>
-                            <li>
-                                <NavLink className="clean-link" to="/"><div>Home</div></NavLink>
-                            </li>
-                            <li>
-                                <NavLink className="clean-link" to="/board"><div>Board List</div></NavLink>
-                            </li>
-                        </ul>
-                    {/* </nav> */}
+                    <ul className='clean-list flex align-center'>
+                        <li>
+                            <NavLink className="clean-link" to="/"><div>Home</div></NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="clean-link" to="/board"><div>Board List</div></NavLink>
+                        </li>
+                        <li>
+                            <LoggedAvatar fullname={'Guest'} />
+                        </li>
 
+                    </ul>
+                    {/* </nav> */}
 
                 </div>
             </header>

@@ -16,6 +16,7 @@ class _BoardDetails extends React.Component {
     state = {
         board: null,
         isAddOpen: false,
+        isEditOpen: false,
     };
 
     componentDidMount() {
@@ -25,7 +26,7 @@ class _BoardDetails extends React.Component {
     loadBoard = () => {
         const boardId = this.props.match.params.boardId;
         boardService.getById(boardId).then((board) => {
-            this.setState( { board }, () => {
+            this.setState({ board }, () => {
                 this.props.setCurrBoard(this.state.board);
             });
         });
@@ -36,8 +37,16 @@ class _BoardDetails extends React.Component {
         this.setState({ isAddOpen: !isAddOpen });
     };
 
+    
+    toggleEditOpen = (ev) => {
+        ev.preventDefault();
+        
+        let { isEditOpen } = this.state;
+        this.setState({ isEditOpen: !isEditOpen });
+    };
+
     onDragEnd = (result) => {
-        const {destination, source, type} = result;
+        const { destination, source, type } = result;
         if (!destination) return;
         const clonedBoard = { ...this.props.board };
         if (type === 'group') {
@@ -69,17 +78,18 @@ class _BoardDetails extends React.Component {
     }
 
     render() {
-        const { isAddOpen } = this.state;
-        const {board} = this.props
+        const { isAddOpen, isEditOpen } = this.state;
+        const { board } = this.props;
+        console.log('hereeeeee', isEditOpen);
         if (!board) return <Loader />;
         return (
-            <div className="board-details-container">
+            <div className={`board-details-container ${isEditOpen && 'go-back-container'}`} style={{backgroundColor: board.style.backgroundColor}}>
                 <BoardHeader board={this.props.board} />
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className="group-list-wrapper">
                         <Droppable droppableId={board._id} direction='horizontal' type='group'>
                             {(provided, snapshot) => (
-                                <div {...provided.droppableProps} ref={provided.innerRef}>
+                                <div {...provided.droppableProps} ref={provided.innerRef} className='flex'>
                                     <GroupList groups={board.groups} board={board} />
                                     {provided.placeholder}
                                     <div className="add-group-container">
@@ -108,7 +118,6 @@ class _BoardDetails extends React.Component {
 
 function mapStateToProps({ boardModule }) {
     return {
-        // board: boardModule.boards,
         board: boardModule.currBoard,
     };
 }

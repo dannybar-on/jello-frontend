@@ -50,7 +50,7 @@ class _AddBoardItem extends React.Component {
                     <textarea placeholder={`Enter a title for this ${renderedType}`} name="title" value={title} ref={input => { this.textInput = input; }} onChange={this.handleChange} onBlur={this.onAddItem} />
                     <div className="form-btns">
                         <button className="btn-style1" type='submit'>Add {renderedType}</button>
-                        <button onClick={onToggleAdd}>X</button>
+                        <button onClick={() => onToggleAdd()}>X</button>
                     </div>
                 </form>
             </section>
