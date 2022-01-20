@@ -13,13 +13,18 @@
     width: rem(180px);
     padding: 20px;
     color: #fff;
+    border-radius: 3px;
+    
+    &.create-board-btn {
+      background-color: rgba(9, 30, 66, 0.039);
+      color: $dark-blue;
+      text-align: center;
+      height: rem(80px);
+      width: rem(180px);
+      padding: 20px;;
+      &.create-board-btn:hover {
+        background-color: rgba(9, 30, 66, 0.078);
+      }
+    }
   }
-
-  .create-board-btn {
-      border: none;
-      
-    }
-    .create-board-btn:hover {
-    background-color: lightsalmon;
-    }
 }

@@ -7,15 +7,18 @@ import { FaStar } from 'react-icons/fa';
 class _BoardList extends React.Component {
     state = {
         isAdd: false,
+        isModal: true,
     };
 
     componentDidMount() {
         this.props.loadBoards();
     }
 
+    onNew = () => {
+        this.setState({ isModal: !this.state.isModal });
+    };
 
-
-    toggleNewBoardForm = () => {
+    toggleIsAdd = () => {
         let { isAdd } = this.state;
         this.setState({ isAdd: !isAdd });
 
@@ -27,10 +30,11 @@ class _BoardList extends React.Component {
 
     render() {
         const { boards } = this.props;
-        const { isAdd } = this.state;
+        const { isAdd, isModal } = this.state;
+        console.log(isAdd);
         return (
             <section className='board-list'>
-                {isAdd && <BoardAdd />}
+                {isAdd && <BoardAdd toggleIsAdd={this.toggleIsAdd} isModal={isModal} onClose={this.onNew}/>}
                     <h1><FaStar /> Starred Boards</h1>
                 <div className='starred-container'>
                     {boards.map((board, index) => {
@@ -51,7 +55,7 @@ class _BoardList extends React.Component {
                             </div>
                         );
                     })}
-                <button className='create-board-btn board-card' onClick={() => this.toggleNewBoardForm()}>Create new board</button>
+                <button className='create-board-btn board-card' onClick={() => this.toggleIsAdd()}>Create new board</button>
                 </div>
             </section>
         );
