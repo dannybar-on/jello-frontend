@@ -1,0 +1,14 @@
+.add-item-btn{
+
+        align-items: flex-start;
+        border: none;
+        border-radius: 3px;
+     
+        line-height: 20px;
+        padding: 6px 12px;
+        transition: background-color,border-color,box-shadow 85ms ease;
+        background-color: rgba(9,30,66,.0392156862745098);
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+}

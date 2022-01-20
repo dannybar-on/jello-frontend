@@ -1,5 +1,5 @@
 // Add board item btn
-.add-btn-style {
+.btn-style1 {
   align-items: center;
   border: none;
   border-radius: 3px;
@@ -32,5 +32,32 @@
     box-shadow: none;
     color: #fff;
     outline: 0;
+  }
+}
+
+
+
+.close-task-btn {
+  border-radius: 50%;
+  color: #42526e;
+  background-color: #00000014;
+  height: 32px;
+  width: 32px;
+  margin: 4px;
+  font-size: 20px;
+  overflow: hidden;
+  padding: 4px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: background-color 85ms, color 85ms;
+  z-index: 2;
+
+  &:hover {
+    background-color: #00000029;
+  }
+
+  &:active {
+    background-color: #0000003d;
   }
 }

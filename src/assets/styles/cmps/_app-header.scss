@@ -1,9 +1,18 @@
 .app-header {
   background-color: #0066ffa4;
-  backdrop-filter: blur(6px);
+  // -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(1px);
+  backdrop-filter: opacity(3%);
   color: #ffffff;
- 
+
+.logo{
+  margin-left: 0.5rem;
+}
+
   ul {
     gap: 20px;
+    &:last-child {
+      margin-right: 0.5rem;
+    }
   }
 }
