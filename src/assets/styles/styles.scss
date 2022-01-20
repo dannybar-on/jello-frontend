@@ -8,7 +8,7 @@
 @import 'basics/helpers.scss';
 // @import "basics/layout.scss";
 @import 'basics/base.scss';
-// @import "basics/buttons.scss";
+@import "basics/buttons.scss";
 
 //  CMPS
 @import 'cmps/app-header.scss';
@@ -16,6 +16,7 @@
 @import 'cmps/group-list.scss';
 @import 'cmps/group-preview.scss';
 @import 'cmps/board-header.scss';
+@import 'cmps/task-preview.scss';
 //  PAGES
 @import 'pages/home.scss';
 @import 'pages/board-list.scss';
