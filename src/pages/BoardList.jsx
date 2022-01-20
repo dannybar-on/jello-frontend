@@ -33,11 +33,11 @@ class _BoardList extends React.Component {
                 <h1>Hello World! I am in BoardList</h1>
                 <button onClick={() => this.toggleNewBoardForm()}>Create new board</button>
                 {isAdd && <BoardAdd />}
-                {boards.map(board => {
+                {boards.map((board, index) => {
                     return (
                         <div key={board._id}>
                             <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
-                            <BoardPreview board={board}></BoardPreview>
+                            <BoardPreview board={board} index={index}></BoardPreview>
                         </div>
                     );
                 })}
