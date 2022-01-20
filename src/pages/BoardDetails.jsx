@@ -49,11 +49,23 @@ class _BoardDetails extends React.Component {
         const sourceGroup = {
             ...clonedBoard.groups.find(group => group.id === source.droppableId)
         };
-        clonedBoard.groups = clonedBoard.groups.map(currGroup => {
-            if (currGroup.id === source.droppableId) return sourceGroup;
-            return currGroup;
-        });
-        this.props.updateBoard(clonedBoard);
+        const sourceTask = sourceGroup.tasks.splice(source.index, 1)
+        if (source.droppableId === destination.droppableId) {
+            sourceGroup.tasks.splice(destination.index, 0, ...sourceTask)
+            this.props.updateBoard(clonedBoard)
+        } else {
+            const destinationGroup = {
+                ...clonedBoard.groups.find(group => group.id === destination.droppableId)
+            }
+            if (destinationGroup.tasks) destinationGroup.tasks.splice(destination.index, 0, ...sourceTask)
+            else destinationGroup.tasks = [sourceTask]
+            clonedBoard.groups = clonedBoard.groups.map(currGroup => {
+                if (currGroup.id === source.droppableId) return sourceGroup;
+                if (currGroup.id === destination.droppableId) return destinationGroup
+                return currGroup;
+            });
+            this.props.updateBoard(clonedBoard);
+        }
     }
 
     render() {
@@ -64,35 +76,33 @@ class _BoardDetails extends React.Component {
             <div className="board-details-container">
                 <BoardHeader board={this.props.board} />
                 <DragDropContext onDragEnd={this.onDragEnd}>
-                <div className="group-list-wrapper">
-                <Droppable droppableId={board._id} direction='horizontal' type='group'>
-                    {(provided, snapshop) => (
-                        <div {...provided.droppableProps}
-                            ref={provided.innerRef}>
-                            <GroupList groups={board.groups} board={board}/>
-                            {provided.placeholder}
-                            {isAddOpen ? <AddBoardItem type={'group'} onToggleAdd={this.onToggleAdd} /> :
-                            <button onClick={this.onToggleAdd}>Add another list</button>
-                        }
-                        <Route
-                        component={TaskDetails}
-                        path='/board/:boardId/:groupId/:taskId'
-                />
-                                {/* <GroupList groups={board.groups} />
-                                {provided.placeholder}
-                                <div className="group-add-container">
-                                {isAddOpen ? <AddBoardItem type={'group'} loadBoard={this.loadBoard} onToggleAdd={this.onToggleAdd} /> :
-                                    <button onClick={this.onToggleAdd}>Add another list</button>}
-                                </div> */}
-                        </div>
-                    )}
-                </Droppable>
-                </div>
+                    <div className="group-list-wrapper">
+                        <Droppable droppableId={board._id} direction='horizontal' type='group'>
+                            {(provided, snapshot) => (
+                                <div {...provided.droppableProps} ref={provided.innerRef}>
+                                    <GroupList groups={board.groups} board={board} />
+                                    {provided.placeholder}
+                                    <div className="add-group-container">
+                                        {!isAddOpen && (
+                                            <button onClick={this.onToggleAdd}>
+                                                Add another list
+                                            </button>
+                                        )}
+                                        {isAddOpen && (
+                                            <AddBoardItem onToggleAdd={this.onToggleAdd} type={'group'} />
+                                        )}
+                                           <Route
+                                           component={TaskDetails}
+                                           path='/board/:boardId/:groupId/:taskId'
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                        </Droppable>
+                    </div>
                 </DragDropContext>
-                
-                
             </div>
-        );
+        )
     }
 }
 
