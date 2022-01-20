@@ -26,7 +26,7 @@ class _AddBoardItem extends React.Component {
         const { newItem } = this.state;
         if (!newItem.title) return;
         newItem.id = utilService.makeId();
-        console.log(this.props);
+        // console.log(this.props);
         if (this.props.type === 'group') {
             if (!newItem.tasks) newItem.tasks = [];
             this.props.addGroup(newItem, this.props.board);

@@ -41,9 +41,7 @@ class _TaskDetails extends React.Component {
     handleDetailsChange = () => {
         const { board } = this.props;
         const { currTask, currGroup } = this.state;
-        console.log('board----', board);
         this.props.updateTask(board, currGroup, currTask);
-
     };
 
 
@@ -69,7 +67,7 @@ class _TaskDetails extends React.Component {
                             name="title"
                             onChange={this.handleChange}
                             value={currTask.title}
-                            onBlur={() => this.handleDetailsChange()}
+                            onBlur={this.handleDetailsChange}
                         />
                         {/* <p>in List{task.title}</p> */}
                     </div>

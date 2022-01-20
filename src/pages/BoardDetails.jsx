@@ -25,8 +25,9 @@ class _BoardDetails extends React.Component {
     loadBoard = () => {
         const boardId = this.props.match.params.boardId;
         boardService.getById(boardId).then((board) => {
-            this.setState({ board });
-            this.props.setCurrBoard(this.state.board);
+            this.setState( { board }, () => {
+                this.props.setCurrBoard(this.state.board);
+            });
         });
     };
 
@@ -38,8 +39,8 @@ class _BoardDetails extends React.Component {
 
 
     render() {
-        const { board, isAddOpen } = this.state;
-        // console.log('ssss');
+        const { isAddOpen } = this.state;
+        const {board} = this.props
         if (!board) return <Loader />;
         return (
             <div className="board-details-container">
