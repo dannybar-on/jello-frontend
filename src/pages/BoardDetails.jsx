@@ -99,7 +99,7 @@ class _BoardDetails extends React.Component {
             >
               <BoardHeader board={this.props.board} />
                   <GroupList groups={board.groups} board={board} />
-                  <div className="add-group-container">
+                  <div className="add-group-container flex">
                     {!isAddOpen && (
                       <button onClick={this.onToggleAdd}>
                           <AiOutlinePlus />
