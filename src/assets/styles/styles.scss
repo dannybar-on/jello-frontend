@@ -17,8 +17,15 @@
 @import 'cmps/group-preview.scss';
 @import 'cmps/board-header.scss';
 @import 'cmps/task-preview.scss';
-@import 'cmps/task-sidebar.scss';
+@import 'cmps/task-details-data.scss';
+
 @import 'cmps/board-add-modal.scss';
+
+//TASKSIDEBAR
+
+@import 'cmps/task-sidebar/task-sidebar.scss';
+
+
 
 //  PAGES
 @import 'pages/home.scss';

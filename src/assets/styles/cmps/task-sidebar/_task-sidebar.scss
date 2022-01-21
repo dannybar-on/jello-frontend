@@ -1,0 +1,57 @@
+.task-main-container {
+
+  .sidebar-btns-container, .sidebar-actions-container {
+    margin-bottom: 24px;
+      width: 144px;
+  }
+
+  
+  
+    .task-sidebar {
+      flex: 1 1;
+      height: 100%;
+      padding: 0 12px 8px 8px;
+    //   margin-right: 26px;
+
+      .sidebar-title {
+        color: #5e6c84;
+        font-size: rem(14px);
+        font-weight: 600;
+      }
+
+      .add-item-btn {
+        border: none;
+        margin-top: 8px;
+        color: $dark-blue;
+        border-radius: 3px;
+        line-height: 20px;
+        padding: 6px 12px;
+        transition: background-color, border-color, box-shadow 85ms ease;
+        background-color: rgba(9, 30, 66, 0.0392156862745098);
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        // height: 32px;
+        gap:6px;
+
+
+        p{
+            margin: 0;
+        }
+
+        &:hover {
+          background-color: #091e4214;
+          color: $hard-blue;
+        }
+
+        &:active {
+          background-color: #e4f0f6;
+          border: none;
+          box-shadow: none;
+          color: #0079bf;
+          outline: 0;
+        }
+      }
+    }
+  
+}
