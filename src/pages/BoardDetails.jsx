@@ -41,7 +41,7 @@ class _BoardDetails extends React.Component {
   toggleEditOpen = (ev) => {
     ev.preventDefault();
 
-    let { isEditOpen } = this.state;
+    const { isEditOpen } = this.state;
     this.setState({ isEditOpen: !isEditOpen });
   };
 
@@ -80,8 +80,8 @@ class _BoardDetails extends React.Component {
     }
   };
 
-  componentWillUnmount(){
-      this.props.unMountBoard()
+  componentWillUnmount() {
+    this.props.unMountBoard();
   }
 
   render() {
@@ -91,33 +91,32 @@ class _BoardDetails extends React.Component {
     if (!board) return <Loader />;
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
-            <div
-              className={`board-details-container ${
-                isEditOpen && 'go-back-container'
-              }`}
-           
-            >
-              <BoardHeader board={this.props.board} />
-                  <GroupList groups={board.groups} board={board} />
-                  <div className="add-group-container flex">
-                    {!isAddOpen && (
-                      <button onClick={this.onToggleAdd}>
-                          <AiOutlinePlus />
-                       <span> Add another list</span>
-                      </button>
-                    )}
-                    {isAddOpen && (
-                      <AddBoardItem
-                        onToggleAdd={this.onToggleAdd}
-                        type={'group'}
-                      />
-                    )}
-                    <Route
-                      component={TaskDetails}
-                      path="/board/:boardId/:groupId/:taskId"
-                    />
-                  </div>
+        <div className={`board-details-container ${isEditOpen && 'go-back-container'}`}>
+          <BoardHeader board={this.props.board} />
+          <div className='list-container flex'>
+            <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen} />
+            <div className="add-group-container">
+              {!isAddOpen && (
+                <button className='add-list-btn flex align-center' onClick={this.onToggleAdd}>
+                  <AiOutlinePlus />
+                  <span> Add another list</span>
+                </button>
+              )}
+              {isAddOpen && (
+                <div className='add-group-container'>
+                  <AddBoardItem
+                    onToggleAdd={this.onToggleAdd}
+                    type={'group'}
+                  />
+                </div>
+              )}
             </div>
+            <Route
+              component={TaskDetails}
+              path="/board/:boardId/:groupId/:taskId"
+            />
+          </div>
+        </div>
       </DragDropContext>
     );
   }
@@ -130,9 +129,9 @@ function mapStateToProps({ boardModule }) {
 }
 
 const mapDispatchToProps = {
-    setCurrBoard,
-    updateBoard,
-    unMountBoard,
+  setCurrBoard,
+  updateBoard,
+  unMountBoard,
 };
 
 export const BoardDetails = connect(

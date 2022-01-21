@@ -2,21 +2,26 @@ import React, { createRef } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import {taskService} from '../services/task.service'
+
 import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
 import { updateTask } from '../store/board.action';
-import { TaskSideBar } from '../cmps/TaskSideBar';
+import { TaskSideBar } from '../cmps/task/TaskSideBar';
+import { TaskDetailsData } from '../cmps/task/TaskDetailsData'
 
 import { CgCreditCard } from 'react-icons/cg';
 import { GrTextAlignFull } from 'react-icons/gr';
-import { FiList } from 'react-icons/fi';
+import { BsListUl } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
+// import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
 class _TaskDetails extends React.Component {
 
     state = {
         currTask: null,
         currGroup: null,
+        taskLabels: [],
         isDescriptionOpen: false,
 
 
@@ -27,8 +32,9 @@ class _TaskDetails extends React.Component {
     componentDidMount() {
         this.setCurrTask();
 
-
+       
     }
+
 
 
     setCurrTask = () => {
@@ -38,7 +44,7 @@ class _TaskDetails extends React.Component {
                 const currGroup = board.groups.find(group => group.id === groupId);
                 const currTask = currGroup.tasks.find(task => task.id === taskId);
                 this.setState({ currGroup, currTask });
-
+                this.getTaskLabels()
             });
     };
 
@@ -51,11 +57,11 @@ class _TaskDetails extends React.Component {
         const { board } = this.props;
         const { currTask, currGroup } = this.state;
         this.props.updateTask(board, currGroup, currTask);
-
+        this.toggleDescriptionTextArea()
     };
 
 
-    setDescriptionTextArea = () => {
+    toggleDescriptionTextArea = () => {
         this.setState({ isDescriptionOpen: !this.state.isDescriptionOpen })
     }
 
@@ -65,20 +71,35 @@ class _TaskDetails extends React.Component {
         const taskId = this.state.currTask.id
         const prevTask = currGroup.tasks.find(task => task.id === taskId)
         this.setState({ currTask: prevTask })
-        this.setDescriptionTextArea()
+        this.toggleDescriptionTextArea()
 
     }
 
+    getTaskLabels = () => {
+        const { board } = this.props
+        const { currTask } = this.state
+    
+        const taskLabels = taskService.getLabelsById(board, currTask)
+        // console.log('taskLabels:', taskLabels);
+        this.setState({taskLabels})
+        
+    }
+ 
+
 
     render() {
-        const { currTask, currGroup, isDescriptionOpen } = this.state;
+        const { currTask, currGroup, isDescriptionOpen,taskLabels } = this.state;
         const { boardId } = this.props.match.params;
+        const { board } = this.props
         if (!currTask) return <Loader />;
         return (
             <React.Fragment>
                 <Link to={`/board/${boardId}`} className="go-back-container" />
 
                 <section className="task-details-container" >
+
+
+
 
                     {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className="task-cover" style={{ backgroundColor: currTask.style.bgColor }}></div>}
                     <Link to={`/board/${boardId}`}>
@@ -99,7 +120,7 @@ class _TaskDetails extends React.Component {
                             onBlur={this.handleDetailsChange}
 
                         />
-            
+
                     </div>
                     <div className="group-name">
 
@@ -109,6 +130,12 @@ class _TaskDetails extends React.Component {
                     <div className="task-main-container flex">
 
                         <div className="task-main flex column">
+
+                            {/* {board.members.map(member => <UserAvatar fullname={member.fullname} />)} */}
+
+
+                            <TaskDetailsData currTask={currTask} board={board} taskLabels={taskLabels}/>
+
 
                             <div className="task-description">
                                 <div className="description-header flex">
@@ -120,10 +147,11 @@ class _TaskDetails extends React.Component {
                                         name="description"
                                         placeholder="Add a more detailed description..."
                                         onChange={this.handleChange}
-                                        onFocus={this.setDescriptionTextArea}
+                                        onFocus={this.toggleDescriptionTextArea}
                                         value={currTask.description}
-                                        rows={(isDescriptionOpen)?'6':''}
-                                        onBlur={() => { this.handleDetailsChange(); this.setDescriptionTextArea() }}
+                                        rows={(isDescriptionOpen) ? '6' : ''}
+                                        onBlur={() => { this.handleDetailsChange() }}
+                                    // onBlur={() => { this.handleDetailsChange(); this.toggleDescriptionTextArea() }}
 
                                     >
                                     </textarea>
@@ -144,7 +172,7 @@ class _TaskDetails extends React.Component {
 
                                 <div className="activity-header flex row space-between">
                                     <div className="flex">
-                                        <span className="icon-lg"><FiList /></span>
+                                        <span className="icon-lg"><BsListUl /></span>
                                         <h3 className="activity-title">Activity</h3>
                                     </div>
                                     <button>Hide Details</button>

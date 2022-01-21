@@ -14,7 +14,7 @@ export class TaskPreviewContent extends React.Component {
         // console.log(isEditOpen);
         return (
 
-            <div className="task-preview">
+            <div className="task-preview flex space-between">
                 {/* <ul className="tas"> </ul> */}
                 <p>{task.title}</p>
 
