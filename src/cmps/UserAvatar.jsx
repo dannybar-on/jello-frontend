@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-// import Badge from '@mui/material/Badge';
-// import { styled } from '@mui/material/styles';
+
 function stringToColor(string) {
     let hash = 0;
     let i;
@@ -37,7 +36,7 @@ export function UserAvatar({ fullname }) {
     return (
         <Stack direction="row" spacing={2}>
         
-                <Avatar {...stringAvatar(fullname)} className='user-avatar' />
+                <Avatar  {...stringAvatar(fullname)} className='user-avatar' />
         </Stack >
     );
 }

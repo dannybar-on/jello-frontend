@@ -1,9 +1,15 @@
 .app-header {
-  background-color: #0066ffa4;
-  // -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(1px);
-  backdrop-filter: opacity(3%);
+  background-color: #bcd8db71;
+  backdrop-filter: blur(6px);
+  // backdrop-filter: blur(1px);
+  // backdrop-filter: opacity(3%);
   color: #ffffff;
+
+.jello {
+  height: 40px;
+  width: 40px;
+  color:#fff;
+}
 
 .logo{
   margin-left: 0.5rem;
@@ -15,4 +21,77 @@
       margin-right: 0.5rem;
     }
   }
+}
+
+
+@-webkit-keyframes wobble-top-on-hover {
+  16.65% {
+    -webkit-transform: skew(-12deg);
+    transform: skew(-12deg);
+  }
+  33.3% {
+    -webkit-transform: skew(10deg);
+    transform: skew(10deg);
+  }
+  49.95% {
+    -webkit-transform: skew(-6deg);
+    transform: skew(-6deg);
+  }
+  66.6% {
+    -webkit-transform: skew(4deg);
+    transform: skew(4deg);
+  }
+  83.25% {
+    -webkit-transform: skew(-2deg);
+    transform: skew(-2deg);
+  }
+  100% {
+    -webkit-transform: skew(0);
+    transform: skew(0);
+  }
+}
+@keyframes wobble-top-on-hover {
+  16.65% {
+    -webkit-transform: skew(-12deg);
+    transform: skew(-12deg);
+  }
+  33.3% {
+    -webkit-transform: skew(10deg);
+    transform: skew(10deg);
+  }
+  49.95% {
+    -webkit-transform: skew(-6deg);
+    transform: skew(-6deg);
+  }
+  66.6% {
+    -webkit-transform: skew(4deg);
+    transform: skew(4deg);
+  }
+  83.25% {
+    -webkit-transform: skew(-2deg);
+    transform: skew(-2deg);
+  }
+  100% {
+    -webkit-transform: skew(0);
+    transform: skew(0);
+  }
+}
+.wobble-top-on-hover {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+.wobble-top-on-hover:hover, .wobble-top-on-hover:focus, .wobble-top-on-hover:active {
+  -webkit-animation-name: wobble-top-on-hover;
+  animation-name: wobble-top-on-hover;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
 }

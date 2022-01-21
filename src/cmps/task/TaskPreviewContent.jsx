@@ -13,6 +13,7 @@ export class TaskPreviewContent extends React.Component {
         // const { isEditOpen } = this.state;
         // console.log(isEditOpen);
         return (
+
             <div className="task-preview">
                 {/* <ul className="tas"> </ul> */}
                 <p>{task.title}</p>

@@ -11,7 +11,8 @@
         border-radius: 5px;
         min-height: rem(32px);
         line-height: 32px;
-        background-color: #ffffff56;
+        background-color: #ffffff3d;
+        color: #fff;
         min-width: rem(32px);
         font-size: rem(20px);
         text-align: center;
@@ -59,11 +60,12 @@
       border-radius: 5px;
       min-height: rem(32px);
       line-height: 32px;
-      background-color: #ffffff56;
+      // background-color: #ffffff56;
+      // #ffffff3d
       min-width: rem(32px);
       font-size: rem(18px);
       text-align: center;
-      //   background-color: #ffffff56;
+        background-color:#ffffff3d;
       //   height: rem(32px);
       //   min-height: rem(32px);
       //   padding-right: 5px;
@@ -77,4 +79,9 @@
       }
     }
   }
+}
+
+
+.user-avatar {
+  
 }

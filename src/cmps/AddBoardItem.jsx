@@ -38,6 +38,7 @@ class _AddBoardItem extends React.Component {
         }
 
         this.setState({ newItem: { title: '' } });
+        this.props.onToggleAdd();
     };
 
     render() {
