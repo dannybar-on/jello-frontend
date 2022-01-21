@@ -35,7 +35,7 @@ export class GroupPreview extends React.Component {
                   {(provided) => (
                       <div className="group-preview-container flex column" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                           <div className="group-header">
-                              <input className='group-title' type="text" value={title} name='title' onChange={this.handleChange}/>
+                              <textarea className='group-title' dir="auto" wrap="hard" type="text" value={title} name='title' onChange={this.handleChange}/>
                           </div>
                           <Droppable droppableId={group.id}>
                               {(provided) => (

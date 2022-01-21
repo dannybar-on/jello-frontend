@@ -2,6 +2,8 @@ import React, { createRef } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import {taskService} from '../services/task.service'
+
 import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
 import { updateTask } from '../store/board.action';
@@ -19,6 +21,7 @@ class _TaskDetails extends React.Component {
     state = {
         currTask: null,
         currGroup: null,
+        taskLabels: [],
         isDescriptionOpen: false,
 
 
@@ -30,9 +33,8 @@ class _TaskDetails extends React.Component {
         this.setCurrTask();
 
        
-
-
     }
+
 
 
     setCurrTask = () => {
@@ -77,18 +79,16 @@ class _TaskDetails extends React.Component {
         const { board } = this.props
         const { currTask } = this.state
     
-        taskService.getLabelsById(currTask.labelIds)
-
-
-        // const taskLabels = board.labels.find(label => label.id === currTask.labelIds)
-        // console.log('lb:', taskLabels);
-
+        const taskLabels = taskService.getLabelsById(board, currTask)
+        // console.log('taskLabels:', taskLabels);
+        this.setState({taskLabels})
+        
     }
  
 
 
     render() {
-        const { currTask, currGroup, isDescriptionOpen } = this.state;
+        const { currTask, currGroup, isDescriptionOpen,taskLabels } = this.state;
         const { boardId } = this.props.match.params;
         const { board } = this.props
         if (!currTask) return <Loader />;
@@ -134,7 +134,7 @@ class _TaskDetails extends React.Component {
                             {/* {board.members.map(member => <UserAvatar fullname={member.fullname} />)} */}
 
 
-                            <TaskDetailsData currTask={currTask} board={board} />
+                            <TaskDetailsData currTask={currTask} board={board} taskLabels={taskLabels}/>
 
 
                             <div className="task-description">

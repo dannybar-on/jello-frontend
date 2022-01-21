@@ -1,21 +1,18 @@
 
 
 export const taskService = {
- 
-    // save,
+
+    getLabelsById,
 
 };
 
 
+function getLabelsById(board, task) {
+
+    if (!task.labelIds?.length || !task.labelIds) return null
+
+    return task.labelIds.map(labelId => board.labels.find(label => label.id === labelId))
+
+}
 
 
-// function save(board) {
-   
-    
-//     if (board._id) return storageService.put(STORAGE_KEY, board);
-
-//     let newBoard = getEmptyBoard();
-//     newBoard.title = board.title;
-//     console.log('newBoard', newBoard);
-//     return storageService.post(STORAGE_KEY, newBoard);
-// }
