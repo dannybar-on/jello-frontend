@@ -53,7 +53,11 @@ export function setCurrBoard(board) {
         try {
             dispatch({ type: 'SET_CURR_BOARD', board });
             document.body.style.background = (board.style.bgColor) ? board.style.bgColor : `url("${board.style.bgImg}")`;
+            
+            document.body.style.backgroundRepeat = 'no-repeat';
+            document.body.style.backgroundPosition = 'center';
             document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundAttachment= 'fixed';        
 
         } catch (err) {
             console.log('Couldnt update curr board');

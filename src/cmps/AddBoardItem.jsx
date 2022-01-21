@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { updateBoard, addTask, addGroup } from '../store/board.action.js';
 import { utilService } from '../services/util-service.js';
+import { IoMdClose } from 'react-icons/io';
 
 class _AddBoardItem extends React.Component {
     state = {
@@ -49,9 +50,9 @@ class _AddBoardItem extends React.Component {
             <section className="add-board-item">
                 <form onSubmit={this.onAddItem}>
                     <textarea placeholder={`Enter a title for this ${renderedType}`} name="title" value={title} ref={input => { this.textInput = input; }} onChange={this.handleChange} onBlur={this.onAddItem} />
-                    <div className="form-btns">
+                    <div className="form-btns flex">
                         <button className="btn-style1" type='submit'>Add {renderedType}</button>
-                        <button onClick={() => onToggleAdd()}>X</button>
+                        <button onClick={() => onToggleAdd()}><IoMdClose /></button>
                     </div>
                 </form>
             </section>
