@@ -29,10 +29,10 @@ export class GroupPreview extends React.Component {
   render() {
       const { group, index, board } = this.props;
       const { title, isAddOpen } = this.state;
+          //   <div className="group-wrapper">
       return (
-          <div className="group-wrapper">
               <Draggable draggableId={group.id} index={index}>
-                  {(provided, snapshot) => (
+                  {(provided) => (
                       <div className="group-preview-container flex column" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                           <div className="group-header">
                               <input className='group-title' type="text" value={title} name='title' onChange={this.handleChange}/>
@@ -63,7 +63,7 @@ export class GroupPreview extends React.Component {
                       </div>
                   )}
               </Draggable>
-          </div>
+         
       )
   }
 }

@@ -1,10 +1,10 @@
-.group-wrapper {
-  display: inline-block;
-  height: 100%;
-  margin: 0 8px;
-  vertical-align: top;
-  white-space: nowrap;
-  width: 272px;
+// .group-wrapper {
+  // display: inline-block;
+  // height: 100%;
+  // margin: 0 8px;
+  // vertical-align: top;
+  // white-space: nowrap;
+  // width: 272px;
 
   .group-preview-container {
     background-color: $light-grey1;
@@ -15,6 +15,7 @@
     margin: 0 4px;
     box-sizing: border-box;
     white-space: normal;
+    
 
     .group-header {
       padding: 10px 8px;
@@ -94,4 +95,4 @@
       }
     }
   }
-}
+// }
