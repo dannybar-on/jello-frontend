@@ -39,7 +39,8 @@ class _BoardList extends React.Component {
                 <div className='starred-container'>
                     {boards.map((board, index) => {
 
-                        return board.isStarred && <div className='board-card'  key={board._id}>
+                        return board.isStarred && <div className='board-card' key={board._id} style={(board.style.bgColor) ? { backgroundColor: `${board.style.bgColor}` } : { backgroundImage: `url(${board.style.bgImg})`}}
+                        >
                             <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
                             <BoardPreview board={board} index={index}></BoardPreview>
                         </div>;
@@ -49,7 +50,7 @@ class _BoardList extends React.Component {
                 <div className='workspace-container'>
                     {boards.map((board, index) => {
                         return (
-                            <div className='board-card' key={board._id}>
+                            <div className='board-card' key={board._id} style={(board.style.bgColor) ? { backgroundColor: `${board.style.bgColor}` } : { backgroundImage: `url(${board.style.bgImg})`}} >
                                 <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
                                 <BoardPreview board={board} index={index}></BoardPreview>
                             </div>
