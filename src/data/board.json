@@ -169,7 +169,7 @@
             "fullname": "Daniel Bar-on",
             "imgUrl": "http://some-img"
         },
-        "style": {"backgroundColor": "#0071bf2a"},
+        "style": {"bgColor": "#0071bf2a"},
         "labels": [
             {
                 "id": "l101",
@@ -216,6 +216,11 @@
             {
                 "_id": "u103",
                 "fullname": "Daniel Bar-on",
+                "imgUrl": "https://www.google.com"
+            },
+            {
+                "_id": "u104",
+                "fullname": "Oren Yaniv",
                 "imgUrl": "https://www.google.com"
             }
         ],

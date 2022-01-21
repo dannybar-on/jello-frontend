@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateBoard } from '../../store/board.action.js';
 import { UserAvatar } from '../UserAvatar.jsx';
+import AvatarGroup from '@mui/material/AvatarGroup';
 // import {Loader} from '../Loader.jsx'
 import { FiStar } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
@@ -48,10 +49,12 @@ class _BoardHeader extends React.Component {
                     <input type='text' autoFocus value={board.title} onBlur={() => this.setState({ isTitleClicked: !isTitleClicked })} />
                 }
                 <button className='star-btn' onMouseEnter={this.toggleStarHover} onMouseLeave={this.toggleStarHover} onClick={this.toggleIsStarred}>
-                    {(board.isStarred ) ? <FaStar /> : <FiStar />}
+                    {(board.isStarred || isStarHover) ? <FaStar /> : <FiStar />}
                 </button>
                 {/* <h1>User avatars</h1> */}
-                {board.members.map(member => <UserAvatar fullname={member.fullname} />)}
+                <AvatarGroup max={3}>
+                    {board.members.map(member => <UserAvatar fullname={member.fullname} />)}
+                </AvatarGroup>
                 <button className='invite-btn'><RiUserAddLine /> Invite</button>
             </div>
             <div className='board-header-right' >

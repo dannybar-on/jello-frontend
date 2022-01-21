@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { boardService } from '../services/board.service.js';
-import { setCurrBoard, updateBoard } from '../store/board.action.js';
+import { setCurrBoard, updateBoard, unMountBoard } from '../store/board.action.js';
 import { Route } from 'react-router-dom';
 
 import { Loader } from '../cmps/Loader.jsx';
@@ -11,6 +11,7 @@ import { GroupList } from '../cmps/GroupList.jsx';
 import { AddBoardItem } from '../cmps/AddBoardItem.jsx';
 import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { BoardHeader } from '../cmps/board/BoardHeader.jsx';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 class _BoardDetails extends React.Component {
     state = {
@@ -21,6 +22,7 @@ class _BoardDetails extends React.Component {
 
     componentDidMount() {
         this.loadBoard();
+
     }
 
     loadBoard = () => {
@@ -37,10 +39,10 @@ class _BoardDetails extends React.Component {
         this.setState({ isAddOpen: !isAddOpen });
     };
 
-    
+
     toggleEditOpen = (ev) => {
         ev.preventDefault();
-        
+
         let { isEditOpen } = this.state;
         this.setState({ isEditOpen: !isEditOpen });
     };
@@ -58,32 +60,41 @@ class _BoardDetails extends React.Component {
         const sourceGroup = {
             ...clonedBoard.groups.find(group => group.id === source.droppableId)
         };
-        const sourceTask = sourceGroup.tasks.splice(source.index, 1)
+        const sourceTask = sourceGroup.tasks.splice(source.index, 1);
         if (source.droppableId === destination.droppableId) {
-            sourceGroup.tasks.splice(destination.index, 0, ...sourceTask)
-            this.props.updateBoard(clonedBoard)
+            sourceGroup.tasks.splice(destination.index, 0, ...sourceTask);
+            this.props.updateBoard(clonedBoard);
         } else {
             const destinationGroup = {
                 ...clonedBoard.groups.find(group => group.id === destination.droppableId)
-            }
-            if (destinationGroup.tasks) destinationGroup.tasks.splice(destination.index, 0, ...sourceTask)
-            else destinationGroup.tasks = [sourceTask]
+            };
+            if (destinationGroup.tasks) destinationGroup.tasks.splice(destination.index, 0, ...sourceTask);
+            else destinationGroup.tasks = [sourceTask];
             clonedBoard.groups = clonedBoard.groups.map(currGroup => {
                 if (currGroup.id === source.droppableId) return sourceGroup;
-                if (currGroup.id === destination.droppableId) return destinationGroup
+                if (currGroup.id === destination.droppableId) return destinationGroup;
                 return currGroup;
             });
             this.props.updateBoard(clonedBoard);
         }
-    }
+    };
 
+    componentWillUnmount() {
+        this.props.unMountBoard();
+    }
+    // style={(board.style.bgColor) ? { backgroundColor: `${board.style.bgColor}` }
+    // : { backgroundImage: `url(${board.style.bgImg})` }}
     render() {
         const { isAddOpen, isEditOpen } = this.state;
         const { board } = this.props;
-        console.log('hereeeeee', isEditOpen);
         if (!board) return <Loader />;
+        // document.body.style.backgroundImage = this.props.board.style.bgImg
+        // console.log('hereeeeee', board.style.bgImg);
         return (
-            <div className={`board-details-container ${isEditOpen && 'go-back-container'}`} style={{backgroundColor: board.style.backgroundColor}}>
+            <div className={`board-details-container ${isEditOpen && 'go-back-container'}`}
+
+            >
+
                 <BoardHeader board={this.props.board} />
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className="group-list-wrapper">
@@ -94,16 +105,17 @@ class _BoardDetails extends React.Component {
                                     {provided.placeholder}
                                     <div className="add-group-container">
                                         {!isAddOpen && (
-                                            <button onClick={this.onToggleAdd}>
-                                                Add another list
+                                            <button className='flex align-center' onClick={this.onToggleAdd}>
+                                                <AiOutlinePlus size={12} />
+                                                <span> Add another list</span>
                                             </button>
                                         )}
                                         {isAddOpen && (
                                             <AddBoardItem onToggleAdd={this.onToggleAdd} type={'group'} />
                                         )}
-                                           <Route
-                                           component={TaskDetails}
-                                           path='/board/:boardId/:groupId/:taskId'
+                                        <Route
+                                            component={TaskDetails}
+                                            path='/board/:boardId/:groupId/:taskId'
                                         />
                                     </div>
                                 </div>
@@ -112,7 +124,7 @@ class _BoardDetails extends React.Component {
                     </div>
                 </DragDropContext>
             </div>
-        )
+        );
     }
 }
 
@@ -124,7 +136,8 @@ function mapStateToProps({ boardModule }) {
 
 const mapDispatchToProps = {
     setCurrBoard,
-    updateBoard
+    updateBoard,
+    unMountBoard,
 };
 
 export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails);

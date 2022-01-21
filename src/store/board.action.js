@@ -12,6 +12,7 @@ export function loadBoards() {
 }
 
 
+
 export function removeBoard(boardId) {
     return async (dispatch) => {
         try {
@@ -51,9 +52,21 @@ export function setCurrBoard(board) {
     return async (dispatch) => {
         try {
             dispatch({ type: 'SET_CURR_BOARD', board });
+            document.body.style.background = (board.style.bgColor) ? board.style.bgColor : `url("${board.style.bgImg}")`;
+            document.body.style.backgroundSize = 'cover';
+
         } catch (err) {
             console.log('Couldnt update curr board');
         }
+    };
+}
+
+export function unMountBoard() {
+    // return async
+    return async (dispatch) => {
+        // dispatch({ type: 'SET_CURR_BOARD', board: null });
+        document.body.style = null;
+        console.log(document.body);
     };
 }
 
