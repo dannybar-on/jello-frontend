@@ -59,8 +59,9 @@ class _BoardHeader extends React.Component {
                 </AvatarGroup>
                 <button className='invite-btn'><RiUserAddLine /> Invite</button>
             </div>
-            <div className='board-header-right' >
-                <button className='flex align-center justify-center'><BiDotsHorizontalRounded /> Show menu</button>
+            <div className='board-header-right flex row' >
+                <button className='dashboard-btn flex align-center justify-center'> Dashboard</button>
+                <button className='show-more-btn flex align-center justify-center'><BiDotsHorizontalRounded /> Show menu</button>
             </div>
         </section>;
     }
