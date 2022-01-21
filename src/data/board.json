@@ -9,7 +9,7 @@
             "fullname": "Elad Eyal",
             "imgUrl": "http://some-img"
         },
-        "style": {},
+        "style": {"bgColor": "rgb(0, 121, 191)"},
         "labels": [
             {
                 "id": "l101",
@@ -169,7 +169,7 @@
             "fullname": "Daniel Bar-on",
             "imgUrl": "http://some-img"
         },
-        "style": {"bgColor": "#0071bf2a"},
+        "style": {"bgColor":  "rgb(176, 70, 50)"},
         "labels": [
             {
                 "id": "l101",

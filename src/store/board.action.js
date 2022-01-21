@@ -62,11 +62,8 @@ export function setCurrBoard(board) {
 }
 
 export function unMountBoard() {
-    // return async
     return async (dispatch) => {
-        // dispatch({ type: 'SET_CURR_BOARD', board: null });
         document.body.style = null;
-        console.log(document.body);
     };
 }
 
