@@ -6,12 +6,13 @@ html {
   color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
     Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
-  }
-  
-  body {
-    color: $dark-blue;
-    margin: 0;
-    font-size: 14px;
+}
+
+body {
+  color: $dark-blue;
+  margin: 0;
+  font-size: 14px;
+  min-height: 100vh;
 }
 
 main {
@@ -52,14 +53,14 @@ button {
 
 input,
 textarea {
-    font-family: unset;
-    font-size: 14px;
-    // color: unset;
-    color: $dark-blue;
-    outline: none;
-    border: none;
-    resize: none;
-    width: 100%;
+  font-family: unset;
+  font-size: 14px;
+  // color: unset;
+  color: $dark-blue;
+  outline: none;
+  border: none;
+  resize: none;
+  width: 100%;
 }
 
 a {

@@ -44,16 +44,18 @@ class _BoardHeader extends React.Component {
         return <section className='board-header-container flex align-center space-between'>
             <div className='board-header-left flex'>
                 {(!isTitleClicked) ?
-                    <h1 onClick={this.toggleTitleClicked}>{board.title}</h1>
-                    :
-                    <input type='text' autoFocus value={board.title} onBlur={() => this.setState({ isTitleClicked: !isTitleClicked })} />
+                    <button className='change-header-btn' onClick={this.toggleTitleClicked}>
+                        <h1 >{board.title}</h1>
+                    </button>
+                        :
+                        <input type='text' autoFocus value={board.title} onBlur={() => this.setState({ isTitleClicked: !isTitleClicked })} />
                 }
                 <button className='star-btn' onMouseEnter={this.toggleStarHover} onMouseLeave={this.toggleStarHover} onClick={this.toggleIsStarred}>
                     {(board.isStarred || isStarHover) ? <FaStar /> : <FiStar />}
                 </button>
                 {/* <h1>User avatars</h1> */}
-                <AvatarGroup max={3}>
-                    {board.members.map(member => <UserAvatar fullname={member.fullname} />)}
+                <AvatarGroup max={3} >
+                    {board.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} />)}
                 </AvatarGroup>
                 <button className='invite-btn'><RiUserAddLine /> Invite</button>
             </div>
