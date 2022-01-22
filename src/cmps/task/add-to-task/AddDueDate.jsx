@@ -29,7 +29,7 @@ function _AddDueDate({updateTask, currTask, board}) {
     }   
     
     return (
-        <div className="date-picker modal-content">
+        <div className="date-picker">
             <DatePicker 
             selected={startDate}
             onChange={onChange}
@@ -39,8 +39,8 @@ function _AddDueDate({updateTask, currTask, board}) {
             formatWeekDay={nameOfDay => nameOfDay.substr(0, 3)}
             />
             <div className="date-btns flex column">
-                <button className='date-save-btn' onClick={handleDueDate}>Save</button>
-                <button className='date-reset-btn' onClick={cleanDate}>Remove</button>
+                <button className='date-picker-btns save-btn' onClick={handleDueDate}>Save</button>
+                <button className='date-picker-btns reset-btn' onClick={cleanDate}>Remove</button>
             </div>
         </div>
     )

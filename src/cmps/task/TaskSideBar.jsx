@@ -26,13 +26,34 @@ import { CgCreditCard } from 'react-icons/cg';
 
 export class TaskSideBar extends React.Component {
 
+    // state = {
+    //     isPopoverOpen: false,
+
+    // }
+
+    togglePopOver = () => {
+        this.setState({ isPopoverOpen: !this.state.isPopoverOpen })
+    }
+
+     addToTaskItems =[
+        { icon: <AiOutlineUser />, title: 'Members', component: <AddMembers /> },
+        { icon: <MdLabelOutline />, title: 'Labels', component: <LabelsList togglePopOver={this.togglePopOver} /> },
+        { icon: <BsCheck2Square />, title: 'Checklist', component: <AddChecklist /> },
+        { icon: <IoMdTime />, title: 'Dates', component: <AddDueDate /> },
+        { icon: <ImAttachment />, title: 'Attachment', component: <AddAttachment /> },
+        { icon: <CgCreditCard />, title: 'Cover', component: <AddCover /> },
+    ]
+
+
+
     render() {
+        // const { isPopoverOpen } = this.state
         return (
             <>
                 <section className="sidebar-btns-container ">
                     <h3 className="sidebar-title">Add to card</h3>
-                    {addToTaskItems.map((item, idx) => (
-                        <SideBarAddToTask key={idx} item={item} />
+                    {this.addToTaskItems.map((item, idx) => (
+                        <SideBarAddToTask key={idx} item={item} togglePopOver={this.togglePopOver}   />
                     ))}
                 </section>
 
@@ -47,14 +68,14 @@ export class TaskSideBar extends React.Component {
     }
 }
 
-const addToTaskItems = [
-    { icon: <AiOutlineUser />, title: 'Members', component: <AddMembers /> },
-    { icon: <MdLabelOutline />, title: 'Labels', component: <LabelsList /> },
-    { icon: <BsCheck2Square />, title: 'Checklist', component: <AddChecklist /> },
-    { icon: <IoMdTime />, title: 'Dates', component: <AddDueDate /> },
-    { icon: <ImAttachment />, title: 'Attachment', component: <AddAttachment /> },
-    { icon: <CgCreditCard />, title: 'Cover', component: <AddCover /> },
-]
+// const addToTaskItems = [
+//     { icon: <AiOutlineUser />, title: 'Members', component: <AddMembers /> },
+//     { icon: <MdLabelOutline />, title: 'Labels', component: <LabelsList /> },
+//     { icon: <BsCheck2Square />, title: 'Checklist', component: <AddChecklist /> },
+//     { icon: <IoMdTime />, title: 'Dates', component: <AddDueDate /> },
+//     { icon: <ImAttachment />, title: 'Attachment', component: <AddAttachment /> },
+//     { icon: <CgCreditCard />, title: 'Cover', component: <AddCover /> },
+// ]
 
 
 const TaskActions = [

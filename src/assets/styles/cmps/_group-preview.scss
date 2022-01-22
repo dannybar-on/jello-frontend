@@ -7,6 +7,12 @@
   vertical-align: top;
   white-space: nowrap;
   width: 272px;
+
+  &:first-child{
+    margin-left:8px;
+
+  }
+
   .group-header {
     padding: 10px 8px;
 

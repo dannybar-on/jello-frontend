@@ -25,8 +25,7 @@ class _LabelsList extends React.Component {
     render() {
 
         const { search } = this.state
-        const { board } = this.props
-        console.log('board:', board.labels);
+        const { board, togglePopOver } = this.props
 
         return (
             <div className="labels">
@@ -46,12 +45,12 @@ class _LabelsList extends React.Component {
                     {board.labels.length && <ul className="clean-list label-list-edit">
                         {board.labels.map(label => {
                             return <>
-                             <li className="x flex row align-center space-between" key={label.id} >
-                                <div style={{ backgroundColor: label.color }}>
-                                <span className="label-title">{label.title || ''}</span>
-                                </div>
-                                <button className="edit-label-icon icon-sm flex-row-center"><MdOutlineEdit /></button>
-                            </li>
+                                <li className="x flex row align-center space-between" key={label.id} >
+                                    <div style={{ backgroundColor: label.color }}>
+                                        <span className="label-title">{label.title || ''}</span>
+                                    </div>
+                                    <button onClick={() => togglePopOver} className="edit-label-icon icon-sm flex-row-center"><MdOutlineEdit /></button>
+                                </li>
                             </>
                         })}
                     </ul>}

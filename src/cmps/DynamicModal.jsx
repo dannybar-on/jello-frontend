@@ -9,7 +9,7 @@ export class DynamicModal extends React.Component {
     state = {
 
     }
-
+    
     // togglePopOver = () => {
     //     this.setState({ isPopoverOpen: !this.state.isPopoverOpen })
     // }
