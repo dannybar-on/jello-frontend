@@ -3,7 +3,7 @@
 export const taskService = {
 
     getLabelsById,
-
+    handleDueDateChange,
 };
 
 
@@ -15,4 +15,8 @@ function getLabelsById(board, task) {
 
 }
 
-
+function handleDueDateChange(timestamp, task) {
+    if (!timestamp) return;
+    const res = {...task, dueDate: timestamp}
+    return res;
+}

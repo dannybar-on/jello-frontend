@@ -6,7 +6,7 @@ import {taskService} from '../services/task.service'
 
 import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
-import { updateTask } from '../store/board.action';
+import { updateTask, onSetCurrTask } from '../store/board.action';
 import { TaskSideBar } from '../cmps/task/TaskSideBar';
 import { TaskDetailsData } from '../cmps/task/TaskDetailsData'
 
@@ -31,8 +31,6 @@ class _TaskDetails extends React.Component {
 
     componentDidMount() {
         this.setCurrTask();
-
-       
     }
 
 
@@ -44,6 +42,7 @@ class _TaskDetails extends React.Component {
                 const currTask = currGroup.tasks.find(task => task.id === taskId);
                 this.setState({ currGroup, currTask });
                 this.getTaskLabels()
+                this.props.onSetCurrTask(currTask)
             });
     };
 
@@ -215,6 +214,7 @@ function mapStateToProps({ boardModule }) {
 
 const mapDispatchToProps = {
     updateTask,
+    onSetCurrTask
 };
 
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails);
