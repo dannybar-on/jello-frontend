@@ -1,0 +1,58 @@
+.labels-list {
+  h4 {
+    color: $silver-blue;
+    font-size: rem(12px);
+    font-weight: 600;
+    line-height: 16px;
+    margin: 16px 0 8px;
+  }
+
+  .label-list-edit li div {
+    // padding-right: 36px;
+    position: relative;
+    border-radius: 3px;
+    cursor: pointer;
+    display: block;
+    margin: 0 0 4px;
+    height: 32px;
+    width: 244px;
+    max-width: 244px;
+    padding: 6px 12px;
+    transition: padding 85ms, margin 85ms, box-shadow 85ms;
+
+    &:hover {
+        box-shadow: -8px 0 #c1c3c7;
+       
+        .label-title{
+          margin-left: 4px;
+
+      }
+    }
+
+    .label-title {
+      position: relative;
+      color: #fff;
+      font-weight: 700;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      
+    }
+  }
+  .edit-label-icon {
+    border-radius: 3px;
+    padding: 6px;
+    color: $grey-blue;
+  
+    &:hover {
+      background-color: #091e4214;
+      color: $hard-blue;
+    }
+  
+    &:active {
+      background-color: #091e4221;
+    }
+  }
+}
+

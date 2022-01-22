@@ -2,7 +2,7 @@ import React from 'react'
 
 //ADD TO TASK
 import { AddMembers } from './add-to-task/AddMembers';
-import { AddLabels } from './add-to-task/AddLabels';
+import { LabelsList } from './add-to-task/LabelsList';
 import { AddChecklist } from './add-to-task/AddChecklist';
 import { AddDueDate } from './add-to-task/AddDueDate';
 import { AddAttachment } from './add-to-task/AddAttachment';
@@ -49,7 +49,7 @@ export class TaskSideBar extends React.Component {
 
 const addToTaskItems = [
     { icon: <AiOutlineUser />, title: 'Members', component: <AddMembers /> },
-    { icon: <MdLabelOutline />, title: 'Labels', component: <AddLabels /> },
+    { icon: <MdLabelOutline />, title: 'Labels', component: <LabelsList /> },
     { icon: <BsCheck2Square />, title: 'Checklist', component: <AddChecklist /> },
     { icon: <IoMdTime />, title: 'Dates', component: <AddDueDate /> },
     { icon: <ImAttachment />, title: 'Attachment', component: <AddAttachment /> },

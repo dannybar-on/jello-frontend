@@ -1,34 +1,41 @@
 import React from 'react'
-import { ImInsertTemplate } from 'react-icons/im'
+
+import { IoMdClose } from 'react-icons/io';
 
 
 
 export class DynamicModal extends React.Component {
 
-state={
+    state = {
 
-}
+    }
 
-// togglePopOver = () => {
-//     this.setState({ isPopoverOpen: !this.state.isPopoverOpen })
-// }
+    // togglePopOver = () => {
+    //     this.setState({ isPopoverOpen: !this.state.isPopoverOpen })
+    // }
 
 
     render() {
+        
         // const {isPopoverOpen}= this.state
-        const { item } = this.props
+        const { item, togglePopOver } = this.props
+        console.log('item.component:', item.component);
+        
         return (
             <section className="dynamic-modal-container">
 
-                    <div className="modal-header">
-                        <span className="modal-header-title">{item.title}</span>
-                        <button className="modal-close-btn"></button>
-                        </div>
+                <div className="modal-header">
+                    <span className="modal-header-title">{item.title}</span>
+                    <button className="modal-close-btn icon-sm" onClick={() => togglePopOver()}> <IoMdClose /> </button>
+                </div>
 
-
+                <div className="modal-content">
                     {item.component}
+
+                </div>
+
             </section>
-           
+
         )
     }
 }

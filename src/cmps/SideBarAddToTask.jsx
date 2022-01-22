@@ -25,7 +25,7 @@ togglePopOver = () => {
                     <span className="flex align-center">{item.icon}</span>
                     <p>{item.title}</p>
                 </button>
-                {isPopoverOpen && <DynamicModal  item={item} />}
+                {isPopoverOpen && <DynamicModal  item={item} togglePopOver={this.togglePopOver} />}
             </>
         )
     }
