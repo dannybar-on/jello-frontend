@@ -32,14 +32,12 @@ class _BoardHeader extends React.Component {
     toggleStarHover = () => {
         const { isStarHover } = this.state;
         this.setState({ isStarHover: !isStarHover });
-        console.log(isStarHover);
     };
 
     render() {
         const { board } = this.props;
         const { isClicked, isStarHover } = this.state;
         let { isTitleClicked } = this.state;
-        console.log('Hover', this.state.isStarHover, 'board', board.isStarred);
         if (!board) return <h1>Loading</h1>;
         return <section className='board-header-container flex align-center space-between'>
             <div className='board-header-left flex'>

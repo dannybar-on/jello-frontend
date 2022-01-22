@@ -31,7 +31,6 @@ class _BoardList extends React.Component {
     render() {
         const { boards } = this.props;
         const { isAdd, isModal } = this.state;
-        console.log(isAdd);
         return (
             <section className='board-list'>
                 {isAdd && <BoardAdd toggleIsAdd={this.toggleIsAdd} isModal={isModal} onClose={this.onNew}/>}
