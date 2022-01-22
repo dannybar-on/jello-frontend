@@ -231,7 +231,10 @@
                 "tasks": [
                     {
                         "id": "c101",
-                        "title": "Draggable Components"
+                        "title": "Draggable Components",
+                        "style": {
+                            "bgColor": "#0079bf"
+                        }
                     },
                     {
                         "id": "c102",
@@ -299,8 +302,7 @@
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         },
                         "style": {
-                            "bgColor": "#26de81",
-                            "bgImg": "http://google.com"
+                            "bgColor": "#26de81"
                         }
                     }
                 ],
