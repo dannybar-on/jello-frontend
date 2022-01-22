@@ -1,7 +1,7 @@
 import React from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
-import { TaskPreview } from './task/TaskPreview.jsx';
+import { TaskPreview } from './task/task-preview/TaskPreview.jsx';
 import { AddBoardItem } from './AddBoardItem.jsx';
 
 import { AiOutlinePlus } from 'react-icons/ai';

@@ -9,7 +9,9 @@
             "fullname": "Elad Eyal",
             "imgUrl": "http://some-img"
         },
-        "style": {"bgColor": "rgb(0, 121, 191)"},
+        "style": {
+            "bgColor": "rgb(0, 121, 191)"
+        },
         "labels": [
             {
                 "id": "l101",
@@ -169,7 +171,9 @@
             "fullname": "Daniel Bar-on",
             "imgUrl": "http://some-img"
         },
-        "style": {"bgColor":  "rgb(176, 70, 50)"},
+        "style": {
+            "bgColor": "rgb(176, 70, 50)"
+        },
         "labels": [
             {
                 "id": "l101",
@@ -232,13 +236,31 @@
                     {
                         "id": "c101",
                         "title": "Draggable Components",
+                        "dueDate": 1632460104058,
+                        "status": "over-due",
                         "style": {
                             "bgColor": "#0079bf"
-                        }
+                        },
+                        "labelIds": [
+                            "l106",
+                            "l104"
+                        ]
                     },
                     {
                         "id": "c102",
-                        "title": "Get prepared for UI Demo with Asaf"
+                        "title": "Get prepared for UI Demo with Asaf",
+                        "status": "due-soon",
+                        "dueDate": 1652873993697
+                    },
+                    {
+                        "id": "c102",
+                        "title": "It's a new Task",
+                        "status": "in-progress",
+                        "dueDate": 1652873993697,
+                        "labelIds": [
+                            "l103",
+                            "l105"
+                        ]
                     }
                 ],
                 "style": {}
@@ -254,7 +276,7 @@
                     {
                         "id": "c104",
                         "title": "Help me",
-                        "status": "in-progress",
+                        "status": "complete",
                         "description": "description",
                         "comments": [
                             {
@@ -294,7 +316,7 @@
                             "l102"
                         ],
                         "createdAt": 1590999730348,
-                        "dueDate": 16156215211,
+                        "dueDate": 1657873993697,
                         "byMember": {
                             "_id": "u101",
                             "username": "Elad",
@@ -306,9 +328,7 @@
                         }
                     }
                 ],
-                "style": {
-                    
-                }
+                "style": {}
             }
         ],
         "activities": [

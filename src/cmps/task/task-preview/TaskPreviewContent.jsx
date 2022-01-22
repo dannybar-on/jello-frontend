@@ -1,7 +1,9 @@
 import React from 'react';
 import { MdOutlineEdit } from 'react-icons/md';
 import { TaskPreviewHeader } from './TaskPreviewHeader.jsx';
-import { taskService } from '../../services/task.service.js';
+import { TaskPreviewFooter } from './TaskPreviewFooter.jsx';
+import { taskService } from '../../../services/task.service.js';
+
 export class TaskPreviewContent extends React.Component {
 
     state = {
@@ -29,6 +31,7 @@ export class TaskPreviewContent extends React.Component {
                     {!task.style && <button className='edit-btn ' onClick={(event) => toggleEditOpen(event)}><MdOutlineEdit /></button>}
 
                 </div>
+                <TaskPreviewFooter board={board} task={task} />
             </>
         );
 

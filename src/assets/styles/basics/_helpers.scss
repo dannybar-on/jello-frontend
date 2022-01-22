@@ -82,11 +82,21 @@
 }
 
 .green {
-  color: green;
+  background-color: #61bd4f;
+  border-radius: 3px;
+  color: #fff;
 }
 
 .red {
-  color: rgb(226, 49, 49);
+  background-color: #eb5a46;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.yellow {
+  background-color: #f2d600;
+    border-radius: 3px;
+    color: #fff;
 }
 
 .clear-button {
@@ -113,9 +123,6 @@
   padding: 0;
 }
 
-
-
-
 .go-back-container {
   position: fixed;
   /* display: flex; */
@@ -126,11 +133,12 @@
   left: 0;
 }
 
-.icon-lg{
+.icon-lg {
   font-size: 18px;
   width: 32px;
   color: $grey-blue;
 }
+
 
 .icon-sm {
   font-size: 16px;
