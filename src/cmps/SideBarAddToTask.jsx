@@ -1,5 +1,6 @@
 import React from 'react'
 
+import {DynamicModal} from '../cmps/DynamicModal'
 
 
 export class SideBarAddToTask extends React.Component {
@@ -24,7 +25,7 @@ togglePopOver = () => {
                     <span className="flex align-center">{item.icon}</span>
                     <p>{item.title}</p>
                 </button>
-                {isPopoverOpen && item.component}
+                {isPopoverOpen && <DynamicModal  item={item} />}
             </>
         )
     }
