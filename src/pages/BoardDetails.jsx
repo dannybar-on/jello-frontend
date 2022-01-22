@@ -95,12 +95,13 @@ class _BoardDetails extends React.Component {
           <BoardHeader board={this.props.board} />
           <div className='list-container flex'>
             <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen} />
-            <div className="add-group-container">
               {!isAddOpen && (
-                <button className='add-list-btn flex align-center' onClick={this.onToggleAdd}>
+            <div onClick={this.onToggleAdd} className="add-another-group">
+                <button className='add-list-btn flex align-center' >
                   <AiOutlinePlus />
                   <span> Add another list</span>
                 </button>
+                  </div>
               )}
               {isAddOpen && (
                 <div className='add-group-container'>
@@ -110,7 +111,6 @@ class _BoardDetails extends React.Component {
                   />
                 </div>
               )}
-            </div>
             <Route
               component={TaskDetails}
               path="/board/:boardId/:groupId/:taskId"

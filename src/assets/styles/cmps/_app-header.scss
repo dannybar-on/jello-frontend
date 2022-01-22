@@ -1,32 +1,45 @@
 .app-header {
   background-color: #bcd8db71;
   backdrop-filter: blur(6px);
-  // backdrop-filter: blur(1px);
-  // backdrop-filter: opacity(3%);
+  min-height: 44px;
+  max-height: 44px;
   color: #ffffff;
+  padding: 6px 4px;
   position: fixed;
   right: 0;
   left: 0;
 
-.jello {
-  height: 40px;
-  width: 40px;
-  color:#fff;
-  margin-left: 0.5rem;
-}
+  .app-header-container{
 
-.logo{
-  margin-left: 0.5rem;
-}
+  }
+  .jello {
+    height: 30px;
+    width: 30px;
+    color: #fff;
+    margin-left: 0.5rem;
+    top: 2px;
+    position: relative;
+  }
+
+  .logo {
+    margin-left: 0.5rem;
+    font-size: rem(24px);
+    letter-spacing: 1px;
+  }
 
   ul {
     gap: 20px;
     &:last-child {
       margin-right: 0.5rem;
     }
+
+    .MuiAvatar-root {
+      height: 32px;
+      width: 32px;
+      font-size: rem(14px);
+    }
   }
 }
-
 
 @-webkit-keyframes wobble-top-on-hover {
   16.65% {
@@ -89,7 +102,9 @@
   -webkit-transform-origin: 0 100%;
   transform-origin: 0 100%;
 }
-.wobble-top-on-hover:hover, .wobble-top-on-hover:focus, .wobble-top-on-hover:active {
+.wobble-top-on-hover:hover,
+.wobble-top-on-hover:focus,
+.wobble-top-on-hover:active {
   -webkit-animation-name: wobble-top-on-hover;
   animation-name: wobble-top-on-hover;
   -webkit-animation-duration: 1s;
