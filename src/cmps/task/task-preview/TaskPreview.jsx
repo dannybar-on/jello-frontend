@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'; // TEMP
 import { Draggable } from 'react-beautiful-dnd';
 // import { MdOutlineEdit } from 'react-icons/md';
-import { TaskPreviewContent } from '../TaskPreviewContent.jsx';
+import { TaskPreviewContent } from './TaskPreviewContent.jsx';
 
 
 class _TaskPreview extends React.Component {
