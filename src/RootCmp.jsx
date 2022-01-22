@@ -11,7 +11,7 @@ export class RootCmp extends React.Component {
         return (
         <div >
             <AppHeader />
-        <main>
+        <main className='main-app'>
             <Switch>
                 {routes.map(route=> <Route key={route.path} component={route.component} path={route.path} /> )}
             </Switch>

@@ -87,7 +87,7 @@ class _BoardDetails extends React.Component {
   render() {
     const { isAddOpen, isEditOpen } = this.state;
     const { board } = this.props;
-    console.log('hereeeeee', isEditOpen);
+    // console.log('hereeeeee', isEditOpen);
     if (!board) return <Loader />;
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
