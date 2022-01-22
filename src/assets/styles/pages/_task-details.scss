@@ -5,13 +5,13 @@
   width: 768px;
   // height: 600px;
   height: fit-content;
-  overflow: hidden;
+  // overflow: hidden;
   position: absolute;
   float: left;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 40;
+  z-index: 10;
 
 
   .task-cover {

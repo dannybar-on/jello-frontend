@@ -36,7 +36,6 @@ class _TaskDetails extends React.Component {
     }
 
 
-
     setCurrTask = () => {
         const { boardId, groupId, taskId } = this.props.match.params;
         boardService.getById(boardId)
@@ -150,7 +149,7 @@ class _TaskDetails extends React.Component {
                                         onFocus={this.toggleDescriptionTextArea}
                                         value={currTask.description}
                                         rows={(isDescriptionOpen) ? '6' : ''}
-                                        onBlur={() => { this.handleDetailsChange() }}
+                                        onBlur={() => { this.handleDetailsChange(); }}
                                     // onBlur={() => { this.handleDetailsChange(); this.toggleDescriptionTextArea() }}
 
                                     >

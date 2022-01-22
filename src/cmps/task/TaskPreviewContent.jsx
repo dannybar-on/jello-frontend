@@ -1,26 +1,35 @@
 import React from 'react';
 import { MdOutlineEdit } from 'react-icons/md';
+import { TaskPreviewHeader } from './TaskPreviewHeader.jsx';
+import { taskService } from '../../services/task.service.js';
 export class TaskPreviewContent extends React.Component {
 
     state = {
-        isEditOpen: false,
+        // isEditOpen: false,
     };
 
 
 
     render() {
-        const { task, toggleEditOpen } = this.props;
+        const { board, task, toggleEditOpen } = this.props;
         // const { isEditOpen } = this.state;
         // console.log(isEditOpen);
+        const taskLabels = taskService.getLabelsById(board, task);
         return (
+            <>
+                <TaskPreviewHeader board={board} task={task} toggleEditOpen={toggleEditOpen} />
 
-            <div className="task-preview flex space-between">
-                {/* <ul className="tas"> </ul> */}
-                <p>{task.title}</p>
+                <div className="task-preview">
+                    {/* <ul className="tas"> </ul> */}
+                    <ul className='task-labels clean-list flex ' >
+                        {taskLabels && taskLabels.map((label, idx) => <li key={idx} style={{ backgroundColor: label.color }}></li>)}
+                    </ul>
+                    <p>{task.title}</p>
 
-                <button onClick={(event) => toggleEditOpen(event)}><MdOutlineEdit /></button>
-                {/* // : <button onClick={(event) => this.toggleEditOpen(event)} > Back </button>} */}
-            </div>
+                    {!task.style && <button className='edit-btn ' onClick={(event) => toggleEditOpen(event)}><MdOutlineEdit /></button>}
+
+                </div>
+            </>
         );
 
     }

@@ -32,7 +32,7 @@ export class TaskDetailsData extends React.Component {
                     <h3 className="data-header">Members</h3>
                     
                 <div className="data-member" >
-                {currTask.members.map(member => <UserAvatar  fullname={member.fullname} />)}
+                {currTask.members.map((member,idx) =>  <UserAvatar key={idx} fullname={member.fullname} />)}
                 </div>
                     
                     <button className="add-item-btn round">
