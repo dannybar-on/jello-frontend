@@ -104,7 +104,6 @@ export function addTask(task, groupId, board) {
 
 export function updateTask(board, groupToSave, taskToSave) {
     return async (dispatch) => {
-
         const taskIdx = groupToSave.tasks.findIndex(task => task.id === taskToSave.id);
         groupToSave.tasks.splice(taskIdx, 1, taskToSave);
         let boardToUpdate = { ...board };
@@ -121,3 +120,12 @@ export function updateTask(board, groupToSave, taskToSave) {
 
 }
 
+export function onSetCurrTask(currTask) {
+    return async (dispatch) => {
+        try {
+            dispatch({type: 'SET_CURR_TASK', currTask})
+        } catch (err) {
+            console.log('Cannot set task', err);
+        }
+    }
+}
