@@ -26,6 +26,14 @@ export class GroupPreview extends React.Component {
         this.setState({ isAddOpen: !isAddOpen });
     };
 
+    onChangeTitle = () => {
+        const {board} = this.props
+        const group = this.props.group;
+        group.title = this.state.title;
+        console.log(group.title);
+        this.props.updateGroup(board, group)
+    } 
+
   render() {
       const { group, index, board, toggleEditOpen } = this.props;
       const { title, isAddOpen } = this.state;
@@ -35,7 +43,7 @@ export class GroupPreview extends React.Component {
                   {(provided) => (
                       <div className="group-preview-container flex column" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                           <div className="group-header">
-                              <textarea className='group-title' dir="auto" wrap="hard" type="text" value={title} name='title' onChange={this.handleChange}/>
+                              <textarea className='group-title' dir="auto" wrap="hard" type="text" value={title} name='title' onChange={this.handleChange} onBlur={this.onChangeTitle}/>
                           </div>
                           <Droppable droppableId={group.id}>
                               {(provided) => (

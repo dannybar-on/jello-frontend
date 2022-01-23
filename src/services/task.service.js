@@ -11,8 +11,8 @@ export const taskService = {
     handleCopyTask,
     handleLabelsChange,
     removeLabel,
-
-
+    handleAttachment,
+    handleFileAdd
 };
 
 
@@ -68,6 +68,11 @@ function handleDueDateChange(timestamp, task) {
     return res;
 }
 
+function getGroupId(taskId) {
+    const board = store.getState().boardModule.currBoard
+    return board.groups.find(group => group.tasks.some(task => task.id === taskId))?.id
+}
+
 function getTaskById(taskId, groupId) {
     const board = store.getState().boardModule.currBoard
     const group = board.groups.find(group => group.id === groupId)
@@ -87,4 +92,28 @@ function handleCopyTask(taskId, groupId, idx, title) {
     newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title })
     return initialBoard;
 
+}
+
+function handleFileAdd(url, title = 'Attachment') {
+    const taskId = store.getState().boardModule.currTask.id;
+    const board = store.getState().boardModule.currBoard;
+    const group = getGroupById(taskId);
+    const task = getTaskById(taskId, group.id);
+    if (!task.attachments) task.attachments = [];
+    task.attachments.push({ id: utilService.makeId(), url, title, createdAt: Date.now()});
+    console.log(url);
+    if (!task.style) task.style = {}
+    task.style.bgImg = `url(${url})`;
+    return [board, group, task]
+}
+
+function handleAttachment(attachmentId, title) {
+    if (!attachmentId) return;
+    const taskId = store.getState().boardModule.currTask.id;
+    const board = store.getState().boardModule.currBoard;
+    const groupId = getGroupId(taskId);
+    const task = getTaskById(taskId, groupId);
+    const attachment = task.attachments.find(attachment => attachment.id === attachmentId);
+    attachment.title = title;
+    return [board, groupId, task];
 }

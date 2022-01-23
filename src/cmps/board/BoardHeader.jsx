@@ -13,8 +13,12 @@ class _BoardHeader extends React.Component {
     state = {
         isClicked: false,
         isStarHover: false,
-        isTitleClicked: false,
+        boardTitle: ''
     };
+
+    componentDidMount(){
+        this.setState({boardTitle: this.props.board.title})
+    }
 
     toggleIsStarred = () => {
         const { isClicked } = this.state;
@@ -24,10 +28,15 @@ class _BoardHeader extends React.Component {
         updateBoard(board);
     };
 
-    toggleTitleClicked = () => {
-        const { isTitleClicked } = this.state;
-        this.setState({ isTitleClicked: !isTitleClicked });
-    };
+    handleChange = ({ target: { name, value } }) => {
+        this.setState((prevState) => ({ ...prevState, [name]: value }));
+    }
+
+    onChangeBoardTitle = () => {
+        const {board, updateBoard} = this.props;
+        board.title = this.state.boardTitle;
+        updateBoard(board);
+    }
 
     toggleStarHover = () => {
         const { isStarHover } = this.state;
@@ -36,18 +45,11 @@ class _BoardHeader extends React.Component {
 
     render() {
         const { board } = this.props;
-        const { isClicked, isStarHover } = this.state;
-        let { isTitleClicked } = this.state;
+        const { isClicked, isStarHover, boardTitle } = this.state;
         if (!board) return <h1>Loading</h1>;
         return <section className='board-header-container flex align-center space-between'>
             <div className='board-header-left flex'>
-                {(!isTitleClicked) ?
-                    <button className='change-header-btn' onClick={this.toggleTitleClicked}>
-                        <h1 >{board.title}</h1>
-                    </button>
-                        :
-                        <input type='text' autoFocus value={board.title} onBlur={() => this.setState({ isTitleClicked: !isTitleClicked })} />
-                }
+                    <input type='text' name='boardTitle' value={boardTitle} onChange={this.handleChange} onBlur={this.onChangeBoardTitle} />
                 <button className='star-btn' onMouseEnter={this.toggleStarHover} onMouseLeave={this.toggleStarHover} onClick={this.toggleIsStarred}>
                     {(board.isStarred || isStarHover) ? <FaStar /> : <FiStar />}
                 </button>

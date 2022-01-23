@@ -49,6 +49,19 @@ export function updateBoard(boardToUpdate) {
     };
 }
 
+export function updateGroup(board, group) {
+    return async (dispatch) => {
+        let boardToUpdate = { ...board };
+        boardToUpdate.groups = boardToUpdate.groups.map(currGroup => (currGroup.id === group.id) ? group : currGroup);
+        try {
+           const updatedBoard = await boardService.save(boardToUpdate);
+            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+        } catch(err) {
+            console.log('Cannot update Group', err);
+        }
+    }
+}
+
 export function setCurrBoard(board) {
     return async (dispatch) => {
         try {
@@ -107,7 +120,10 @@ export function updateTask(board, groupToSave, taskToSave) {
     console.log('board, groupToSave, taskToSave:', board, groupToSave, taskToSave);
     
     return async (dispatch) => {
+        if (!taskToSave) return
+        console.log('this is groupToSave', groupToSave);
         const taskIdx = groupToSave.tasks.findIndex(task => task.id === taskToSave.id);
+        console.log('this is taskIdx', taskIdx);
         groupToSave.tasks.splice(taskIdx, 1, taskToSave);
         let boardToUpdate = { ...board };
         boardToUpdate.groups = boardToUpdate.groups.map(currGroup => (currGroup.id === groupToSave.id) ? groupToSave : currGroup);
