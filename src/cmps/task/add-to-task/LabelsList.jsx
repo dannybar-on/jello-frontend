@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { MdOutlineEdit } from 'react-icons/md';
+import { DynamicModal } from '../../DynamicModal';
 
 
 
@@ -9,6 +10,7 @@ class _LabelsList extends React.Component {
 
     state = {
         search: '',
+        isAddEditMode: false,
     }
 
 
@@ -22,10 +24,17 @@ class _LabelsList extends React.Component {
     }
 
 
+    setAddEditMode = () => {
+        this.setState({ isAddEditMode: !this.state.isAddEditMode })
+
+    }
+
+
     render() {
 
-        const { search } = this.state
-        const { board, togglePopOver } = this.props
+        const { search, isAddEditMode } = this.state
+        const { board, toggleDynamicModal } = this.props
+
 
         return (
             <div className="labels">
@@ -49,15 +58,19 @@ class _LabelsList extends React.Component {
                                     <div style={{ backgroundColor: label.color }}>
                                         <span className="label-title">{label.title || ''}</span>
                                     </div>
-                                    <button onClick={() => togglePopOver} className="edit-label-icon icon-sm flex-row-center"><MdOutlineEdit /></button>
+                                    <button onClick={() => this.setAddEditMode()} className="edit-label-icon icon-sm flex-row-center">
+                                        <MdOutlineEdit />
+                                    </button>
                                 </li>
                             </>
                         })}
                     </ul>}
 
+                    <button onClick={() => toggleDynamicModal()}>TEst</button>
                 </div>
 
 
+                {/* {isAddEditMode && <DynamicModal labels={board.labels} />} */}
 
             </div>
         )

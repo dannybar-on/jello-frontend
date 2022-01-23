@@ -194,7 +194,7 @@ class _TaskDetails extends React.Component {
                         </div>
 
                         <div className="task-sidebar flex column">
-                            <TaskSideBar />
+                            <TaskSideBar board={board} currTask={currTask} currGroup={currTask} />
                         </div>
 
 

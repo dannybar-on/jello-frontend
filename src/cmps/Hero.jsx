@@ -8,11 +8,11 @@ export function Hero() {
 
         <React.Fragment>
             <div className="hero-container">
-                <div className="hero-img-container">
-                    <div className="hero-title flex column">
+                <div className="hero-img-container flex column align-center space-around">
+                    <div className="hero-title ">
                         Elevate your Task Management to the sky
-                        <Link className="clean-link" to="/board">Try Demo Version</Link>
                     </div>
+                        <Link className="clean-link demo-btn btn-style1" to="/board">Try Demo Version</Link>
                 </div>
 
             </div>

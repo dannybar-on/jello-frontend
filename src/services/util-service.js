@@ -35,12 +35,12 @@ function getRandomIntInclusive(min, max) {
 
 
 function handleTimestamp(timestamp) {
-    const now = Date.now()
-    const diff = now - timestamp;
+    // const now = Date.now()
+    // const diff = now - timestamp;
 
 
-    if (diff < 1000 * 60 * 60 * 24) return 'Today'
-    if (diff < 1000 * 60 * 60 * 24 * 2) return 'Yesterday'
+    // if (diff < 1000 * 60 * 60 * 24) return 'Today'
+    // if (diff < 1000 * 60 * 60 * 24 * 2) return 'Yesterday'
 
     const date = new Date(timestamp);
     const day = date.getDay();

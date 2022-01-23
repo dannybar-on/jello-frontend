@@ -1,6 +1,24 @@
 .board-list {
     max-width: rem(980px);
     margin: 0 auto;
+
+    h1{
+      display: inline-block;
+      flex: 1;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      margin: 15px 0 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 0 0 11px;
+      
+      span{
+        font-size: 20px;
+      }
+    }
+
   .starred-container,
   .workspace-container {
     display: grid;
@@ -13,8 +31,8 @@
     background-position: 50%;
     line-height: 20px;
     background-color: $silver-blue;
-    height: rem(80px);
-    width: rem(180px);
+    height: rem(100px);
+    width: rem(200px);
     padding: 20px;
     color: #fff;
     border-radius: 3px;
@@ -26,7 +44,8 @@
     text-align: center;
     height: rem(80px);
     width: rem(180px);
-    padding: 20px;;
+    padding: 20px;
+    
     &.create-board-btn:hover {
       background-color: rgba(9, 30, 66, 0.078);
     }

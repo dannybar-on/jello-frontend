@@ -83,14 +83,23 @@
 }
 
 //TASK FOOTER
+.task-footer {
+  padding: 0px 8px 2px 8px;
+}
+
 .duedate-preview {
-  
   margin: 0 4px 4px 0;
-  max-width: 65px;
-  min-height: 20px;
-  overflow: hidden;
-  padding: 2px;
-  text-decoration: none;
-  text-overflow: ellipsis;
+  // width: min-content;
+  padding: 5px;
+  max-width: min-content;
   vertical-align: top;
+  margin: 0 4px 4px 0;
+  font-size: rem(14px);
+  display: flex;
+  align-items: center;
+
+  .duedate-icon {
+    display: flex;
+    align-items: center;
+  }
 }

@@ -34,7 +34,7 @@ class _BoardList extends React.Component {
         return (
             <section className='board-list'>
                 {isAdd && <BoardAdd toggleIsAdd={this.toggleIsAdd} isModal={isModal} onClose={this.onNew}/>}
-                    <h1><FaStar /> Starred Boards</h1>
+                    <h1> <span><FaStar /></span> Starred Boards</h1>
                 <div className='starred-container'>
                     {boards.map((board, index) => {
 
@@ -55,7 +55,7 @@ class _BoardList extends React.Component {
                             </div>
                         );
                     })}
-                <button className='create-board-btn board-card' onClick={() => this.toggleIsAdd()}>Create new board</button>
+                <button className='board-card' onClick={() => this.toggleIsAdd()}>Create new board</button>
                 </div>
             </section>
         );
