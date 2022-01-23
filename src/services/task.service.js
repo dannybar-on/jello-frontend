@@ -6,7 +6,6 @@ export const taskService = {
 
     getLabelsById,
     handleDueDateChange,
-    getClassByStatus,
     getGroupById,
     getTaskById,
     handleCopyTask
@@ -24,20 +23,11 @@ function getLabelsById(board, task) {
 function handleDueDateChange(timestamp, task) {
     if (!timestamp) return;
     const res = {...task, dueDate: timestamp}
+    // change status
+    console.log((task.dueDate < Date(Date.now() - 1000*60*60*24)));
+    
+    // if(task.dueDate < new Date.now() - 1000*60*60*24) 
     return res;
-}
-
-function getClassByStatus(status) {
-    switch (status) {
-        case 'in-progress':
-            return null;
-        case 'over-due':
-            return 'red';
-        case 'complete':
-            return 'green';
-        case 'due-soon':
-            return 'yellow';
-    }
 }
 
 function getTaskById(taskId, groupId) {

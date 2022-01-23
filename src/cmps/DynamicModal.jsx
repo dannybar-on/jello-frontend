@@ -19,7 +19,6 @@ export class DynamicModal extends React.Component {
         
         // const {isPopoverOpen}= this.state
         const { item, togglePopOver } = this.props
-        console.log('item.component:', item.component);
         
         return (
             <section className="dynamic-modal-container">
@@ -39,5 +38,6 @@ export class DynamicModal extends React.Component {
         )
     }
 }
+
 
 

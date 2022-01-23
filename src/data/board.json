@@ -210,21 +210,26 @@
             {
                 "_id": "u101",
                 "fullname": "Elad Eyal",
-                "imgUrl": "https://www.google.com"
+                "imgUrl":  "https://res.cloudinary.com/dkyvsftlj/image/upload/v1642942330/ELAD_scdyw7.jpg"
             },
             {
                 "_id": "u102",
                 "fullname": "Barak Lebowitz",
-                "imgUrl": "https://www.google.com"
+                "imgUrl": "https://res.cloudinary.com/dkyvsftlj/image/upload/v1642942084/ME_q1vjli.jpg"
             },
             {
                 "_id": "u103",
                 "fullname": "Daniel Bar-on",
-                "imgUrl": "https://www.google.com"
+                "imgUrl": "https://res.cloudinary.com/dkyvsftlj/image/upload/v1642942216/daniel_yru0po.jpg"
             },
             {
                 "_id": "u104",
                 "fullname": "Oren Yaniv",
+                "imgUrl": "https://www.google.com"
+            },
+            {
+                "_id": "u105",
+                "fullname": "Daniel Shaked",
                 "imgUrl": "https://www.google.com"
             }
         ],
@@ -253,7 +258,7 @@
                         "dueDate": 1652873993697
                     },
                     {
-                        "id": "c105",
+                        "id": "c103",
                         "title": "It's a new Task",
                         "status": "in-progress",
                         "dueDate": 1652873993697,
