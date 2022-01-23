@@ -48,6 +48,19 @@ export function updateBoard(boardToUpdate) {
     };
 }
 
+export function updateGroup(board, group) {
+    return async (dispatch) => {
+        let boardToUpdate = { ...board };
+        boardToUpdate.groups = boardToUpdate.groups.map(currGroup => (currGroup.id === group.id) ? group : currGroup);
+        try {
+           const updatedBoard = await boardService.save(boardToUpdate);
+            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+        } catch(err) {
+            console.log('Cannot update Group', err);
+        }
+    }
+}
+
 export function setCurrBoard(board) {
     return async (dispatch) => {
         try {
