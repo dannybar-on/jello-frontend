@@ -52,8 +52,8 @@ class _BoardHeader extends React.Component {
                     {(board.isStarred || isStarHover) ? <FaStar /> : <FiStar />}
                 </button>
                 {/* <h1>User avatars</h1> */}
-                <AvatarGroup max={3} >
-                    {board.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} />)}
+                <AvatarGroup max={4} >
+                    {board.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />)}
                 </AvatarGroup>
                 <button className='invite-btn'><RiUserAddLine /> Invite</button>
             </div>
