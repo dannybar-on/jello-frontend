@@ -10,7 +10,6 @@ export class DueDate extends React.Component {
     state = {
         isHover: false,
         isClicked: false,
-        className: '',
     };
 
     // componentDidMount() {
@@ -22,32 +21,42 @@ export class DueDate extends React.Component {
         this.setState({ isHover: !isHover });
     };
 
-    toggleClick = (ev) => {
+    toggleCompleteStatus = (ev, task) => {
         ev.preventDefault();
-        console.log('hhhhh');
+        ev.stopPropagation();
         const { isClicked } = this.state;
+        (!isClicked) ? task.status = 'complete' : task.status = 'in-progress';
         this.setState({ isClicked: !isClicked });
     };
 
-    // onGetClassName = () => {
-    //     const now = Date.now();
-    //     const { dueDate } = this.props.task;
-    //     console.log(dueDate, now);
-    //     if (dueDate >= now) this.setState({ className: 'red' });
-    //     if (dueDate <= now) this.setState({ className: 'green' });
-    //     else this.setState({ className: '' });
-    // };
+
+
+    getClassStyle = (task) => {
+        //complete
+        if (task.status === 'complete') return 'green';
+        //due soon
+        else if (
+            task.dueDate - Date.now() > 0 &&
+            task.dueDate - Date.now() < 1000 * 60 * 60 * 24
+        )
+            return 'yellow';
+        //overdue
+        else if (task.dueDate - Date.now() < 0)
+            return 'red';
+        //none of the above
+        return null;
+    };
 
     render() {
         const { task } = this.props;
-        const { isHover, isClicked, className } = this.state;
+        const { isHover, isClicked } = this.state;
         // if (!className) return <h1>Loading....</h1>;
         // console.log(className);
         return <div onMouseLeave={this.toggleHover}>
             {(isHover) ?
-                <div onClick={(event) => this.toggleClick(event)} 
-                className={taskService.getClassByStatus(task.status) + ' duedate-preview flex'} >
-                    <span className='icon-sm  duedate-icon' >
+                <div onClick={(event) => this.toggleCompleteStatus(event, task)}
+                    className={this.getClassStyle(task) + ' duedate-preview flex'} >
+                    <span className='icon-sm duedate-icon'>
                         {(isClicked) ? <MdOutlineCheckBox /> : <MdCheckBoxOutlineBlank />}
                     </span>
                     <span>
@@ -55,7 +64,8 @@ export class DueDate extends React.Component {
                     </span>
                 </div>
                 :
-                <div className={taskService.getClassByStatus(task.status) + '  duedate-preview flex'}>
+                <div onClick={(event) => this.toggleCompleteStatus(event, task)}
+                    className={this.getClassStyle(task) + '  duedate-preview flex-row-center'}>
 
                     <span className='icon-sm duedate-icon' onMouseEnter={this.toggleHover} >
                         <FiClock />

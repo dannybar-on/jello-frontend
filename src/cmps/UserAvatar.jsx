@@ -32,11 +32,12 @@ function stringAvatar(name) {
 }
 
 
-export function UserAvatar({ fullname }) {
+export function UserAvatar({ fullname, url }) {
     return (
         <Stack direction="row" spacing={2} >
-        
-                <Avatar sx={{ width: 28, height: 28 }}  {...stringAvatar(fullname)} className='user-avatar' />
+
+            {/* <Avatar sx={{ width: 28, height: 28 }}  {...stringAvatar(fullname)} className='user-avatar' /> */}
+            <Avatar sx={{ width: 28, height: 28 }} src={url} alt={fullname} className='user-avatar' />
         </Stack >
     );
 }
