@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { taskService } from '../../../services/task.service.js';
 import { updateTask } from '../../../store/board.action.js';
 
-function _AddDueDate({updateTask, currTask, board}) {
+function _AddDueDate({updateTask, currTask, board, toggleDynamicModal}) {
     const [startDate] = useState(new Date());
     const [endDate] = useState(null);
     const [dueDate, setDueDate] = useState(null);
@@ -23,9 +23,9 @@ function _AddDueDate({updateTask, currTask, board}) {
     
     const handleDueDate = () => {  
       const res = taskService.handleDueDateChange(dueDate, currTask);
-      console.log(res);
       const currGroup = board.groups.find(group => group.id === groupId);
         updateTask(board, currGroup, res)
+        toggleDynamicModal();
     }   
     
     return (
