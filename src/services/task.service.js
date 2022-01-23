@@ -1,5 +1,5 @@
 import reactRouterDom from "react-router-dom";
-import {store} from '../store/store'
+import { store } from '../store/store'
 import { utilService } from "./util-service";
 
 export const taskService = {
@@ -8,24 +8,62 @@ export const taskService = {
     handleDueDateChange,
     getGroupById,
     getTaskById,
-    handleCopyTask
+    handleCopyTask,
+    handleLabelsChange,
+    removeLabel,
+
+
 };
 
 
 function getLabelsById(board, task) {
-
     if (!task.labelIds?.length || !task.labelIds) return null;
-
     return task.labelIds.map(labelId => board.labels.find(label => label.id === labelId));
+}
+
+
+
+function handleLabelsChange(newLabel, labels) {
+
+    if (!newLabel.id) {
+        newLabel.id = utilService.makeId()
+        return labels.push(newLabel)
+    } else {
+        return labels.map(label => (label.id === newLabel.id) ? newLabel : label)
+    }
+}
+
+
+function removeLabel(labelId, labels, currTask, currGroup, board) {
+    if (window.confirm('Are you sure you want to delete this label?'))
+
+        currTask.labelIds = currTask.labelIds.filter(label => label !== labelId)
+    const taskIdx = currGroup.tasks.findIndex(task => task.id === currTask.id);
+    currGroup.tasks.splice(taskIdx, 1, currTask);
+    // console.log('currGroup:', currGroup); // GROUP UPDATED!!
+
+    var updatedGroups = board.groups.map(group => (group.id === currGroup.id) ? currGroup : group);
+    // console.log('updatedGroups:', updatedGroups);
+
+    var newLabels = labels.filter(label => label.id !== labelId)
+    var boardToUpdate = {
+        ...board,
+        groups: [...updatedGroups],
+        labels: [...newLabels]
+    }
+
+    return { boardToUpdate, currTask }
 
 }
 
+
+
 function handleDueDateChange(timestamp, task) {
     if (!timestamp) return;
-    const res = {...task, dueDate: timestamp}
+    const res = { ...task, dueDate: timestamp }
     // change status
-    console.log((task.dueDate < Date(Date.now() - 1000*60*60*24)));
-    
+    console.log((task.dueDate < Date(Date.now() - 1000 * 60 * 60 * 24)));
+
     // if(task.dueDate < new Date.now() - 1000*60*60*24) 
     return res;
 }
@@ -46,7 +84,7 @@ function handleCopyTask(taskId, groupId, idx, title) {
     const initialGroup = initialBoard.groups.find(group => group.tasks.some(task => task.id === taskId))
     const task = getTaskById(taskId, initialGroup.id)
     let newGroup = initialBoard.groups.find(group => group.id === groupId)
-    newGroup.tasks.splice(idx, 0, {...task, id: utilService.makeId(), title})
+    newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title })
     return initialBoard;
 
 }

@@ -37,9 +37,10 @@ export function addBoard(board) {
     };
 }
 
-export function updateBoard(boardToUpdate) {
+export function updateBoard(boardToUpdate) {    
     return async (dispatch) => {
         try {
+            console.log('made it into the async');
             const updatedBoard = await boardService.save(boardToUpdate);
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
@@ -103,6 +104,8 @@ export function addTask(task, groupId, board) {
 
 
 export function updateTask(board, groupToSave, taskToSave) {
+    console.log('board, groupToSave, taskToSave:', board, groupToSave, taskToSave);
+    
     return async (dispatch) => {
         const taskIdx = groupToSave.tasks.findIndex(task => task.id === taskToSave.id);
         groupToSave.tasks.splice(taskIdx, 1, taskToSave);

@@ -14,7 +14,7 @@ import { ActionArchiveTask } from './task-actions/ActionArchiveTask';
 
 import { DynamicModal } from '../DynamicModal'
 
-import { SideBarAddToTask } from './SideBarAddToTask';
+
 import { SideBarTaskActions } from './SideBarTaskActions';
 
 import { IoMdTime } from 'react-icons/io';

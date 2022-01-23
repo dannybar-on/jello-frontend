@@ -21,7 +21,6 @@ export class TaskDetailsData extends React.Component {
 
     render() {
         const { currTask, taskLabels } = this.props
-        console.log('currTask:', currTask.members);
         // if (!taskLabels) return <></>
 
         return (

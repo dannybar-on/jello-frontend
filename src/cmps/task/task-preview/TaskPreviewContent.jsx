@@ -17,6 +17,7 @@ export class TaskPreviewContent extends React.Component {
         // const { isEditOpen } = this.state;
         // console.log(isEditOpen);
         const taskLabels = taskService.getLabelsById(board, task);
+        
         return (
             <>
                 <TaskPreviewHeader board={board} task={task} toggleEditOpen={toggleEditOpen} />
@@ -24,7 +25,7 @@ export class TaskPreviewContent extends React.Component {
                 <div className="task-preview">
                     {/* <ul className="tas"> </ul> */}
                     <ul className='task-labels clean-list flex ' >
-                        {taskLabels && taskLabels.map((label, idx) => <li key={idx} style={{ backgroundColor: label.color }}></li>)}
+                        {(taskLabels) && taskLabels.map((label, idx) => <li key={idx} style={{ backgroundColor: label.color }}></li>)}
                     </ul>
                     <p>{task.title}</p>
 
