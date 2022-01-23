@@ -13,7 +13,7 @@ export class TaskPreviewHeader extends React.Component {
         return (
             <>
                 {task.style && <div className='task-cover'
-                    style={{ backgroundColor: task.style.bgColor }}>
+                    style={(task.style.bgImg) ? {backgroundImage: task.style.bgImg, height: '245px'} : { backgroundColor: task.style.bgColor }}>
                     <button className='edit-btn icon-sm' onClick={(event) => toggleEditOpen(event)}><MdOutlineEdit /></button>
                 </div>
                 }

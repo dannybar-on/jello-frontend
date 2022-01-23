@@ -9,7 +9,10 @@ export const taskService = {
     getGroupById,
     getTaskById,
     handleCopyTask,
-    getSearchedMember
+    getSearchedMember,
+    handleAttachment,
+    handleFileAdd,
+    getEmptyChecklist,
 };
 
 
@@ -24,11 +27,12 @@ function getLabelsById(board, task) {
 function handleDueDateChange(timestamp, task) {
     if (!timestamp) return;
     const res = { ...task, dueDate: timestamp };
-    // change status
-    console.log((task.dueDate < Date(Date.now() - 1000 * 60 * 60 * 24)));
-
-    // if(task.dueDate < new Date.now() - 1000*60*60*24) 
     return res;
+}
+
+function getGroupId(taskId) {
+    const board = store.getState().boardModule.currBoard;
+    return board.groups.find(group => group.tasks.some(task => task.id === taskId))?.id;
 }
 
 function getTaskById(taskId, groupId) {
@@ -60,4 +64,38 @@ function getSearchedMember(board, txt) {
     });
 
     return filtered;
+}
+
+
+function handleFileAdd(url, title = 'Attachment') {
+    const taskId = store.getState().boardModule.currTask.id;
+    const board = store.getState().boardModule.currBoard;
+    const group = getGroupById(taskId);
+    const task = getTaskById(taskId, group.id);
+    if (!task.attachments) task.attachments = [];
+    task.attachments.push({ id: utilService.makeId(), url, title, createdAt: Date.now() });
+    // console.log(url);
+    if (!task.style) task.style = {};
+    task.style.bgImg = `url(${url})`;
+    return [board, group, task];
+}
+
+function handleAttachment(attachmentId, title) {
+    if (!attachmentId) return;
+    const taskId = store.getState().boardModule.currTask.id;
+    const board = store.getState().boardModule.currBoard;
+    const groupId = getGroupId(taskId);
+    const task = getTaskById(taskId, groupId);
+    const attachment = task.attachments.find(attachment => attachment.id === attachmentId);
+    attachment.title = title;
+    return [board, groupId, task];
+}
+
+
+function getEmptyChecklist() {
+    return {
+        id: utilService.makeId(),
+        title: '',
+        todos: []
+    };
 }
