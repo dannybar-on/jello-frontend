@@ -14,9 +14,9 @@ import { TaskDetailsChecklist } from '../cmps/task/TaskDetailsChecklist.jsx';
 
 import { CgCreditCard } from 'react-icons/cg';
 import { GrTextAlignFull } from 'react-icons/gr';
-import { BsListUl } from 'react-icons/bs';
+import { BsListUl,BsCheck2Square } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
-import { MdOutlineCheckBox } from 'react-icons/md';
+// import { BsCheck2Square } from 'react-icons/md';
 import { getTouchRippleUtilityClass } from '@mui/material';
 // import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
@@ -76,8 +76,7 @@ class _TaskDetails extends React.Component {
         const taskId = this.state.currTask.id;
         const prevTask = currGroup.tasks.find(task => task.id === taskId);
         this.setState({ currTask: prevTask });
-        this.toggleDescriptionTextArea();
-
+        this.setState({ isDescriptionOpen: false });
     };
 
 
@@ -92,6 +91,7 @@ class _TaskDetails extends React.Component {
         const { currGroup, isDescriptionOpen } = this.state;
         const { boardId } = this.props.match.params;
         const { board, currTask } = this.props;
+        if (!this.state.currTask) return <Loader />;
         if (!currTask) return <Loader />;
         return (
             <React.Fragment>
@@ -117,7 +117,7 @@ class _TaskDetails extends React.Component {
                             type="text"
                             name="title"
                             onChange={this.handleChange}
-                            value={currTask.title}
+                            value={this.state.currTask.title}
                             onBlur={this.handleDetailsChange}
 
                         />
@@ -139,8 +139,8 @@ class _TaskDetails extends React.Component {
 
 
                             <div className="task-description">
-                                <div className="description-header flex">
-                                    <span className="icon-lg"><GrTextAlignFull /></span>
+                                <div className="details-section-header ">
+                                    <span className="icon-lg header-icon"><GrTextAlignFull /></span>
                                     <h3>Description</h3>
                                 </div>
                                 <div className="ml-40">
@@ -149,7 +149,7 @@ class _TaskDetails extends React.Component {
                                         placeholder="Add a more detailed description..."
                                         onChange={this.handleChange}
                                         onFocus={this.toggleDescriptionTextArea}
-                                        value={currTask.description}
+                                        value={this.state.currTask.description}
                                         rows={(isDescriptionOpen) ? '6' : ''}
                                         onBlur={() => { this.handleDetailsChange(); }}
                                     // onBlur={() => { this.handleDetailsChange(); this.toggleDescriptionTextArea() }}
@@ -168,19 +168,27 @@ class _TaskDetails extends React.Component {
                                 </div>
 
                             </div>
-                            <div className='task-checklist'>
+                           
+                           
+                            {/* <div className='task-checklist'> */}
+                             
                                 {currTask.checklists && currTask.checklists.map(checklist => {
 
-                                    return <div key={checklist.id}>
-                                        <div className="flex">
-                                            <span className="icon-lg">< MdOutlineCheckBox /></span>
+                                    return <div className='task-checklist' key={checklist.id}>
+                                        <div className="details-section-header space-between">
+                                            <span className="icon-lg header-icon">< BsCheck2Square /></span>
+                                            
                                             <h3>{checklist.title}</h3>
-                                            <button onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button>
+                                            <button className="btn-style2" onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button>
+                                            
+
                                         </div>
                                         <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
                                     </div>;
                                 })}
-                            </div>
+                      
+                      
+                            {/* </div> */}
                             <div className="task-activity">
 
                                 <div className="activity-header flex row space-between">

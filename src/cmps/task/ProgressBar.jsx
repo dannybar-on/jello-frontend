@@ -7,7 +7,7 @@ export function ProgressBar({ percentage }) {
 
     return <section className="checklist-progress flex" style={{ width: '100%' }}>
         <span className="checklist-progress-percentage">{percentage}%</span>
-        <div className=" checklist-progress-bar" style={{ backgroundColor: 'grey', width: '100%' }}>
+        <div className=" checklist-progress-bar" style={{ backgroundColor: '#091e4214', width: '100%' }}>
             <div className='checklist-progress-bar-current' style={{ backgroundColor: bgColor, width: percentage + '%' }} >
             </div>
         </div>
