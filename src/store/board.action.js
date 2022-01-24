@@ -37,9 +37,10 @@ export function addBoard(board) {
     };
 }
 
-export function updateBoard(boardToUpdate) {
+export function updateBoard(boardToUpdate) {    
     return async (dispatch) => {
         try {
+            console.log('made it into the async');
             const updatedBoard = await boardService.save(boardToUpdate);
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
@@ -66,11 +67,11 @@ export function setCurrBoard(board) {
         try {
             dispatch({ type: 'SET_CURR_BOARD', board });
             document.body.style.background = (board.style.bgColor) ? board.style.bgColor : `url("${board.style.bgImg}")`;
-            
+
             document.body.style.backgroundRepeat = 'no-repeat';
             document.body.style.backgroundPosition = 'center';
             document.body.style.backgroundSize = 'cover';
-            document.body.style.backgroundAttachment= 'fixed';        
+            document.body.style.backgroundAttachment = 'fixed';
 
         } catch (err) {
             console.log('Couldnt update curr board');
@@ -116,8 +117,10 @@ export function addTask(task, groupId, board) {
 
 
 export function updateTask(board, groupToSave, taskToSave) {
+    console.log('board, groupToSave, taskToSave:', board, groupToSave, taskToSave);
+    
     return async (dispatch) => {
-        if (!taskToSave) return
+        if (!taskToSave || !groupToSave) return;
         console.log('this is groupToSave', groupToSave);
         const taskIdx = groupToSave.tasks.findIndex(task => task.id === taskToSave.id);
         console.log('this is taskIdx', taskIdx);
@@ -127,9 +130,10 @@ export function updateTask(board, groupToSave, taskToSave) {
 
         try {
             const updatedBoard = await boardService.save(boardToUpdate);
+            console.log('board in action', updatedBoard);
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
-
+            console.log('cant update task', err);
         }
 
     };
@@ -139,9 +143,9 @@ export function updateTask(board, groupToSave, taskToSave) {
 export function onSetCurrTask(currTask) {
     return async (dispatch) => {
         try {
-            dispatch({type: 'SET_CURR_TASK', currTask})
+            dispatch({ type: 'SET_CURR_TASK', currTask });
         } catch (err) {
             console.log('Cannot set task', err);
         }
-    }
+    };
 }

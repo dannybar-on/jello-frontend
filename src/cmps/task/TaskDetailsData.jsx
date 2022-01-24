@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import { UserAvatar } from '../UserAvatar'
+import { UserAvatar } from '../UserAvatar';
 
 
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -10,7 +10,7 @@ export class TaskDetailsData extends React.Component {
 
     state = {
 
-    }
+    };
 
     componentDidMount() {
 
@@ -21,7 +21,6 @@ export class TaskDetailsData extends React.Component {
 
     render() {
         const { currTask, taskLabels } = this.props
-        console.log('currTask:', currTask.members);
         // if (!taskLabels) return <></>
 
         return (
@@ -30,11 +29,11 @@ export class TaskDetailsData extends React.Component {
 
                 {currTask.members && <div className="task-data-members data-container">
                     <h3 className="data-header">Members</h3>
-                    
-                <div className="data-member" >
-                {currTask.members.map((member,idx) =>  <UserAvatar key={idx} fullname={member.fullname} />)}
-                </div>
-                    
+
+                    <div className="data-member" >
+                        {currTask.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />)}
+                    </div>
+
                     <button className="add-item-btn round">
                         <AiOutlinePlus />
                     </button>
@@ -46,7 +45,7 @@ export class TaskDetailsData extends React.Component {
                     {taskLabels.map((label, idx) => {
                         return <div key={idx} className="data-label " style={{ backgroundColor: `${label.color}` }}>
                             {label.title}
-                        </div>
+                        </div>;
 
                     })}
                     <button className="add-item-btn">
@@ -57,7 +56,7 @@ export class TaskDetailsData extends React.Component {
 
             </div>
 
-        )
+        );
     }
 }
 

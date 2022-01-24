@@ -44,7 +44,7 @@ function _AddAttachment({ updateTask, toggleDynamicModal }) {
         <label>Attach a link</label>
         <input
           ref={urlRef}
-          className="search-input"
+          className='modal-search'
           placeholder="Paste any link here..."
           value={url}
           onChange={(ev) => setUrl(ev.target.value)}
@@ -53,13 +53,13 @@ function _AddAttachment({ updateTask, toggleDynamicModal }) {
           <>
             <label>Link name (optional)</label>
             <input
-              className="search-input"
+               className='modal-search'
               value={title}
               onChange={(ev) => setTitle(ev.target.value)}
             />
           </>
         )}
-        <button className="attach-btn">Attach</button>
+        <button className="attach-btn btn-style1">Attach</button>
       </form>
     </div>
   );

@@ -178,59 +178,64 @@
             {
                 "id": "l101",
                 "title": "Done",
-                "color": "#61bd4f "
+                "color": "#61bd4f"
             },
             {
                 "id": "l102",
                 "title": "In-Progress",
-                "color": "#f2d600 "
+                "color": "#f2d600"
             },
             {
                 "id": "l103",
                 "title": "Todo",
-                "color": "#ff9f1a "
+                "color": "#ff9f1a"
             },
             {
                 "id": "l104",
                 "title": "",
-                "color": "#eb5a46 "
+                "color": "#eb5a46"
             },
             {
                 "id": "l105",
                 "title": "",
-                "color": "#c377e0 "
+                "color": "#c377e0"
             },
             {
                 "id": "l106",
                 "title": "",
-                "color": "#0079bf "
+                "color": "#0079bf"
             }
         ],
         "members": [
             {
                 "_id": "u101",
                 "fullname": "Elad Eyal",
-                "imgUrl":  "https://res.cloudinary.com/dkyvsftlj/image/upload/v1642942330/ELAD_scdyw7.jpg"
+                "username": "eladayal",
+                "imgUrl": "https://res.cloudinary.com/dkyvsftlj/image/upload/v1642942330/ELAD_scdyw7.jpg"
             },
             {
                 "_id": "u102",
                 "fullname": "Barak Lebowitz",
+                "username": "baraklebowitz",
                 "imgUrl": "https://res.cloudinary.com/dkyvsftlj/image/upload/v1642942084/ME_q1vjli.jpg"
             },
             {
                 "_id": "u103",
                 "fullname": "Daniel Bar-on",
+                "username": "danielbaron37",
                 "imgUrl": "https://res.cloudinary.com/dkyvsftlj/image/upload/v1642942216/daniel_yru0po.jpg"
             },
             {
                 "_id": "u104",
                 "fullname": "Oren Yaniv",
+                "username": "orenyaniv",
                 "imgUrl": "https://www.google.com"
             },
             {
                 "_id": "u105",
                 "fullname": "Daniel Shaked",
-                "imgUrl": "https://www.google.com"
+                "username": "danielshaked",
+                "imgUrl": "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTc5OTQ5OTg4NjY5ODI2MTcw/gettyimages-971463110.jpg"
             }
         ],
         "groups": [

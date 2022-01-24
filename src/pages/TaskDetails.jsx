@@ -2,18 +2,21 @@ import React, { createRef } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import {taskService} from '../services/task.service'
+import { taskService } from '../services/task.service';
 
 import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
 import { updateTask, onSetCurrTask } from '../store/board.action';
+
 import { TaskSideBar } from '../cmps/task/TaskSideBar';
-import { TaskDetailsData } from '../cmps/task/TaskDetailsData'
+import { TaskDetailsData } from '../cmps/task/TaskDetailsData';
+import { TaskDetailsChecklist } from '../cmps/task/TaskDetailsChecklist.jsx';
 
 import { CgCreditCard } from 'react-icons/cg';
 import { GrTextAlignFull } from 'react-icons/gr';
 import { BsListUl } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
+import { MdOutlineCheckBox } from 'react-icons/md';
 // import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
 class _TaskDetails extends React.Component {
@@ -41,8 +44,8 @@ class _TaskDetails extends React.Component {
                 const currGroup = board.groups.find(group => group.id === groupId);
                 const currTask = currGroup.tasks.find(task => task.id === taskId);
                 this.setState({ currGroup, currTask });
-                this.getTaskLabels()
-                this.props.onSetCurrTask(currTask)
+                this.getTaskLabels();
+                this.props.onSetCurrTask(currTask);
             });
     };
 
@@ -55,40 +58,43 @@ class _TaskDetails extends React.Component {
         const { board } = this.props;
         const { currTask, currGroup } = this.state;
         this.props.updateTask(board, currGroup, currTask);
-        this.toggleDescriptionTextArea()
+        this.toggleDescriptionTextArea();
     };
 
 
     toggleDescriptionTextArea = () => {
-        this.setState({ isDescriptionOpen: !this.state.isDescriptionOpen })
-    }
+        this.setState({ isDescriptionOpen: !this.state.isDescriptionOpen });
+    };
 
     onCancelChanges = (ev) => {
-        ev.preventDefault()
-        const { currGroup } = this.state
-        const taskId = this.state.currTask.id
-        const prevTask = currGroup.tasks.find(task => task.id === taskId)
-        this.setState({ currTask: prevTask })
-        this.toggleDescriptionTextArea()
+        ev.preventDefault();
+        const { currGroup } = this.state;
+        const taskId = this.state.currTask.id;
+        const prevTask = currGroup.tasks.find(task => task.id === taskId);
+        this.setState({ currTask: prevTask });
+        this.toggleDescriptionTextArea();
 
-    }
+    };
 
     getTaskLabels = () => {
-        const { board } = this.props
-        const { currTask } = this.state
-    
-        const taskLabels = taskService.getLabelsById(board, currTask)
+        const { board } = this.props;
+        const { currTask } = this.state;
+
+        const taskLabels = taskService.getLabelsById(board, currTask);
         // console.log('taskLabels:', taskLabels);
-        this.setState({taskLabels})
-        
-    }
- 
+        this.setState({ taskLabels });
+
+    };
+
 
 
     render() {
-        const { currTask, currGroup, isDescriptionOpen,taskLabels } = this.state;
+        // const { currTask, currGroup, isDescriptionOpen, taskLabels } = this.state;
+        // const { boardId } = this.props.match.params;
+        // const { board } = this.props;
+        const { currGroup, isDescriptionOpen, taskLabels } = this.state;
         const { boardId } = this.props.match.params;
-        const { board } = this.props
+        const { board, currTask } = this.props
         if (!currTask) return <Loader />;
         return (
             <React.Fragment>
@@ -122,7 +128,7 @@ class _TaskDetails extends React.Component {
                     </div>
                     <div className="group-name">
 
-                        <p>in list <span>{currGroup.title}</span></p>
+                        {/* <p>in list <span>{currGroup.title}</span></p> */}
                     </div>
 
                     <div className="task-main-container flex">
@@ -132,7 +138,7 @@ class _TaskDetails extends React.Component {
                             {/* {board.members.map(member => <UserAvatar fullname={member.fullname} />)} */}
 
 
-                            <TaskDetailsData currTask={currTask} board={board} taskLabels={taskLabels}/>
+                            <TaskDetailsData currTask={currTask} board={board} taskLabels={taskLabels} />
 
 
                             <div className="task-description">
@@ -155,7 +161,7 @@ class _TaskDetails extends React.Component {
                                     </textarea>
                                     {(isDescriptionOpen) && <>
                                         <div className="description-btns ">
-                                            <button className="btn-style1" onClick={() => { this.handleDetailsChange() }} >Save</button>
+                                            <button className="btn-style1" onClick={() => { this.handleDetailsChange(); }} >Save</button>
                                             <button className="close-btn" onMouseDown={(event) => { this.onCancelChanges(event); }}>
                                                 <IoMdClose />
                                             </button>
@@ -165,7 +171,18 @@ class _TaskDetails extends React.Component {
                                 </div>
 
                             </div>
+                            <div className='task-checklist'>
+                                {currTask.checklists && currTask.checklists.map(checklist => {
 
+                                    return <div key={checklist.id}>
+                                        <div className="flex">
+                                            <span className="icon-lg">< MdOutlineCheckBox /></span>
+                                            <h3 className="activity-title">{checklist.title}</h3>
+                                        </div>
+                                        <TaskDetailsChecklist  board={board} currTask={currTask} checklist={checklist} />
+                                    </div>
+                                })}
+                            </div>
                             <div className="task-activity">
 
                                 <div className="activity-header flex row space-between">
@@ -194,7 +211,7 @@ class _TaskDetails extends React.Component {
                         </div>
 
                         <div className="task-sidebar flex column">
-                            <TaskSideBar board={board} currTask={currTask} currGroup={currTask} />
+                            <TaskSideBar board={board} currTask={currTask} currGroup={currGroup} />
                         </div>
 
 
@@ -208,7 +225,8 @@ class _TaskDetails extends React.Component {
 
 function mapStateToProps({ boardModule }) {
     return {
-        board: boardModule.currBoard
+        board: boardModule.currBoard,
+        currTask: boardModule.currTask
     };
 }
 

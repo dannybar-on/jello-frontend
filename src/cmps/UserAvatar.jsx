@@ -22,7 +22,7 @@ function stringToColor(string) {
     return color;
 }
 
-function stringAvatar(name) {
+function stringAvatar(name, url) {
     return {
         sx: {
             bgcolor: stringToColor(name),
@@ -32,12 +32,13 @@ function stringAvatar(name) {
 }
 
 
+
 export function UserAvatar({ fullname, url }) {
     return (
         <Stack direction="row" spacing={2} >
 
             {/* <Avatar sx={{ width: 28, height: 28 }}  {...stringAvatar(fullname)} className='user-avatar' /> */}
-            <Avatar sx={{ width: 28, height: 28 }} src={url} alt={fullname} className='user-avatar' />
+            <Avatar sx={{ width: 28, height: 28 }}  {...stringAvatar(fullname)} src={url} className='user-avatar' />
         </Stack >
     );
 }

@@ -18,6 +18,7 @@ export class TaskPreviewContent extends React.Component {
         // const { isEditOpen } = this.state;
         // console.log(isEditOpen);
         const taskLabels = taskService.getLabelsById(board, task);
+        
         return (
             <>
                 <TaskPreviewHeader board={board} task={task} toggleEditOpen={toggleEditOpen} />

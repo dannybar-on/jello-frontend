@@ -1,0 +1,66 @@
+.labels-edit-add {
+  h4 {
+    color: $silver-blue;
+    font-size: rem(12px);
+    display: block;
+    font-weight: 700;
+    line-height: 16px;
+    margin-bottom: 4px;
+    margin-top: 12px;
+  }
+
+  .colors-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(49px, 1fr));
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .color-div {
+    height: 32px;
+    padding: 0;
+    width: 48px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    position: relative;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:active {
+      opacity: 0.7;
+    }
+
+    span {
+      color: #fff;
+      font-size: 20px;
+    }
+  }
+
+  .back-to-labels-btn {
+    color: $light-blue;
+    left: 0;
+    padding: 10px 8px 10px 12px;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    cursor: pointer;
+
+    &:hover {
+      color: $dark-blue;
+    }
+
+    svg {
+      font-size: 20px;
+     
+    }
+  }
+}
+
+.label-edit-add-btns {
+}
