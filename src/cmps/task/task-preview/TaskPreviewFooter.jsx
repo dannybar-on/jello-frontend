@@ -38,8 +38,8 @@ export class TaskPreviewFooter extends React.Component {
 
                 {task.members && (
                     <div className="members-footer">
-                        {task.members.map((member) => {
-                            return <UserAvatar fullname={member.fullname} url={member.imgUrl} />
+                        {task.members.map((member, idx) => {
+                            return <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />
                         })}
                     </div>
                 )}
