@@ -44,11 +44,8 @@ class _TaskDetails extends React.Component {
             .then(board => {
                 const currGroup = board.groups.find(group => group.id === groupId);
                 const currTask = currGroup.tasks.find(task => task.id === taskId);
-                console.log('currTask at details Mount:', currTask);
-
                 this.setState({ currGroup, currTask });
                 // this.getTaskLabels()
-
                 this.props.onSetCurrTask(currTask);
             });
     };
