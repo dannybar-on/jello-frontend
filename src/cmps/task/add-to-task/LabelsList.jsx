@@ -38,7 +38,7 @@ class _LabelsList extends React.Component {
 
 
     setAddEditMode = (label) => {
-        this.setState({ label }, () => this.setState({ isAddEditMode: !this.state.isAddEditMode }));
+        this.setState({ label }, () => this.setState({ isAddEditMode: !this.state.isAddEditMode }))
     };
 
 
@@ -49,18 +49,18 @@ class _LabelsList extends React.Component {
         const updatedBoard = taskService.handleLabelsChange(newLabel, board);
         this.props.updateTask(updatedBoard, currGroup, currTask);
 
-        this.setAddEditMode();
-    };
+        this.setAddEditMode()
+    }
 
     toggleLabelAdd = (labelId) => {
- 
+
         const { currTask, board } = this.props;
         const updatedTask = taskService.handleToggleLabel(labelId, currTask);
 
         const currGroup = taskService.getGroupById(currTask.id);
         this.props.updateTask(board, currGroup, updatedTask);
 
-    };
+    }
 
     onRemoveLabel = (labelId) => {
 
@@ -69,7 +69,7 @@ class _LabelsList extends React.Component {
             currTask.labelIds = currTask.labelIds.filter(id => id !== labelId);
             const boardToUpdate = taskService.removeLabel(labelId, board.labels, board)
             this.props.updateTask(boardToUpdate, currGroup, currTask);
-            this.setAddEditMode();
+            this.setAddEditMode()
         }
     };
 
@@ -83,7 +83,7 @@ class _LabelsList extends React.Component {
 
         return (
             <>
-                {(!isAddEditMode) && <div className="labels">
+                {(!isAddEditMode) ? <div className="labels">
 
                     <input
                         className="modal-search"
@@ -114,14 +114,15 @@ class _LabelsList extends React.Component {
 
                     <button className="create-label-btn" onClick={() => this.setAddEditMode()}>Create a new label</button>
 
-                </div>}
+                </div>
 
-                {isAddEditMode && <LabelsEditAdd
-                    {...this.props}
-                    label={label}
-                    onSaveLabel={this.onSaveLabel}
-                    onRemoveLabel={this.onRemoveLabel}
-                    setAddEditMode={this.setAddEditMode} />}
+                    : <LabelsEditAdd
+                        {...this.props}
+                        label={label}
+                        onSaveLabel={this.onSaveLabel}
+                        onRemoveLabel={this.onRemoveLabel}
+                        setAddEditMode={this.setAddEditMode} />
+                }
             </>
         );
     }
