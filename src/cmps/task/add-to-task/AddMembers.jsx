@@ -25,9 +25,10 @@ class _AddMembers extends React.Component {
 
     onAddMemberToTask(member) {
         let { board, currTask } = this.props;
+        if (!currTask.members) currTask.members = [];
         currTask.members.push(member);
         console.log(this.props);
-        const currGroup= taskService.getGroupById(currTask.id)
+        const currGroup = taskService.getGroupById(currTask.id);
         this.props.updateTask(board, currGroup, currTask);
 
     }
