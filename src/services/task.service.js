@@ -10,6 +10,8 @@ export const taskService = {
     getTaskById,
     handleCopyTask,
     getSearchedMember,
+    handleLabelsChange,
+    removeLabel,
     handleAttachment,
     handleFileAdd,
     getEmptyChecklist,
@@ -17,12 +19,46 @@ export const taskService = {
 
 
 function getLabelsById(board, task) {
-
     if (!task.labelIds?.length || !task.labelIds) return null;
-
     return task.labelIds.map(labelId => board.labels.find(label => label.id === labelId));
+}
+
+
+
+function handleLabelsChange(newLabel, labels) {
+
+    if (!newLabel.id) {
+        newLabel.id = utilService.makeId()
+        return labels.push(newLabel)
+    } else {
+        return labels.map(label => (label.id === newLabel.id) ? newLabel : label)
+    }
+}
+
+
+function removeLabel(labelId, labels, currTask, currGroup, board) {
+    if (window.confirm('Are you sure you want to delete this label?'))
+
+        currTask.labelIds = currTask.labelIds.filter(label => label !== labelId)
+    const taskIdx = currGroup.tasks.findIndex(task => task.id === currTask.id);
+    currGroup.tasks.splice(taskIdx, 1, currTask);
+    // console.log('currGroup:', currGroup); // GROUP UPDATED!!
+
+    var updatedGroups = board.groups.map(group => (group.id === currGroup.id) ? currGroup : group);
+    // console.log('updatedGroups:', updatedGroups);
+
+    var newLabels = labels.filter(label => label.id !== labelId)
+    var boardToUpdate = {
+        ...board,
+        groups: [...updatedGroups],
+        labels: [...newLabels]
+    }
+
+    return { boardToUpdate, currTask }
 
 }
+
+
 
 function handleDueDateChange(timestamp, task) {
     if (!timestamp) return;
@@ -48,10 +84,10 @@ function getGroupById(taskId) {
 
 function handleCopyTask(taskId, groupId, idx, title) {
     const initialBoard = store.getState().boardModule.currBoard;
-    const initialGroup = initialBoard.groups.find(group => group.tasks.some(task => task.id === taskId));
-    const task = getTaskById(taskId, initialGroup.id);
-    let newGroup = initialBoard.groups.find(group => group.id === groupId);
-    newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title });
+    const initialGroup = initialBoard.groups.find(group => group.tasks.some(task => task.id === taskId))
+    const task = getTaskById(taskId, initialGroup.id)
+    let newGroup = initialBoard.groups.find(group => group.id === groupId)
+    newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title })
     return initialBoard;
 
 }

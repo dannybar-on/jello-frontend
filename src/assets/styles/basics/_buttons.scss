@@ -33,9 +33,19 @@
     color: #fff;
     outline: 0;
   }
+
+  &.delete-btn {
+    background-color: #b04632;
+
+    &:hover {
+      background-color: #933b27;
+    }
+
+    &:active {
+      background-color: #6e2f1a;
+    }
+  }
 }
-
-
 
 .close-task-btn {
   border-radius: 50%;

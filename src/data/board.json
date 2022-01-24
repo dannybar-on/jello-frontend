@@ -178,32 +178,32 @@
             {
                 "id": "l101",
                 "title": "Done",
-                "color": "#61bd4f "
+                "color": "#61bd4f"
             },
             {
                 "id": "l102",
                 "title": "In-Progress",
-                "color": "#f2d600 "
+                "color": "#f2d600"
             },
             {
                 "id": "l103",
                 "title": "Todo",
-                "color": "#ff9f1a "
+                "color": "#ff9f1a"
             },
             {
                 "id": "l104",
                 "title": "",
-                "color": "#eb5a46 "
+                "color": "#eb5a46"
             },
             {
                 "id": "l105",
                 "title": "",
-                "color": "#c377e0 "
+                "color": "#c377e0"
             },
             {
                 "id": "l106",
                 "title": "",
-                "color": "#0079bf "
+                "color": "#0079bf"
             }
         ],
         "members": [

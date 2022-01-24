@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { boardService } from '../services/board.service.js';
-import { setCurrBoard, updateBoard, unMountBoard } from '../store/board.action.js';
+import { setCurrBoard, updateBoard, unMountBoard, updateGroup } from '../store/board.action.js';
 import { Route } from 'react-router-dom';
 
 import { Loader } from '../cmps/Loader.jsx';
@@ -86,7 +86,7 @@ class _BoardDetails extends React.Component {
 
   render() {
     const { isAddOpen, isEditOpen } = this.state;
-    const { board } = this.props;
+    const { board, updateGroup } = this.props;
     
     if (!board) return <Loader />;
     return (
@@ -94,7 +94,7 @@ class _BoardDetails extends React.Component {
         <div className={`board-details-container ${isEditOpen && 'go-back-container'}`}>
           <BoardHeader board={this.props.board} />
           <div className='list-container flex'>
-            <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen} />
+            <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup}/>
               {!isAddOpen && (
             <div onClick={this.onToggleAdd} className="add-another-group">
                 <button className='add-list-btn flex align-center' >
@@ -132,6 +132,7 @@ const mapDispatchToProps = {
   setCurrBoard,
   updateBoard,
   unMountBoard,
+  updateGroup
 };
 
 export const BoardDetails = connect(
