@@ -15,7 +15,7 @@ export class DynamicModal extends React.Component {
 
     setDynamicModalContent = () => {
         const {item} = this.props
-        console.log('item:', item.title);
+
         switch (item.title) {
             case 'Members':
                 return <AddMembers {...this.props} />

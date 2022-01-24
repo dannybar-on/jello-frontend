@@ -24,7 +24,7 @@ class _TaskDetails extends React.Component {
     state = {
         currTask: null,
         currGroup: null,
-        taskLabels: [],
+        
         isDescriptionOpen: false,
 
 
@@ -43,9 +43,12 @@ class _TaskDetails extends React.Component {
             .then(board => {
                 const currGroup = board.groups.find(group => group.id === groupId);
                 const currTask = currGroup.tasks.find(task => task.id === taskId);
+                console.log('currTask at details Mount:', currTask);
+                
                 this.setState({ currGroup, currTask });
-                this.getTaskLabels();
-                this.props.onSetCurrTask(currTask);
+                // this.getTaskLabels()
+               
+                this.props.onSetCurrTask(currTask)
             });
     };
 
@@ -76,23 +79,10 @@ class _TaskDetails extends React.Component {
 
     };
 
-    getTaskLabels = () => {
-        const { board } = this.props;
-        const { currTask } = this.state;
-
-        const taskLabels = taskService.getLabelsById(board, currTask);
-        // console.log('taskLabels:', taskLabels);
-        this.setState({ taskLabels });
-
-    };
-
 
 
     render() {
-        // const { currTask, currGroup, isDescriptionOpen, taskLabels } = this.state;
-        // const { boardId } = this.props.match.params;
-        // const { board } = this.props;
-        const { currGroup, isDescriptionOpen, taskLabels } = this.state;
+        const { currGroup, isDescriptionOpen } = this.state;
         const { boardId } = this.props.match.params;
         const { board, currTask } = this.props
         if (!currTask) return <Loader />;
@@ -138,7 +128,7 @@ class _TaskDetails extends React.Component {
                             {/* {board.members.map(member => <UserAvatar fullname={member.fullname} />)} */}
 
 
-                            <TaskDetailsData currTask={currTask} board={board} taskLabels={taskLabels} />
+                            <TaskDetailsData currTask={currTask} board={board} />
 
 
                             <div className="task-description">

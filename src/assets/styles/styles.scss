@@ -6,9 +6,9 @@
 
 // BASICS
 @import 'basics/helpers.scss';
-@import "basics/layout.scss";
+@import 'basics/layout.scss';
 @import 'basics/base.scss';
-@import "basics/buttons.scss";
+@import 'basics/buttons.scss';
 
 //  CMPS
 @import 'cmps/app-header.scss';
@@ -21,22 +21,18 @@
 @import 'cmps/board-add-modal.scss';
 @import 'cmps/dynamic-modal.scss';
 @import 'cmps/task-sidebar/date-picker.scss';
-
+@import 'cmps/progress-bar.scss';
 
 // SHARED CMPS
 @import 'cmps/shared-cmps/modal-search.scss';
-
-
 
 //TASKSIDEBAR
 @import 'cmps/task-sidebar/task-sidebar.scss';
 @import 'cmps/task-sidebar/add-to-task/labels-list.scss';
 @import 'cmps/task-sidebar/add-to-task/labels-edit-add';
 
-
-
 //  PAGES
 @import 'pages/home.scss';
 @import 'pages/board-list.scss';
 @import 'pages/task-details.scss';
-@import 'pages/board-details.scss'
+@import 'pages/board-details.scss';

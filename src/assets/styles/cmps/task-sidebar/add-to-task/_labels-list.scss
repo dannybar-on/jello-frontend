@@ -21,11 +21,10 @@
     transition: padding 85ms, margin 85ms, box-shadow 85ms;
 
     &:hover {
-        box-shadow: -8px 0 #c1c3c7;
-       
-        .label-title{
-          margin-left: 4px;
+      box-shadow: -8px 0 #c1c3c7;
 
+      .label-title {
+        margin-left: 4px;
       }
     }
 
@@ -36,23 +35,48 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-
-      
     }
   }
   .edit-label-icon {
     border-radius: 3px;
     padding: 6px;
     color: $grey-blue;
-  
+
     &:hover {
       background-color: #091e4214;
       color: $hard-blue;
     }
-  
+
     &:active {
       background-color: #091e4221;
     }
   }
 }
 
+.create-label-btn {
+  -webkit-appearance: none;
+  background-color: #091e420a;
+  border: none;
+  color: $dark-blue;
+  cursor: pointer;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: inline-block;
+  line-height: 20px;
+  margin-bottom: 8px;
+  padding: 6px 12px;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  margin: 8px 4px 0 0;
+
+  &:hover {
+    background-color: #091e4214;
+  }
+  &:active {
+    background-color: #e4f0f6;
+    color: #0079bf;
+    outline: 0;
+  }
+}

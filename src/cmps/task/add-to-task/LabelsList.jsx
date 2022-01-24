@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { updateBoard, updateTask } from '../../../store/board.action.js';
@@ -8,6 +8,7 @@ import { Loader } from '../../Loader';
 
 import { MdOutlineEdit } from 'react-icons/md';
 import { taskService } from '../../../services/task.service.js';
+import { cyan } from '@mui/material/colors';
 
 
 
@@ -20,56 +21,73 @@ class _LabelsList extends React.Component {
         isAddEditMode: false,
         labels: [],
         label: null,
-    }
+    };
 
     componentDidMount() {
-        const { board } = this.props
-        this.setState({ labels: board.labels })
+        const { board } = this.props;
+        this.setState({ labels: board.labels });
     }
 
     handleInputChange = (ev) => {
-        const { labels, search } = this.state
+        const { labels, search } = this.state;
 
-        const field = ev.target.name
-        const value = ev.target.value
-        this.setState({ ...this.state, [field]: value })
+        const field = ev.target.name;
+        const value = ev.target.value;
+        this.setState({ ...this.state, [field]: value });
 
-    }
+    };
 
 
     setAddEditMode = (label) => {
-        this.setState({ label }, () => this.setState({ isAddEditMode: !this.state.isAddEditMode }))
-    }
+        this.setState({ label }, () => this.setState({ isAddEditMode: !this.state.isAddEditMode }));
+    };
 
 
     onSaveLabel = (newLabel) => {
-        const { board } = this.props
-        const { labels } = this.state
+        const { board, currGroup, currTask } = this.props;
+        // const { labels } = this.state
 
-        const newLabels = taskService.handleLabelsChange(newLabel, labels)
-        this.setAddEditMode()
-        // console.log('newLabels:', newLabels);
+        const updatedBoard = taskService.handleLabelsChange(newLabel, board);
+        this.props.updateTask(updatedBoard, currGroup, currTask);
 
+        this.setAddEditMode();
+    };
 
-    }
+    toggleLabelAdd = (labelId) => {
+        // console.log('labelId:', labelId);
+        const { currTask, board } = this.props;
+        const updatedTask = taskService.handleToggleLabel(labelId, currTask);
+
+        const currGroup = taskService.getGroupById(currTask.id);
+        this.props.updateTask(board, currGroup, updatedTask);
+
+    };
 
     onRemoveLabel = (labelId) => {
-        const { labels } = this.state
-        const { board, currTask, currGroup } = this.props
-        const updatedItems = taskService.removeLabel(labelId, labels, currTask, currGroup, board)
-        
-        // this.props.updateBoard(boardToUpdate,)
-        this.props.updateTask(updatedItems.boardToUpdate, currGroup, updatedItems.currTask)
-        // this.setAddEditMode()
+        // const { labels } = this.state
+        if (window.confirm('Are you sure you want to delete this label?')) {
+            let { board, currTask, currGroup } = this.props;
+            currTask.labelIds = currTask.labelIds.filter(id => id !== labelId);
+            // currGroup.tasks = currGroup.tasks.map(task => task.labelIds && task.labelIds.filter(id => id !== labelId));
+            // console.log(currGroup);
 
-    }
+            const boardToUpdate = taskService.removeLabel(labelId, board.labels, currTask, currGroup, board)
+            // console.log('boardToUpdate:', boardToUpdate);
+            // const updatedTask = board.groups
+
+            this.props.updateTask(boardToUpdate, currGroup, currTask);
+            this.setAddEditMode();
+        }
+    };
 
 
     render() {
 
-        const { search, isAddEditMode, labels, label } = this.state
-        const { board, toggleDynamicModal } = this.props
-        if (!labels?.length || !labels) return <Loader />
+        const { search, isAddEditMode, labels, label } = this.state;
+        const { board, toggleDynamicModal } = this.props;
+        // console.log('board.labels:', board.labels);
+
+        if (!labels?.length || !labels) return <Loader />;
 
         return (
             <>
@@ -87,24 +105,22 @@ class _LabelsList extends React.Component {
 
                     <div className="labels-list">
                         <h4>Labels</h4>
-                        {labels.length && <ul className="clean-list label-list-edit">
-                            {labels.map(label => {
-                                return <li className="x flex row align-center space-between" key={label.id} >
-                                    <div style={{ backgroundColor: label.color }}>
+                        {board.labels.length && <ul className="clean-list label-list-edit">
+                            {board.labels.map(label => {
+                                return <li className=" flex row align-center space-between" key={label.id} >
+                                    <div onClick={() => this.toggleLabelAdd(label.id)} style={{ backgroundColor: label.color }}>
                                         <span className="label-title">{label.title || ''}</span>
                                     </div>
                                     <button onClick={() => this.setAddEditMode(label)} className="edit-label-icon icon-sm flex-row-center">
                                         <MdOutlineEdit />
                                     </button>
-                                </li>
+                                </li>;
                             })}
                         </ul>}
 
-                        {/* <button onClick={() => toggleDynamicModal()}>TEst</button> */}
-
                     </div>
 
-
+                    <button className="create-label-btn" onClick={() => this.setAddEditMode()}>Create a new label</button>
 
                 </div>}
 
@@ -115,7 +131,7 @@ class _LabelsList extends React.Component {
                     onRemoveLabel={this.onRemoveLabel}
                     setAddEditMode={this.setAddEditMode} />}
             </>
-        )
+        );
     }
 }
 
@@ -123,14 +139,14 @@ class _LabelsList extends React.Component {
 function mapStateToProps({ boardModule }) {
     return {
         board: boardModule.currBoard
-    }
+    };
 }
 
 const mapDispatchToProps = {
     updateBoard,
     updateTask,
-    
-}
+
+};
 
 export const LabelsList = connect(mapStateToProps, mapDispatchToProps)(_LabelsList);
 
