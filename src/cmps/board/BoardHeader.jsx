@@ -8,16 +8,23 @@ import { FiStar } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 import { RiUserAddLine } from 'react-icons/ri';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
+// import {SideMenu} from '../SideMenu.jsx'
+
 class _BoardHeader extends React.Component {
 
     state = {
         isClicked: false,
         isStarHover: false,
-        boardTitle: ''
+        boardTitle: '',
+        isMenuOpen: false,
     };
 
     componentDidMount(){
         this.setState({boardTitle: this.props.board.title})
+    }
+
+    toggleMenu = () => {
+        this.setState((prevState) => ({...prevState, isMenuOpen: !this.state.isMenuOpen}))
     }
 
     toggleIsStarred = () => {
@@ -45,7 +52,7 @@ class _BoardHeader extends React.Component {
 
     render() {
         const { board } = this.props;
-        const { isClicked, isStarHover, boardTitle } = this.state;
+        const { isClicked, isStarHover, boardTitle, isMenuOpen } = this.state;
         if (!board) return <h1>Loading</h1>;
         return <section className='board-header-container flex align-center space-between'>
             <div className='board-header-left flex'>
@@ -61,8 +68,9 @@ class _BoardHeader extends React.Component {
             </div>
             <div className='board-header-right flex row' >
                 <button className='dashboard-btn flex align-center justify-center'> Dashboard</button>
-                <button className='show-more-btn flex align-center justify-center'><BiDotsHorizontalRounded /> Show menu</button>
+                <button className='show-more-btn flex align-center justify-center' onClick={() => this.toggleMenu()}><BiDotsHorizontalRounded /> Show menu</button>
             </div>
+            {/* <SideMenu isMenuOpen={isMenuOpen} toggleMenu={this.toggleMenu} /> */}
         </section>;
     }
 }
