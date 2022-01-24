@@ -40,7 +40,6 @@ class _TaskDetailsChecklist extends React.Component {
     render() {
         const { checklist } = this.props;
         const { todoTitle, isAddOpen } = this.state;
-        console.log(todoTitle);
 
         return (
             <div>
