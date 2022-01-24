@@ -12,7 +12,8 @@ export const taskService = {
     handleLabelsChange,
     removeLabel,
     handleAttachment,
-    handleFileAdd
+    handleFileAdd,
+    handleToggleLabel
 };
 
 
@@ -23,27 +24,41 @@ function getLabelsById(board, task) {
 
 
 
-function handleLabelsChange(newLabel, labels) {
+function handleLabelsChange(newLabel, board) {
+    let updatedLabels
 
     if (!newLabel.id) {
         newLabel.id = utilService.makeId()
-        return labels.push(newLabel)
+        board.labels.push(newLabel)
+        updatedLabels = board.labels
+        return  board ={
+            ...board,
+            labels:[...updatedLabels]
+        }
     } else {
-        return labels.map(label => (label.id === newLabel.id) ? newLabel : label)
+        updatedLabels =  board.labels.map(label => (label.id === newLabel.id) ? newLabel : label)
+        return  board ={
+            ...board,
+            labels:[...updatedLabels]
+        }
     }
+
+
 }
 
 
 function removeLabel(labelId, labels, currTask, currGroup, board) {
     if (window.confirm('Are you sure you want to delete this label?'))
+    console.log('labels START REMOVE LABEL!!!!!!!!!!!!!!!!!!:', labels);
 
         currTask.labelIds = currTask.labelIds.filter(label => label !== labelId)
-    const taskIdx = currGroup.tasks.findIndex(task => task.id === currTask.id);
+    var taskIdx = currGroup.tasks.findIndex(task => task.id === currTask.id); // TRY TO SPREAD THE TASK LABELS IDs
     currGroup.tasks.splice(taskIdx, 1, currTask);
-    // console.log('currGroup:', currGroup); // GROUP UPDATED!!
+    // console.log('currGroup:', currGroup); 
 
     var updatedGroups = board.groups.map(group => (group.id === currGroup.id) ? currGroup : group);
     // console.log('updatedGroups:', updatedGroups);
+console.log('labels BEFORE DELETING:', labels);
 
     var newLabels = labels.filter(label => label.id !== labelId)
     var boardToUpdate = {
@@ -52,11 +67,26 @@ function removeLabel(labelId, labels, currTask, currGroup, board) {
         labels: [...newLabels]
     }
 
-    return { boardToUpdate, currTask }
+    return  boardToUpdate
 
 }
 
+function handleToggleLabel(labelId, taskToUpdate) {
 
+    if (!taskToUpdate.labelIds) taskToUpdate.labelIds = []
+    if (taskToUpdate.labelIds.includes(labelId)) {
+        // var index = this.types.indexOf(type_id);
+        const labelIdx = taskToUpdate.labelIds.findIndex(id => id === labelId)
+        taskToUpdate.labelIds.splice(labelIdx, 1)
+        // this.types.splice(index,1);
+    }
+    else {
+        // this.types.push(type_id);
+        taskToUpdate.labelIds.push(labelId)
+    }
+
+    return taskToUpdate
+}
 
 function handleDueDateChange(timestamp, task) {
     if (!timestamp) return;
@@ -100,7 +130,7 @@ function handleFileAdd(url, title = 'Attachment') {
     const group = getGroupById(taskId);
     const task = getTaskById(taskId, group.id);
     if (!task.attachments) task.attachments = [];
-    task.attachments.push({ id: utilService.makeId(), url, title, createdAt: Date.now()});
+    task.attachments.push({ id: utilService.makeId(), url, title, createdAt: Date.now() });
     console.log(url);
     if (!task.style) task.style = {}
     task.style.bgImg = `url(${url})`;

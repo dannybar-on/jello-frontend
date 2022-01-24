@@ -8,8 +8,9 @@ export class LabelsEditAdd extends React.Component {
 
     state = {
         label: {
+            id:null,
             title: '',
-            color: '',
+            color: '#344563',
 
         }
 
@@ -26,6 +27,7 @@ export class LabelsEditAdd extends React.Component {
         const field = ev.target.name
         const value = ev.target.value
         this.setState((prevState) => ({ label: { ...prevState.label, [field]: value } }))
+// console.log('this.state:', this.state.label);
 
     }
 
@@ -38,7 +40,7 @@ export class LabelsEditAdd extends React.Component {
     render() {
         const { label, label: { title } } = this.state
         const { onSaveLabel, onRemoveLabel, setAddEditMode } = this.props
-
+            
 
 
         return (
@@ -67,8 +69,8 @@ export class LabelsEditAdd extends React.Component {
                 </div>
 
                 <div className="edit-add-btns flex row space-between">
-                    <button className="btn-style1" onClick={() => onSaveLabel(label)}>Save</button>
-                    <button className="btn-style1 delete-btn" onClick={() => onRemoveLabel(label.id)}>Delete</button>
+                    <button className="btn-style1" onClick={() => onSaveLabel(label)}>{(label.id)? 'Save':'Create'}</button>
+                    {label.id && <button className="btn-style1 delete-btn" onClick={() => onRemoveLabel(label.id)}>Delete</button>}
                 </div>
             </div >
 

@@ -117,13 +117,13 @@ export function addTask(task, groupId, board) {
 
 
 export function updateTask(board, groupToSave, taskToSave) {
-    console.log('board, groupToSave, taskToSave:', board, groupToSave, taskToSave);
+    // console.log('board, groupToSave, taskToSave:', board, groupToSave, taskToSave);
     
     return async (dispatch) => {
         if (!taskToSave) return
-        console.log('this is groupToSave', groupToSave);
+        // console.log('this is groupToSave', groupToSave);
         const taskIdx = groupToSave.tasks.findIndex(task => task.id === taskToSave.id);
-        console.log('this is taskIdx', taskIdx);
+        // console.log('this is taskIdx', taskIdx);
         groupToSave.tasks.splice(taskIdx, 1, taskToSave);
         let boardToUpdate = { ...board };
         boardToUpdate.groups = boardToUpdate.groups.map(currGroup => (currGroup.id === groupToSave.id) ? groupToSave : currGroup);

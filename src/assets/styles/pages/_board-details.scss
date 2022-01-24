@@ -8,75 +8,80 @@
     // &:first-of-type{
     //   margin-left: 4px;
     // }
-  
   }
 
   // .add-list-btn {
   //   // background-color: #ffffff3d;
   //   color: #fff;
   //   // padding: 4px 0 4px;
-   
 
   // }
 
-  
   .add-group-container {
-   
     display: flex;
     align-items: center;
     width: 272px;
     .add-board-item {
-    padding: 8px;
+      padding: 8px;
 
-    
       border-radius: 3px;
       // padding: 4px;
       width: 100%;
       background-color: $light-grey1;
     }
-
   }
 
-  .add-another-group{
+  .add-another-group {
     background-color: #ffffff3d;
-    
+
     border-radius: 3px;
     height: auto;
     min-height: 32px;
     padding: 4px;
     margin: 0 8px 0 4px;
-    transition: background-color 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
+    transition: background-color 85ms ease-in, opacity 40ms ease-in,
+      border-color 85ms ease-in;
     vertical-align: top;
     white-space: nowrap;
     cursor: pointer;
     width: 272px;
 
-      &:hover{
-        background-color: #ffffff52;
-      }
+    &:hover {
+      background-color: #ffffff52;
+    }
 
-      &:active{
-        background-color: #fff6;
-      }
-    .add-list-btn{
+    &:active {
+      background-color: #fff6;
+    }
+    .add-list-btn {
       padding: 6px 8px;
       transition: color 85ms ease-in;
       color: #fff;
     }
   }
- 
 }
-
 
 .add-board-item {
   // margin-bottom: 8px;
   padding-bottom: 8px;
-  textarea{
+
+  textarea {
     border-radius: 3px;
     box-shadow: 0 1px 0 #091e4240;
   }
   .form-btns {
+    padding-top: 4px;
     gap: 10px;
+
+    .close-add {
+      display: flex;
+      align-items: center;
+      font-size: 25px;
+      color: $light-blue;
+
+      &:hover {
+        color: $dark-blue;
+      }
+    }
   }
 }
-

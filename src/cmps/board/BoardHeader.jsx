@@ -49,7 +49,7 @@ class _BoardHeader extends React.Component {
         if (!board) return <h1>Loading</h1>;
         return <section className='board-header-container flex align-center space-between'>
             <div className='board-header-left flex'>
-                    <input type='text' name='boardTitle' value={boardTitle} onChange={this.handleChange} onBlur={this.onChangeBoardTitle} />
+                    <input className="board-header-title" type='text' name='boardTitle' value={boardTitle} onChange={this.handleChange} onBlur={this.onChangeBoardTitle} />
                 <button className='star-btn' onMouseEnter={this.toggleStarHover} onMouseLeave={this.toggleStarHover} onClick={this.toggleIsStarred}>
                     {(board.isStarred || isStarHover) ? <FaStar /> : <FiStar />}
                 </button>
