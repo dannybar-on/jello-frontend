@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import { UserAvatar } from '../UserAvatar'
+import { UserAvatar } from '../UserAvatar';
 
 import { taskService } from '../../services/task.service.js'
 
@@ -42,7 +42,7 @@ export class TaskDetailsData extends React.Component {
                     <h3 className="data-header">Members</h3>
 
                     <div className="data-member" >
-                        {currTask.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} />)}
+                        {currTask.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />)}
                     </div>
 
                     <button className="add-item-btn round">
@@ -56,7 +56,7 @@ export class TaskDetailsData extends React.Component {
                     {taskLabels.map((label, idx) => {
                         return <div key={idx} className="data-label " style={{ backgroundColor: `${label.color}` }}>
                             {label.title}
-                        </div>
+                        </div>;
 
                     })}
                     <button className="add-item-btn">
@@ -67,7 +67,7 @@ export class TaskDetailsData extends React.Component {
 
             </div>
 
-        )
+        );
     }
 }
 

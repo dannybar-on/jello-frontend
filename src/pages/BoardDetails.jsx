@@ -18,6 +18,7 @@ class _BoardDetails extends React.Component {
     board: null,
     isAddOpen: false,
     isEditOpen: false,
+    isTaskLabelListOpen: false,
   };
 
   componentDidMount() {
@@ -43,6 +44,11 @@ class _BoardDetails extends React.Component {
 
     const { isEditOpen } = this.state;
     this.setState({ isEditOpen: !isEditOpen });
+  };
+
+  toggleTaskLabelList = (event) => {
+    event.preventDefault()
+    this.setState({ isTaskLabelListOpen: !this.state.isTaskLabelListOpen });
   };
 
   onDragEnd = (result) => {
@@ -85,7 +91,7 @@ class _BoardDetails extends React.Component {
   }
 
   render() {
-    const { isAddOpen, isEditOpen } = this.state;
+    const { isAddOpen, isEditOpen, isTaskLabelListOpen } = this.state;
     const { board, updateGroup } = this.props;
     
     if (!board) return <Loader />;
@@ -94,7 +100,7 @@ class _BoardDetails extends React.Component {
         <div className={`board-details-container ${isEditOpen && 'go-back-container'}`}>
           <BoardHeader board={this.props.board} />
           <div className='list-container flex'>
-            <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup}/>
+            <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen}/>
               {!isAddOpen && (
             <div onClick={this.onToggleAdd} className="add-another-group">
                 <button className='add-list-btn flex align-center' >

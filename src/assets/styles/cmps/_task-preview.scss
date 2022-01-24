@@ -75,19 +75,45 @@
     font-size: 12px;
     font-weight: 700;
     height: 8px;
-    line-height: 100px;
-    max-width: 40px;
-    min-width: 40px;
+    line-height: 16px;
+    // max-width: 40px;
+    // min-width: 40px;
     padding: 0;
     text-shadow: none;
     width: auto;
     border-radius: 3px;
   }
+  &.close {
+    .label-bar {
+        color: rgba(255, 255, 255, 0);
+        min-width: 20px;
+        width: 40px;
+        transition: height .2s, min-width .2s linear .2s;
+    }
+}
+&.open {
+    .label-bar {
+        color: white;
+        height: 16px;
+        min-width: 48px;
+        padding: 0 8px;
+        width: fit-content;
+        transition: color .2s linear 0.4s, min-width .2s, height .2s linear .2s;
+    }
+}
 }
 
 //TASK FOOTER
 .task-footer {
   padding: 0px 8px 2px 8px;
+  
+  .MuiAvatar-root {
+    width: 32px;
+    height: 32px;
+    font-size: rem(14px);
+    border: none;
+  }
+
 }
 
 .duedate-preview {

@@ -2,18 +2,21 @@ import React, { createRef } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { taskService } from '../services/task.service'
+import { taskService } from '../services/task.service';
+
+import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
 import { updateTask, onSetCurrTask } from '../store/board.action';
 
 import { TaskSideBar } from '../cmps/task/TaskSideBar';
-import { TaskDetailsData } from '../cmps/task/TaskDetailsData'
-import { Loader } from '../cmps/Loader';
+import { TaskDetailsData } from '../cmps/task/TaskDetailsData';
+import { TaskDetailsChecklist } from '../cmps/task/TaskDetailsChecklist.jsx';
 
 import { CgCreditCard } from 'react-icons/cg';
 import { GrTextAlignFull } from 'react-icons/gr';
 import { BsListUl } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
+import { MdOutlineCheckBox } from 'react-icons/md';
 // import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
 class _TaskDetails extends React.Component {
@@ -56,23 +59,23 @@ class _TaskDetails extends React.Component {
         const { board } = this.props;
         const { currTask, currGroup } = this.state;
         this.props.updateTask(board, currGroup, currTask);
-        this.toggleDescriptionTextArea()
+        this.toggleDescriptionTextArea();
     };
 
 
     toggleDescriptionTextArea = () => {
-        this.setState({ isDescriptionOpen: !this.state.isDescriptionOpen })
-    }
+        this.setState({ isDescriptionOpen: !this.state.isDescriptionOpen });
+    };
 
     onCancelChanges = (ev) => {
-        ev.preventDefault()
-        const { currGroup } = this.state
-        const taskId = this.state.currTask.id
-        const prevTask = currGroup.tasks.find(task => task.id === taskId)
-        this.setState({ currTask: prevTask })
-        this.toggleDescriptionTextArea()
+        ev.preventDefault();
+        const { currGroup } = this.state;
+        const taskId = this.state.currTask.id;
+        const prevTask = currGroup.tasks.find(task => task.id === taskId);
+        this.setState({ currTask: prevTask });
+        this.toggleDescriptionTextArea();
 
-    }
+    };
 
     // getTaskLabels = () => {
     //     const { board } = this.props
@@ -156,7 +159,7 @@ class _TaskDetails extends React.Component {
                                     </textarea>
                                     {(isDescriptionOpen) && <>
                                         <div className="description-btns ">
-                                            <button className="btn-style1" onClick={() => { this.handleDetailsChange() }} >Save</button>
+                                            <button className="btn-style1" onClick={() => { this.handleDetailsChange(); }} >Save</button>
                                             <button className="close-btn" onMouseDown={(event) => { this.onCancelChanges(event); }}>
                                                 <IoMdClose />
                                             </button>
@@ -166,7 +169,18 @@ class _TaskDetails extends React.Component {
                                 </div>
 
                             </div>
+                            <div className='task-checklist'>
+                                {currTask.checklists && currTask.checklists.map(checklist => {
 
+                                    return <div key={checklist.id}>
+                                        <div className="flex">
+                                            <span className="icon-lg">< MdOutlineCheckBox /></span>
+                                            <h3 className="activity-title">{checklist.title}</h3>
+                                        </div>
+                                        <TaskDetailsChecklist  board={board} currTask={currTask} checklist={checklist} />
+                                    </div>
+                                })}
+                            </div>
                             <div className="task-activity">
 
                                 <div className="activity-header flex row space-between">

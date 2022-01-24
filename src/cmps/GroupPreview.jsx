@@ -35,7 +35,7 @@ export class GroupPreview extends React.Component {
     } 
 
   render() {
-      const { group, index, board, toggleEditOpen } = this.props;
+      const { group, index, board, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList } = this.props;
       const { title, isAddOpen } = this.state;
           //   <div className="group-wrapper">
       return (
@@ -50,7 +50,7 @@ export class GroupPreview extends React.Component {
                                   <div className='group-content' {...provided.droppableProps} ref={provided.innerRef}>
                                       {group.tasks && group.tasks.map((task, index) => {
                                           return (
-                                              <TaskPreview key={task.id} task={task} index={index} group={group} groupId={group.id} board={board} toggleEditOpen={toggleEditOpen}/>
+                                              <TaskPreview key={task.id} task={task} index={index} group={group} groupId={group.id} board={board} toggleEditOpen={toggleEditOpen} isTaskLabelListOpen={isTaskLabelListOpen} toggleTaskLabelList={toggleTaskLabelList} />
                                           )
                                       })}
                                       {provided.placeholder}
