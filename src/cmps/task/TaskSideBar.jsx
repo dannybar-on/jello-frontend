@@ -49,22 +49,11 @@ export class TaskSideBar extends React.Component {
                             <p>{item.title}</p>
                         </button>
                     ))}
-                    { isModalOpen && <DynamicModal item={content} {...this.props} toggleDynamicModal={this.toggleDynamicModal} />}
                 </section>
             </>
         )
     }
 }
-
-
-{/* <> */}
-    {/* <button onClick={() => this.togglePopOver()}
-        className="add-item-btn flex row align-center">
-        <span className="flex align-center">{item.icon}</span>
-        <p>{item.title}</p>
-    </button>
-    {isPopoverOpen && item.component}
-</> */}
 
 
 
