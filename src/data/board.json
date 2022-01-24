@@ -48,16 +48,19 @@
             {
                 "_id": "u101",
                 "fullname": "Elad Eyal",
+                "username": "eladayal",
                 "imgUrl": "https://www.google.com"
             },
             {
                 "_id": "u102",
                 "fullname": "Barak Lebowitz",
+                "username": "barak lebowitz",
                 "imgUrl": "https://www.google.com"
             },
             {
                 "_id": "u103",
                 "fullname": "Daniel Bar-on",
+                "username": "daniel bar-on",
                 "imgUrl": "https://www.google.com"
             }
         ],

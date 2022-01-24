@@ -57,7 +57,7 @@ function handleLabelsChange(newLabel, board) {
 }
 
 
-function removeLabel(labelId, labels, currTask, currGroup, board) {
+function removeLabel(labelId, labels, board) {
 
 
     const updatedGroups = board.groups.map(group => {
@@ -65,13 +65,10 @@ function removeLabel(labelId, labels, currTask, currGroup, board) {
             if (task.labelIds) {
                 const newTaskLabels = task.labelIds.filter(label => label !== labelId)
                 task = { ...task, labelIds: newTaskLabels }
-                console.log('task:', task);
             }
             return task
-
         })
         return { ...group, tasks: updatedTasks }
-
     })
 
     var newLabels = labels.filter(label => label.id !== labelId);
@@ -82,26 +79,9 @@ function removeLabel(labelId, labels, currTask, currGroup, board) {
     }
 
 
-    console.log('boardToUpdate:', boardToUpdate);
     return boardToUpdate
 
-    // var x = currTask.labelIds = currTask.labelIds.filter(label => label !== labelId)
-    // console.log('labels from curTask:', x);
-
-    // var taskIdx = currGroup.tasks.findIndex(task => task.id === currTask.id); // TRY TO SPREAD THE TASK LABELS IDs
-    // currGroup.tasks.splice(taskIdx, 1, currTask);
-    // console.log('currGroup:', currGroup);
-
-    // var updatedGroups = board.groups.map(group => (group.id === currGroup.id) ? currGroup : group);
-    // // console.log('updatedGroups:', updatedGroups);
-    // console.log('labels BEFORE DELETING:', labels);
-
-    // var newLabels = labels.filter(label => label.id !== labelId);
-    // var boardToUpdate = {
-    //     ...board,
-    //     groups: [...updatedGroups],
-    //     labels: [...newLabels]
-    // };
+  
 
 
 }
@@ -111,13 +91,10 @@ function handleToggleLabel(labelId, taskToUpdate) {
 
     if (!taskToUpdate.labelIds) taskToUpdate.labelIds = []
     if (taskToUpdate.labelIds.includes(labelId)) {
-        // var index = this.types.indexOf(type_id);
         const labelIdx = taskToUpdate.labelIds.findIndex(id => id === labelId)
         taskToUpdate.labelIds.splice(labelIdx, 1)
-        // this.types.splice(index,1);
     }
     else {
-        // this.types.push(type_id);
         taskToUpdate.labelIds.push(labelId)
     }
 
@@ -174,7 +151,6 @@ function handleFileAdd(url, title = 'Attachment') {
     const task = getTaskById(taskId, group.id);
     if (!task.attachments) task.attachments = [];
     task.attachments.push({ id: utilService.makeId(), url, title, createdAt: Date.now() });
-    // console.log(url);
     if (!task.style) task.style = {};
     task.style.bgImg = `url(${url})`;
     return [board, group, task];

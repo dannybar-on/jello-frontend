@@ -68,13 +68,7 @@ class _LabelsList extends React.Component {
         if (window.confirm('Are you sure you want to delete this label?')) {
             let { board, currTask, currGroup } = this.props;
             currTask.labelIds = currTask.labelIds.filter(id => id !== labelId);
-            // currGroup.tasks = currGroup.tasks.map(task => task.labelIds && task.labelIds.filter(id => id !== labelId));
-            // console.log(currGroup);
-
-            const boardToUpdate = taskService.removeLabel(labelId, board.labels, currTask, currGroup, board)
-            // console.log('boardToUpdate:', boardToUpdate);
-            // const updatedTask = board.groups
-
+            const boardToUpdate = taskService.removeLabel(labelId, board.labels, board)
             this.props.updateTask(boardToUpdate, currGroup, currTask);
             this.setAddEditMode();
         }

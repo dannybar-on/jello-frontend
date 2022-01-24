@@ -17,6 +17,7 @@ import { GrTextAlignFull } from 'react-icons/gr';
 import { BsListUl } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
 import { MdOutlineCheckBox } from 'react-icons/md';
+import { getTouchRippleUtilityClass } from '@mui/material';
 // import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
 class _TaskDetails extends React.Component {
@@ -24,7 +25,7 @@ class _TaskDetails extends React.Component {
     state = {
         currTask: null,
         currGroup: null,
-        
+
         isDescriptionOpen: false,
 
 
@@ -44,11 +45,11 @@ class _TaskDetails extends React.Component {
                 const currGroup = board.groups.find(group => group.id === groupId);
                 const currTask = currGroup.tasks.find(task => task.id === taskId);
                 console.log('currTask at details Mount:', currTask);
-                
+
                 this.setState({ currGroup, currTask });
                 // this.getTaskLabels()
-               
-                this.props.onSetCurrTask(currTask)
+
+                this.props.onSetCurrTask(currTask);
             });
     };
 
@@ -80,11 +81,17 @@ class _TaskDetails extends React.Component {
     };
 
 
+    onDeleteChecklist = (checklistId) => {
+        let { currTask, board } = this.props;
+        currTask.checklists = currTask.checklists.filter(checklist => checklist.id !== checklistId);
+        const group = taskService.getGroupById(currTask.id);
+        this.props.updateTask(board, group, currTask);
+    };
 
     render() {
         const { currGroup, isDescriptionOpen } = this.state;
         const { boardId } = this.props.match.params;
-        const { board, currTask } = this.props
+        const { board, currTask } = this.props;
         if (!currTask) return <Loader />;
         return (
             <React.Fragment>
@@ -167,10 +174,11 @@ class _TaskDetails extends React.Component {
                                     return <div key={checklist.id}>
                                         <div className="flex">
                                             <span className="icon-lg">< MdOutlineCheckBox /></span>
-                                            <h3 className="activity-title">{checklist.title}</h3>
+                                            <h3>{checklist.title}</h3>
+                                            <button onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button>
                                         </div>
-                                        <TaskDetailsChecklist  board={board} currTask={currTask} checklist={checklist} />
-                                    </div>
+                                        <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
+                                    </div>;
                                 })}
                             </div>
                             <div className="task-activity">
