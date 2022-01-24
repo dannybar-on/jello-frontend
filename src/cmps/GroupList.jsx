@@ -1,7 +1,7 @@
 import { GroupPreview } from './GroupPreview.jsx';
 import { Droppable } from 'react-beautiful-dnd';
 
-export function GroupList({ groups, board, toggleEditOpen, updateGroup }) {
+export function GroupList({ groups, board, toggleEditOpen, updateGroup, toggleTaskLabelList, isTaskLabelListOpen }) {
   return (
     <Droppable droppableId={'all-groups'} type="group" direction='horizontal'>
         {provided =>(
@@ -17,6 +17,8 @@ export function GroupList({ groups, board, toggleEditOpen, updateGroup }) {
               board={board}
               index={index}
               updateGroup={updateGroup}
+              isTaskLabelListOpen={isTaskLabelListOpen}
+              toggleTaskLabelList={toggleTaskLabelList}
             />
           );
         })}

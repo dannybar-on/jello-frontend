@@ -13,7 +13,8 @@ export class TaskPreviewContent extends React.Component {
 
 
     render() {
-        const { board, task, toggleEditOpen } = this.props;
+        const { board, task, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList } = this.props;
+        console.log(isTaskLabelListOpen);
         // const { isEditOpen } = this.state;
         // console.log(isEditOpen);
         const taskLabels = taskService.getLabelsById(board, task);
@@ -23,8 +24,8 @@ export class TaskPreviewContent extends React.Component {
 
                 <div className="task-preview">
                     {/* <ul className="tas"> </ul> */}
-                    <ul className='task-labels clean-list flex ' >
-                        {taskLabels && taskLabels.map((label, idx) => <li key={idx} style={{ backgroundColor: label.color }}></li>)}
+                    <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
+                        {taskLabels && taskLabels.map((label, idx) => <li className='label-bar' key={idx} style={{ backgroundColor: label.color }}>{label.title && <span>{label.title}</span>}</li>)}
                     </ul>
                     <p>{task.title}</p>
 
