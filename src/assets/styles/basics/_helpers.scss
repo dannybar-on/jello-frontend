@@ -95,8 +95,8 @@
 
 .yellow {
   background-color: #f2d600;
-    border-radius: 3px;
-    color: #fff;
+  border-radius: 3px;
+  color: #fff;
 }
 
 .clear-button {
@@ -110,6 +110,11 @@
 
 .hidden {
   display: none;
+}
+
+.line-through {
+  text-decoration: line-through;
+  color:$silver-blue;
 }
 
 .clean-link {
@@ -139,7 +144,6 @@
   color: $grey-blue;
 }
 
-
 .icon-sm {
   font-size: 16px;
   height: 20px;
@@ -147,10 +151,12 @@
   width: 20px;
 }
 
-.ml-40{
+.ml-40 {
   margin-left: 40px;
 }
-
+.mt-8 {
+  margin-top: 8px;
+}
 
 // MODAL HELPERS
 .modal-content-title {
@@ -196,4 +202,18 @@
   }
 }
 
+.form-btns {
+  padding-top: 4px;
+  gap: 10px;
 
+  .close-add {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    color: $light-blue;
+
+    &:hover {
+      color: $dark-blue;
+    }
+  }
+}
