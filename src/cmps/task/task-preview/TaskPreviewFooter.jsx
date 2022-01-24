@@ -5,6 +5,7 @@ import { GrTextAlignFull } from 'react-icons/gr';
 import { FaRegComment } from 'react-icons/fa';
 import { Checklists } from './Checklists.jsx';
 import {UserAvatar} from '../../UserAvatar.jsx'
+import AvatarGroup from '@mui/material/AvatarGroup';
 
 export class TaskPreviewFooter extends React.Component {
 
@@ -37,13 +38,12 @@ export class TaskPreviewFooter extends React.Component {
                 {task.checklists && <Checklists checklists={task.checklists} />}
 
                 {task.members && (
-                    <div className="members-footer">
-                        {task.members.map((member, idx) => {
-                            return <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />
-                        })}
+                    <div className="members-footer flex">
+                        <AvatarGroup max={3} >
+                        {task.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />)}
+                         </AvatarGroup>
                     </div>
                 )}
-                {/* {task.dueDate && <div><FiClock /> {utilService.handleTimestamp(task.dueDate)}</div>} */}
             </div>
         );
     }
