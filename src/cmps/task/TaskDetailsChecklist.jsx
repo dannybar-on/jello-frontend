@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { taskService } from '../../services/task.service';
 import { updateTask } from '../../store/board.action';
 import { ProgressBar } from './ProgressBar.jsx';
+import { TodoPreview } from './TodoPreview.jsx';
 
 class _TaskDetailsChecklist extends React.Component {
     state = {
         perecentage: 0,
         isAddOpen: false,
         todoTitle: '',
-        isEditOpen: false,
     };
 
     componentDidMount() {
@@ -33,10 +33,7 @@ class _TaskDetailsChecklist extends React.Component {
         const { isAddOpen } = this.state;
         this.setState({ isAddOpen: !isAddOpen });
     };
-    toggleEditTodo = () => {
-        const { isEditOpen } = this.state;
-        this.setState({ isEditOpen: !isEditOpen });
-    };
+
 
     handleChange = ({ target: { name, value } }) => {
         this.setState((prevState) => ({ ...prevState, [name]: value }));
@@ -62,10 +59,6 @@ class _TaskDetailsChecklist extends React.Component {
         this.toggleAddTodo();
     };
 
-    onEditTodo = (ev, todo, title) => {
-        ev.preventDefault();
-        console.log(todo, title);
-    };
 
     onRemoveTodo = (todoId) => {
         let { checklist } = this.props;
@@ -78,26 +71,17 @@ class _TaskDetailsChecklist extends React.Component {
 
 
     render() {
-        const { checklist } = this.props;
-        const { todoTitle, isAddOpen, percentage, isEditOpen } = this.state;
+        const { checklist, board, currTask, updateTask } = this.props;
+        const { todoTitle, isAddOpen, percentage, } = this.state;
         return (
             <div>
                 <ProgressBar percentage={percentage} />
                 {checklist.todos.map((todo, idx) => {
-                    return <div key={idx}>
-                        <input type="checkbox" name={todo.id} checked={todo.isDone} onChange={(event) => this.handleCheckbox(event, todo)} />
-                       {!isEditOpen && <span onClick={() => this.toggleEditTodo()}> {todo.title} </span>}
-                        {(isEditOpen) && <form onSubmit={(event) => this.onEditTodo(event, todo, todoTitle)}>
-                            <textarea className='search-modal'
-                                type="text"
-                                name="todoTitle" value={todo.title}
-                                onChange={this.handleChange}
-                            />
-                            <button className='btn-style1' type='submit'>Save</button>
-                            <button onClick={() => this.toggleEditTodo()}>X</button>
-                        </form>}
-                        <button onClick={() => this.onRemoveTodo(todo.id)}>Remove todo</button>
-                    </div>;
+                    return <TodoPreview key={todo.id}
+                        todo={todo} handleCheckbox={this.handleCheckbox}
+                        updateTask={updateTask}
+                        currTask={currTask} board={board}
+                        onRemoveTodo={this.onRemoveTodo} />;
                 })}
                 {(isAddOpen) ? <form onSubmit={(event) => this.onAddTodo(event, todoTitle, checklist)}>
                     <textarea className='search-modal' type="text" name="todoTitle" value={todoTitle} onChange={this.handleChange} />
