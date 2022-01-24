@@ -56,7 +56,6 @@ class _TaskDetailsChecklist extends React.Component {
         const group = taskService.getGroupById(currTask.id);
         this.props.updateTask(board, group, currTask);
         this.setState({ todoTitle: '' });
-        this.toggleAddTodo();
     };
 
 

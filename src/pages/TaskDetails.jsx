@@ -2,7 +2,7 @@ import React, { createRef } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { taskService } from '../services/task.service';
+
 
 import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
@@ -18,6 +18,8 @@ import { BsListUl } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
 import { MdOutlineCheckBox } from 'react-icons/md';
 import { getTouchRippleUtilityClass } from '@mui/material';
+import { ChecklistPreview } from '../cmps/task/ChecklistPreview';
+
 // import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
 class _TaskDetails extends React.Component {
@@ -27,7 +29,8 @@ class _TaskDetails extends React.Component {
         currGroup: null,
 
         isDescriptionOpen: false,
-
+        isEditOpen: false,
+        checkListTitle: '',
 
     };
 
@@ -78,17 +81,32 @@ class _TaskDetails extends React.Component {
     };
 
 
-    onDeleteChecklist = (checklistId) => {
-        let { currTask, board } = this.props;
-        currTask.checklists = currTask.checklists.filter(checklist => checklist.id !== checklistId);
-        const group = taskService.getGroupById(currTask.id);
-        this.props.updateTask(board, group, currTask);
-    };
+    // onDeleteChecklist = (checklistId) => {
+    //     let { currTask, board } = this.props;
+    //     currTask.checklists = currTask.checklists.filter(checklist => checklist.id !== checklistId);
+    //     const group = taskService.getGroupById(currTask.id);
+    //     this.props.updateTask(board, group, currTask);
+    // };
+
+
+    // toggleEditOpen = () => {
+    //     const { isEditOpen } = this.state;
+    //     this.setState({ isEditOpen: !isEditOpen });
+    // };
+
+    // onEditCheckList = (ev) => {
+    //     ev.preventDefault();
+    // };
+
+    // handleChecklistChange = ({ target: { name, value } }) => {
+    //     this.setState({ [name]: value });
+
+    // };
 
     render() {
-        const { currGroup, isDescriptionOpen } = this.state;
+        const { currGroup, isDescriptionOpen, isEditOpen } = this.state;
         const { boardId } = this.props.match.params;
-        const { board, currTask } = this.props;
+        const { board, currTask, updateTask } = this.props;
         if (!currTask) return <Loader />;
         return (
             <React.Fragment>
@@ -171,8 +189,16 @@ class _TaskDetails extends React.Component {
                                     return <div key={checklist.id}>
                                         <div className="flex">
                                             <span className="icon-lg">< MdOutlineCheckBox /></span>
-                                            <h3>{checklist.title}</h3>
-                                            <button onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button>
+                                            <ChecklistPreview checklist={checklist}
+                                                currTask={currTask} board={board} updateTask={updateTask} />
+                                            {/* {(isEditOpen) ? <h3 onClick={() => this.toggleEditOpen()}>{checklist.title}</h3> :
+                                                <form onSubmit={(event) => this.onEditCheckList(event)}>
+                                                    <textarea name="checkListTitle" value={checklist.title}
+                                                        onChange={this.handleChecklistChange} />
+                                                    <button className='btn-style1' type="submit">Save</button>
+                                                    <button onClick={() => this.toggleEditOpen()}><IoMdClose /></button>
+                                                </form>}
+                                            <button onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button> */}
                                         </div>
                                         <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
                                     </div>;

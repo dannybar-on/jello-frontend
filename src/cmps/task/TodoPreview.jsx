@@ -7,9 +7,10 @@ export class TodoPreview extends React.Component {
         isEditOpen: false,
     };
 
-    toggleEditTodo = () => {
+    toggleEditTodo = (todo = null) => {
         const { isEditOpen } = this.state;
         this.setState({ isEditOpen: !isEditOpen });
+        if (todo) this.setState({ todoTitle: todo.title });
     };
     handleChange = ({ target: { name, value } }) => {
         this.setState((prevState) => ({ ...prevState, [name]: value }));
@@ -34,7 +35,7 @@ export class TodoPreview extends React.Component {
         const { todo, handleCheckbox, onRemoveTodo } = this.props;
         return <div >
             <input type="checkbox" name={todo.id} checked={todo.isDone} onChange={(event) => handleCheckbox(event, todo)} />
-            {(isEditOpen) ? <span onClick={() => this.toggleEditTodo(todo)}> {todo.title} </span>
+            {(!isEditOpen) ? <span onClick={() => this.toggleEditTodo(todo)}> {todo.title} </span>
                 : <form onSubmit={(event) => this.onEditTodo(event, todo.id, todoTitle)}>
                     <textarea className='search-modal' id={todo.id}
                         type="text"
