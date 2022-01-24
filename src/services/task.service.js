@@ -15,6 +15,7 @@ export const taskService = {
     handleAttachment,
     handleFileAdd,
     getEmptyChecklist,
+    getEmptyTodo,
 };
 
 
@@ -28,10 +29,10 @@ function getLabelsById(board, task) {
 function handleLabelsChange(newLabel, labels) {
 
     if (!newLabel.id) {
-        newLabel.id = utilService.makeId()
-        return labels.push(newLabel)
+        newLabel.id = utilService.makeId();
+        return labels.push(newLabel);
     } else {
-        return labels.map(label => (label.id === newLabel.id) ? newLabel : label)
+        return labels.map(label => (label.id === newLabel.id) ? newLabel : label);
     }
 }
 
@@ -39,7 +40,7 @@ function handleLabelsChange(newLabel, labels) {
 function removeLabel(labelId, labels, currTask, currGroup, board) {
     if (window.confirm('Are you sure you want to delete this label?'))
 
-        currTask.labelIds = currTask.labelIds.filter(label => label !== labelId)
+        currTask.labelIds = currTask.labelIds.filter(label => label !== labelId);
     const taskIdx = currGroup.tasks.findIndex(task => task.id === currTask.id);
     currGroup.tasks.splice(taskIdx, 1, currTask);
     // console.log('currGroup:', currGroup); // GROUP UPDATED!!
@@ -47,14 +48,14 @@ function removeLabel(labelId, labels, currTask, currGroup, board) {
     var updatedGroups = board.groups.map(group => (group.id === currGroup.id) ? currGroup : group);
     // console.log('updatedGroups:', updatedGroups);
 
-    var newLabels = labels.filter(label => label.id !== labelId)
+    var newLabels = labels.filter(label => label.id !== labelId);
     var boardToUpdate = {
         ...board,
         groups: [...updatedGroups],
         labels: [...newLabels]
-    }
+    };
 
-    return { boardToUpdate, currTask }
+    return { boardToUpdate, currTask };
 
 }
 
@@ -84,10 +85,10 @@ function getGroupById(taskId) {
 
 function handleCopyTask(taskId, groupId, idx, title) {
     const initialBoard = store.getState().boardModule.currBoard;
-    const initialGroup = initialBoard.groups.find(group => group.tasks.some(task => task.id === taskId))
-    const task = getTaskById(taskId, initialGroup.id)
-    let newGroup = initialBoard.groups.find(group => group.id === groupId)
-    newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title })
+    const initialGroup = initialBoard.groups.find(group => group.tasks.some(task => task.id === taskId));
+    const task = getTaskById(taskId, initialGroup.id);
+    let newGroup = initialBoard.groups.find(group => group.id === groupId);
+    newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title });
     return initialBoard;
 
 }
@@ -133,5 +134,13 @@ function getEmptyChecklist() {
         id: utilService.makeId(),
         title: '',
         todos: []
+    };
+}
+
+function getEmptyTodo() {
+    return {
+        id: utilService.makeId(),
+        title: '',
+        isDone: false,
     };
 }
