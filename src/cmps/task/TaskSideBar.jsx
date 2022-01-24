@@ -1,21 +1,6 @@
 import React from 'react'
 
-//ADD TO TASK
-import { AddMembers } from './add-to-task/AddMembers';
-import { LabelsList } from './add-to-task/LabelsList';
-import { AddChecklist } from './add-to-task/AddChecklist';
-import { AddDueDate } from './add-to-task/AddDueDate';
-import { AddAttachment } from './add-to-task/AddAttachment';
-import { AddCover } from './add-to-task/AddCover';
-//TASK ACTIONS
-import { ActionMoveTask } from './task-actions/ActionMoveTask'
-import { ActionCopyTask } from './task-actions/ActionCopyTask';
-import { ActionArchiveTask } from './task-actions/ActionArchiveTask';
-
 import { DynamicModal } from '../DynamicModal'
-
-
-import { SideBarTaskActions } from './SideBarTaskActions';
 
 import { IoMdTime } from 'react-icons/io';
 import { AiOutlineUser, AiOutlineArrowRight } from 'react-icons/ai';
@@ -38,17 +23,6 @@ export class TaskSideBar extends React.Component {
     }
 
 
-    //  addToTaskItems =[
-    //     { icon: <AiOutlineUser />, title: 'Members', component: <AddMembers /> },
-    //     { icon: <MdLabelOutline />, title: 'Labels', component: <LabelsList/> },
-    //     { icon: <BsCheck2Square />, title: 'Checklist', component: <AddChecklist /> },
-    //     { icon: <IoMdTime />, title: 'Dates', component: <AddDueDate /> },
-    //     { icon: <ImAttachment />, title: 'Attachment', component: <AddAttachment /> },
-    //     { icon: <CgCreditCard />, title: 'Cover', component: <AddCover /> },
-    // ]
-
-
-
     render() {
         const { isModalOpen, content } = this.state
         return (
@@ -69,13 +43,30 @@ export class TaskSideBar extends React.Component {
                 <section className="sidebar-actions-container">
                     <h3 className="sidebar-title">Actions</h3>
                     {TaskActions.map((item, idx) => (
-                        <SideBarTaskActions key={idx} item={item} />
+                        <button key={idx} onClick={() => { this.toggleDynamicModal(); this.setState({ content: item }) }}
+                            className="add-item-btn flex row align-center">
+                            <span className="flex align-center">{item.icon}</span>
+                            <p>{item.title}</p>
+                        </button>
                     ))}
+                    { isModalOpen && <DynamicModal item={content} {...this.props} toggleDynamicModal={this.toggleDynamicModal} />}
                 </section>
             </>
         )
     }
 }
+
+
+{/* <> */}
+    {/* <button onClick={() => this.togglePopOver()}
+        className="add-item-btn flex row align-center">
+        <span className="flex align-center">{item.icon}</span>
+        <p>{item.title}</p>
+    </button>
+    {isPopoverOpen && item.component}
+</> */}
+
+
 
 const addToTaskItems = [
     { icon: <AiOutlineUser />, title: 'Members' },
@@ -88,7 +79,7 @@ const addToTaskItems = [
 
 
 const TaskActions = [
-    { icon: <AiOutlineArrowRight />, title: 'Move', component: <ActionMoveTask /> },
-    { icon: <MdContentCopy />, title: 'Copy', component: <ActionCopyTask /> },
-    { icon: <BsArchive />, title: 'Archive', component: <ActionArchiveTask /> },
+    { icon: <AiOutlineArrowRight />, title: 'Move' },
+    { icon: <MdContentCopy />, title: 'Copy' },
+    { icon: <BsArchive />, title: 'Archive' },
 ]

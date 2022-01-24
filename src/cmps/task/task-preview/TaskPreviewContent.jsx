@@ -7,15 +7,14 @@ import { taskService } from '../../../services/task.service.js';
 export class TaskPreviewContent extends React.Component {
 
     state = {
-        // isEditOpen: false,
-    };
+
+    }
 
 
 
     render() {
         const { board, task, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList } = this.props;
-        // const { isEditOpen } = this.state;
-        // console.log(isEditOpen);
+
         const taskLabels = taskService.getLabelsById(board, task);
         
         return (
@@ -23,7 +22,6 @@ export class TaskPreviewContent extends React.Component {
                 <TaskPreviewHeader board={board} task={task} toggleEditOpen={toggleEditOpen} />
 
                 <div className="task-preview">
-                    {/* <ul className="tas"> </ul> */}
                     <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
                         {taskLabels && taskLabels.map((label, idx) => <li className='label-bar' key={idx} style={{ backgroundColor: label.color }}>{label.title && <span>{label.title}</span>}</li>)}
                     </ul>

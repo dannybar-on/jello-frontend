@@ -37,19 +37,20 @@ class _AddMembers extends React.Component {
         const { members } = this.state;
         return (
             <div className="members">
-                <input type="text" value={this.state.filterBy} name="filterBy" onChange={this.handleChange}></input>
-                <div className="board-members-container">
-                    {members.map((member, idx) => {
-                        return <div key={idx} onClick={() => this.onAddMemberToTask(member)} className='board-member flex align-center'>
-                            <span>
-                                <UserAvatar fullname={member.fullname} url={member.imgUrl} />
-                            </span>
-                            <span>{member.fullname}</span>
-                            <span> ({member.username})</span>
-                        </div>;
-                    })}
+                <input className="modal-search" type="text" placeholder="Search members" value={this.state.filterBy} name="filterBy" onChange={this.handleChange}></input>
+                <h4 className="modal-content-title">Board members</h4>
+                {/* <div className="board-members-container"> */}
+                {members.map((member, idx) => {
+                    return <div key={idx} onClick={() => this.onAddMemberToTask(member)} className="board-member-container">
+                        <span className="member-img">
+                            <UserAvatar sx={{ width: 20, height: 20 }} fullname={member.fullname} url={member.imgUrl} />
+                        </span>
+                        <span>{member.fullname}</span>
+                        <span> ({member.username})</span>
+                    </div>;
+                })}
 
-                </div>
+                {/* </div> */}
             </div>
         );
     }

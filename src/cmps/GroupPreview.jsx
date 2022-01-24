@@ -55,16 +55,16 @@ export class GroupPreview extends React.Component {
                                       })}
                                       {provided.placeholder}
                                       {isAddOpen &&(
-                                           <AddBoardItem onToggleAdd={this.onToggleAdd} type={'task'} groupId={group.id} />
+                                           <AddBoardItem onToggleAdd={this.onToggleAdd} type={'card'} groupId={group.id} />
                                       )}
                                   </div>
                               )}
                           </Droppable>
                           {!isAddOpen && (
                               <div className="group-footer">
-                                  <button className="add-boarditem-btn" onClick={this.onToggleAdd}>
+                                  <button className="add-card-btn" onClick={this.onToggleAdd}>
                                   <AiOutlinePlus/>
-                                  <span>Add a task</span>
+                                  <span>Add a card</span>
                                   </button>
                               </div>
                           )}

@@ -10,11 +10,15 @@ import { AddDueDate } from './task/add-to-task/AddDueDate';
 import { AddAttachment } from './task/add-to-task/AddAttachment';
 import { AddCover } from './task/add-to-task/AddCover';
 
+//TASK ACTIONS
+import { ActionMoveTask } from './task/task-actions/ActionMoveTask'
+import { ActionCopyTask } from './task/task-actions/ActionCopyTask';
+import { ActionArchiveTask } from './task/task-actions/ActionArchiveTask';
 
 export class DynamicModal extends React.Component {
 
     setDynamicModalContent = () => {
-        const {item} = this.props
+        const { item } = this.props
 
         switch (item.title) {
             case 'Members':
@@ -22,32 +26,38 @@ export class DynamicModal extends React.Component {
 
             case 'Labels':
                 return <LabelsList {...this.props} />
-             
+
             case 'Checklist':
                 return <AddChecklist {...this.props} />
-             
+
             case 'Dates':
                 return <AddDueDate {...this.props} />
-             
+
             case 'Attachment':
                 return <AddAttachment {...this.props} />
-             
+
             case 'Cover':
                 return <AddCover {...this.props} />
-             
+
+            case 'Move':
+                return <ActionMoveTask {...this.props} />
+                
+            case 'Copy':
+                return <ActionCopyTask {...this.props} />
+
+            case 'Archive':
+                return <ActionArchiveTask {...this.props} />
+
             default:
         }
     }
-
-
-
 
 
     render() {
 
         // const {isPopoverOpen}= this.state
         const { item, toggleDynamicModal } = this.props
-        
+
         return (
             <section className="dynamic-modal-container">
 
@@ -58,7 +68,7 @@ export class DynamicModal extends React.Component {
 
                 <div className="modal-content">
                     {this.setDynamicModalContent()}
-                    
+
 
                 </div>
 

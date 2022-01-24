@@ -21,15 +21,11 @@ export const taskService = {
 
 
 function getLabelsById(board, task) {
-    console.log('task:', task);
-    console.log('task.labelIds:', task.labelIds);
-    
-    if ( !task.labelIds) return [] ;
-    console.log('asdasdasd');
-    const x =  task.labelIds.map(labelId =>board.labels && board.labels.find(label => label.id === labelId));
 
-    console.log('x:', x);
-        return x
+    if (!task.labelIds) return [];
+    return task.labelIds.map(labelId => board.labels && board.labels.find(label => label.id === labelId));
+
+
 }
 
 

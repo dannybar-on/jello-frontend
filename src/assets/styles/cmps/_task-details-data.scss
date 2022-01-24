@@ -27,12 +27,10 @@
   .data-member {
     cursor: pointer;
     padding: 0 4px;
-    display: block;
+    display: flex;
     float: left;
-    margin: 0 4px 4px 0;
-    overflow: visible;
-    position: relative;
-    user-select: none;
+    gap: 4px;
+    margin: 0 1px 4px 0;
     
     .MuiAvatar-root{
          width: 32px; 
