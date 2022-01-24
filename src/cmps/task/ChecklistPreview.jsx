@@ -1,6 +1,8 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { taskService } from '../../services/task.service.js';
+
+
 export class ChecklistPreview extends React.Component {
     state = {
         isEditOpen: false,
@@ -48,7 +50,10 @@ export class ChecklistPreview extends React.Component {
                     <button className='btn-style1' onClick={() => this.onEditCheckList(checklist.id)}>Save</button>
                     <button onClick={() => this.toggleEditOpen()}><IoMdClose /></button>
                 </div>}
-            <button onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button>
+            <button className="btn-style2" onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button>
         </section>;
     }
 }
+
+
+

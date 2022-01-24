@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { taskService } from '../../services/task.service';
 import { updateTask } from '../../store/board.action';
 import { ProgressBar } from './ProgressBar.jsx';
 import { TodoPreview } from './TodoPreview.jsx';
+
+import { IoMdClose } from 'react-icons/io';
 
 class _TaskDetailsChecklist extends React.Component {
     state = {
@@ -82,14 +85,16 @@ class _TaskDetailsChecklist extends React.Component {
                         currTask={currTask} board={board}
                         onRemoveTodo={this.onRemoveTodo} />;
                 })}
+                
                 {(isAddOpen) ? <form onSubmit={(event) => this.onAddTodo(event, todoTitle, checklist)}>
-                    <textarea className='search-modal' type="text" name="todoTitle" value={todoTitle} onChange={this.handleChange} />
+                    <textarea className='checklist-textarea' type="text" name="todoTitle" value={todoTitle} onChange={this.handleChange} />
+                    <div className="form-btns mt-8 flex">
                     <button className='btn-style1' type="submit">Add</button>
-                    <button onClick={() => this.toggleAddTodo()}>X</button>
-
+                    <button className="close-add" onClick={() => this.toggleAddTodo()}><IoMdClose /></button>
+                    </div>
                 </form>
                     :
-                    <button className='btn-style1' onClick={() => this.toggleAddTodo()}>Add an item</button>
+                    <button className='btn-style2' onClick={() => this.toggleAddTodo()}>Add an item</button>
                 }
             </div>
         );
