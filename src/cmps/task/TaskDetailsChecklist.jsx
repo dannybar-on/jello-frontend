@@ -86,11 +86,11 @@ class _TaskDetailsChecklist extends React.Component {
                 {checklist.todos.map((todo, idx) => {
                     return <div key={idx}>
                         <input type="checkbox" name={todo.id} checked={todo.isDone} onChange={(event) => this.handleCheckbox(event, todo)} />
-                        <span onClick={() => this.toggleEditTodo()}> {todo.title} </span>
+                       {!isEditOpen && <span onClick={() => this.toggleEditTodo()}> {todo.title} </span>}
                         {(isEditOpen) && <form onSubmit={(event) => this.onEditTodo(event, todo, todoTitle)}>
                             <textarea className='search-modal'
                                 type="text"
-                                name="todoTitle" value={todoTitle}
+                                name="todoTitle" value={todo.title}
                                 onChange={this.handleChange}
                             />
                             <button className='btn-style1' type='submit'>Save</button>
