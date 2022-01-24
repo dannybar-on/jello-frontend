@@ -18,7 +18,6 @@ export class TaskPreviewContent extends React.Component {
         // const { isEditOpen } = this.state;
         // console.log(isEditOpen);
         const taskLabels = taskService.getLabelsById(board, task);
-        // console.log('taskLabels:', taskLabels); // NEED TO RENDER LABELS FROM BOARD LIKE IN TaskDetailsData
         
         return (
             <>
@@ -26,9 +25,9 @@ export class TaskPreviewContent extends React.Component {
 
                 <div className="task-preview">
                     {/* <ul className="tas"> </ul> */}
-                    {/* <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
+                    <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
                         {taskLabels && taskLabels.map((label, idx) => <li className='label-bar' key={idx} style={{ backgroundColor: label.color }}>{label.title && <span>{label.title}</span>}</li>)}
-                    </ul> */}
+                    </ul>
                     <p>{task.title}</p>
 
                     {!task.style && <button className='edit-btn ' onClick={(event) => toggleEditOpen(event)}><MdOutlineEdit /></button>}

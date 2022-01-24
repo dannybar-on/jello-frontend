@@ -10,28 +10,20 @@ import { AiOutlinePlus } from 'react-icons/ai';
 export class TaskDetailsData extends React.Component {
 
     state = {
-        taskLabels: [],
-    }
-
-    componentDidMount() {
-        this.getTaskLabels()
-    }
-    
-    getTaskLabels = () => {
-        const { board, currTask } = this.props
-
-        return taskService.getLabelsById(board, currTask)
 
     }
+
 
 
 
     render() {
-        const { currTask } = this.props
-        // const { taskLabels } = this.state
-        const taskLabels = this.getTaskLabels()
+        const { board, currTask } = this.props
+        console.log('board AT DATAAA:', board);
+
+        if (currTask.labelIds) { var taskLabels = taskService.getLabelsById(board, currTask) }
+        // const taskLabels = taskService.getLabelsById(board, currTask)
         console.log('taskLabels:', taskLabels);
-        
+
         // if (!taskLabels) return <></>
 
         return (
@@ -51,12 +43,12 @@ export class TaskDetailsData extends React.Component {
                 </div>}
 
 
-                {taskLabels && <div className="task-data-labels data-container">
+                {(taskLabels || taskLabels?.length) && <div className="task-data-labels data-container">
                     <h3 className="data-header">Labels</h3>
                     {taskLabels.map((label, idx) => {
-                        return <div key={idx} className="data-label " style={{ backgroundColor: `${label.color}` }}>
+                        return <div key={idx} className="data-label" style={(taskLabels) ? { backgroundColor: `${label.color}` } : { backgroundColor: '' }}>
                             {label.title}
-                        </div>;
+                        </div>
 
                     })}
                     <button className="add-item-btn">

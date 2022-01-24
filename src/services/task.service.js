@@ -21,8 +21,15 @@ export const taskService = {
 
 
 function getLabelsById(board, task) {
-    if (!task.labelIds?.length || !task.labelIds) return null;
-    return task.labelIds.map(labelId => board.labels.find(label => label.id === labelId));
+    console.log('task:', task);
+    console.log('task.labelIds:', task.labelIds);
+    
+    if ( !task.labelIds) return [] ;
+    console.log('asdasdasd');
+    const x =  task.labelIds.map(labelId =>board.labels && board.labels.find(label => label.id === labelId));
+
+    console.log('x:', x);
+        return x
 }
 
 
@@ -34,15 +41,15 @@ function handleLabelsChange(newLabel, board) {
         newLabel.id = utilService.makeId()
         board.labels.push(newLabel)
         updatedLabels = board.labels
-        return  board ={
+        return board = {
             ...board,
-            labels:[...updatedLabels]
+            labels: [...updatedLabels]
         }
     } else {
-        updatedLabels =  board.labels.map(label => (label.id === newLabel.id) ? newLabel : label)
-        return  board ={
+        updatedLabels = board.labels.map(label => (label.id === newLabel.id) ? newLabel : label)
+        return board = {
             ...board,
-            labels:[...updatedLabels]
+            labels: [...updatedLabels]
         }
     }
 
@@ -51,28 +58,54 @@ function handleLabelsChange(newLabel, board) {
 
 
 function removeLabel(labelId, labels, currTask, currGroup, board) {
-    if (window.confirm('Are you sure you want to delete this label?'))
-    console.log('labels START REMOVE LABEL!!!!!!!!!!!!!!!!!!:', labels);
 
-        currTask.labelIds = currTask.labelIds.filter(label => label !== labelId)
-    var taskIdx = currGroup.tasks.findIndex(task => task.id === currTask.id); // TRY TO SPREAD THE TASK LABELS IDs
-    currGroup.tasks.splice(taskIdx, 1, currTask);
-    // console.log('currGroup:', currGroup); 
 
-    var updatedGroups = board.groups.map(group => (group.id === currGroup.id) ? currGroup : group);
-    // console.log('updatedGroups:', updatedGroups);
-console.log('labels BEFORE DELETING:', labels);
+    const updatedGroups = board.groups.map(group => {
+        const updatedTasks = group.tasks.map(task => {
+            if (task.labelIds) {
+                const newTaskLabels = task.labelIds.filter(label => label !== labelId)
+                task = { ...task, labelIds: newTaskLabels }
+                console.log('task:', task);
+            }
+            return task
+
+        })
+        return { ...group, tasks: updatedTasks }
+
+    })
 
     var newLabels = labels.filter(label => label.id !== labelId);
-    var boardToUpdate = {
+    const boardToUpdate = {
         ...board,
-        groups: [...updatedGroups],
-        labels: [...newLabels]
-    };
+        groups: updatedGroups,
+        labels: newLabels
+    }
 
-    return  boardToUpdate
+
+    console.log('boardToUpdate:', boardToUpdate);
+    return boardToUpdate
+
+    // var x = currTask.labelIds = currTask.labelIds.filter(label => label !== labelId)
+    // console.log('labels from curTask:', x);
+
+    // var taskIdx = currGroup.tasks.findIndex(task => task.id === currTask.id); // TRY TO SPREAD THE TASK LABELS IDs
+    // currGroup.tasks.splice(taskIdx, 1, currTask);
+    // console.log('currGroup:', currGroup);
+
+    // var updatedGroups = board.groups.map(group => (group.id === currGroup.id) ? currGroup : group);
+    // // console.log('updatedGroups:', updatedGroups);
+    // console.log('labels BEFORE DELETING:', labels);
+
+    // var newLabels = labels.filter(label => label.id !== labelId);
+    // var boardToUpdate = {
+    //     ...board,
+    //     groups: [...updatedGroups],
+    //     labels: [...newLabels]
+    // };
+
 
 }
+
 
 function handleToggleLabel(labelId, taskToUpdate) {
 

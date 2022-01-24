@@ -44,7 +44,7 @@ class _LabelsList extends React.Component {
 
     onSaveLabel = (newLabel) => {
         const { board, currGroup, currTask } = this.props
-        const { labels } = this.state
+        // const { labels } = this.state
 
         const updatedBoard = taskService.handleLabelsChange(newLabel, board)
         this.props.updateTask(updatedBoard, currGroup, currTask)
@@ -53,7 +53,7 @@ class _LabelsList extends React.Component {
     }
 
     toggleLabelAdd = (labelId) => {
-        console.log('labelId:', labelId);
+        // console.log('labelId:', labelId);
         const { currTask, board } = this.props
         const updatedTask = taskService.handleToggleLabel(labelId, currTask)
 
@@ -64,14 +64,16 @@ class _LabelsList extends React.Component {
 
     onRemoveLabel = (labelId) => {
         // const { labels } = this.state
+        if (window.confirm('Are you sure you want to delete this label?')) {
         const { board, currTask, currGroup } = this.props
         const boardToUpdate = taskService.removeLabel(labelId, board.labels, currTask, currGroup, board)
-            console.log('boardToUpdate:', boardToUpdate);
-            
-        // this.props.updateBoard(boardToUpdate,)
-        this.props.updateTask(boardToUpdate, currGroup, currTask)
+            // console.log('boardToUpdate:', boardToUpdate);
+            const updatedTask = board.groups
+     
+            this.props.updateTask(boardToUpdate, currGroup, currTask)
+        this.props.updateBoard(boardToUpdate)
         this.setAddEditMode()
-
+        }
     }
 
 
@@ -79,7 +81,7 @@ class _LabelsList extends React.Component {
 
         const { search, isAddEditMode, labels, label } = this.state
         const { board, toggleDynamicModal } = this.props
-        console.log('board.labels:', board.labels);
+        // console.log('board.labels:', board.labels);
 
         if (!labels?.length || !labels) return <Loader />
 
