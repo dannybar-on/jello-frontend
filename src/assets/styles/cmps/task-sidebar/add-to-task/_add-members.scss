@@ -1,0 +1,30 @@
+.members {
+  margin: 0;
+  padding: 0;
+  .board-member-container {
+    border-radius: 3px;
+    display: block;
+    line-height: 32px;
+    margin-bottom: 2px;
+    padding: 4px;
+    position: relative;
+    color: $dark-blue;
+
+    &:hover {
+      background-color: #091e420a;
+    }
+    &:active {
+      background-color: #e4f0f6;
+    }
+    .css-e53awj-MuiStack-root {
+      display: inline-block;
+      margin-right: 8px;
+
+      .MuiAvatar-root {
+        width: 32px;
+        height: 32px;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}

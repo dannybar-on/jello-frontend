@@ -34,7 +34,7 @@ class _AddBoardItem extends React.Component {
             this.props.addGroup(newItem, this.props.board);
             // this.props.loadBoard();
 
-        } else if (this.props.type === 'task') {
+        } else if (this.props.type === 'card') {
             const newTask = { ...newItem };
             
             this.props.addTask(newTask, this.props.groupId, this.props.board);
@@ -47,7 +47,7 @@ class _AddBoardItem extends React.Component {
     render() {
         const { title } = this.state.newItem;
         const { onToggleAdd } = this.props;
-        const renderedType = this.props.type === 'task' ? this.props.type : 'list';
+        const renderedType = this.props.type === 'card' ? this.props.type : 'list';
         return (
             <section className="add-board-item">
                 <form onSubmit={this.onAddItem}>

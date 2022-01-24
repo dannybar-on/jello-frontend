@@ -27,7 +27,6 @@ export class LabelsEditAdd extends React.Component {
         const field = ev.target.name
         const value = ev.target.value
         this.setState((prevState) => ({ label: { ...prevState.label, [field]: value } }))
-// console.log('this.state:', this.state.label);
 
     }
 

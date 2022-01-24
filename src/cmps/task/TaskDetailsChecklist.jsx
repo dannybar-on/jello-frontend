@@ -9,6 +9,7 @@ class _TaskDetailsChecklist extends React.Component {
         perecentage: 0,
         isAddOpen: false,
         todoTitle: '',
+        isEditOpen: false,
     };
 
     componentDidMount() {
@@ -32,6 +33,10 @@ class _TaskDetailsChecklist extends React.Component {
         const { isAddOpen } = this.state;
         this.setState({ isAddOpen: !isAddOpen });
     };
+    toggleEditTodo = () => {
+        const { isEditOpen } = this.state;
+        this.setState({ isEditOpen: !isEditOpen });
+    };
 
     handleChange = ({ target: { name, value } }) => {
         this.setState((prevState) => ({ ...prevState, [name]: value }));
@@ -50,12 +55,16 @@ class _TaskDetailsChecklist extends React.Component {
         let newTodo = taskService.getEmptyTodo();
         newTodo.title = title;
         checklist.todos.push(newTodo);
-        // console.log(checklist);
         const { currTask, board } = this.props;
         const group = taskService.getGroupById(currTask.id);
         this.props.updateTask(board, group, currTask);
         this.setState({ todoTitle: '' });
         this.toggleAddTodo();
+    };
+
+    onEditTodo = (ev, todo, title) => {
+        ev.preventDefault();
+        console.log(todo, title);
     };
 
     onRemoveTodo = (todoId) => {
@@ -70,15 +79,23 @@ class _TaskDetailsChecklist extends React.Component {
 
     render() {
         const { checklist } = this.props;
-        const { todoTitle, isAddOpen, percentage } = this.state;
-        console.log(percentage);
+        const { todoTitle, isAddOpen, percentage, isEditOpen } = this.state;
         return (
             <div>
                 <ProgressBar percentage={percentage} />
                 {checklist.todos.map((todo, idx) => {
                     return <div key={idx}>
                         <input type="checkbox" name={todo.id} checked={todo.isDone} onChange={(event) => this.handleCheckbox(event, todo)} />
-                        <span> {todo.title} </span>
+                       {!isEditOpen && <span onClick={() => this.toggleEditTodo()}> {todo.title} </span>}
+                        {(isEditOpen) && <form onSubmit={(event) => this.onEditTodo(event, todo, todoTitle)}>
+                            <textarea className='search-modal'
+                                type="text"
+                                name="todoTitle" value={todo.title}
+                                onChange={this.handleChange}
+                            />
+                            <button className='btn-style1' type='submit'>Save</button>
+                            <button onClick={() => this.toggleEditTodo()}>X</button>
+                        </form>}
                         <button onClick={() => this.onRemoveTodo(todo.id)}>Remove todo</button>
                     </div>;
                 })}
@@ -108,4 +125,4 @@ const mapDispatchToProps = {
     updateTask,
 };
 
-export const TaskDetailsChecklist = connect(mapStateToProps, mapDispatchToProps)(_TaskDetailsChecklist);
+export const TaskDetailsChecklist = connect(mapStateToProps, mapDispatchToProps)(_TaskDetailsChecklist);;
