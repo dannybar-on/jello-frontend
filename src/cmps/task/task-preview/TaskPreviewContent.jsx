@@ -8,7 +8,7 @@ export class TaskPreviewContent extends React.Component {
 
     state = {
 
-    }
+    };
 
 
 
@@ -16,12 +16,12 @@ export class TaskPreviewContent extends React.Component {
         const { board, task, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList } = this.props;
 
         const taskLabels = taskService.getLabelsById(board, task);
-        
+
         return (
             <>
-                <TaskPreviewHeader board={board} task={task} toggleEditOpen={toggleEditOpen} />
+                {!task.style.isFull && task.style.bgColor && <TaskPreviewHeader board={board} task={task} toggleEditOpen={toggleEditOpen} />}
 
-                <div className="task-preview">
+                <div style={(task.style.isFull) ? { backgroundColor: task.style.bgColor } : { backgroundColor: 'inherit' }} className="task-preview">
                     <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
                         {taskLabels && taskLabels.map((label, idx) => <li className='label-bar' key={idx} style={{ backgroundColor: label.color }}>{label.title && <span>{label.title}</span>}</li>)}
                     </ul>
@@ -30,7 +30,7 @@ export class TaskPreviewContent extends React.Component {
                     {!task.style && <button className='edit-btn ' onClick={(event) => toggleEditOpen(event)}><MdOutlineEdit /></button>}
 
                 </div>
-                <TaskPreviewFooter board={board} task={task} />
+                {!task.style.isFull && <TaskPreviewFooter board={board} task={task} />}
             </>
         );
 
