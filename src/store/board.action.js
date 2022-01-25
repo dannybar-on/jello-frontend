@@ -127,7 +127,7 @@ export function updateTask(board, groupToSave, taskToSave) {
 
         try {
             const updatedBoard = await boardService.save(boardToUpdate);
-            // console.log('board in action', updatedBoard);
+            console.log('board in action', updatedBoard);
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
             console.log('cant update task', err);

@@ -112,11 +112,9 @@
   display: none;
 }
 
-
-
 .line-through {
   text-decoration: line-through;
-  color:$silver-blue;
+  color: $silver-blue;
 }
 
 .clean-link {
@@ -220,11 +218,21 @@
   }
 }
 
-
-.block{
+.block {
   display: block;
 }
 
-.t-14{
-  top:14px !important; 
+.t-14 {
+  top: 14px !important;
+}
+
+.pencil-edit-screen {
+  position: fixed;
+  /* display: flex; */
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.357);
+  top: 0;
+  left: 0;
+  // z-index: 10;
 }

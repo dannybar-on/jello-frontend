@@ -14,7 +14,7 @@ export class TaskPreviewHeader extends React.Component {
             <>
                 {task.style && <div className='task-cover'
                     style={(task.style.bgImg) ? {backgroundImage: task.style.bgImg, height: '245px'} : { backgroundColor: task.style.bgColor }}>
-                    <button className='edit-btn icon-sm' onClick={(event) => toggleEditOpen(event)}><MdOutlineEdit /></button>
+                    <button className='edit-btn icon-sm' onClick={(event) => toggleEditOpen(event, task)}><MdOutlineEdit /></button>
                 </div>
                 }
               

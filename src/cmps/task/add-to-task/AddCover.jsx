@@ -37,6 +37,7 @@ class _AddCover extends React.Component {
         this.setState({ color });
         if (!currTask.style) currTask.style = {};
         currTask.style.bgColor = color;
+        currTask.style.bgImg = null
         this.props.updateTask(board, currGroup, currTask);
     };
 

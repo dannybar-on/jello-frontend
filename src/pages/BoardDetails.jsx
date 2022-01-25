@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { boardService } from '../services/board.service.js';
-import { setCurrBoard, updateBoard, unMountBoard, updateGroup } from '../store/board.action.js';
+import { setCurrBoard, updateBoard, unMountBoard, updateGroup, onSetCurrTask } from '../store/board.action.js';
 import { Route } from 'react-router-dom';
 
 import { Loader } from '../cmps/Loader.jsx';
@@ -12,6 +12,7 @@ import { AddBoardItem } from '../cmps/AddBoardItem.jsx';
 import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { BoardHeader } from '../cmps/board/BoardHeader.jsx';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { QuickEditor } from '../cmps/QuickEditor.jsx';
 
 class _BoardDetails extends React.Component {
   state = {
@@ -39,15 +40,16 @@ class _BoardDetails extends React.Component {
     this.setState({ isAddOpen: !isAddOpen });
   };
 
-  toggleEditOpen = (ev) => {
+  toggleEditOpen = (ev, task) => {
     ev.preventDefault();
 
     const { isEditOpen } = this.state;
     this.setState({ isEditOpen: !isEditOpen });
+    this.props.onSetCurrTask(task)
   };
 
   toggleTaskLabelList = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     this.setState({ isTaskLabelListOpen: !this.state.isTaskLabelListOpen });
   };
 
@@ -92,22 +94,25 @@ class _BoardDetails extends React.Component {
 
   render() {
     const { isAddOpen, isEditOpen, isTaskLabelListOpen } = this.state;
-    const { board, updateGroup } = this.props;
-    
+    const { board, updateGroup, currTask } = this.props;
+
     if (!board) return <Loader />;
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <div className={`board-details-container ${isEditOpen && 'go-back-container'}`}>
-          <BoardHeader board={this.props.board} />
-          <div className='list-container flex'>
-            <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen}/>
+      <>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <div className={`board-details-container `}>
+            <div className={(isEditOpen) ? 'pencil-edit-screen' : ''}></div>
+
+            <BoardHeader board={this.props.board} />
+            <div className='list-container flex'>
+              <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen} />
               {!isAddOpen && (
-            <div onClick={this.onToggleAdd} className="add-another-group">
-                <button className='add-list-btn flex align-center' >
-                  <AiOutlinePlus />
-                  <span> Add another list</span>
-                </button>
-                  </div>
+                <div onClick={this.onToggleAdd} className="add-another-group">
+                  <button className='add-list-btn flex align-center' >
+                    <AiOutlinePlus />
+                    <span> Add another list</span>
+                  </button>
+                </div>
               )}
               {isAddOpen && (
                 <div className='add-group-container'>
@@ -117,13 +122,20 @@ class _BoardDetails extends React.Component {
                   />
                 </div>
               )}
-            <Route
-              component={TaskDetails}
-              path="/board/:boardId/:groupId/:taskId"
-            />
+              <Route
+                component={TaskDetails}
+                path="/board/:boardId/:groupId/:taskId"
+              />
+            </div>
+
           </div>
-        </div>
-      </DragDropContext>
+        </DragDropContext >
+        {isEditOpen && <QuickEditor board={board} toggleEditOpen={this.toggleEditOpen}
+         task={currTask} toggleTaskLabelList={this.toggleTaskLabelList}
+          isTaskLabelListOpen={isTaskLabelListOpen}
+          />}
+
+      </>
     );
   }
 }
@@ -131,6 +143,7 @@ class _BoardDetails extends React.Component {
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.currBoard,
+    currTask: boardModule.currTask
   };
 }
 
@@ -138,7 +151,8 @@ const mapDispatchToProps = {
   setCurrBoard,
   updateBoard,
   unMountBoard,
-  updateGroup
+  updateGroup,
+  onSetCurrTask,
 };
 
 export const BoardDetails = connect(

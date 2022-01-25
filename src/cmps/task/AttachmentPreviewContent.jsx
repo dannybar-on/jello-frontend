@@ -33,6 +33,7 @@ function _AttachmentPreviewContent({attachment, currTask, board, updateTask}){
         updateTask(...updatedTask)
     }
 
+    console.log(currTask, 'in Content', attachment)
     return (
         <div className="attachment-preview flex">
             <a href={attachment.url} target="_blank" rel="noreferrer"><div className="image-container">
