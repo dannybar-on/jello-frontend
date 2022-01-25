@@ -136,16 +136,20 @@ function getSearchedMember(board, txt) {
         return member.username.toLowerCase().includes(txt.toLowerCase()) ||
             member.fullname.toLowerCase().includes(txt.toLowerCase());
     });
+    if (!filtered.length) return board.members;
 
     return filtered;
 }
 
 function getSearchedLabel(board, txt) {
+    // if (!board.labels) return;
+
 
     let filtered = board.labels.filter(label => {
         return label.title.toLowerCase().includes(txt.toLowerCase());
     });
-    console.log('board in service', board)
+
+    if (!filtered.length) return board.labels;
     return filtered;
 }
 
