@@ -60,7 +60,6 @@ function handleLabelsChange(newLabel, board) {
 
 function removeLabel(labelId, labels, board) {
 
-
     const updatedGroups = board.groups.map(group => {
         const updatedTasks = group.tasks.map(task => {
             if (task.labelIds) {
@@ -79,11 +78,7 @@ function removeLabel(labelId, labels, board) {
         labels: newLabels
     };
 
-
     return boardToUpdate;
-
-
-
 
 }
 

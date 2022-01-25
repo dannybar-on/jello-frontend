@@ -1,13 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import { UserAvatar } from '../UserAvatar';
 
 import { taskService } from '../../services/task.service.js'
+import { utilService } from '../../services/util-service.js';
+import { updateTask } from '../../store/board.action.js';
 
+import { UserAvatar } from '../UserAvatar';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 
 
-export class TaskDetailsData extends React.Component {
+class _TaskDetailsData extends React.Component {
 
     state = {
 
@@ -15,17 +19,46 @@ export class TaskDetailsData extends React.Component {
 
 
 
+    toggleCompleteStatus = (ev) => {
+        ev.preventDefault();
+        const { board, currGroup, currTask } = this.props
+
+        if (currTask.status === 'complete') {
+            if (currTask.dueDate - Date.now() > 0 && currTask.dueDate - Date.now() < 1000 * 60 * 60 * 24) currTask.status = 'due soon'
+            if (currTask.dueDate - Date.now() < 0) currTask.status = 'over due'
+            if (currTask.dueDate - Date.now() > 1000 * 60 * 60 * 24) currTask.status = ''
+        } else {
+            currTask.status = 'complete'
+        }
+
+        this.props.updateTask(board, currGroup, currTask);
+    };
+   
+
+    getClassStyle = (currTask) => {
+        //complete
+        if (currTask.status === 'complete') return 'green';
+        //due soon
+        else if (
+            currTask.dueDate - Date.now() > 0 &&
+            currTask.dueDate - Date.now() < 1000 * 60 * 60 * 24
+        )
+            return 'yellow';
+        //overdue
+        else if (currTask.dueDate - Date.now() < 0)
+            return 'red';
+        //none of the above
+        return null;
+    };
 
     render() {
         const { board, currTask } = this.props
-
         if (currTask.labelIds) { var taskLabels = taskService.getLabelsById(board, currTask) }
 
         // if (!taskLabels) return <></>
 
         return (
             <div className="task-data ml-40">
-
 
                 {currTask.members && <span className="task-data-members data-container">
                     <h3 className="data-header">Members</h3>
@@ -53,6 +86,25 @@ export class TaskDetailsData extends React.Component {
                     </button>
                 </div>}
 
+                {currTask.dueDate && <div className="task-data-duedate data-container">
+                    <h3 className="data-header">Due date</h3>
+                    <div className="data-duedate">
+                        <input
+                            className="duedate-checkbox"
+                            type="checkbox"
+                            name="checkbox"
+                            checked={(currTask.status === 'complete')}
+                            onChange={(event) => this.toggleCompleteStatus(event)}
+                        />
+                        <div className="duedate-date-container flex">
+                        <span>{utilService.handleTimestamp(currTask.dueDate)} at 12:00 AM </span>
+                        {currTask.status && <span className={`${this.getClassStyle(currTask)} duedate-status`} >{currTask.status}</span>}
+                        <span className="duedate-arrow"><MdKeyboardArrowDown/></span>
+                        </div>
+                    </div>
+
+                </div>}
+
 
             </div>
 
@@ -61,3 +113,15 @@ export class TaskDetailsData extends React.Component {
 }
 
 
+function mapStateToProps({ boardModule }) {
+    return {
+        board: boardModule.currBoard,
+        currTask: boardModule.currTask
+    };
+}
+
+const mapDispatchToProps = {
+    updateTask,
+};
+
+export const TaskDetailsData = connect(mapStateToProps, mapDispatchToProps)(_TaskDetailsData);

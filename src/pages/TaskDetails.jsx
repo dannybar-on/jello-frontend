@@ -19,7 +19,7 @@ import { IoMdClose } from 'react-icons/io';
 // import { BsCheck2Square } from 'react-icons/md';
 import { getTouchRippleUtilityClass } from '@mui/material';
 import { ChecklistPreview } from '../cmps/task/ChecklistPreview';
-import {AttachmentPreview} from '../cmps/task/AttachmentPreview';
+import { AttachmentPreview } from '../cmps/task/AttachmentPreview';
 
 // import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
@@ -49,7 +49,6 @@ class _TaskDetails extends React.Component {
                 const currGroup = board.groups.find(group => group.id === groupId);
                 const currTask = currGroup.tasks.find(task => task.id === taskId);
                 this.setState({ currGroup, currTask });
-                // this.getTaskLabels()
                 this.props.onSetCurrTask(currTask);
             });
     };
@@ -97,13 +96,13 @@ class _TaskDetails extends React.Component {
 
 
 
-                {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className="task-cover" style={ (currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg }: { backgroundColor: currTask.style.bgColor }}>
+                    {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className="task-cover" style={(currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg } : { backgroundColor: currTask.style.bgColor }}>
 
                         <div className="cover-btn-container">
-                        <button className='btn-style2' >
-                            <span className="icon-sm align-center cover-icon"><CgCreditCard /></span>
-                            <span className="">Cover</span>
-                        </button>
+                            <button className='btn-style2' >
+                                <span className="icon-sm align-center cover-icon"><CgCreditCard /></span>
+                                <span className="">Cover</span>
+                            </button>
                         </div>
 
                     </div>}
@@ -130,19 +129,14 @@ class _TaskDetails extends React.Component {
 
                     </div>
                     <div className="group-name">
-
-                        {/* <p>in list <span>{currGroup.title}</span></p> */}
+                        <p>in list <span>{currGroup.title}</span></p>
                     </div>
 
                     <div className="task-main-container flex">
 
                         <div className="task-main flex column">
 
-                            {/* {board.members.map(member => <UserAvatar fullname={member.fullname} />)} */}
-
-
-                            <TaskDetailsData currTask={currTask} board={board} />
-
+                            <TaskDetailsData currGroup={currGroup} />
 
                             <div className="task-description">
                                 <div className="details-section-header ">
@@ -174,11 +168,11 @@ class _TaskDetails extends React.Component {
                                 </div>
 
                             </div>
-                           
-                                {currTask.attachments && currTask.attachments.length > 0 && (
-                                    <AttachmentPreview />
-                                )}
-                                                         
+
+                            {currTask.attachments && currTask.attachments.length > 0 && (
+                                <AttachmentPreview />
+                            )}
+
 
                             {currTask.checklists && currTask.checklists.map(checklist => {
 
