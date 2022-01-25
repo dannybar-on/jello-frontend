@@ -19,6 +19,7 @@ import { IoMdClose } from 'react-icons/io';
 // import { BsCheck2Square } from 'react-icons/md';
 import { getTouchRippleUtilityClass } from '@mui/material';
 import { ChecklistPreview } from '../cmps/task/ChecklistPreview';
+import {AttachmentPreview} from '../cmps/task/AttachmentPreview';
 
 // import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
@@ -96,7 +97,7 @@ class _TaskDetails extends React.Component {
 
 
 
-                    {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className="task-cover" style={{ backgroundColor: currTask.style.bgColor }}></div>}
+                    {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className="task-cover" style={ (currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg }: { backgroundColor: currTask.style.bgColor }}></div>}
                     <Link to={`/board/${boardId}`}>
                         <button className='close-task-btn flex-row-center'>
                             <IoMdClose />
@@ -162,7 +163,12 @@ class _TaskDetails extends React.Component {
                                 </div>
 
                             </div>
-                                                                       
+                           
+                                {currTask.attachments && currTask.attachments.length > 0 && (
+                                    <AttachmentPreview />
+                                )}
+                            {/* <div className='task-checklist'> */}
+                             
                                 {currTask.checklists && currTask.checklists.map(checklist => {
 
                                     return <div key={checklist.id}>
