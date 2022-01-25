@@ -20,7 +20,7 @@ export class DynamicModal extends React.Component {
     setDynamicModalContent = () => {
         const { item } = this.props
 
-        switch (item.title) {
+        switch (item) {
             case 'Members':
                 return <AddMembers {...this.props} />
 
@@ -62,7 +62,7 @@ export class DynamicModal extends React.Component {
             <section className="dynamic-modal-container">
 
                 <div className="modal-header">
-                    <span className="modal-header-title">{item.title}</span>
+                    <span className="modal-header-title">{item}</span>
                     <button className="modal-close-btn icon-sm" onClick={() => toggleDynamicModal()}> <IoMdClose /> </button>
                 </div>
 

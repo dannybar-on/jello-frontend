@@ -51,6 +51,10 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    &.full-mod {
+      height: rem(19.7969px);
+    }
   }
   .task-preview {
     padding: 7px 8px 2px;
@@ -58,6 +62,14 @@
       margin: 0 0 4px;
       white-space: normal;
       word-wrap: break-word;
+
+      &.title-full-mod {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        margin-bottom: 0;
+        padding-bottom: 8px;
+      }
     }
   }
 }
@@ -65,19 +77,19 @@
 .task-labels {
   border-radius: 3px;
   cursor: pointer;
-  gap: 2px;
+  gap: 4px;
   max-width: 300px;
   position: relative;
   text-decoration: none;
   z-index: 0;
+  flex-wrap: wrap;
+  margin: 0 4px 4px 0;
   li {
     float: left;
     font-size: 12px;
     font-weight: 700;
     height: 8px;
     line-height: 16px;
-    // max-width: 40px;
-    // min-width: 40px;
     padding: 0;
     text-shadow: none;
     width: auto;
@@ -85,27 +97,29 @@
   }
   &.close {
     .label-bar {
-        color: rgba(255, 255, 255, 0);
-        min-width: 20px;
-        width: 40px;
-        transition: height .2s, min-width .2s linear .2s;
+      color: rgba(255, 255, 255, 0);
+      min-width: 20px;
+      width: 40px;
+      transition: height 0.2s, min-width 0.2s linear 0.2s;
     }
-}
-&.open {
+  }
+  &.open {
     .label-bar {
-        color: white;
-        height: 16px;
-        min-width: 48px;
-        padding: 0 8px;
-        width: fit-content;
-        transition: color .2s linear 0.4s, min-width .2s, height .2s linear .2s;
+      color: white;
+      height: 16px;
+      min-width: 48px;
+      padding: 0 8px;
+      width: fit-content;
+      transition: color 0.2s linear 0.4s, min-width 0.2s,
+        height 0.2s linear 0.2s;
     }
-}
+  }
 }
 
 //TASK FOOTER
 .task-footer {
   padding: 0px 8px 2px 8px;
+  flex-wrap: wrap;
   
   .MuiAvatar-root {
     width: 32px;
@@ -113,22 +127,29 @@
     font-size: rem(14px);
     border: none;
   }
-
+  .members-footer{
+    margin-left: auto;
+  }
 }
 
-.duedate-preview {
-  margin: 0 4px 4px 0;
+.badge-preview {
   // width: min-content;
   padding: 3px 4px 3px;
   max-width: min-content;
   vertical-align: top;
   margin: 0 4px 4px 0;
-  font-size: rem(14px);
+  font-size: rem(12px);
   display: flex;
   align-items: center;
+  gap: 5px;
 
-  .duedate-icon {
+  .badge-icon {
+    color: #6b778c;
+    width: auto;
+    font-size: rem(13px);
     display: flex;
     align-items: center;
   }
 }
+
+
