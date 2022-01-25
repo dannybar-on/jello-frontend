@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BoardPreview } from '../cmps/board/BoardPreview.jsx';
 import { BoardAdd } from '../cmps/board/BoardAdd.jsx';
-import { loadBoards, addBoard, removeBoard } from '../store/board.action';
+import { loadBoards, addBoard, removeBoard, removeCurrBoard } from '../store/board.action';
 import { FaStar } from 'react-icons/fa';
 class _BoardList extends React.Component {
     state = {
@@ -12,6 +12,7 @@ class _BoardList extends React.Component {
 
     componentDidMount() {
         this.props.loadBoards();
+        if (this.props.board) this.props.removeCurrBoard()
     }
 
     onNew = () => {
@@ -64,7 +65,8 @@ class _BoardList extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        boards: state.boardModule.boards
+        boards: state.boardModule.boards,
+        board: state.boardModule.currBoard
     };
 }
 
@@ -72,7 +74,7 @@ const mapDispatchToProps = {
     loadBoards,
     addBoard,
     removeBoard,
-
+    removeCurrBoard
 };
 
 export const BoardList = connect(mapStateToProps, mapDispatchToProps)(_BoardList);

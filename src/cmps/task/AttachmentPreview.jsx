@@ -5,17 +5,10 @@ import {updateTask} from '../../store/board.action'
 import { FiPaperclip } from 'react-icons/fi';
 import {AttachmentPreviewContent} from './AttachmentPreviewContent.jsx'
 
-class _AttachmentPreview extends React.Component { 
-    state = {
-        currTask: {}
-    }
-
-    componentDidMount(){
-        this.setState({currTask: {...this.props.currTask}})
-    }
+class _AttachmentPreview extends React.Component {
 
     render() {
-        const {currTask} = this.state;
+        const {currTask} = this.props;
         return (
             <>
             <div className="attachment-container flex align-center">
