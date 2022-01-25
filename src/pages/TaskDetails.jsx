@@ -80,27 +80,6 @@ class _TaskDetails extends React.Component {
     };
 
 
-    // onDeleteChecklist = (checklistId) => {
-    //     let { currTask, board } = this.props;
-    //     currTask.checklists = currTask.checklists.filter(checklist => checklist.id !== checklistId);
-    //     const group = taskService.getGroupById(currTask.id);
-    //     this.props.updateTask(board, group, currTask);
-    // };
-
-
-    // toggleEditOpen = () => {
-    //     const { isEditOpen } = this.state;
-    //     this.setState({ isEditOpen: !isEditOpen });
-    // };
-
-    // onEditCheckList = (ev) => {
-    //     ev.preventDefault();
-    // };
-
-    // handleChecklistChange = ({ target: { name, value } }) => {
-    //     this.setState({ [name]: value });
-
-    // };
 
     render() {
         const { currGroup, isDescriptionOpen, isEditOpen } = this.state;

@@ -101,7 +101,8 @@ export function addGroup(newGroup, board) {
 export function addTask(task, groupId, board) {
     return async (dispatch) => {
         const group = board.groups.find(group => group.id === groupId);
-        task = { ...task, createdAt: Date.now(), labelIds: [] };
+        task = { ...task, createdAt: Date.now(), labelIds: [], style: { isFull: false } };
+        console.log(task);
         group.tasks = (group.tasks) ? [...group.tasks, task] : [task];
         let boardToUpdate = { ...board };
         boardToUpdate.groups = boardToUpdate.groups.map(currGroup => (currGroup.id === groupId) ? group : currGroup);// if doesnt work put in []

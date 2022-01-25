@@ -6,7 +6,7 @@ export function ProgressBar({ percentage }) {
     // percentage = (Number.isInteger(percentage)) ? percentage : percentage.toFixed(2);
 
     return <section className="checklist-progress flex" style={{ width: '100%' }}>
-        <span className="checklist-progress-percentage">{percentage}%</span>
+        <span className="checklist-progress-percentage">{Math.floor(percentage)}%</span>
         <div className=" checklist-progress-bar" style={{ backgroundColor: '#091e4214', width: '100%' }}>
             <div className='checklist-progress-bar-current' style={{ backgroundColor: bgColor, width: percentage + '%' }} >
             </div>
