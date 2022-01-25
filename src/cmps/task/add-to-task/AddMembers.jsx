@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { updateTask } from '../../../store/board.action.js';
 import { UserAvatar } from '../../UserAvatar.jsx';
 import { taskService } from '../../../services/task.service.js';
+import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
 class _AddMembers extends React.Component {
 
     state = {
+
         members: [],
         filterBy: ''
     };
@@ -24,16 +26,16 @@ class _AddMembers extends React.Component {
 
 
     onAddMemberToTask(member) {
-        let { board, currTask } = this.props;
+        let { board, currTask, currGroup } = this.props;
         if (!currTask.members) currTask.members = [];
-        currTask.members.push(member);
-        console.log(this.props);
-        const currGroup = taskService.getGroupById(currTask.id);
+        else if (currTask.members.includes(member)) currTask.members = currTask.members.filter(currUser => currUser._id !== member._id);
+        else currTask.members.push(member);
         this.props.updateTask(board, currGroup, currTask);
 
     }
 
     render() {
+        const { currTask } = this.props;
         const { members } = this.state;
         return (
             <div className="members">
@@ -42,11 +44,14 @@ class _AddMembers extends React.Component {
                 {/* <div className="board-members-container"> */}
                 {members.map((member, idx) => {
                     return <div key={idx} onClick={() => this.onAddMemberToTask(member)} className="board-member-container">
-                        <span className="member-img">
-                            <UserAvatar sx={{ width: 20, height: 20 }} fullname={member.fullname} url={member.imgUrl} />
-                        </span>
-                        <span>{member.fullname}</span>
-                        <span> ({member.username})</span>
+                        <div>
+                            <span className="member-img">
+                                <UserAvatar sx={{ width: 20, height: 20 }} fullname={member.fullname} url={member.imgUrl} />
+                            </span>
+                            <span>{member.fullname}</span>
+                            <span> ({member.username})</span>
+                        </div>
+                        {currTask.members && currTask.members.includes(member) && <span><MdDone /></span>}
                     </div>;
                 })}
 

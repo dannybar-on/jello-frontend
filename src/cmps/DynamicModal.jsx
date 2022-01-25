@@ -9,6 +9,7 @@ import { AddChecklist } from './task/add-to-task/AddChecklist';
 import { AddDueDate } from './task/add-to-task/AddDueDate';
 import { AddAttachment } from './task/add-to-task/AddAttachment';
 import { AddCover } from './task/add-to-task/AddCover';
+import { EditAttachment } from './task/add-to-task/EditAttachment';
 
 //TASK ACTIONS
 import { ActionMoveTask } from './task/task-actions/ActionMoveTask'
@@ -35,6 +36,9 @@ export class DynamicModal extends React.Component {
 
             case 'Attachment':
                 return <AddAttachment {...this.props} />
+
+            case 'Edit Attachment':
+                return <EditAttachment {...this.props} />
 
             case 'Cover':
                 return <AddCover {...this.props} />

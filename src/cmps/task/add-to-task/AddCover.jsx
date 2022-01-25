@@ -14,25 +14,27 @@ class _AddCover extends React.Component {
 
 
     componentDidMount() {
-        this.onSetSize('half');
+        const { currTask } = this.props;
+        let size;
+        if (currTask.isFull) size = 'full';
+        else size = 'half';
+        this.onSetSize(size);
     }
 
     onSetSize = (size) => {
         let { currTask, board, currGroup } = this.props;
         if (size === 'full') this.setState({ isFull: true }, () => {
-            currTask.style.isFull = this.state.isFull;
+            currTask.isFull = this.state.isFull;
         });
         else if (size === 'half') this.setState({ isFull: false }, () => {
-            currTask.style.isFull = this.state.isFull;
+            currTask.isFull = this.state.isFull;
         });
-        // console.log(currTask);
         this.props.updateTask(board, currGroup, currTask);
     };
 
     handleColorChange = (color) => {
         let { currTask, board, currGroup } = this.props;
         this.setState({ color });
-        // console.log(this.props.currTask);
         if (!currTask.style) currTask.style = {};
         currTask.style.bgColor = color;
         this.props.updateTask(board, currGroup, currTask);
@@ -41,15 +43,13 @@ class _AddCover extends React.Component {
 
     handleColorRemove = () => {
         let { currTask, board, currGroup } = this.props;
-        currTask.style.bgColor = null;
+        currTask.style = null;
         this.props.updateTask(board, currGroup, currTask);
     };
 
 
     render() {
         const { color, isFull } = this.state;
-        console.log(this.props.currTask);
-        console.log(this.state.isFull);
         return (
             <section className="modal-cover-edit flex column">
                 Cover
