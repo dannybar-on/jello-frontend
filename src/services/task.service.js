@@ -17,6 +17,7 @@ export const taskService = {
     handleToggleLabel,
     getEmptyChecklist,
     getEmptyTodo,
+    getSearchedLabel,
 };
 
 
@@ -31,22 +32,22 @@ function getLabelsById(board, task) {
 
 
 function handleLabelsChange(newLabel, board) {
-    let updatedLabels
+    let updatedLabels;
 
     if (!newLabel.id) {
-        newLabel.id = utilService.makeId()
-        board.labels.push(newLabel)
-        updatedLabels = board.labels
+        newLabel.id = utilService.makeId();
+        board.labels.push(newLabel);
+        updatedLabels = board.labels;
         return board = {
             ...board,
             labels: [...updatedLabels]
-        }
+        };
     } else {
-        updatedLabels = board.labels.map(label => (label.id === newLabel.id) ? newLabel : label)
+        updatedLabels = board.labels.map(label => (label.id === newLabel.id) ? newLabel : label);
         return board = {
             ...board,
             labels: [...updatedLabels]
-        }
+        };
     }
 
 
@@ -59,25 +60,25 @@ function removeLabel(labelId, labels, board) {
     const updatedGroups = board.groups.map(group => {
         const updatedTasks = group.tasks.map(task => {
             if (task.labelIds) {
-                const newTaskLabels = task.labelIds.filter(label => label !== labelId)
-                task = { ...task, labelIds: newTaskLabels }
+                const newTaskLabels = task.labelIds.filter(label => label !== labelId);
+                task = { ...task, labelIds: newTaskLabels };
             }
-            return task
-        })
-        return { ...group, tasks: updatedTasks }
-    })
+            return task;
+        });
+        return { ...group, tasks: updatedTasks };
+    });
 
     var newLabels = labels.filter(label => label.id !== labelId);
     const boardToUpdate = {
         ...board,
         groups: updatedGroups,
         labels: newLabels
-    }
+    };
 
 
-    return boardToUpdate
+    return boardToUpdate;
 
-  
+
 
 
 }
@@ -85,16 +86,16 @@ function removeLabel(labelId, labels, board) {
 
 function handleToggleLabel(labelId, taskToUpdate) {
 
-    if (!taskToUpdate.labelIds) taskToUpdate.labelIds = []
+    if (!taskToUpdate.labelIds) taskToUpdate.labelIds = [];
     if (taskToUpdate.labelIds.includes(labelId)) {
-        const labelIdx = taskToUpdate.labelIds.findIndex(id => id === labelId)
-        taskToUpdate.labelIds.splice(labelIdx, 1)
+        const labelIdx = taskToUpdate.labelIds.findIndex(id => id === labelId);
+        taskToUpdate.labelIds.splice(labelIdx, 1);
     }
     else {
-        taskToUpdate.labelIds.push(labelId)
+        taskToUpdate.labelIds.push(labelId);
     }
 
-    return taskToUpdate
+    return taskToUpdate;
 }
 
 function handleDueDateChange(timestamp, task) {
@@ -136,6 +137,15 @@ function getSearchedMember(board, txt) {
             member.fullname.toLowerCase().includes(txt.toLowerCase());
     });
 
+    return filtered;
+}
+
+function getSearchedLabel(board, txt) {
+
+    let filtered = board.labels.filter(label => {
+        return label.title.toLowerCase().includes(txt.toLowerCase());
+    });
+    console.log('board in service', board)
     return filtered;
 }
 
