@@ -72,15 +72,17 @@
                     {
                         "id": "c101",
                         "title": "Draggable Components",
+                        "isFull": false,
                         "style": {
-                            "isFull": false
+                          
                         }
                     },
                     {
                         "id": "c102",
                         "title": "Get prepared for UI Demo with Asaf",
+                        "isFull": false,
                         "style": {
-                            "isFull": false
+                          
                         }
                     }
                 ],
@@ -93,8 +95,9 @@
                     {
                         "id": "c999",
                         "title": "Do that",
+                        
+                        "isFull": false,
                         "style": {
-                            "isFull": false
                         }
                     },
                     {
@@ -102,6 +105,7 @@
                         "title": "Help me",
                         "status": "in-progress",
                         "description": "description",
+                        "isFull": false,
                         "comments": [
                             {
                                 "id": "ZdPnm",
@@ -149,8 +153,8 @@
                         },
                         "style": {
                             "bgColor": "#26de81",
-                            "bgImg": "http://google.com",
-                            "isFull": false
+                            "bgImg": "http://google.com"
+                            
                         }
                     }
                 ],
@@ -261,9 +265,10 @@
                         "title": "Draggable Components",
                         "dueDate": 1632460104058,
                         "status": "over-due",
+                        "isFull": false,
                         "style": {
-                            "bgColor": "#0079bf",
-                            "isFull": false
+                            "bgColor": "#0079bf"
+                          
                         },
                         "labelIds": [
                             "l106",
@@ -275,8 +280,8 @@
                         "title": "Get prepared for UI Demo with Asaf",
                         "status": "due-soon",
                         "dueDate": 1652873993697,
+                        "isFull": false,
                         "style": {
-                            "isFull": false
                         }
                     },
                     {
@@ -284,12 +289,13 @@
                         "title": "It's a new Task",
                         "status": "in-progress",
                         "dueDate": 1652873993697,
+                        "isFull": false,
                         "labelIds": [
                             "l103",
                             "l105"
                         ],
                         "style": {
-                            "isFull": false
+                          
                         }
                     }
                 ],
@@ -302,8 +308,9 @@
                     {
                         "id": "c995",
                         "title": "Do that",
+                        "isFull": false,
                         "style": {
-                            "isFull": false
+                         
                         }
                     },
                     {
@@ -311,6 +318,7 @@
                         "title": "Help me",
                         "status": "complete",
                         "description": "description",
+                        "isFull": false,
                         "comments": [
                             {
                                 "id": "ZdPnm",
@@ -357,8 +365,8 @@
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         },
                         "style": {
-                            "bgColor": "#26de81",
-                            "isFull": false
+                            "bgColor": "#26de81"
+                           
                         }
                     }
                 ],

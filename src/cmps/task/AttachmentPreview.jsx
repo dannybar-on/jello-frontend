@@ -18,7 +18,7 @@ class _AttachmentPreview extends React.Component {
         const {currTask} = this.state;
         return (
             <>
-            <div className="attachment-container">
+            <div className="attachment-container flex align-center">
                 <span><FiPaperclip /></span>
                 <h3>Attachments</h3>
             </div>

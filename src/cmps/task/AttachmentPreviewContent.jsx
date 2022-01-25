@@ -4,6 +4,7 @@ import {CgCreditCard} from 'react-icons/cg';
 import {connect} from 'react-redux';
 import {updateTask} from '../../store/board.action';
 import { DynamicModal } from '../DynamicModal';
+import { MdLowPriority } from 'react-icons/md';
 
 function _AttachmentPreviewContent({attachment, currTask, board, updateTask}){
     const [isEditOpen, setIsEditOpen] = useState(false);
@@ -23,7 +24,8 @@ function _AttachmentPreviewContent({attachment, currTask, board, updateTask}){
     }
 
     const checkIfCover = () => {
-        return currTask?.style?.bgImg === attachment.null
+        console.log('imhere', (currTask?.style?.bgImg === `url(${attachment.url})`));
+        return (currTask?.style?.bgImg === `url(${attachment.url})`)
     }
 
     const onRemoveAttachment = () => {
@@ -53,7 +55,7 @@ function _AttachmentPreviewContent({attachment, currTask, board, updateTask}){
                 </div>
                 <div className="attachment-cover">
                     <span><CgCreditCard /></span>
-                    <span onClick={toggleCover}>{checkIfCover() ? 'Make cover' : 'Remove cover'}</span>
+                    <span onClick={toggleCover}>{checkIfCover() ? 'Remove cover' : 'Make cover'}</span>
                 </div>
             </div>
 
