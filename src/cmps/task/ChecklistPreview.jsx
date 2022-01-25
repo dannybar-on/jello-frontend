@@ -1,6 +1,9 @@
 import React from 'react';
-import { IoMdClose } from 'react-icons/io';
+
 import { taskService } from '../../services/task.service.js';
+
+import { IoMdClose } from 'react-icons/io';
+import { BsCheck2Square } from 'react-icons/bs';
 
 
 export class ChecklistPreview extends React.Component {
@@ -41,17 +44,26 @@ export class ChecklistPreview extends React.Component {
     render() {
         const { isEditOpen, checklistTitle } = this.state;
         const { checklist } = this.props;
-        return <section>
-            {(!isEditOpen) ? <h3 onClick={() => this.toggleEditOpen(checklist)}>{checklist.title}</h3>
-                :
+        return <div className="task-checklist" key={checklist.id}>
+            {(!isEditOpen) ?  <div className="details-section-header space-between">
+                <span className="icon-lg header-icon t-14">< BsCheck2Square /> </span>
+                <h3 onClick={() => this.toggleEditOpen(checklist)}>{checklist.title}</h3>
                 <div>
-                    <textarea name="checklistTitle" value={checklistTitle}
+                    <button className="btn-style2" onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button>
+                </div>
+            </div>
+           
+                :
+                <div className="details-section-header block">
+                    <span className="icon-lg header-icon">< BsCheck2Square /> </span>
+                    <textarea className="checklist-edit-textarea" name="checklistTitle" value={checklistTitle}
                         onChange={this.handleChecklistChange} />
-                    <button className='btn-style1' onClick={() => this.onEditCheckList(checklist.id)}>Save</button>
-                    <button onClick={() => this.toggleEditOpen()}><IoMdClose /></button>
+                         <div className="form-btns flex">
+                    <button className="btn-style1" onClick={() => this.onEditCheckList(checklist.id)}>Save</button>
+                    <button className="close-add" onClick={() => this.toggleEditOpen()}><IoMdClose /></button>
+                    </div>
                 </div>}
-            <button className="btn-style2" onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button>
-        </section>;
+        </div>
     }
 }
 

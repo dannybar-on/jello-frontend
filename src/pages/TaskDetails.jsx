@@ -14,7 +14,7 @@ import { TaskDetailsChecklist } from '../cmps/task/TaskDetailsChecklist.jsx';
 
 import { CgCreditCard } from 'react-icons/cg';
 import { GrTextAlignFull } from 'react-icons/gr';
-import { BsListUl,BsCheck2Square } from 'react-icons/bs';
+import { BsListUl } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
 // import { BsCheck2Square } from 'react-icons/md';
 import { getTouchRippleUtilityClass } from '@mui/material';
@@ -183,41 +183,32 @@ class _TaskDetails extends React.Component {
                                 </div>
 
                             </div>
-                           
-                           
-                            {/* <div className='task-checklist'> */}
-                             
+                                                                       
                                 {currTask.checklists && currTask.checklists.map(checklist => {
 
-                                    return <div className='task-checklist' key={checklist.id}>
-                                        <div  className='details-section-header space-between'>
-                                        <span className="icon-lg header-icon">< BsCheck2Square /></span>
+                                    return <div key={checklist.id}>
+                                        {/* <div  className='details-section-header space-between'>
+                                        <span className="icon-lg header-icon">< BsCheck2Square /></span> */}
                                             <ChecklistPreview checklist={checklist}
                                                 currTask={currTask} board={board} updateTask={updateTask} />
                                   
 
-
-                                    {/* return <div className='task-checklist' key={checklist.id}>
-                                        <div className="details-section-header space-between">
-                                            
-                                            
-                                            <h3>{checklist.title}</h3>
-                                            <button className="btn-style2" onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button>
-                                             */}
-
-                                        </div>
+                                        {/* </div> */}
                                         <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
-                                    </div>;
+                                    </div>
                                 })}
                       
                       
                             {/* </div> */}
                             <div className="task-activity">
-
+                            {/* <div className="details-section-header ">
+                                    <span className="icon-lg header-icon"><GrTextAlignFull /></span>
+                                    <h3>Description</h3>
+                                </div> */}
                                 <div className="activity-header flex row space-between">
-                                    <div className="flex">
-                                        <span className="icon-lg"><BsListUl /></span>
-                                        <h3 className="activity-title">Activity</h3>
+                                    <div className="details-section-header">
+                                        <span className="icon-lg header-icon"><BsListUl /></span>
+                                        <h3>Activity</h3>
                                     </div>
                                     <button>Hide Details</button>
                                 </div>
