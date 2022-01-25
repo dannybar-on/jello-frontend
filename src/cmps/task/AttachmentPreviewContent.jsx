@@ -24,7 +24,7 @@ function _AttachmentPreviewContent({attachment, currTask, board, updateTask}){
     }
 
     const checkIfCover = () => {
-        console.log('imhere', (currTask?.style?.bgImg === `url(${attachment.url})`));
+        // console.log('imhere', (currTask?.style?.bgImg === `url(${attachment.url})`));
         return (currTask?.style?.bgImg === `url(${attachment.url})`)
     }
 

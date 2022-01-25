@@ -51,7 +51,7 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
-    console.log('entityType we are at update:', entityType);
+    // console.log('entityType we are at update:', entityType);
 
     return query(entityType)
         .then(entities => {

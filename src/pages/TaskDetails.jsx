@@ -19,7 +19,7 @@ import { IoMdClose } from 'react-icons/io';
 // import { BsCheck2Square } from 'react-icons/md';
 import { getTouchRippleUtilityClass } from '@mui/material';
 import { ChecklistPreview } from '../cmps/task/ChecklistPreview';
-import {AttachmentPreview} from '../cmps/task/AttachmentPreview';
+import { AttachmentPreview } from '../cmps/task/AttachmentPreview';
 
 // import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
@@ -49,7 +49,6 @@ class _TaskDetails extends React.Component {
                 const currGroup = board.groups.find(group => group.id === groupId);
                 const currTask = currGroup.tasks.find(task => task.id === taskId);
                 this.setState({ currGroup, currTask });
-                // this.getTaskLabels()
                 this.props.onSetCurrTask(currTask);
             });
     };
@@ -85,7 +84,7 @@ class _TaskDetails extends React.Component {
     render() {
         const { currGroup, isDescriptionOpen, isEditOpen } = this.state;
         const { boardId } = this.props.match.params;
-        const { board, currTask,  updateTask  } = this.props;
+        const { board, currTask, updateTask } = this.props;
         if (!this.state.currTask) return <Loader />;
         if (!currTask) return <Loader />;
         return (
@@ -97,7 +96,18 @@ class _TaskDetails extends React.Component {
 
 
 
-                    {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className="task-cover" style={ (currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg }: { backgroundColor: currTask.style.bgColor }}></div>}
+                    {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className="task-cover" style={(currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg } : { backgroundColor: currTask.style.bgColor }}>
+
+                        <div className="cover-btn-container">
+                            <button className='btn-style2' >
+                                <span className="icon-sm align-center cover-icon"><CgCreditCard /></span>
+                                <span className="">Cover</span>
+                            </button>
+                        </div>
+
+                    </div>}
+
+
                     <Link to={`/board/${boardId}`}>
                         <button className='close-task-btn flex-row-center'>
                             <IoMdClose />
@@ -119,19 +129,14 @@ class _TaskDetails extends React.Component {
 
                     </div>
                     <div className="group-name">
-
-                        {/* <p>in list <span>{currGroup.title}</span></p> */}
+                        <p>in list <span>{currGroup.title}</span></p>
                     </div>
 
                     <div className="task-main-container flex">
 
                         <div className="task-main flex column">
 
-                            {/* {board.members.map(member => <UserAvatar fullname={member.fullname} />)} */}
-
-
-                            <TaskDetailsData currTask={currTask} board={board} />
-
+                            <TaskDetailsData currGroup={currGroup} />
 
                             <div className="task-description">
                                 <div className="details-section-header ">
@@ -163,30 +168,30 @@ class _TaskDetails extends React.Component {
                                 </div>
 
                             </div>
-                           
-                                {currTask.attachments && currTask.attachments.length > 0 && (
-                                    <AttachmentPreview />
-                                )}
-                            {/* <div className='task-checklist'> */}
-                             
-                                {currTask.checklists && currTask.checklists.map(checklist => {
 
-                                    return <div key={checklist.id}>
-                                        {/* <div  className='details-section-header space-between'>
+                            {currTask.attachments && currTask.attachments.length > 0 && (
+                                <AttachmentPreview />
+                            )}
+
+
+                            {currTask.checklists && currTask.checklists.map(checklist => {
+
+                                return <div key={checklist.id}>
+                                    {/* <div  className='details-section-header space-between'>
                                         <span className="icon-lg header-icon">< BsCheck2Square /></span> */}
-                                            <ChecklistPreview checklist={checklist}
-                                                currTask={currTask} board={board} updateTask={updateTask} />
-                                  
+                                    <ChecklistPreview checklist={checklist}
+                                        currTask={currTask} board={board} updateTask={updateTask} />
 
-                                        {/* </div> */}
-                                        <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
-                                    </div>
-                                })}
-                      
-                      
+
+                                    {/* </div> */}
+                                    <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
+                                </div>
+                            })}
+
+
                             {/* </div> */}
                             <div className="task-activity">
-                            {/* <div className="details-section-header ">
+                                {/* <div className="details-section-header ">
                                     <span className="icon-lg header-icon"><GrTextAlignFull /></span>
                                     <h3>Description</h3>
                                 </div> */}

@@ -19,13 +19,14 @@ export class TaskPreviewContent extends React.Component {
 
         return (
             <>
-                {!task.isFull && (task?.style?.bgColor || task?.style?.bgImg) && <TaskPreviewHeader board={board} task={task} toggleEditOpen={toggleEditOpen} />}
+
+                {!task.isFull && (task?.style?.bgColor || task?.style?.bgImg) && <TaskPreviewHeader board={board} task={task} toggleEditOpen={toggleEditOpen} isFull={task.isFull} />}
 
                 <div style={(task?.isFull) ? { backgroundColor: task?.style?.bgColor } : { backgroundColor: 'inherit' }} className="task-preview">
-                    <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
+                    {!task.isFull && <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
                         {board.labels && taskLabels && taskLabels.map((label, idx) => <li className='label-bar' key={idx} style={label.color && { backgroundColor: label.color }}>{label.title && <span>{label.title}</span>}</li>)}
-                    </ul>
-                    <p>{task.title}</p>
+                    </ul>}
+                    <p className={`${(task.isFull) ? 'title-full-mod' : ''}`}>{task.title}</p>
 
                     {!task.style && <button className='edit-btn ' onClick={(event) => toggleEditOpen(event)}><MdOutlineEdit /></button>}
 

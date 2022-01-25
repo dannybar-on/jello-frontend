@@ -75,20 +75,32 @@ class _DueDate extends React.Component {
         // console.log(task, isClicked);
         return <div onMouseLeave={this.toggleHover}>
             {(isHover) ?
+<<<<<<< HEAD
                 <div onClick={(event) => this.toggleCompleteStatus(event)}
                     className={this.getClassStyle(task) + ' duedate-preview flex'} >
                     <span className='icon-sm duedate-icon'>
                         {(task.status === 'complete') ? <MdOutlineCheckBox /> : <MdCheckBoxOutlineBlank />}
+=======
+                <div onClick={(event) => this.toggleCompleteStatus(event, task)}
+                    className={this.getClassStyle(task) + ' badge-preview flex'} >
+                    <span className='icon-sm badge-icon'>
+                        {(isClicked) ? <MdOutlineCheckBox /> : <MdCheckBoxOutlineBlank />}
+>>>>>>> 6c1caa6996b2423b1a7e2f45cd8f7854834720e3
                     </span>
                     <span>
                         {utilService.handleTimestamp(task.dueDate)}
                     </span>
                 </div>
                 :
+<<<<<<< HEAD
                 <div onClick={(event) => this.toggleCompleteStatus(event)}
                     className={this.getClassStyle(task) + '  duedate-preview flex-row-center'}>
+=======
+                <div onClick={(event) => this.toggleCompleteStatus(event, task)}
+                    className={this.getClassStyle(task) + '  badge-preview flex-row-center'}>
+>>>>>>> 6c1caa6996b2423b1a7e2f45cd8f7854834720e3
 
-                    <span className='icon-sm duedate-icon' onMouseEnter={this.toggleHover} >
+                    <span className='icon-sm badge-icon' onMouseEnter={this.toggleHover} >
                         <FiClock />
                     </span>
                     <span>{utilService.handleTimestamp(task.dueDate)}

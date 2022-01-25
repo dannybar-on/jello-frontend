@@ -1,4 +1,4 @@
-import { MdOutlineCheckBox } from 'react-icons/md';
+import { BsCheck2Square } from 'react-icons/bs';
 
 export function Checklists({checklists}) {
     const checklistCtx = () => {
@@ -14,9 +14,10 @@ export function Checklists({checklists}) {
     };
 
     return (
-        <div className='checklist flex align-center'>
-            <span className='flex align-center'><MdOutlineCheckBox /></span>
+        <div className='badge-preview' title='Checklist'>
+            <span className='icon-sm badge-icon'><BsCheck2Square /></span>
             <span>{checklistCtx()}</span>
         </div>
     )
 }
+
