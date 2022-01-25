@@ -25,12 +25,13 @@
 
 // SHARED CMPS
 @import 'cmps/shared-cmps/modal-search.scss';
-
+@import 'cmps/shared-cmps/add-cover';
 //TASKSIDEBAR
 @import 'cmps/task-sidebar/task-sidebar.scss';
 @import 'cmps/task-sidebar/add-to-task/labels-list.scss';
 @import 'cmps/task-sidebar/add-to-task/labels-edit-add.scss';
 @import 'cmps/task-sidebar/add-to-task/add-members.scss';
+@import 'cmps/task-sidebar/add-to-task/task-details-checklist.scss';
 
 //  PAGES
 @import 'pages/home.scss';

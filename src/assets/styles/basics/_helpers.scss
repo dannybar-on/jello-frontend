@@ -95,8 +95,8 @@
 
 .yellow {
   background-color: #f2d600;
-    border-radius: 3px;
-    color: #fff;
+  border-radius: 3px;
+  color: #fff;
 }
 
 .clear-button {
@@ -110,6 +110,11 @@
 
 .hidden {
   display: none;
+}
+
+.line-through {
+  text-decoration: line-through;
+  color:$silver-blue;
 }
 
 .clean-link {
@@ -139,7 +144,6 @@
   color: $grey-blue;
 }
 
-
 .icon-sm {
   font-size: 16px;
   height: 20px;
@@ -147,10 +151,12 @@
   width: 20px;
 }
 
-.ml-40{
+.ml-40 {
   margin-left: 40px;
 }
-
+.mt-8 {
+  margin-top: 8px;
+}
 
 // MODAL HELPERS
 .modal-content-title {
@@ -159,4 +165,55 @@
   font-weight: 600;
   line-height: 16px;
   margin: 16px 0 8px;
+}
+
+//TASK DETAILS HELPERS
+.details-section-header {
+  margin: 0 0 4px 40px;
+  padding: 8px 0;
+  position: relative;
+  align-items: center;
+  display: flex;
+  min-height: 32px;
+
+  .header-icon {
+    top: 8px;
+    left: -40px;
+    position: absolute;
+    color: #42526e;
+    display: inline-block;
+    font-family: trellicons;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: bottom;
+  }
+  h3 {
+    display: inline-block;
+    margin: 0;
+    min-height: 18px;
+    min-width: 40px;
+    width: auto;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+  }
+}
+
+.form-btns {
+  padding-top: 4px;
+  gap: 10px;
+
+  .close-add {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    color: $light-blue;
+
+    &:hover {
+      color: $dark-blue;
+    }
+  }
 }

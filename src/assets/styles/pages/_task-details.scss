@@ -13,7 +13,6 @@
   transform: translate(-50%, -50%);
   z-index: 10;
 
-
   .task-cover {
     background-size: initial;
     background-origin: content-box;
@@ -77,11 +76,7 @@
     }
 
     .task-description {
-      h3 {
-        font-size: 16px;
-        font-weight: 600;
-      }
-
+      
       textarea {
         background-color: $light-grey2;
         border: none;
@@ -99,7 +94,6 @@
     }
 
     .task-activity {
-
       .activity-header {
         margin-bottom: 15px;
 
@@ -115,12 +109,14 @@
           padding: 8px 12px;
           box-shadow: 0 1px 1px #0000002f;
 
-          &:hover{
+          &:hover {
             box-shadow: 2px 2px 5px 1px #dfe1e6;
             cursor: pointer;
           }
         }
       }
+    }
+    .task-checklist {
     }
   }
 }
