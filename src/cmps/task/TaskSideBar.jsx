@@ -36,7 +36,7 @@ export class TaskSideBar extends React.Component {
                             <p>{item.title}</p>
                         </button>
                     ))}
-                    {isModalOpen && <DynamicModal item={content} {...this.props} toggleDynamicModal={this.toggleDynamicModal} />}
+                    {isModalOpen && <DynamicModal item={content.title} {...this.props} toggleDynamicModal={this.toggleDynamicModal} />}
                 </section>
 
 

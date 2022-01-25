@@ -9,6 +9,7 @@ import { AddChecklist } from './task/add-to-task/AddChecklist';
 import { AddDueDate } from './task/add-to-task/AddDueDate';
 import { AddAttachment } from './task/add-to-task/AddAttachment';
 import { AddCover } from './task/add-to-task/AddCover';
+import { EditAttachment } from './task/add-to-task/EditAttachment';
 
 //TASK ACTIONS
 import { ActionMoveTask } from './task/task-actions/ActionMoveTask'
@@ -20,7 +21,7 @@ export class DynamicModal extends React.Component {
     setDynamicModalContent = () => {
         const { item } = this.props
 
-        switch (item.title) {
+        switch (item) {
             case 'Members':
                 return <AddMembers {...this.props} />
 
@@ -35,6 +36,9 @@ export class DynamicModal extends React.Component {
 
             case 'Attachment':
                 return <AddAttachment {...this.props} />
+
+            case 'Edit Attachment':
+                return <EditAttachment {...this.props} />
 
             case 'Cover':
                 return <AddCover {...this.props} />
@@ -62,7 +66,7 @@ export class DynamicModal extends React.Component {
             <section className="dynamic-modal-container">
 
                 <div className="modal-header">
-                    <span className="modal-header-title">{item.title}</span>
+                    <span className="modal-header-title">{item}</span>
                     <button className="modal-close-btn icon-sm" onClick={() => toggleDynamicModal()}> <IoMdClose /> </button>
                 </div>
 
