@@ -33,11 +33,13 @@ class _LabelsList extends React.Component {
         const field = ev.target.name;
         const value = ev.target.value;
         this.setState({ ...this.state, [field]: value });
+        // if (!value) return
         const filtered = taskService.getSearchedLabel(board, value);
         console.log(filtered);
-        board.labels = { ...board, labels: filtered };
-        console.log('board', board);
-        this.props.updateBoard(board);
+        this.setState({ labels: filtered });
+        //  board = { ...board, labels: filtered };
+        // console.log('board', board);
+        // this.props.updateBoard(board);
     };
 
 
@@ -74,7 +76,7 @@ class _LabelsList extends React.Component {
 
             const boardToUpdate = taskService.removeLabel(labelId, board.labels, board);
             this.props.updateTask(boardToUpdate, currGroup, currTask);
-            // this.setState({ labels: board.labels });
+            this.setState({ labels: board.labels });
             this.setAddEditMode();
         }
     };
@@ -87,7 +89,8 @@ class _LabelsList extends React.Component {
 
 
         if (!labels?.length || !labels) return <Loader />;
-        console.log(isAddEditMode);
+        console.log('lll',labels); 
+        console.log(isAddEditMode)
         return (
             <>
                 {(!isAddEditMode) ? <div className="labels">
@@ -104,8 +107,8 @@ class _LabelsList extends React.Component {
 
                     <div className="labels-list">
                         <h4 className="modal-content-title">Labels</h4>
-                        {board.labels.length && <ul className="clean-list label-list-edit">
-                            {board.labels.map(label => {
+                        {labels.length && <ul className="clean-list label-list-edit">
+                            {labels.map(label => {
                                 return <li className=" flex row align-center space-between" key={label.id} >
                                     <div onClick={() => this.toggleLabelAdd(label.id)} style={{ backgroundColor: label.color }}>
                                         <span className="label-title">{label.title || ''}</span>

@@ -16,21 +16,21 @@ export class TaskPreviewFooter extends React.Component {
                 {task.dueDate && <DueDate task={task} />}
                 
                 {task.description && (
-                    <div className='description-footer flex align-center'>
-                        <span className="flex align-center"><GrTextAlignFull title='This task has a description.'/></span>
+                    <div className="badge-preview ">
+                        <span className="icon-sm badge-icon"><GrTextAlignFull title='This task has a description.'/></span>
                     </div>
                 )}
                 
                 {task.comments && task.comments.length > 0 && (
-                    <div className="comments-footer flex align-center">
-                        <span className="flex align center"><FaRegComment /></span>
+                    <div className="badge-preview" title='Comments'>
+                        <span className="icon-sm badge-icon"><FaRegComment  /></span>
                         <span>{task.comments.length}</span>
                     </div>
                 )}
 
                 {task.attachments && task.attachments.length > 0 && (
-                    <div className="attachment-footer flex align-center">
-                        <span className='flex align-center'><ImAttachment /></span>
+                    <div className="badge-preview" title='Attachments'>
+                        <span className='icon-sm badge-icon'><ImAttachment /></span>
                         <span>{task.attachments.length}</span>
                     </div>
                 )}

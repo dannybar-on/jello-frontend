@@ -55,8 +55,8 @@ export class DueDate extends React.Component {
         return <div onMouseLeave={this.toggleHover}>
             {(isHover) ?
                 <div onClick={(event) => this.toggleCompleteStatus(event, task)}
-                    className={this.getClassStyle(task) + ' duedate-preview flex'} >
-                    <span className='icon-sm duedate-icon'>
+                    className={this.getClassStyle(task) + ' badge-preview flex'} >
+                    <span className='icon-sm badge-icon'>
                         {(isClicked) ? <MdOutlineCheckBox /> : <MdCheckBoxOutlineBlank />}
                     </span>
                     <span>
@@ -65,9 +65,9 @@ export class DueDate extends React.Component {
                 </div>
                 :
                 <div onClick={(event) => this.toggleCompleteStatus(event, task)}
-                    className={this.getClassStyle(task) + '  duedate-preview flex-row-center'}>
+                    className={this.getClassStyle(task) + '  badge-preview flex-row-center'}>
 
-                    <span className='icon-sm duedate-icon' onMouseEnter={this.toggleHover} >
+                    <span className='icon-sm badge-icon' onMouseEnter={this.toggleHover} >
                         <FiClock />
                     </span>
                     <span>{utilService.handleTimestamp(task.dueDate)}

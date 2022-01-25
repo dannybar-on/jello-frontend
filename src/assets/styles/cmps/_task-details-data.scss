@@ -31,12 +31,81 @@
     float: left;
     gap: 4px;
     margin: 0 1px 4px 0;
-    
-    .MuiAvatar-root{
-         width: 32px; 
-         height: 32px;
-         font-size:rem(14px)
 
+    .MuiAvatar-root {
+      width: 32px;
+      height: 32px;
+      font-size: rem(14px);
+    }
+  }
+
+  .data-duedate {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin: 0 8px 8px 0;
+
+    .duedate-checkbox {
+      margin: auto 4px auto 0;
+      border-radius: 2px;
+      flex-shrink: 0;
+      height: 16px;
+      position: relative;
+      white-space: nowrap;
+      width: 16px;
+    }
+
+    .duedate-date-container {
+      color: $dark-blue;
+      font-weight: 400;
+      line-height: 20px;
+      margin-bottom: 0;
+      box-sizing: border-box;
+      // display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      cursor: pointer;
+      padding: 6px 12px;
+      text-decoration: none;
+      white-space: normal;
+      background-color: rgba(9, 30, 66, 0.04);
+      box-shadow: none;
+      border: none;
+      transition-property: background-color, border-color, box-shadow;
+      transition-duration: 85ms;
+      transition-timing-function: ease;
+
+      &:hover {
+        background-color: #091e4214;
+      }
+      &:active {
+        background-color: #e4f0f6;
+        color: #0079bf;
+        outline: 0;
+      }
+
+      .duedate-status {
+        font-size: rem(12px);
+        line-height: 16px;
+        padding: 0 4px;
+        border-radius: 2px;
+        margin: auto 0 auto 8px;
+      }
+
+      .duedate-arrow {
+        line-height: 16px;
+        margin-left: 4px;
+        font-size: rem(16px);
+        color: $grey-blue;
+        display: inline-block;
+        line-height: 1;
+        svg {
+          height: 16px;
+          width: 16px;
+          line-height: 16px;
+        }
+      }
     }
   }
 
@@ -57,9 +126,9 @@
     line-height: 16px;
     padding: 8px;
     width: 16px;
-    
-    &.round{
-        border-radius: 100%;
+
+    &.round {
+      border-radius: 100%;
     }
 
     &:hover {
