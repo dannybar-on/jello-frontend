@@ -18,6 +18,7 @@ export class TodoPreview extends React.Component {
 
     onEditTodo = (ev, todoId, newTitle) => {
         ev.preventDefault();
+        if (!newTitle) return;
         let { currTask, board } = this.props;
         const group = taskService.getGroupById(currTask.id);
         const todoToUpdate = currTask.checklists.find(currChecklist => {
@@ -38,7 +39,7 @@ export class TodoPreview extends React.Component {
 
             {(!isEditOpen) ? <div className="checklist-preview">
                 <input className="checklist-checkbox" type="checkbox" name={todo.id} checked={todo.isDone} onChange={(event) => handleCheckbox(event, todo)} />
-                <div className="item-title-preview" onClick={() => this.toggleEditTodo(todo)}> {todo.title} </div>
+                <div className={`item-title-preview ${(todo.isDone) ? 'line-through' : ''}`} onClick={() => this.toggleEditTodo(todo)}> {todo.title} </div>
             </div>
                 : <div>
                     <input className="checklist-checkbox" type="checkbox" name={todo.id} checked={todo.isDone} onChange={(event) => handleCheckbox(event, todo)} />

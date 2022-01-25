@@ -52,6 +52,7 @@ class _TaskDetailsChecklist extends React.Component {
 
     onAddTodo = (ev, title, checklist) => {
         ev.preventDefault();
+        if (!title) return;
         let newTodo = taskService.getEmptyTodo();
         newTodo.title = title;
         checklist.todos.push(newTodo);
@@ -85,12 +86,12 @@ class _TaskDetailsChecklist extends React.Component {
                         currTask={currTask} board={board}
                         onRemoveTodo={this.onRemoveTodo} />;
                 })}
-                
+
                 {(isAddOpen) ? <form onSubmit={(event) => this.onAddTodo(event, todoTitle, checklist)}>
                     <textarea className='checklist-textarea' type="text" name="todoTitle" value={todoTitle} onChange={this.handleChange} />
                     <div className="form-btns mt-8 flex">
-                    <button className='btn-style1' type="submit">Add</button>
-                    <button className="close-add" onClick={() => this.toggleAddTodo()}><IoMdClose /></button>
+                        <button className='btn-style1' type="submit">Add</button>
+                        <button className="close-add" onClick={() => this.toggleAddTodo()}><IoMdClose /></button>
                     </div>
                 </form>
                     :

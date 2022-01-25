@@ -17,6 +17,7 @@ export class ChecklistPreview extends React.Component {
 
     onEditCheckList = (checklistId) => {
         const { checklistTitle } = this.state;
+        if(!checklistTitle) return 
         const { currTask, board, updateTask } = this.props;
         const group = taskService.getGroupById(currTask.id);
         const checkToUpdate = currTask.checklists.find(check => check.id === checklistId);
