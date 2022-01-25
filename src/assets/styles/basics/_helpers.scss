@@ -112,6 +112,8 @@
   display: none;
 }
 
+
+
 .line-through {
   text-decoration: line-through;
   color:$silver-blue;
@@ -216,4 +218,13 @@
       color: $dark-blue;
     }
   }
+}
+
+
+.block{
+  display: block;
+}
+
+.t-14{
+  top:14px !important; 
 }

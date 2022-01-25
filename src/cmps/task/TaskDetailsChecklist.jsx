@@ -86,8 +86,8 @@ class _TaskDetailsChecklist extends React.Component {
                         currTask={currTask} board={board}
                         onRemoveTodo={this.onRemoveTodo} />;
                 })}
-
-                {(isAddOpen) ? <form onSubmit={(event) => this.onAddTodo(event, todoTitle, checklist)}>
+                
+                {(isAddOpen) ? <form className="ml-40" onSubmit={(event) => this.onAddTodo(event, todoTitle, checklist)}>
                     <textarea className='checklist-textarea' type="text" name="todoTitle" value={todoTitle} onChange={this.handleChange} />
                     <div className="form-btns mt-8 flex">
                         <button className='btn-style1' type="submit">Add</button>
@@ -95,7 +95,7 @@ class _TaskDetailsChecklist extends React.Component {
                     </div>
                 </form>
                     :
-                    <button className='btn-style2' onClick={() => this.toggleAddTodo()}>Add an item</button>
+                    <button className='btn-style2 ml-40 mt-8' onClick={() => this.toggleAddTodo()}>Add an item</button>
                 }
             </div>
         );

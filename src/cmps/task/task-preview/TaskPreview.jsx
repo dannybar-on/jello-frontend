@@ -14,7 +14,7 @@ class _TaskPreview extends React.Component {
             <Draggable draggableId={task.id} index={index}>
                 {(provided) => {
                     return (
-                        <div className="task-preview-container" ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
+                        <div  className="task-preview-container" ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
                             <Link to={`${board._id}/${group.id}/${task.id}`} >
                                 <TaskPreviewContent board={board} task={task} toggleEditOpen={toggleEditOpen} isTaskLabelListOpen={isTaskLabelListOpen} toggleTaskLabelList={toggleTaskLabelList} />
                             </Link>
