@@ -57,7 +57,7 @@ class _AddCover extends React.Component {
         const { color, isFull } = this.state;
         return (
             <section className="modal-cover-edit flex column">
-                Cover
+                
                 <div className="size-container flex column">
                     <h4>Size</h4>
                     <div className="size-options flex">
