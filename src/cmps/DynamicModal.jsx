@@ -77,8 +77,9 @@ export class DynamicModal extends React.Component {
 
         return (
             <>
+            {/* style={{ top: topPos }} */}
                 {/* <button className="close-modal-screen"></button> */}
-                <section style={{ top: topPos }} className="dynamic-modal-container" onBlur={() => console.log('blur')}>
+                <section  style={{ top: topPos }} className="dynamic-modal-container" onBlur={() => console.log('blur')}>
 
                     <div className="modal-header">
                         <span className="modal-header-title">{item}</span>
