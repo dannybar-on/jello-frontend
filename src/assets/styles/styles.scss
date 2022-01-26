@@ -22,16 +22,29 @@
 @import 'cmps/dynamic-modal.scss';
 @import 'cmps/task-sidebar/date-picker.scss';
 @import 'cmps/progress-bar.scss';
+@import 'cmps/quick-editor.scss';
 
 // SHARED CMPS
 @import 'cmps/shared-cmps/modal-search.scss';
 @import 'cmps/shared-cmps/add-cover';
+
+
 //TASKSIDEBAR
+
+//ADD TO TASK
 @import 'cmps/task-sidebar/task-sidebar.scss';
 @import 'cmps/task-sidebar/add-to-task/labels-list.scss';
 @import 'cmps/task-sidebar/add-to-task/labels-edit-add.scss';
 @import 'cmps/task-sidebar/add-to-task/add-members.scss';
+@import 'cmps/task-sidebar/add-to-task/add-attachments.scss';
+
+//PREVIEW
 @import 'cmps/task-sidebar/add-to-task/task-details-checklist.scss';
+@import 'cmps/task-sidebar/add-to-task/task-details-attachment.scss';
+
+//TASK ACTIONS
+@import 'cmps/task-sidebar/task-actions/copy-task.scss';
+
 
 //  PAGES
 @import 'pages/home.scss';

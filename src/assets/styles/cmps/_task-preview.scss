@@ -128,28 +128,9 @@
     border: none;
   }
   .members-footer{
-    margin-left: auto;
+    // margin-left: auto;
+    padding: 0;
+    margin: 0 0px 3px auto;
   }
 }
-
-.badge-preview {
-  // width: min-content;
-  padding: 3px 4px 3px;
-  max-width: min-content;
-  vertical-align: top;
-  margin: 0 4px 4px 0;
-  font-size: rem(12px);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  .badge-icon {
-    color: #6b778c;
-    width: auto;
-    font-size: rem(13px);
-    display: flex;
-    align-items: center;
-  }
-}
-
 

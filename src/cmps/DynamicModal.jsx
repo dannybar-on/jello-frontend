@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IoMdClose } from 'react-icons/io';
+import { taskService } from '../services/task.service.js'
 
 //ADD TO TASK
 import { AddMembers } from './task/add-to-task/AddMembers';
@@ -15,6 +15,8 @@ import { EditAttachment } from './task/add-to-task/EditAttachment';
 import { ActionMoveTask } from './task/task-actions/ActionMoveTask'
 import { ActionCopyTask } from './task/task-actions/ActionCopyTask';
 import { ActionArchiveTask } from './task/task-actions/ActionArchiveTask';
+
+import { IoMdClose } from 'react-icons/io';
 
 export class DynamicModal extends React.Component {
 
@@ -41,11 +43,12 @@ export class DynamicModal extends React.Component {
                 return <EditAttachment {...this.props} />
 
             case 'Cover':
+                console.log(this.props)
                 return <AddCover {...this.props} />
 
             case 'Move':
                 return <ActionMoveTask {...this.props} />
-                
+
             case 'Copy':
                 return <ActionCopyTask {...this.props} />
 
@@ -57,27 +60,39 @@ export class DynamicModal extends React.Component {
     }
 
 
+    //    setModalPos = (ev) => {
+    //     // console.log('pos', ev.target.getBoundingClientRect());
+    //     const clickedElementPos = ev.target.getBoundingClientRect()
+    //     // console.log('clickedElementsPos:', clickedElementPos);
+
+    //     const topPos = clickedElementPos.top - clickedElementPos.height
+    //     taskService.getModalPosition(topPos)
+    //     }
+
     render() {
 
-        // const {isPopoverOpen}= this.state
-        const { item, toggleDynamicModal } = this.props
+        const { item, toggleDynamicModal, position } = this.props
+        const topPos = taskService.getModalPosition(position)
+        console.log('position:', topPos);
 
         return (
-            <section className="dynamic-modal-container">
+            <>
+                {/* <button className="close-modal-screen"></button> */}
+                <section style={{ top: topPos }} className="dynamic-modal-container" onBlur={() => console.log('blur')}>
 
-                <div className="modal-header">
-                    <span className="modal-header-title">{item}</span>
-                    <button className="modal-close-btn icon-sm" onClick={() => toggleDynamicModal()}> <IoMdClose /> </button>
-                </div>
+                    <div className="modal-header">
+                        <span className="modal-header-title">{item}</span>
+                        <button className="modal-close-btn icon-sm" onClick={() => toggleDynamicModal()}> <IoMdClose /> </button>
+                    </div>
 
-                <div className="modal-content">
-                    {this.setDynamicModalContent()}
+                    <div className="modal-content">
+                        {this.setDynamicModalContent()}
 
 
-                </div>
+                    </div>
 
-            </section>
-
+                </section>
+            </>
         )
     }
 }

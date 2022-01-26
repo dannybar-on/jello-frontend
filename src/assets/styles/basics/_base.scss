@@ -1,11 +1,16 @@
 * {
   box-sizing: border-box;
+
 }
+
+
 
 html {
   color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
     Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+  overflow-y: hidden;
+
 }
 
 body {
@@ -15,9 +20,15 @@ body {
   min-height: 100vh;
 }
 
+.app-container {
+  overflow: hidden;
+  height: 100vh;
+}
+
 main {
   display: flex;
   flex-grow: 1;
+  height: 0;
 }
 
 img {
@@ -68,8 +79,6 @@ a {
   color: inherit;
 }
 
-
-.main-app {
-  padding-top: 40px;
-}
-
+// .main-app {
+//   padding-top: 40px;
+// }

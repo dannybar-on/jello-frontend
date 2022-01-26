@@ -22,6 +22,8 @@ export const taskService = {
     handleFileRemove,
     handleAttachmentEdit,
     getSearchedLabel,
+    getModalPosition,
+
 };
 
 
@@ -29,10 +31,7 @@ function getLabelsById(board, task) {
 
     if (!task.labelIds) return [];
     return task.labelIds.map(labelId => board.labels && board.labels.find(label => label.id === labelId));
-
-
 }
-
 
 
 function handleLabelsChange(newLabel, board) {
@@ -54,12 +53,10 @@ function handleLabelsChange(newLabel, board) {
         };
     }
 
-
 }
 
 
 function removeLabel(labelId, labels, board) {
-
     const updatedGroups = board.groups.map(group => {
         const updatedTasks = group.tasks.map(task => {
             if (task.labelIds) {
@@ -71,7 +68,7 @@ function removeLabel(labelId, labels, board) {
         return { ...group, tasks: updatedTasks };
     });
 
-    var newLabels = labels.filter(label => label.id !== labelId);
+    let newLabels = labels.filter(label => label.id !== labelId);
     const boardToUpdate = {
         ...board,
         groups: updatedGroups,
@@ -79,12 +76,10 @@ function removeLabel(labelId, labels, board) {
     };
 
     return boardToUpdate;
-
 }
 
 
 function handleToggleLabel(labelId, taskToUpdate) {
-
     if (!taskToUpdate.labelIds) taskToUpdate.labelIds = [];
     if (taskToUpdate.labelIds.includes(labelId)) {
         const labelIdx = taskToUpdate.labelIds.findIndex(id => id === labelId);
@@ -96,6 +91,7 @@ function handleToggleLabel(labelId, taskToUpdate) {
 
     return taskToUpdate;
 }
+
 
 function handleDueDateChange(timestamp, task) {
     if (!timestamp) return;
@@ -126,9 +122,7 @@ function handleCopyTask(taskId, groupId, idx, title) {
     let newGroup = initialBoard.groups.find(group => group.id === groupId);
     newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title });
     return initialBoard;
-
 }
-
 
 function getSearchedMember(board, txt) {
     let filtered = board.members.filter(member => {
@@ -142,8 +136,6 @@ function getSearchedMember(board, txt) {
 
 function getSearchedLabel(board, txt) {
     // if (!board.labels) return;
-
-
     let filtered = board.labels.filter(label => {
         return label.title.toLowerCase().includes(txt.toLowerCase());
     });
@@ -176,7 +168,7 @@ function handleAttachment(attachmentId, title) {
     return [board, group, task];
 }
 
-function handleFileRemove(fileId){
+function handleFileRemove(fileId) {
     const taskId = store.getState().boardModule.currTask.id;
     const board = store.getState().boardModule.currBoard;
     const group = getGroupById(taskId);
@@ -239,4 +231,15 @@ function getUploadTime(timestamp) {
             return `Added ${month} ${day} at ${date.getHours()}:${minutes}`
         }
     }
+}
+
+function getModalPosition(clickedElementPos)  {
+    console.log('clickedElementsPos:', clickedElementPos);
+
+    const topPos = clickedElementPos.top - clickedElementPos.height +10
+    console.log('clickedElementPos.height:', clickedElementPos.height);
+    
+    console.log('topPos:', topPos);
+    
+    return topPos
 }

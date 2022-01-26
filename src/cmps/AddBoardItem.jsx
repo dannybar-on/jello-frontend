@@ -49,9 +49,15 @@ class _AddBoardItem extends React.Component {
         const { onToggleAdd } = this.props;
         const renderedType = this.props.type === 'card' ? this.props.type : 'list';
         return (
-            <section className="add-board-item">
+            <section className={`add-board-item ${renderedType}`}>
                 <form onSubmit={this.onAddItem}>
-                    <textarea placeholder={`Enter a title for this ${renderedType}`} name="title" value={title} ref={input => { this.textInput = input; }} onChange={this.handleChange} onBlur={this.onAddItem} />
+                    <textarea 
+                    className={`textarea ${renderedType}`}
+                    placeholder={`Enter a title for this ${renderedType}`} 
+                    name="title" value={title}
+                     ref={input => { this.textInput = input; }} 
+                     onChange={this.handleChange} 
+                     onBlur={this.onAddItem} />
                     <div className="form-btns flex">
                         <button className="btn-style1" type='submit'>Add {renderedType}</button>
                         <button className="close-add icon-lg" onClick={() => onToggleAdd()}><IoMdClose /></button>

@@ -1,6 +1,7 @@
-import { useThemeWithoutDefault } from '@mui/system';
+// import { useThemeWithoutDefault } from '@mui/system';
 import React from 'react';
 import { connect } from 'react-redux';
+import { taskService } from '../../../services/task.service'
 import { updateBoard, updateTask } from '../../../store/board.action.js';
 
 class _AddCover extends React.Component {
@@ -22,7 +23,8 @@ class _AddCover extends React.Component {
     }
 
     onSetSize = (size) => {
-        let { currTask, board, currGroup } = this.props;
+        let { currTask, board } = this.props;
+        const currGroup = taskService.getGroupById(currTask.id);
         if (size === 'full') this.setState({ isFull: true }, () => {
             currTask.isFull = this.state.isFull;
         });
@@ -33,16 +35,19 @@ class _AddCover extends React.Component {
     };
 
     handleColorChange = (color) => {
-        let { currTask, board, currGroup } = this.props;
+        let { currTask, board } = this.props;
+        const currGroup = taskService.getGroupById(currTask.id);
         this.setState({ color });
         if (!currTask.style) currTask.style = {};
         currTask.style.bgColor = color;
+        currTask.style.bgImg = null;
         this.props.updateTask(board, currGroup, currTask);
     };
 
 
     handleColorRemove = () => {
-        let { currTask, board, currGroup } = this.props;
+        let { currTask, board } = this.props;
+        const currGroup = taskService.getGroupById(currTask.id);
         currTask.style = null;
         this.props.updateTask(board, currGroup, currTask);
     };
@@ -52,7 +57,7 @@ class _AddCover extends React.Component {
         const { color, isFull } = this.state;
         return (
             <section className="modal-cover-edit flex column">
-                Cover
+                
                 <div className="size-container flex column">
                     <h4>Size</h4>
                     <div className="size-options flex">

@@ -31,4 +31,18 @@
      
     }
   }
+
+  .includes-icon{
+    background-clip: content-box;
+    background-origin: content-box;
+    /* display: none; */
+    padding: 11px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    /* font-size: 16px; */
+    /* height: 20px; */
+    line-height: 20px;
+    
+  }
 }

@@ -14,9 +14,8 @@ import { TaskDetailsChecklist } from '../cmps/task/TaskDetailsChecklist.jsx';
 
 import { CgCreditCard } from 'react-icons/cg';
 import { GrTextAlignFull } from 'react-icons/gr';
-import { BsListUl } from 'react-icons/bs';
+import { BsListUl, BsCreditCard } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
-// import { BsCheck2Square } from 'react-icons/md';
 import { getTouchRippleUtilityClass } from '@mui/material';
 import { ChecklistPreview } from '../cmps/task/ChecklistPreview';
 import { AttachmentPreview } from '../cmps/task/AttachmentPreview';
@@ -37,20 +36,37 @@ class _TaskDetails extends React.Component {
 
 
 
-    componentDidMount() {
+    async componentDidMount() {
         this.setCurrTask();
+
     }
 
+    // componentDidUpdate(prevState) {
+    //     if (prevState.currBoard !== this.props.board) {
+    //         console.log(this.props.currTask, 'in did update');
+    //         this.setCurrTask(this.props.currTask);
+    //     }
+    // }
 
-    setCurrTask = () => {
+    componentDidUpdate(prevProps) {
+        if (prevProps.board !== this.props.board) {
+            this.setCurrTask();
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.board !== this.props.board) {
+            this.setCurrTask();
+        }
+    }
+
+    setCurrTask = async () => {
         const { boardId, groupId, taskId } = this.props.match.params;
-        boardService.getById(boardId)
-            .then(board => {
-                const currGroup = board.groups.find(group => group.id === groupId);
-                const currTask = currGroup.tasks.find(task => task.id === taskId);
-                this.setState({ currGroup, currTask });
-                this.props.onSetCurrTask(currTask);
-            });
+        const board = await boardService.getById(boardId)
+        const currGroup = board.groups.find(group => group.id === groupId);
+        const currTask = currGroup.tasks.find(task => task.id === taskId);
+        this.setState({ currGroup, currTask });
+        this.props.onSetCurrTask(currTask);
     };
 
     handleChange = ({ target: { name, value } }) => {
@@ -85,8 +101,8 @@ class _TaskDetails extends React.Component {
         const { currGroup, isDescriptionOpen, isEditOpen } = this.state;
         const { boardId } = this.props.match.params;
         const { board, currTask, updateTask } = this.props;
-        if (!this.state.currTask) return <Loader />;
-        if (!currTask) return <Loader />;
+        if (!currTask || !this.state.currTask) return <Loader />;
+
         return (
             <React.Fragment>
                 <Link to={`/board/${boardId}`} className="go-back-container" />
@@ -100,7 +116,7 @@ class _TaskDetails extends React.Component {
 
                         <div className={`cover-btn-container ${(currTask.style.bgImg) ? 'bg-img' : ''}`}>
                             <button className='btn-style2' >
-                                <span className="icon-sm align-center cover-icon"><CgCreditCard /></span>
+                                <span className="icon-sm align-center cover-icon"><BsCreditCard /></span>
                                 <span className="">Cover</span>
                             </button>
                         </div>
@@ -177,24 +193,20 @@ class _TaskDetails extends React.Component {
                             {currTask.checklists && currTask.checklists.map(checklist => {
 
                                 return <div key={checklist.id}>
-                                    {/* <div  className='details-section-header space-between'>
-                                        <span className="icon-lg header-icon">< BsCheck2Square /></span> */}
+
                                     <ChecklistPreview checklist={checklist}
                                         currTask={currTask} board={board} updateTask={updateTask} />
 
 
-                                    {/* </div> */}
+
                                     <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
-                                </div>
+                                </div>;
                             })}
 
 
-                            {/* </div> */}
+
                             <div className="task-activity">
-                                {/* <div className="details-section-header ">
-                                    <span className="icon-lg header-icon"><GrTextAlignFull /></span>
-                                    <h3>Description</h3>
-                                </div> */}
+
                                 <div className="activity-header flex row space-between">
                                     <div className="details-section-header">
                                         <span className="icon-lg header-icon"><BsListUl /></span>
@@ -227,7 +239,9 @@ class _TaskDetails extends React.Component {
 
                     </div>
 
+
                 </section>
+                {/* </Link> */}
             </React.Fragment>
         );
     }

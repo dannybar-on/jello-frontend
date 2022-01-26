@@ -66,7 +66,6 @@ export function setCurrBoard(board) {
         try {
             dispatch({ type: 'SET_CURR_BOARD', board });
             document.body.style.background = (board.style.bgColor) ? board.style.bgColor : `url("${board.style.bgImg}")`;
-
             document.body.style.backgroundRepeat = 'no-repeat';
             document.body.style.backgroundPosition = 'center';
             document.body.style.backgroundSize = 'cover';
@@ -82,11 +81,11 @@ export function setCurrBoard(board) {
 export function removeCurrBoard() {
     return async (dispatch) => {
         try {
-            dispatch({ type: 'REMOVE_CURR_BOARD', board: null})
-        } catch(err) {
+            dispatch({ type: 'REMOVE_CURR_BOARD', board: null });
+        } catch (err) {
             console.log('Cannot set board');
         }
-    }
+    };
 }
 
 export function unMountBoard() {
@@ -137,8 +136,10 @@ export function updateTask(board, groupToSave, taskToSave) {
 
         try {
             const updatedBoard = await boardService.save(boardToUpdate);
-            // console.log('board in action', updatedBoard);
+            console.log('task in action', taskToSave);
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+            //  dispatch({ type: 'SET_CURR_TASK', currTask:taskToSave });
+
         } catch (err) {
             console.log('cant update task', err);
         }
@@ -150,6 +151,7 @@ export function updateTask(board, groupToSave, taskToSave) {
 export function onSetCurrTask(currTask) {
     return async (dispatch) => {
         try {
+            console.log('in SET CURRTASK', currTask);
             dispatch({ type: 'SET_CURR_TASK', currTask });
         } catch (err) {
             console.log('Cannot set task', err);

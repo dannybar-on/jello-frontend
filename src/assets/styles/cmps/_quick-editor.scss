@@ -1,0 +1,205 @@
+.pencil-edit-screen {
+  position: fixed;
+  /* display: flex; */
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.357);
+  top: 0;
+  left: 0;
+  // z-index: 10;
+}
+
+.quick-edit-container {
+  z-index: 70;
+  display: grid;
+
+  .task-preview-container1 {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 #091e4240;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 8px;
+    width: 256px;
+    min-height: 20px;
+    position: absolute;
+    text-decoration: none;
+    z-index: 0;
+    // padding: 6px 8px 2px;
+    // text-align: left;
+    .edit-btn {
+      display: none;
+    }
+    &:hover {
+      background-color: $light-grey2;
+      .edit-btn {
+        border-radius: 3px;
+        color: #42526e;
+        background-color: #f4f5f7;
+        opacity: 0.8;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 28px;
+        height: 28px;
+  
+        &:active {
+          background-color: #dfe1e6;
+          opacity: 1;
+        }
+        &:hover {
+          color: #172b4d;
+          background-color: #ebecf0;
+          opacity: 1;
+        }
+      }
+    }
+  
+    .task-cover {
+      height: rem(32px);
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+  
+      &.full-mod {
+        height: rem(19.7969px);
+      }
+    }
+    .task-preview {
+      padding: 7px 8px 2px;
+      p {
+        margin: 0 0 4px;
+        white-space: normal;
+        word-wrap: break-word;
+  
+        &.title-full-mod {
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 20px;
+          margin-bottom: 0;
+          padding-bottom: 8px;
+        }
+      }
+    }
+  }
+  
+  .task-labels {
+    border-radius: 3px;
+    cursor: pointer;
+    gap: 4px;
+    max-width: 300px;
+    position: relative;
+    text-decoration: none;
+    z-index: 0;
+    flex-wrap: wrap;
+    margin: 0 4px 4px 0;
+    li {
+      float: left;
+      font-size: 12px;
+      font-weight: 700;
+      height: 8px;
+      line-height: 16px;
+      padding: 0;
+      text-shadow: none;
+      width: auto;
+      border-radius: 3px;
+    }
+    &.close {
+      .label-bar {
+        color: rgba(255, 255, 255, 0);
+        min-width: 20px;
+        width: 40px;
+        transition: height 0.2s, min-width 0.2s linear 0.2s;
+      }
+    }
+    &.open {
+      .label-bar {
+        color: white;
+        height: 16px;
+        min-width: 48px;
+        padding: 0 8px;
+        width: fit-content;
+        transition: color 0.2s linear 0.4s, min-width 0.2s,
+          height 0.2s linear 0.2s;
+      }
+    }
+  }
+  
+  //TASK FOOTER
+  .task-footer {
+    padding: 0px 8px 2px 8px;
+    flex-wrap: wrap;
+    
+    .MuiAvatar-root {
+      width: 32px;
+      height: 32px;
+      font-size: rem(14px);
+      border: none;
+    }
+    .members-footer{
+      // margin-left: auto;
+      padding: 0;
+      margin: 0 0px 3px auto;
+    }
+  }
+  
+  
+}
+
+// .quick-card-editor-buttons {
+//     left: 100%;
+//     opacity: 0;
+//     position: absolute;
+//     top: 0;
+//     transform: translateX(-20px);
+//     transition: opacity 85ms ease-in,transform 85ms ease-in;
+//     width: 240px;
+//     z-index: 0;
+// }
+
+.quick-edit-btns {
+  // background: #0009;
+  //   border-radius: 3px;
+  //   clear: both;
+  // color: #e6e6e6;
+  //   display: block;
+  //   float: left;
+  //   margin: 0 0 4px 8px;
+  //   padding: 6px 12px 6px 8px;
+  //   text-decoration: none;
+  //   transition: transform 85ms ease-in;
+
+  // left: 100%;
+  // opacity: 0;
+  position: absolute;
+  top: 0;
+  transform: translateX(-20px);
+  transition: opacity 85ms ease-in, transform 85ms ease-in;
+  width: 240px;
+  z-index: 0;
+
+  button {
+    opacity: 1;
+    background: #0009;
+    border-radius: 3px;
+    clear: both;
+    color: #e6e6e6;
+    display: block;
+    float: left;
+    margin: 0 0 4px 8px;
+    padding: 6px 12px 6px 8px;
+    text-decoration: none;
+    transition: transform 85ms ease-in;
+  }
+  &:hover {
+    background: #000c;
+    color: #fff;
+    transform: translateX(5px);
+  }
+}
