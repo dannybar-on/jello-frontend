@@ -40,7 +40,6 @@ export function addBoard(board) {
 export function updateBoard(boardToUpdate) {
     return async (dispatch) => {
         try {
-            console.log('made it into the async');
             const updatedBoard = await boardService.save(boardToUpdate);
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
@@ -77,6 +76,17 @@ export function setCurrBoard(board) {
             console.log('Couldnt update curr board');
         }
     };
+}
+
+
+export function removeCurrBoard() {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: 'REMOVE_CURR_BOARD', board: null})
+        } catch(err) {
+            console.log('Cannot set board');
+        }
+    }
 }
 
 export function unMountBoard() {

@@ -98,7 +98,7 @@ class _BoardDetails extends React.Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className={`board-details-container ${isEditOpen && 'go-back-container'}`}>
-          <BoardHeader board={this.props.board} />
+          <BoardHeader />
           <div className='list-container flex'>
             <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen}/>
               {!isAddOpen && (
