@@ -86,7 +86,7 @@ class _QuickEditor extends React.Component {
                     <p>Open card</p>
                 </Link>
                 {addToTaskItems.map((item, idx) => (
-                    <button key={idx} onClick={() => { this.toggleDynamicModal(); this.setState({ item }); }}
+                    <button key={idx} onClick={(event) => { this.toggleDynamicModal(); this.setState({ item }); position = event.target.getBoundingClientRect() }}
                         className="add-item-btn flex row align-center">
                         <span className="flex align-center">{item.icon}</span>
 
@@ -94,10 +94,11 @@ class _QuickEditor extends React.Component {
                     </button>
                 ))}
             </div>
-            {isModalOpen && <DynamicModal item={item.title} {...this.props} toggleDynamicModal={this.toggleDynamicModal} />}
+            {isModalOpen && <DynamicModal item={item.title} {...this.props} toggleDynamicModal={this.toggleDynamicModal} position={position} />}
         </section >;
     }
 }
+let position
 
 const addToTaskItems = [
 

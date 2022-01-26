@@ -48,11 +48,11 @@ class _TaskDetails extends React.Component {
     //     }
     // }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.board !== this.props.board) {
-            this.setCurrTask();
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.board !== this.props.board) {
+    //         this.setCurrTask();
+    //     }
+    // }
 
     componentDidUpdate(prevProps) {
         if (prevProps.board !== this.props.board) {

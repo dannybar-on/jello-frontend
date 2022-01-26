@@ -65,17 +65,17 @@ export class TaskSideBar extends React.Component {
 let position
 
 const addToTaskItems = [
-    { icon: <AiOutlineUser />, title: 'Members' },
-    { icon: <MdLabelOutline />, title: 'Labels' },
-    { icon: <BsCheck2Square />, title: 'Checklist' },
-    { icon: <IoMdTime />, title: 'Dates' },
-    { icon: <ImAttachment />, title: 'Attachment' },
-    { icon: <BsCreditCard />, title: 'Cover' },
+    { icon: <AiOutlineUser />, title: 'Members' ,position},
+    { icon: <MdLabelOutline />, title: 'Labels' ,position},
+    { icon: <BsCheck2Square />, title: 'Checklist' ,position},
+    { icon: <IoMdTime />, title: 'Dates' ,position},
+    { icon: <ImAttachment />, title: 'Attachment' ,position},
+    { icon: <BsCreditCard />, title: 'Cover' ,position},
 ]
 
 
 const TaskActions = [
-    { icon: <AiOutlineArrowRight />, title: 'Move' },
-    { icon: <MdContentCopy />, title: 'Copy' },
-    { icon: <BsArchive />, title: 'Archive' },
+    { icon: <AiOutlineArrowRight />, title: 'Move' ,position},
+    { icon: <MdContentCopy />, title: 'Copy' ,position},
+    { icon: <BsArchive />, title: 'Archive' ,position},
 ]

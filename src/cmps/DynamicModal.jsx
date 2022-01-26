@@ -73,7 +73,7 @@ export class DynamicModal extends React.Component {
 
         const { item, toggleDynamicModal, position } = this.props
         const topPos = taskService.getModalPosition(position)
-        console.log('position:', topPos);
+        // console.log('position:', topPos);
 
         return (
             <>
