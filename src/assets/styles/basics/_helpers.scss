@@ -81,23 +81,7 @@
   font-weight: 400;
 }
 
-.green {
-  background-color: #61bd4f;
-  border-radius: 3px;
-  color: #fff;
-}
 
-.red {
-  background-color: #eb5a46;
-  border-radius: 3px;
-  color: #fff;
-}
-
-.yellow {
-  background-color: #f2d600;
-  border-radius: 3px;
-  color: #fff;
-}
 
 .clear-button {
   background: none;
@@ -140,6 +124,17 @@
   left: 0;
 }
 
+// .close-modal-screen{
+//   position: absolute;
+//   /* display: flex; */
+//   height: 100vh;
+//   width: 100vw;
+//   background-color: rgba(0, 0, 0, 0.357);
+//   top: 0;
+//   left: 0;
+//   z-index: 15;
+// }
+
 .icon-lg {
   font-size: 18px;
   width: 32px;
@@ -159,6 +154,7 @@
 .mt-8 {
   margin-top: 8px;
 }
+
 
 // MODAL HELPERS
 .modal-content-title {
@@ -227,4 +223,43 @@
 
 .t-14{
   top:14px !important; 
+}
+
+.badge-preview {
+  // width: min-content;
+  padding: 3px 4px 3px;
+  max-width: min-content;
+  vertical-align: top;
+  margin: 0 4px 4px 0;
+  font-size: rem(12px);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  .badge-icon {
+    width: auto;
+    font-size: rem(13px);
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+
+.green {
+  background-color: #61bd4f;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.red {
+  background-color: #eb5a46;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.yellow {
+  background-color: #f2d600;
+  border-radius: 3px;
+  color: #fff;
 }

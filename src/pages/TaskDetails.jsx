@@ -177,24 +177,20 @@ class _TaskDetails extends React.Component {
                             {currTask.checklists && currTask.checklists.map(checklist => {
 
                                 return <div key={checklist.id}>
-                                    {/* <div  className='details-section-header space-between'>
-                                        <span className="icon-lg header-icon">< BsCheck2Square /></span> */}
+                                
                                     <ChecklistPreview checklist={checklist}
                                         currTask={currTask} board={board} updateTask={updateTask} />
 
 
-                                    {/* </div> */}
+                                
                                     <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
                                 </div>
                             })}
 
 
-                            {/* </div> */}
+                           
                             <div className="task-activity">
-                                {/* <div className="details-section-header ">
-                                    <span className="icon-lg header-icon"><GrTextAlignFull /></span>
-                                    <h3>Description</h3>
-                                </div> */}
+                             
                                 <div className="activity-header flex row space-between">
                                     <div className="details-section-header">
                                         <span className="icon-lg header-icon"><BsListUl /></span>

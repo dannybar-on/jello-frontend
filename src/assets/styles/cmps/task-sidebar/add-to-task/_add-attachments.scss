@@ -1,0 +1,30 @@
+.attach-file {
+
+
+  .attach-from {
+    cursor: pointer;
+    display: block;
+    font-weight: 400;
+    margin: 0 -12px;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+
+    &:hover{
+        background-color: #091e420a;
+        color: $hard-blue;
+    }
+    &:active{
+        background-color: $light-grey1;
+    }
+  }
+
+  hr{
+    background-color: #091e4221;
+    border: 0;
+    height: 1px;
+    margin: 8px 0;
+    padding: 0;
+    width: 100%; 
+  }
+}

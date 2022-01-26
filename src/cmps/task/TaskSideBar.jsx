@@ -27,6 +27,7 @@ export class TaskSideBar extends React.Component {
         const { isModalOpen, content } = this.state
         return (
             <>
+            <button className="close-modal-screen"></button>
                 <section className="sidebar-btns-container ">
                     <h3 className="sidebar-title">Add to card</h3>
                     {addToTaskItems.map((item, idx) => (
