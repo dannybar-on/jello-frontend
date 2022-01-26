@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-import { taskService } from '../../services/task.service.js'
+import { taskService } from '../../services/task.service.js';
 import { utilService } from '../../services/util-service.js';
-import { updateTask } from '../../store/board.action.js';
+import { updateTask, updateBoard } from '../../store/board.action.js';
 
 import { UserAvatar } from '../UserAvatar';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -15,25 +15,26 @@ class _TaskDetailsData extends React.Component {
 
     state = {
 
-    }
+    };
 
+ 
 
 
     toggleCompleteStatus = (ev) => {
         ev.preventDefault();
-        const { board, currGroup, currTask } = this.props
+        const { board, currGroup, currTask } = this.props;
 
         if (currTask.status === 'complete') {
-            if (currTask.dueDate - Date.now() > 0 && currTask.dueDate - Date.now() < 1000 * 60 * 60 * 24) currTask.status = 'due soon'
-            if (currTask.dueDate - Date.now() < 0) currTask.status = 'over due'
-            if (currTask.dueDate - Date.now() > 1000 * 60 * 60 * 24) currTask.status = ''
+            if (currTask.dueDate - Date.now() > 0 && currTask.dueDate - Date.now() < 1000 * 60 * 60 * 24) currTask.status = 'due soon';
+            if (currTask.dueDate - Date.now() < 0) currTask.status = 'over due';
+            if (currTask.dueDate - Date.now() > 1000 * 60 * 60 * 24) currTask.status = '';
         } else {
-            currTask.status = 'complete'
+            currTask.status = 'complete';
         }
 
         this.props.updateTask(board, currGroup, currTask);
     };
-   
+
 
     getClassStyle = (currTask) => {
         //complete
@@ -52,9 +53,9 @@ class _TaskDetailsData extends React.Component {
     };
 
     render() {
-        const { board, currTask } = this.props
-        if (currTask.labelIds) { var taskLabels = taskService.getLabelsById(board, currTask) }
-
+        const { board, currTask } = this.props;
+        if (currTask.labelIds) { var taskLabels = taskService.getLabelsById(board, currTask); }
+        console.log('updated', {...currTask});
         // if (!taskLabels) return <></>
 
         return (
@@ -78,7 +79,7 @@ class _TaskDetailsData extends React.Component {
                     {taskLabels.map((label, idx) => {
                         return <div key={idx} className="data-label" style={(taskLabels) ? { backgroundColor: `${label.color}` } : { backgroundColor: '' }}>
                             {label.title}
-                        </div>
+                        </div>;
 
                     })}
                     <button className="data-add-btn">
@@ -97,9 +98,9 @@ class _TaskDetailsData extends React.Component {
                             onChange={(event) => this.toggleCompleteStatus(event)}
                         />
                         <div className="duedate-date-container flex">
-                        <span>{utilService.handleTimestamp(currTask.dueDate)} at 12:00 AM </span>
-                        {currTask.status && <span className={`${this.getClassStyle(currTask)} duedate-status`} >{currTask.status}</span>}
-                        <span className="duedate-arrow"><MdKeyboardArrowDown/></span>
+                            <span>{utilService.handleTimestamp(currTask.dueDate)} at 12:00 AM </span>
+                            {currTask.status && <span className={`${this.getClassStyle(currTask)} duedate-status`} >{currTask.status}</span>}
+                            <span className="duedate-arrow"><MdKeyboardArrowDown /></span>
                         </div>
                     </div>
 
@@ -122,6 +123,7 @@ function mapStateToProps({ boardModule }) {
 
 const mapDispatchToProps = {
     updateTask,
+    updateBoard
 };
 
 export const TaskDetailsData = connect(mapStateToProps, mapDispatchToProps)(_TaskDetailsData);

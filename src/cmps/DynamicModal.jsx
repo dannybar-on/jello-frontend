@@ -43,6 +43,7 @@ export class DynamicModal extends React.Component {
                 return <EditAttachment {...this.props} />
 
             case 'Cover':
+                console.log(this.props)
                 return <AddCover {...this.props} />
 
             case 'Move':

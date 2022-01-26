@@ -41,6 +41,18 @@ class _TaskDetails extends React.Component {
 
     }
 
+    // componentDidUpdate(prevState) {
+    //     if (prevState.currBoard !== this.props.board) {
+    //         console.log(this.props.currTask, 'in did update');
+    //         this.setCurrTask(this.props.currTask);
+    //     }
+    // }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.board !== this.props.board) {
+            this.setCurrTask();
+        }
+    }
 
     componentDidUpdate(prevProps) {
         if (prevProps.board !== this.props.board) {
@@ -188,7 +200,7 @@ class _TaskDetails extends React.Component {
 
 
                                     <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
-                                </div>
+                                </div>;
                             })}
 
 

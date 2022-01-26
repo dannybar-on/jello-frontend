@@ -33,7 +33,6 @@ class _LabelsList extends React.Component {
         const value = ev.target.value;
         this.setState({ ...this.state, [field]: value });
         const filtered = taskService.getSearchedLabel(board, value);
-        console.log(filtered);
         this.setState({ labels: filtered });
         //  board = { ...board, labels: filtered };
         // console.log('board', board);
