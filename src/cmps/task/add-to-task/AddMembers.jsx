@@ -50,8 +50,8 @@ class _AddMembers extends React.Component {
                             </span>
                             <span>{member.fullname}</span>
                             <span> ({member.username})</span>
+                        {currTask.members && currTask.members.includes(member) && <span className="includes-icon"><MdDone /></span>}
                         </div>
-                        {currTask.members && currTask.members.includes(member) && <span><MdDone /></span>}
                     </div>;
                 })}
 

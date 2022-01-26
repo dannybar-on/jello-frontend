@@ -64,6 +64,8 @@ export class DynamicModal extends React.Component {
         const { item, toggleDynamicModal } = this.props
 
         return (
+            <>
+            {/* <button className="close-modal-screen"></button> */}
             <section className="dynamic-modal-container">
 
                 <div className="modal-header">
@@ -78,7 +80,7 @@ export class DynamicModal extends React.Component {
                 </div>
 
             </section>
-
+            </>
         )
     }
 }

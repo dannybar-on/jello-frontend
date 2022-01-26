@@ -77,7 +77,7 @@ class _DueDate extends React.Component {
                 <div onClick={(event) => this.toggleCompleteStatus(event)}
                     className={this.getClassStyle(task) + '  badge-preview flex-row-center'}>
 
-                    <span className='icon-sm badge-icon' onMouseEnter={this.toggleHover} >
+                    <span className='icon-sm badge-icon ' onMouseEnter={this.toggleHover} >
                         <FiClock />
                     </span>
                     <span>{utilService.handleTimestamp(task.dueDate)}

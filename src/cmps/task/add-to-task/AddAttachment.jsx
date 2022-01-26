@@ -39,9 +39,10 @@ function _AddAttachment({ updateTask, toggleDynamicModal }) {
           />
         </label>
       </div>
-
+        
+        <hr />
       <form onSubmit={handleSubmit} className="attach-link">
-        <label>Attach a link</label>
+        <label className="modal-content-title">Attach a link</label>
         <input
           ref={urlRef}
           className='modal-search'
@@ -59,7 +60,7 @@ function _AddAttachment({ updateTask, toggleDynamicModal }) {
             />
           </>
         )}
-        <button className="attach-btn btn-style1">Attach</button>
+        <button className="attach-btn btn-style2">Attach</button>
       </form>
     </div>
   );
