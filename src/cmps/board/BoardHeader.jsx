@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateBoard } from '../../store/board.action.js';
+import { updateBoard, setCurrBoard } from '../../store/board.action.js';
 import { UserAvatar } from '../UserAvatar.jsx';
 import AvatarGroup from '@mui/material/AvatarGroup';
 // import {Loader} from '../Loader.jsx'
@@ -20,7 +20,8 @@ class _BoardHeader extends React.Component {
     };
 
     componentDidMount(){
-        this.setState({boardTitle: this.props.board.title})
+        const {board} = this.props;
+        this.setState({boardTitle: board.title})
     }
 
     toggleMenu = () => {
@@ -83,6 +84,7 @@ function mapStateToProps({ boardModule }) {
 
 const mapDispatchToProps = {
     updateBoard,
+    setCurrBoard
 };
 
 export const BoardHeader = connect(mapStateToProps, mapDispatchToProps)(_BoardHeader);
