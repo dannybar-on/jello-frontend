@@ -9,7 +9,7 @@ export class RootCmp extends React.Component {
     
     render() {
         return (
-        <div >
+        <div className="app-container flex column">
             <AppHeader />
         <main className='main-app'>
             <Switch>

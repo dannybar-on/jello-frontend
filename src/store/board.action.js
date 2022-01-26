@@ -66,7 +66,6 @@ export function setCurrBoard(board) {
         try {
             dispatch({ type: 'SET_CURR_BOARD', board });
             document.body.style.background = (board.style.bgColor) ? board.style.bgColor : `url("${board.style.bgImg}")`;
-
             document.body.style.backgroundRepeat = 'no-repeat';
             document.body.style.backgroundPosition = 'center';
             document.body.style.backgroundSize = 'cover';
@@ -111,7 +110,12 @@ export function addGroup(newGroup, board) {
 export function addTask(task, groupId, board) {
     return async (dispatch) => {
         const group = board.groups.find(group => group.id === groupId);
-        task = { ...task, createdAt: Date.now(), labelIds: [], style: { isFull: false } };
+        task = { 
+            ...task,
+             createdAt: Date.now(),
+              labelIds: [], 
+              style: { isFull: false } 
+            };
         console.log(task);
         group.tasks = (group.tasks) ? [...group.tasks, task] : [task];
         let boardToUpdate = { ...board };

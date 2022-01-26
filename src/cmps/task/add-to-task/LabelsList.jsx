@@ -28,12 +28,10 @@ class _LabelsList extends React.Component {
     }
 
     handleInputChange = (ev) => {
-        // const { labels, search } = this.state;
         let { board } = this.props;
         const field = ev.target.name;
         const value = ev.target.value;
         this.setState({ ...this.state, [field]: value });
-        // if (!value) return
         const filtered = taskService.getSearchedLabel(board, value);
         console.log(filtered);
         this.setState({ labels: filtered });
@@ -50,16 +48,14 @@ class _LabelsList extends React.Component {
 
     onSaveLabel = (newLabel) => {
         const { board, currGroup, currTask } = this.props;
-        // const { labels } = this.state
-
         const updatedBoard = taskService.handleLabelsChange(newLabel, board);
         this.props.updateTask(updatedBoard, currGroup, currTask);
-
         this.setAddEditMode();
     };
 
-    toggleLabelAdd = (labelId) => {
 
+    toggleLabelAdd = (labelId) => {
+        console.log('clicked');
         const { currTask, board } = this.props;
         const updatedTask = taskService.handleToggleLabel(labelId, currTask);
 
@@ -89,8 +85,7 @@ class _LabelsList extends React.Component {
 
 
         if (!labels?.length || !labels) return <Loader />;
-        console.log('lll',labels); 
-        console.log(isAddEditMode)
+       
         return (
             <>
                 {(!isAddEditMode) ? <div className="labels">

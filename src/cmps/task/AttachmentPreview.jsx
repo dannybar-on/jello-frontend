@@ -1,29 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {taskService} from '../../services/task.service.js';
-import {updateTask} from '../../store/board.action'
+import { taskService } from '../../services/task.service.js';
+import { updateTask } from '../../store/board.action'
 import { FiPaperclip } from 'react-icons/fi';
-import {AttachmentPreviewContent} from './AttachmentPreviewContent.jsx'
+import { AttachmentPreviewContent } from './AttachmentPreviewContent.jsx'
 
 class _AttachmentPreview extends React.Component {
 
     render() {
-        const {currTask} = this.props;
+        const { currTask } = this.props;
         return (
             <>
-            <div className="attachment-container flex align-center">
-                <span><FiPaperclip /></span>
-                <h3>Attachments</h3>
-            </div>
-            <div className="task-attachments">
-                {currTask?.attachments?.map((attachment, idx) => <AttachmentPreviewContent key={attachment.title + idx} attachment={attachment} />)}
-            </div>
+                <div className="task-attachment">
+                    <div className="details-section-header ">
+                        <span className="icon-lg header-icon"><FiPaperclip /></span>
+                        <h3>Attachments</h3>
+                    </div>
+                    <div className="ml-40">
+                        {currTask?.attachments?.map((attachment, idx) => <AttachmentPreviewContent key={attachment.title + idx} attachment={attachment} />)}
+                    </div>
+                </div>
             </>
         )
     }
 }
 
-const mapStateToProps = ({boardModule}) => {
+const mapStateToProps = ({ boardModule }) => {
     return {
         board: boardModule.currBoard,
         currTask: boardModule.currTask

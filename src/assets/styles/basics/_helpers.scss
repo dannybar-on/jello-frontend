@@ -122,6 +122,7 @@
   background-color: rgba(0, 0, 0, 0.357);
   top: 0;
   left: 0;
+  // inset: 0;
 }
 
 // .close-modal-screen{
@@ -262,4 +263,18 @@
   background-color: #f2d600;
   border-radius: 3px;
   color: #fff;
+}
+
+
+.btn-layover{
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  transition-duration: 85ms;
+  transition-property: background-color, border-color, box-shadow;
+  transition-timing-function: ease;
 }

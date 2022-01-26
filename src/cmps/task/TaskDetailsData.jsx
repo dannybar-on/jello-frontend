@@ -67,7 +67,7 @@ class _TaskDetailsData extends React.Component {
                         {currTask.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />)}
                     </span>
 
-                    <button className="add-item-btn round">
+                    <button className="data-add-btn round">
                         <AiOutlinePlus />
                     </button>
                 </span>}
@@ -81,7 +81,7 @@ class _TaskDetailsData extends React.Component {
                         </div>
 
                     })}
-                    <button className="add-item-btn">
+                    <button className="data-add-btn">
                         <AiOutlinePlus />
                     </button>
                 </div>}
