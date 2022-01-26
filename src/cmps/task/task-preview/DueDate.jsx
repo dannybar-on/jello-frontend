@@ -22,14 +22,7 @@ class _DueDate extends React.Component {
         this.setState({ isHover: !isHover });
     };
 
-    // toggleCompleteStatus = (ev, task) => {
-    //     ev.preventDefault();
-    //     ev.stopPropagation();
-    //     const { isClicked } = this.state;
-    //     (!isClicked) ? task.status = 'complete' : task.status = 'in-progress';
-    //     this.setState({ isClicked: !isClicked });
-    //     console.log(task)
-    // };
+  
 
     toggleCompleteStatus = (ev) => {
         ev.preventDefault();
@@ -43,11 +36,7 @@ class _DueDate extends React.Component {
         } else {
             task.status = 'complete';
         }
-        // JSON.parse(JSON.stringify(task))
-        console.log({...task});
-        // console.log(currGroup)
         this.props.updateTask(board, group, task);
-
         this.setState({ isClicked: !isClicked });
     };
 
@@ -72,33 +61,21 @@ class _DueDate extends React.Component {
         const { task } = this.props;
         const { isHover, isClicked } = this.state;
         // if (!className) return <h1>Loading....</h1>;
-        // console.log(task, isClicked);
+        // console.log(task ,'in Due Date');
         return <div onMouseLeave={this.toggleHover}>
             {(isHover) ?
-<<<<<<< HEAD
                 <div onClick={(event) => this.toggleCompleteStatus(event)}
-                    className={this.getClassStyle(task) + ' duedate-preview flex'} >
-                    <span className='icon-sm duedate-icon'>
-                        {(task.status === 'complete') ? <MdOutlineCheckBox /> : <MdCheckBoxOutlineBlank />}
-=======
-                <div onClick={(event) => this.toggleCompleteStatus(event, task)}
                     className={this.getClassStyle(task) + ' badge-preview flex'} >
                     <span className='icon-sm badge-icon'>
-                        {(isClicked) ? <MdOutlineCheckBox /> : <MdCheckBoxOutlineBlank />}
->>>>>>> 6c1caa6996b2423b1a7e2f45cd8f7854834720e3
+                        {(task.status === 'complete') ? <MdOutlineCheckBox /> : <MdCheckBoxOutlineBlank />}
                     </span>
                     <span>
                         {utilService.handleTimestamp(task.dueDate)}
                     </span>
                 </div>
                 :
-<<<<<<< HEAD
                 <div onClick={(event) => this.toggleCompleteStatus(event)}
-                    className={this.getClassStyle(task) + '  duedate-preview flex-row-center'}>
-=======
-                <div onClick={(event) => this.toggleCompleteStatus(event, task)}
                     className={this.getClassStyle(task) + '  badge-preview flex-row-center'}>
->>>>>>> 6c1caa6996b2423b1a7e2f45cd8f7854834720e3
 
                     <span className='icon-sm badge-icon' onMouseEnter={this.toggleHover} >
                         <FiClock />
@@ -108,7 +85,7 @@ class _DueDate extends React.Component {
                 </div>
 
             }
-        </div>;
+        </div>
     }
 }
 

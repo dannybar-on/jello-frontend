@@ -82,11 +82,11 @@ export function setCurrBoard(board) {
 export function removeCurrBoard() {
     return async (dispatch) => {
         try {
-            dispatch({ type: 'REMOVE_CURR_BOARD', board: null})
-        } catch(err) {
+            dispatch({ type: 'REMOVE_CURR_BOARD', board: null });
+        } catch (err) {
             console.log('Cannot set board');
         }
-    }
+    };
 }
 
 export function unMountBoard() {
@@ -111,7 +111,7 @@ export function addGroup(newGroup, board) {
 export function addTask(task, groupId, board) {
     return async (dispatch) => {
         const group = board.groups.find(group => group.id === groupId);
-        task = { ...task, createdAt: Date.now(), labelIds: [], style: { isFull: false } };
+        task = { ...task, createdAt: Date.now(), labelIds: [], style: {} };
         console.log(task);
         group.tasks = (group.tasks) ? [...group.tasks, task] : [task];
         let boardToUpdate = { ...board };
@@ -137,8 +137,10 @@ export function updateTask(board, groupToSave, taskToSave) {
 
         try {
             const updatedBoard = await boardService.save(boardToUpdate);
-            console.log('board in action', updatedBoard);
+            console.log('task in action', taskToSave);
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+            //  dispatch({ type: 'SET_CURR_TASK', currTask:taskToSave });
+
         } catch (err) {
             console.log('cant update task', err);
         }
@@ -150,6 +152,7 @@ export function updateTask(board, groupToSave, taskToSave) {
 export function onSetCurrTask(currTask) {
     return async (dispatch) => {
         try {
+            console.log('in SET CURRTASK', currTask);
             dispatch({ type: 'SET_CURR_TASK', currTask });
         } catch (err) {
             console.log('Cannot set task', err);
