@@ -96,9 +96,9 @@ class _TaskDetails extends React.Component {
 
 
 
-                    {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className="task-cover" style={(currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg } : { backgroundColor: currTask.style.bgColor }}>
+                    {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className={`task-cover ${(currTask.style.bgImg) ? 'bg-cover' : ''}`} style={(currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg } : { backgroundColor: currTask.style.bgColor }}>
 
-                        <div className="cover-btn-container">
+                        <div className={`cover-btn-container ${(currTask.style.bgImg) ? 'bg-img' : ''}`}>
                             <button className='btn-style2' >
                                 <span className="icon-sm align-center cover-icon"><CgCreditCard /></span>
                                 <span className="">Cover</span>
