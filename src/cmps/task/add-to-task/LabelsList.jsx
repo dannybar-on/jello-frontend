@@ -27,6 +27,12 @@ class _LabelsList extends React.Component {
         this.setState({ labels: board.labels });
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.board !== this.props.board) {
+            this.setState({ labels: this.props.board.labels });
+        }
+    }
+
     handleInputChange = (ev) => {
         let { board } = this.props;
         const field = ev.target.name;
@@ -34,9 +40,7 @@ class _LabelsList extends React.Component {
         this.setState({ ...this.state, [field]: value });
         const filtered = taskService.getSearchedLabel(board, value);
         this.setState({ labels: filtered });
-        //  board = { ...board, labels: filtered };
-        // console.log('board', board);
-        // this.props.updateBoard(board);
+
     };
 
 
@@ -46,7 +50,8 @@ class _LabelsList extends React.Component {
 
 
     onSaveLabel = (newLabel) => {
-        const { board, currGroup, currTask } = this.props;
+        const { board, currTask } = this.props;
+        const currGroup = taskService.getGroupById(currTask.id);
         const updatedBoard = taskService.handleLabelsChange(newLabel, board);
         this.props.updateTask(updatedBoard, currGroup, currTask);
         this.setAddEditMode();
@@ -66,12 +71,12 @@ class _LabelsList extends React.Component {
     onRemoveLabel = (labelId) => {
 
         if (window.confirm('Are you sure you want to delete this label?')) {
-            let { board, currTask, currGroup } = this.props;
+            let { board, currTask } = this.props;
             currTask.labelIds = currTask.labelIds.filter(id => id !== labelId);
-
+            const currGroup = taskService.getGroupById(currTask.id);
             const boardToUpdate = taskService.removeLabel(labelId, board.labels, board);
             this.props.updateTask(boardToUpdate, currGroup, currTask);
-            this.setState({ labels: board.labels });
+            this.setState({ labels: boardToUpdate.labels });
             this.setAddEditMode();
         }
     };
@@ -80,11 +85,11 @@ class _LabelsList extends React.Component {
     render() {
 
         const { search, isAddEditMode, labels, label } = this.state;
-        const { board, toggleDynamicModal } = this.props;
+        // const { board, toggleDynamicModal } = this.props;
 
 
         if (!labels?.length || !labels) return <Loader />;
-       
+
         return (
             <>
                 {(!isAddEditMode) ? <div className="labels">

@@ -1,7 +1,7 @@
 // import { useThemeWithoutDefault } from '@mui/system';
 import React from 'react';
 import { connect } from 'react-redux';
-import { taskService } from '../../../services/task.service'
+import { taskService } from '../../../services/task.service';
 import { updateBoard, updateTask } from '../../../store/board.action.js';
 
 class _AddCover extends React.Component {
@@ -22,15 +22,30 @@ class _AddCover extends React.Component {
         this.onSetSize(size);
     }
 
+    // onSetSize = (size) => {
+    //     let { currTask, board } = this.props;
+    //     const currGroup = taskService.getGroupById(currTask.id);
+    //     if (size === 'full') this.setState({ isFull: true }, () => {
+    //         currTask.isFull = this.state.isFull;
+    //     });
+    //     else if (size === 'half') this.setState({ isFull: false }, () => {
+    //         currTask.isFull = this.state.isFull;
+    //     });
+    //     console.log('12312312', currTask, this.state.isFull)
+    //     this.props.updateTask(board, currGroup, currTask);
+    // };
+
     onSetSize = (size) => {
         let { currTask, board } = this.props;
         const currGroup = taskService.getGroupById(currTask.id);
-        if (size === 'full') this.setState({ isFull: true }, () => {
-            currTask.isFull = this.state.isFull;
-        });
-        else if (size === 'half') this.setState({ isFull: false }, () => {
-            currTask.isFull = this.state.isFull;
-        });
+        if (size === 'full') {
+            currTask.isFull = true
+            this.setState({ isFull: true });
+        } else if (size === 'half') {
+            currTask.isFull = false
+            this.setState({ isFull: false });
+
+        }
         this.props.updateTask(board, currGroup, currTask);
     };
 
@@ -57,7 +72,7 @@ class _AddCover extends React.Component {
         const { color, isFull } = this.state;
         return (
             <section className="modal-cover-edit flex column">
-                
+
                 <div className="size-container flex column">
                     <h4>Size</h4>
                     <div className="size-options flex">
