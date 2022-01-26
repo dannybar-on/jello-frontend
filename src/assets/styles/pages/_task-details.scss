@@ -15,13 +15,22 @@
   z-index: 10;
 
   .task-cover {
-    background-size: initial;
+    background-repeat: no-repeat;
+    background-size: contain;
     background-origin: content-box;
     box-sizing: border-box;
-    background-position: left center;
+    background-position: center center;
     height: 116px;
     min-height: 116px;
     padding: 0px;
+
+    &.bg-cover{
+      min-height: 160px;
+      // background-color: #ccc;
+      // &.cover-img{
+      //   top: 113px;
+      // }
+    }
 
     .cover-btn-container {
       align-items: center;
@@ -32,6 +41,10 @@
       padding: 8px;
       position: absolute;
       width: 100%;
+
+      &.bg-img{
+        top: 112px;
+      }
 
       button {
         background-color: #00000014;

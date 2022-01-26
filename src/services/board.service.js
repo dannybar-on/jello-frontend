@@ -1,5 +1,6 @@
 import { storageService } from './async-storage.service.js';
 // import { utilService } from './util-service.js';
+import {httpService} from './http.service'
 
 const STORAGE_KEY = 'board';
 
@@ -11,34 +12,33 @@ export const boardService = {
     getEmptyBoard,
 };
 
-function query() {
-    return storageService.query(STORAGE_KEY);
+function query(){
+    return httpService.get('board/')
 }
+
 
 function getById(boardId) {
-    return storageService.get(STORAGE_KEY, boardId);
+    return httpService.get(`board/${boardId}`)
 }
+
 
 function remove(boardId) {
-    return storageService.remove(STORAGE_KEY, boardId);
+    return httpService.delete(`board/${boardId}`)
 }
+
+
 
 function save(board) {
-
-    
-    if (board._id) return storageService.put(STORAGE_KEY, board);
-
-    // let newBoard = getEmptyBoard();
-    // newBoard.title = board.title;
-    let newBoard = {
-        ...board,
-        ...getEmptyBoard()
+    if (board._id) {
+        return httpService.put(`board/${board._id}`, board)
+    } else { 
+        let newBoard = {
+            ...getEmptyBoard(),
+            ...board
+        }
+         return httpService.post('board/', newBoard)
     }
-    console.log('newBoard', newBoard);
-    return storageService.post(STORAGE_KEY, newBoard);
 }
-
-
 
 function getEmptyBoard() {
     return {
@@ -51,7 +51,6 @@ function getEmptyBoard() {
         isArchived: null,
     };
 }
-
 
 function getDefaultLabels() {
     return [
