@@ -18,9 +18,8 @@ export class TaskSideBar extends React.Component {
     }
 
     toggleDynamicModal = () => {
-        // position = ev.target.getBoundingClientRect()
-        this.setState({ isModalOpen: !this.state.isModalOpen })
 
+        this.setState({ isModalOpen: !this.state.isModalOpen })
     }
 
 
@@ -35,7 +34,7 @@ export class TaskSideBar extends React.Component {
 
                         <button
                             key={idx}
-                            onClick={(event) => { this.toggleDynamicModal(event); this.setState({ content: item }); position = event.target.getBoundingClientRect() }}
+                            onClick={(event) => { this.toggleDynamicModal(); this.setState({ content: item }); position = event.target.getBoundingClientRect() }}
                             className="add-item-btn flex row align-center">
                             <div className="btn-layover"></div>
                             <span className="flex align-center">{item.icon}</span>

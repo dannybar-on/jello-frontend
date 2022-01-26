@@ -37,27 +37,25 @@ class _TaskDetails extends React.Component {
 
 
     async componentDidMount() {
-        // this.setCurrTask();
+        this.setCurrTask();
+
+    }
+
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.board !== this.props.board) {
+            this.setCurrTask();
+        }
+    }
+
+    setCurrTask = async () => {
         const { boardId, groupId, taskId } = this.props.match.params;
         const board = await boardService.getById(boardId)
-        // .then(board => {
         const currGroup = board.groups.find(group => group.id === groupId);
         const currTask = currGroup.tasks.find(task => task.id === taskId);
         this.setState({ currGroup, currTask });
         this.props.onSetCurrTask(currTask);
-    }
-
-
-    //    async setCurrTask = () => {
-    //         const { boardId, groupId, taskId } = this.props.match.params;
-    //        const board = await boardService.getById(boardId)
-    //             // .then(board => {
-    //                 const currGroup = board.groups.find(group => group.id === groupId);
-    //                 const currTask = currGroup.tasks.find(task => task.id === taskId);
-    //                 this.setState({ currGroup, currTask });
-    //                 this.props.onSetCurrTask(currTask);
-    //             // });
-    //     };
+    };
 
     handleChange = ({ target: { name, value } }) => {
         this.setState((prevState) => ({ currTask: { ...prevState.currTask, [name]: value } }));
@@ -95,142 +93,142 @@ class _TaskDetails extends React.Component {
 
         return (
             <React.Fragment>
-                <Link to={`/board/${boardId}`} className="go-back-container"/>
+                <Link to={`/board/${boardId}`} className="go-back-container" />
 
-                    <section className="task-details-container" >
-
-
+                <section className="task-details-container" >
 
 
-                        {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className="task-cover" style={(currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg } : { backgroundColor: currTask.style.bgColor }}>
-
-                            <div className="cover-btn-container">
-                                <button className='btn-style2' >
-                                    <span className="icon-sm align-center cover-icon"><BsCreditCard /></span>
-                                    <span className="">Cover</span>
-                                </button>
-                            </div>
-
-                        </div>}
 
 
-                        <Link to={`/board/${boardId}`}>
-                            <button className='close-task-btn flex-row-center'>
-                                <IoMdClose />
+                    {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className="task-cover" style={(currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg } : { backgroundColor: currTask.style.bgColor }}>
+
+                        <div className="cover-btn-container">
+                            <button className='btn-style2' >
+                                <span className="icon-sm align-center cover-icon"><BsCreditCard /></span>
+                                <span className="">Cover</span>
                             </button>
-                        </Link>
-
-                        <div className="task-header flex row align-center">
-                            <span className="icon-lg"><CgCreditCard /></span>
-
-                            <input
-                                className="task-title"
-                                type="text"
-                                name="title"
-                                onChange={this.handleChange}
-                                value={this.state.currTask.title}
-                                onBlur={this.handleDetailsChange}
-
-                            />
-
-                        </div>
-                        <div className="group-name">
-                            <p>in list <span>{currGroup.title}</span></p>
                         </div>
 
-                        <div className="task-main-container flex">
+                    </div>}
 
-                            <div className="task-main flex column">
 
-                                <TaskDetailsData currGroup={currGroup} />
+                    <Link to={`/board/${boardId}`}>
+                        <button className='close-task-btn flex-row-center'>
+                            <IoMdClose />
+                        </button>
+                    </Link>
 
-                                <div className="task-description">
-                                    <div className="details-section-header ">
-                                        <span className="icon-lg header-icon"><GrTextAlignFull /></span>
-                                        <h3>Description</h3>
+                    <div className="task-header flex row align-center">
+                        <span className="icon-lg"><CgCreditCard /></span>
+
+                        <input
+                            className="task-title"
+                            type="text"
+                            name="title"
+                            onChange={this.handleChange}
+                            value={this.state.currTask.title}
+                            onBlur={this.handleDetailsChange}
+
+                        />
+
+                    </div>
+                    <div className="group-name">
+                        <p>in list <span>{currGroup.title}</span></p>
+                    </div>
+
+                    <div className="task-main-container flex">
+
+                        <div className="task-main flex column">
+
+                            <TaskDetailsData currGroup={currGroup} />
+
+                            <div className="task-description">
+                                <div className="details-section-header ">
+                                    <span className="icon-lg header-icon"><GrTextAlignFull /></span>
+                                    <h3>Description</h3>
+                                </div>
+                                <div className="ml-40">
+                                    <textarea
+                                        name="description"
+                                        placeholder="Add a more detailed description..."
+                                        onChange={this.handleChange}
+                                        onFocus={this.toggleDescriptionTextArea}
+                                        value={this.state.currTask.description}
+                                        rows={(isDescriptionOpen) ? '6' : ''}
+                                        onBlur={() => { this.handleDetailsChange(); }}
+                                    // onBlur={() => { this.handleDetailsChange(); this.toggleDescriptionTextArea() }}
+
+                                    >
+                                    </textarea>
+                                    {(isDescriptionOpen) && <>
+                                        <div className="description-btns ">
+                                            <button className="btn-style1" onClick={() => { this.handleDetailsChange(); }} >Save</button>
+                                            <button className="close-btn" onMouseDown={(event) => { this.onCancelChanges(event); }}>
+                                                <IoMdClose />
+                                            </button>
+                                        </div>
+                                    </>
+                                    }
+                                </div>
+
+                            </div>
+
+                            {currTask.attachments && currTask.attachments.length > 0 && (
+                                <AttachmentPreview />
+                            )}
+
+
+                            {currTask.checklists && currTask.checklists.map(checklist => {
+
+                                return <div key={checklist.id}>
+
+                                    <ChecklistPreview checklist={checklist}
+                                        currTask={currTask} board={board} updateTask={updateTask} />
+
+
+
+                                    <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
+                                </div>
+                            })}
+
+
+
+                            <div className="task-activity">
+
+                                <div className="activity-header flex row space-between">
+                                    <div className="details-section-header">
+                                        <span className="icon-lg header-icon"><BsListUl /></span>
+                                        <h3>Activity</h3>
                                     </div>
-                                    <div className="ml-40">
+                                    <button>Hide Details</button>
+                                </div>
+
+                                <div className="ml-40">
+                                    <div className="activity-comment">
                                         <textarea
-                                            name="description"
-                                            placeholder="Add a more detailed description..."
+                                            name="comments"
+                                            placeholder="Write a comment..."
                                             onChange={this.handleChange}
-                                            onFocus={this.toggleDescriptionTextArea}
-                                            value={this.state.currTask.description}
-                                            rows={(isDescriptionOpen) ? '6' : ''}
-                                            onBlur={() => { this.handleDetailsChange(); }}
-                                        // onBlur={() => { this.handleDetailsChange(); this.toggleDescriptionTextArea() }}
-
+                                        // value={currTask.description}
+                                        // onBlur={this.handleDetailsChange}
                                         >
+
                                         </textarea>
-                                        {(isDescriptionOpen) && <>
-                                            <div className="description-btns ">
-                                                <button className="btn-style1" onClick={() => { this.handleDetailsChange(); }} >Save</button>
-                                                <button className="close-btn" onMouseDown={(event) => { this.onCancelChanges(event); }}>
-                                                    <IoMdClose />
-                                                </button>
-                                            </div>
-                                        </>
-                                        }
-                                    </div>
 
-                                </div>
-
-                                {currTask.attachments && currTask.attachments.length > 0 && (
-                                    <AttachmentPreview />
-                                )}
-
-
-                                {currTask.checklists && currTask.checklists.map(checklist => {
-
-                                    return <div key={checklist.id}>
-
-                                        <ChecklistPreview checklist={checklist}
-                                            currTask={currTask} board={board} updateTask={updateTask} />
-
-
-
-                                        <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
-                                    </div>
-                                })}
-
-
-
-                                <div className="task-activity">
-
-                                    <div className="activity-header flex row space-between">
-                                        <div className="details-section-header">
-                                            <span className="icon-lg header-icon"><BsListUl /></span>
-                                            <h3>Activity</h3>
-                                        </div>
-                                        <button>Hide Details</button>
-                                    </div>
-
-                                    <div className="ml-40">
-                                        <div className="activity-comment">
-                                            <textarea
-                                                name="comments"
-                                                placeholder="Write a comment..."
-                                                onChange={this.handleChange}
-                                            // value={currTask.description}
-                                            // onBlur={this.handleDetailsChange}
-                                            >
-
-                                            </textarea>
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div className="task-sidebar flex column">
-                                <TaskSideBar board={board} currTask={currTask} currGroup={currGroup} />
-                            </div>
-
-
+                        <div className="task-sidebar flex column">
+                            <TaskSideBar board={board} currTask={currTask} currGroup={currGroup} />
                         </div>
 
 
-                    </section>
+                    </div>
+
+
+                </section>
                 {/* </Link> */}
             </React.Fragment>
         );
