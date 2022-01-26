@@ -65,7 +65,7 @@ class _QuickEditor extends React.Component {
         const taskLabels = taskService.getLabelsById(board, currTask);
         console.log(board._id, group.id, currTask.id);
         return <section className="quick-edit-container ">
-            <div className="task-preview-container" >
+            <div className="task-preview-container1" >
                 {currTask.style && <TaskPreviewHeader board={board} task={currTask} toggleEditOpen={toggleEditOpen} />}
                 <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
                     {board.labels && taskLabels && taskLabels.map((label, idx) => <li className='label-bar' key={idx} style={label.color && { backgroundColor: label.color }}>{label.title && <span>{label.title}</span>}</li>)}
