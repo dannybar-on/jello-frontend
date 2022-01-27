@@ -242,7 +242,7 @@ function getModalPosition(clickedElementPos) {
     console.log('clickedElementPos:', clickedElementPos);
 
     const position = {
-        topPos: clickedElementPos.top - 20,
+        topPos: clickedElementPos.top + clickedElementPos.height,
         leftPos: clickedElementPos.left
     }
 
