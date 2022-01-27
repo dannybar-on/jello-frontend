@@ -8,7 +8,7 @@ import { FiStar } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 import { RiUserAddLine } from 'react-icons/ri';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
-// import {SideMenu} from '../SideMenu.jsx'
+import {SideMenu} from '../SideMenu.jsx'
 
 class _BoardHeader extends React.Component {
 
@@ -71,7 +71,7 @@ class _BoardHeader extends React.Component {
                 <button className='dashboard-btn flex align-center justify-center'> Dashboard</button>
                 <button className='show-more-btn flex align-center justify-center' onClick={() => this.toggleMenu()}><BiDotsHorizontalRounded /> Show menu</button>
             </div>
-            {/* <SideMenu isMenuOpen={isMenuOpen} toggleMenu={this.toggleMenu} /> */}
+            <SideMenu isMenuOpen={isMenuOpen} toggleMenu={this.toggleMenu} />
         </section>;
     }
 }

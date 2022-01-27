@@ -61,6 +61,8 @@ function removeLabel(labelId, labels, board) {
         const updatedTasks = group.tasks.map(task => {
             if (task.labelIds) {
                 const newTaskLabels = task.labelIds.filter(label => label !== labelId);
+                console.log('newTaskLabels:', newTaskLabels);
+                
                 task = { ...task, labelIds: newTaskLabels };
             }
             return task;
@@ -233,17 +235,9 @@ function getUploadTime(timestamp) {
     }
 }
 
-function getModalPosition(clickedElementPos) {
-    console.log('clickedElementsPos:', clickedElementPos);
+function getModalPosition(clickedElementPos)  {
 
-    const pos = {
-
-        topPos: clickedElementPos.y - clickedElementPos.height *2
-
-    }
-
-
-    // console.log('topPos:', topPos);
-
-    return pos
+    const topPos = clickedElementPos.top - clickedElementPos.height +10
+    
+    return topPos
 }

@@ -1,0 +1,31 @@
+.change-bg {
+    width: 100%;
+    padding: 5px;
+    .images {
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        .img-container {
+            width: 49%;
+            > img {
+                height: 100%;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .colors {
+        cursor: pointer;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+
+        .color-container {
+            border-radius: 5px;
+            width: 49%;
+            height: 105px;
+        }
+    }
+}
