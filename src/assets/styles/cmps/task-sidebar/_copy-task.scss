@@ -1,0 +1,109 @@
+.copy-card {
+
+    textarea {
+        height: 72px;
+        margin: 4px 0 12px;
+        width: 100%;
+    }
+
+    label {
+        margin-top: 4px;
+        color: #5e6c84;
+        display: block;
+        font-size: rem(12px);
+        font-weight: 700;
+        line-height: 16px;
+        margin-bottom: 4px;
+    }
+
+    .select-board {
+        margin-bottom: 8px;
+    }
+
+
+    .select-group {
+        width: 192px;
+    }
+
+    .select-position {
+        width: 80px;
+        margin-left: 8px;
+    }
+
+
+    .select-board,
+    .select-group,
+    .select-position {
+        height: 48px;
+        margin-top: 0;
+        position: relative;
+        background-color: #091e420a;
+        border: none;
+        border-radius: 3px;
+        box-shadow: none;
+        box-sizing: border-box;
+        cursor: pointer;
+        display: block;
+        overflow: hidden;
+        padding: 6px 12px;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        transition-duration: 85ms;
+        transition-property: background-color, border-color, box-shadow;
+        transition-timing-function: ease;
+        user-select: none;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: #091e4214;
+        }
+
+
+
+
+        .label {
+            color: #5e6c84;
+            display: block;
+            font-size: rem(12px);
+            line-height: 16px;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        select {
+            border: none;
+            cursor: pointer;
+            height: 50px;
+            left: 0;
+            margin: 0;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+            color: #172b4d;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+            font-size: rem(14px);
+            font-weight: 400;
+            line-height: 20px;
+        }
+
+        .select-value {
+            display: block;
+            font-size: rem(14px);
+            line-height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #172b4d;
+        }
+
+        .bottom-container {
+            width: 100%;
+            gap: 8px;
+        }
+    }
+
+    .copy-btn {
+        margin-top: 16px;
+    }
+}

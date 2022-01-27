@@ -94,7 +94,7 @@ class _BoardDetails extends React.Component {
 
   render() {
     const { isAddOpen, isEditOpen, isTaskLabelListOpen } = this.state;
-    const { board, updateGroup, currTask } = this.props;
+    const { board, updateGroup, onSetCurrTask } = this.props;
 
     if (!board) return <Loader />;
     return (
@@ -105,7 +105,7 @@ class _BoardDetails extends React.Component {
 
             <BoardHeader board={this.props.board} />
             <div className='list-container flex'>
-              <GroupList groups={board.groups} board={board} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen} />
+              <GroupList groups={board.groups} board={board} onSetCurrTask={onSetCurrTask} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen} />
               {!isAddOpen && (
                 <div onClick={this.onToggleAdd} className="add-another-group">
                   <button className='add-list-btn flex align-center' >
@@ -130,15 +130,17 @@ class _BoardDetails extends React.Component {
 
           </div>
         </DragDropContext >
-        {isEditOpen && <QuickEditor board={board} toggleEditOpen={this.toggleEditOpen}
-         task={currTask} toggleTaskLabelList={this.toggleTaskLabelList}
+        {/* {isEditOpen && <QuickEditor board={board} toggleEditOpen={this.toggleEditOpen}
+         task={currTask} toggleTaskLabelList={this.toggleTaskLabelList} position={position}
           isTaskLabelListOpen={isTaskLabelListOpen}
-          />}
+          />} */}
 
       </>
     );
   }
 }
+
+var position;
 
 function mapStateToProps({ boardModule }) {
   return {

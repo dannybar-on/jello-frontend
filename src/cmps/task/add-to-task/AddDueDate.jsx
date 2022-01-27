@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
@@ -10,27 +10,30 @@ import { updateTask, onSetCurrTask } from '../../../store/board.action.js';
 function _AddDueDate({ updateTask, currTask, board, toggleDynamicModal }) {
     const [startDate] = useState(new Date());
     const [endDate] = useState(null);
-    const [dueDate, setDueDate] = useState(null);
+    const [dueDate, setDueDate] = useState('invalidDate');
     const { groupId } = useParams();
 
     const onChange = (date) => {
         setDueDate(date.getTime());
     };
 
+    useEffect(()=>{
+        if (dueDate === 'invalidDate') return;
+        handleDueDate();
+    },[dueDate])
+
     const cleanDate = () => {
         setDueDate(null);
-        handleDueDate();
     };
 
     const handleDueDate = () => {
         const res = taskService.handleDueDateChange(dueDate, currTask);
         const currGroup = taskService.getGroupById(res.id);
-        console.log(currGroup, 'handleeeeee RES****');
         // await onSetCurrTask(res);
         updateTask(board, currGroup, res);
         toggleDynamicModal();
     };
-
+    
     console.log(dueDate);
     return (
         <div className="date-picker">

@@ -3,6 +3,8 @@ import { IoIosArrowBack, IoMdClose } from 'react-icons/io';
 import { connect } from 'react-redux';
 import { ChangeBG } from './ChangeBG';
 import { CgCreditCard } from 'react-icons/cg';
+import {HiOutlineTrash} from 'react-icons/hi';
+import {RemoveBoard} from './RemoveBoard';
 
 import { withRouter } from 'react-router'
 
@@ -13,7 +15,8 @@ class _SideMenu extends React.Component {
         currViewIdx: -1
     }
 
-    _cmpsToRender = [{ id: 'c101', title: 'Change Background', icon: <CgCreditCard />, component: ChangeBG }]
+    _cmpsToRender = [{ id: 'c101', title: 'Change Background', icon: <CgCreditCard />, component: ChangeBG },
+                    {  id: 'c102', title: 'Remove Board', icon: <HiOutlineTrash  />, component: RemoveBoard}]
     
 
     componentDidMount() {

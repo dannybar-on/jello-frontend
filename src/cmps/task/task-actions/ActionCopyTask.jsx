@@ -6,28 +6,23 @@ import { updateBoard } from '../../../store/board.action';
 function _ActionCopyTask({board, currTask, updateBoard}) {
     const [currTitle, setCurrTitle] = useState('');
     const [currGroup, setCurrGroup] = useState(null);
-    const [currPosition, setCurrPosition] = useState(null)
+    const [currPosition, setCurrPosition] = useState(1)
 
     useEffect(() => {
         const group = taskService.getGroupById(currTask.id, board._id)
         const task = taskService.getTaskById(currTask.id, group.id)
         setCurrTitle(task.title)
         setCurrGroup(group)
-        const idx = group.tasks.findIndex(task => task.id === currTask.id)
         
-        setCurrPosition(idx + 1)
     }, [board, currTask.id])
     
-    useEffect(() =>{
-        console.log(currGroup, 'useEffect');
-    }, [currGroup])
+    
     const handleChange = ({target: {name, value}}) => {
         
         if (name === 'group') {
             console.log(name, value);
             const group = board.groups.find(item => item.id === value)
             setCurrGroup(group)
-            setCurrPosition(group.tasks.length + 1)
         } else if (name === 'position') {
             setCurrPosition(value)
         } else if (name === 'title') {
@@ -38,7 +33,6 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
     const getPositions = () => {
         const length = currGroup.tasks.length + 1;
         const positions = [];
-        console.log(currGroup, 'heeeeeeere');
         for (let i = 1; i <= length; i++) {
             positions.push(i)
         }
@@ -72,7 +66,7 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
                 <div className="select-group">
                     <span className="label">List</span>
                     <span className="select-value">{currGroup.title}</span>
-                    {currGroup && <select name="group" onChange={handleChange} defaultValue={currGroup.title}>
+                    {currGroup && <select name="group" onChange={handleChange} value={currGroup.id}>
                         {board.groups.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
                     </select>}
                 </div>
@@ -80,7 +74,7 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
                 <div className="select-position">
                     <span className="label">Position</span>
                     <span className="select-value">{currPosition}</span>
-                    <select name="position" onChange={handleChange}>
+                    <select name="position" onChange={handleChange} value={currPosition}>
                         {getPositions().map((item, i) => <option key={i} value={item}>{item}</option>)}
                     </select>
                 </div>

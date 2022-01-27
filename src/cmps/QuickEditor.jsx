@@ -75,24 +75,32 @@ class _QuickEditor extends React.Component {
 
     render() {
         const { taskTitle, isModalOpen, item } = this.state;
-        const { board, currTask, toggleEditOpen, toggleTaskLabelList, isTaskLabelListOpen } = this.props;
+        const { board, currTask, toggleEditOpen, } = this.props;
+        let { position } = this.props;
+        console.log(position)
+        // const { topPos, leftPos } = taskService.getModalPosition(position);
+        // console.log(position, 'IN QUICK EDITOR');
         const group = currTask && taskService.getGroupById(currTask.id);
         const taskLabels = currTask.labelIds && taskService.getLabelsById(board, currTask);
+        return <section className="quick-edit-container " style={{
+            position: 'fixed',
+            // top: topPos,
+        
+            // left: leftPos,
+        }}>
 
-      
-
-        return <section className="quick-edit-container ">
-            <div className="task-preview-container1"  style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor } : { backgroundColor: '#fff' }}>
+            <div className="task-preview-container1" style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor } : { backgroundColor: '#fff' }}>
                 {!currTask.isFull && (currTask?.style?.bgColor || currTask?.style?.bgImg) && <TaskPreviewHeader board={board} task={currTask} toggleEditOpen={toggleEditOpen} />}
-               
-                {!currTask.isFull &&  <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
+
+                {!currTask.isFull && <ul className={`task-labels clean-list flex `} >
                     {board.labels && taskLabels && taskLabels.map((label, idx) => <li className='label-bar' key={idx} style={label.color && { backgroundColor: label.color }}>{label.title && <span>{label.title}</span>}</li>)}
                 </ul>}
 
                 <div style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor } : { backgroundColor: 'inherit' }} >
-                    <textarea  type="text" name="taskTitle"
+                    <textarea type="text" name="taskTitle"
                         style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor } : { backgroundColor: 'inherit' }}
                         value={taskTitle} onChange={this.handleChange} onBlur={(event) => this.onSaveTitle(event, taskTitle)} />
+                    <button onClick={(event) => this.onSaveTitle(event, taskTitle)} className="btn-style1">Save</button>
                 </div>
 
                 {!currTask.isFull && <TaskPreviewFooter board={board} task={currTask} />}
@@ -100,10 +108,10 @@ class _QuickEditor extends React.Component {
 
 
             <div className="quick-edit-btns">
-                <Link className="flex align-center row" to={`${board._id}/${group.id}/${currTask.id}`} >
+                {/* <Link className="flex align-center row" to={`${board._id}/${group.id}/${currTask.id}`} >
                     <span className="flex align-center"><CgCreditCard /></span>
                     <p>Open card</p>
-                </Link>
+                </Link> */}
                 {addToTaskItems.map((item, idx) => (
                     <button key={idx} onClick={(event) => { this.toggleDynamicModal(); this.setState({ item }); position = event.target.getBoundingClientRect(); }}
                         className="add-item-btn flex row align-center">
@@ -149,3 +157,4 @@ const mapDispatchToProps = {
 };
 
 export const QuickEditor = connect(mapStateToProps, mapDispatchToProps)(_QuickEditor);
+{/* onClick={(event) => toggleTaskLabelList(event)}> */ }

@@ -34,13 +34,21 @@ class _TaskDetails extends React.Component {
 
     };
 
-
-
     componentDidMount() {
         this.setCurrTask();
-
-
     }
+
+    toggleIsEditOpen = (event) => {
+        const {isEditOpen} = this.state; 
+        this.setState({isEditOpen: !isEditOpen})
+    }
+
+    // componentDidUpdate(prevState) {
+    //     if (prevState.currBoard !== this.props.board) {
+    //         console.log(this.props.currTask, 'in did update');
+    //         this.setCurrTask(this.props.currTask);
+    //     }
+    // }
 
 
     componentDidUpdate(prevProps) {
@@ -97,7 +105,6 @@ class _TaskDetails extends React.Component {
 
         return (
             <React.Fragment>
-
                 <section onClick={() => history.push(`/board/${boardId}`)} className="go-back-container" >
 
                     <div className="task-details-container" onClick={(ev) => ev.stopPropagation()}>
@@ -143,7 +150,7 @@ class _TaskDetails extends React.Component {
 
                             <div className="task-main flex column">
 
-                                <TaskDetailsData currGroup={currGroup} />
+                                <TaskDetailsData currGroup={currGroup} isEditOpen={isEditOpen} toggleIsEditOpen={this.toggleIsEditOpen}/>
 
                                 <div className="task-description">
                                     <div className="details-section-header ">
