@@ -64,7 +64,8 @@ export function updateGroup(board, group) {
 export function setCurrBoard(board) {
     return async (dispatch) => {
         try {
-            dispatch({ type: 'SET_CURR_BOARD', board });
+            const updatedBoard = await boardService.save(board);
+            dispatch({ type: 'SET_CURR_BOARD', board:updatedBoard });
             document.body.style.background = (board.style.bgColor) ? board.style.bgColor : `url("${board.style.bgImg}")`;
             document.body.style.backgroundRepeat = 'no-repeat';
             document.body.style.backgroundPosition = 'center';

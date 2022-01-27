@@ -184,7 +184,9 @@
   width: 240px;
   z-index: 0;
 
-  button {
+  button, a {
+    // display: flex;
+    // align-items: center;
     opacity: 1;
     background: #0009;
     border-radius: 3px;
@@ -196,10 +198,10 @@
     padding: 6px 12px 6px 8px;
     text-decoration: none;
     transition: transform 85ms ease-in;
-  }
-  &:hover {
-    background: #000c;
-    color: #fff;
-    transform: translateX(5px);
+    &:hover {
+      background: #000c;
+      color: #fff;
+      transform: translateX(5px);
+    }
   }
 }

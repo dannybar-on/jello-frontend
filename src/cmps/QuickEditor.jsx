@@ -11,7 +11,7 @@ import { TaskDetails } from '../pages/TaskDetails';
 //SERVICE & ACTIONS
 import { taskService } from '../services/task.service.js';
 import { boardService } from '../services/board.service.js';
-import { updateTask } from '../store/board.action';
+import { updateTask, onSetCurrTask } from '../store/board.action';
 
 //ICONS
 import { IoMdTime } from 'react-icons/io';
@@ -37,7 +37,21 @@ class _QuickEditor extends React.Component {
     }
 
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.board !== this.props.board) {
+            this.setCurrTask();
+        }
+    }
 
+    setCurrTask = async () => {
+        // const { boardId } = this.props.match.params;
+        let { currTask } = this.props;
+        // const board = await boardService.getById(boardId);
+        const currGroup = taskService.getGroupById(currTask.id);
+        currTask = currGroup.tasks.find(task => task.id === currTask.id);
+        // this.setState({ currGroup, currTask });
+        this.props.onSetCurrTask(currTask);
+    };
 
 
     handleChange = ({ target: { name, value } }) => {
@@ -60,19 +74,20 @@ class _QuickEditor extends React.Component {
 
     render() {
         const { taskTitle, isModalOpen, item } = this.state;
-        const { board, currTask, toggleEditOpen, toggleTaskLabelList, isTaskLabelListOpen} = this.props;
-        const group = taskService.getGroupById(currTask.id) 
-        const taskLabels = taskService.getLabelsById(board, currTask);
-        console.log(board._id, group.id, currTask.id);
+        const { board, currTask, toggleEditOpen, toggleTaskLabelList, isTaskLabelListOpen } = this.props;
+        const group = currTask && taskService.getGroupById(currTask.id);
+        const taskLabels = currTask.labelIds && taskService.getLabelsById(board, currTask);
         return <section className="quick-edit-container ">
-            <div className="task-preview-container1" >
-                {currTask.style && <TaskPreviewHeader board={board} task={currTask} toggleEditOpen={toggleEditOpen} />}
-                <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
+            <div className="task-preview-container1"    style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor } : { backgroundColor: '#fff' }}>
+                {!currTask.isFull && (currTask?.style?.bgColor || currTask?.style?.bgImg) && <TaskPreviewHeader board={board} task={currTask} toggleEditOpen={toggleEditOpen} />}
+               
+                {!currTask.isFull &&  <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
                     {board.labels && taskLabels && taskLabels.map((label, idx) => <li className='label-bar' key={idx} style={label.color && { backgroundColor: label.color }}>{label.title && <span>{label.title}</span>}</li>)}
-                </ul>
+                </ul>}
 
-                <div>
-                    <textarea className='modal-search' type="text" name="taskTitle"
+                <div style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor } : { backgroundColor: 'inherit' }} >
+                    <textarea  type="text" name="taskTitle"
+                        style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor } : { backgroundColor: 'inherit' }}
                         value={taskTitle} onChange={this.handleChange} onBlur={(event) => this.onSaveTitle(event, taskTitle)} />
                 </div>
 
@@ -86,7 +101,7 @@ class _QuickEditor extends React.Component {
                     <p>Open card</p>
                 </Link>
                 {addToTaskItems.map((item, idx) => (
-                    <button key={idx} onClick={(event) => { this.toggleDynamicModal(); this.setState({ item }); position = event.target.getBoundingClientRect() }}
+                    <button key={idx} onClick={(event) => { this.toggleDynamicModal(); this.setState({ item }); position = event.target.getBoundingClientRect(); }}
                         className="add-item-btn flex row align-center">
                         <span className="flex align-center">{item.icon}</span>
 
@@ -98,7 +113,7 @@ class _QuickEditor extends React.Component {
         </section >;
     }
 }
-let position
+let position;
 
 const addToTaskItems = [
 
@@ -123,7 +138,7 @@ const mapDispatchToProps = {
     // updateBoard,
     // unMountBoard,
     // updateGroup,
-    // onSetCurrTask,
+    onSetCurrTask,
     updateTask,
 };
 

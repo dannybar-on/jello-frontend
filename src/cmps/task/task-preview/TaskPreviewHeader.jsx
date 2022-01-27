@@ -8,8 +8,6 @@ export class TaskPreviewHeader extends React.Component {
 
     render() {
         const { task, toggleEditOpen, isFull } = this.props;
-        // const taskLabels = taskService.getLabelsById(board, task);
-        // console.log(isFull);
         return (
             <>
          
