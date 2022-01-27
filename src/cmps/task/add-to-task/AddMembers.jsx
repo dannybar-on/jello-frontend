@@ -26,11 +26,19 @@ class _AddMembers extends React.Component {
 
 
     onAddMemberToTask(member) {
-        let { board, currTask, currGroup } = this.props;
-        if (!currTask.members) currTask.members = [];
-        else if (currTask.members.includes(member)) currTask.members = currTask.members.filter(currUser => currUser._id !== member._id);
-        else currTask.members.push(member);
+        let { board, currTask } = this.props;
+        const currGroup = taskService.getGroupById(currTask.id);
+        if (!currTask.members || !currTask.members.length) currTask.members = [];
+        const idx = currTask.members.findIndex(user => user._id === member._id);
+        if (idx === -1) {
+            currTask.members.push(member);
+        } else {
+            currTask.members = currTask.members.filter(user => user._id !== member._id);
+        }
         this.props.updateTask(board, currGroup, currTask);
+
+
+        // console.log(currTask.members.some(user => user._id === member._id));
 
     }
 
@@ -50,7 +58,7 @@ class _AddMembers extends React.Component {
                             </span>
                             <span>{member.fullname}</span>
                             <span> ({member.username})</span>
-                        {currTask.members && currTask.members.includes(member) && <span className="includes-icon"><MdDone /></span>}
+                            {currTask.members && currTask.members.some(user => user._id === member._id) && <span className="includes-icon"><MdDone /></span>}
                         </div>
                     </div>;
                 })}

@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import { taskService } from '../services/task.service.js'
+import { taskService } from '../services/task.service.js';
 
 //ADD TO TASK
 import { AddMembers } from './task/add-to-task/AddMembers';
@@ -12,7 +12,7 @@ import { AddCover } from './task/add-to-task/AddCover';
 import { EditAttachment } from './task/add-to-task/EditAttachment';
 
 //TASK ACTIONS
-import { ActionMoveTask } from './task/task-actions/ActionMoveTask'
+import { ActionMoveTask } from './task/task-actions/ActionMoveTask';
 import { ActionCopyTask } from './task/task-actions/ActionCopyTask';
 import { ActionArchiveTask } from './task/task-actions/ActionArchiveTask';
 
@@ -21,49 +21,48 @@ import { IoMdClose } from 'react-icons/io';
 export class DynamicModal extends React.Component {
 
 
-    
+
 
     setDynamicModalContent = () => {
-        const { item } = this.props
+        const { item } = this.props;
 
         switch (item) {
             case 'Members':
-                return <AddMembers {...this.props} />
+                return <AddMembers {...this.props} />;
 
             case 'Labels':
-                return <LabelsList {...this.props} />
+                return <LabelsList {...this.props} />;
 
             case 'Checklist':
-                return <AddChecklist {...this.props} />
+                return <AddChecklist {...this.props} />;
 
             case 'Dates':
-                return <AddDueDate {...this.props} />
+                return <AddDueDate {...this.props} />;
 
             case 'Attachment':
-                return <AddAttachment {...this.props} />
+                return <AddAttachment {...this.props} />;
 
             case 'Edit Attachment':
-                return <EditAttachment {...this.props} />
+                return <EditAttachment {...this.props} />;
 
             case 'Cover':
-                console.log(this.props)
-                return <AddCover {...this.props} />
+                return <AddCover {...this.props} />;
 
             case 'Move':
-                return <ActionMoveTask {...this.props} />
+                return <ActionMoveTask {...this.props} />;
 
             case 'Copy':
-                return <ActionCopyTask {...this.props} />
+                return <ActionCopyTask {...this.props} />;
 
             case 'Archive':
-                return <ActionArchiveTask {...this.props} />
+                return <ActionArchiveTask {...this.props} />;
 
             // case 'Delete':
             //     return <DynamicDelete {...this.props} item={item} />
 
             default:
         }
-    }
+    };
 
 
     //    setModalPos = (ev) => {
@@ -77,11 +76,9 @@ export class DynamicModal extends React.Component {
 
     render() {
 
-        const { item, toggleDynamicModal, position } = this.props
-        const { topPos, leftPos } = taskService.getModalPosition(position)
-        console.log('position top:', topPos);
-        console.log('position left:', leftPos);
-
+        const { item, toggleDynamicModal, position } = this.props;
+        const { topPos, leftPos } = taskService.getModalPosition(position);
+        // console.log(topPos);
         return (
             <>
                 {/* style={{ top: topPos }} */}
@@ -101,7 +98,7 @@ export class DynamicModal extends React.Component {
 
                 </section>
             </>
-        )
+        );
     }
 }
 
