@@ -55,7 +55,7 @@ export class LabelsEditAdd extends React.Component {
                     <button className="icon-sm back-to-labels-btn" onClick={() => setAddEditMode()}><MdKeyboardArrowLeft /></button>
                     <h4>Name</h4>
                     <input
-                        className="modal-search"
+                        className="input-style"
                         type="text"
                         name="title"
                         onChange={this.handleInputChange}

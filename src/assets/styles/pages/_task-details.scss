@@ -4,10 +4,10 @@
   min-height: 600px;
   width: 768px;
   overflow-y: auto;
-  margin: 48px 0 80px;
+  margin: 48px 0 48px;
   height: fit-content;
   position: relative;
- 
+  cursor: default;
   z-index: 10;
 
   .task-cover {
@@ -136,14 +136,14 @@
     }
 
     .task-activity {
-      .activity-header {
-        margin-bottom: 15px;
+      // .activity-header {
+      //   margin-bottom: 15px;
 
-        h3 {
-          font-size: 16px;
-          font-weight: 600;
-        }
-      }
+      //   h3 {
+      //     font-size: 16px;
+      //     font-weight: 600;
+      //   }
+      // }
       .activity-comment {
         textarea {
           height: 35px;
@@ -162,16 +162,3 @@
     }
   }
 }
-
-// .card-details {
-//   position: fixed;
-
-//   top: 50%;
-//   left: 50%;
-//   height: 80vh;
-//   width: 70vw;
-//   transform: translate(-50%, -50%);
-//   background-color: #f0f5ef;
-//   z-index: 10;
-//   border-radius: 8px;
-// }

@@ -1,0 +1,53 @@
+.login-page {
+  // display: grid;
+  height: 100vh;
+  background-color: $light-grey1;
+  //   display: block;
+  flex-grow: 1;
+  //   grid-template-columns: minmax(20px, 1fr) minmax(auto, 960px) minmax(20px, 1fr);
+
+  .login-logo-header {
+      gap: 10px;
+    .jello {
+      height: 47px;
+      width: 47px;
+      color: #fff;
+      top: 2px;
+      position: relative;
+    }
+    .login-logo {
+        color: $dark-blue;
+        font-size: rem(35px);
+        font-weight: 700;
+    }
+  }
+
+  .login-container {
+    text-align: center;
+    max-width: 400px;
+    height: fit-content;
+    margin: 0 auto;
+    grid-gap: 15px;
+    gap: 15px;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 25px 40px;
+    box-shadow: 0 0 10px #0000001a;
+
+    h3 {
+      color: $dark-blue;
+    }
+  }
+
+  .right-svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .left-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}

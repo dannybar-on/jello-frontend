@@ -52,7 +52,8 @@ class _QuickEditor extends React.Component {
         // this.setState({ currGroup, currTask });
         this.props.onSetCurrTask(currTask);
     };
-
+    
+  
 
     handleChange = ({ target: { name, value } }) => {
         this.setState({ [name]: value });
@@ -77,8 +78,11 @@ class _QuickEditor extends React.Component {
         const { board, currTask, toggleEditOpen, toggleTaskLabelList, isTaskLabelListOpen } = this.props;
         const group = currTask && taskService.getGroupById(currTask.id);
         const taskLabels = currTask.labelIds && taskService.getLabelsById(board, currTask);
+
+      
+
         return <section className="quick-edit-container ">
-            <div className="task-preview-container1"    style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor } : { backgroundColor: '#fff' }}>
+            <div className="task-preview-container1"  style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor } : { backgroundColor: '#fff' }}>
                 {!currTask.isFull && (currTask?.style?.bgColor || currTask?.style?.bgImg) && <TaskPreviewHeader board={board} task={currTask} toggleEditOpen={toggleEditOpen} />}
                
                 {!currTask.isFull &&  <ul className={`task-labels clean-list flex ${isTaskLabelListOpen ? 'open' : 'close'}`} onClick={(event) => toggleTaskLabelList(event)}>
@@ -113,7 +117,9 @@ class _QuickEditor extends React.Component {
         </section >;
     }
 }
-let position;
+let position 
+// let
+
 
 const addToTaskItems = [
 

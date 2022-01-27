@@ -54,7 +54,7 @@ class _ChangeBG extends React.Component {
         const { keyword, pics } = this.state
         return (
             <div className="change-bg">
-                <input type="text" className="modal-search" value={keyword} onChange={this.handleChange} placeholder="Search Images..." />
+                <input type="text" className="input-style" value={keyword} onChange={this.handleChange} placeholder="Search Images..." />
                 <div className="images">
                     {pics.map(pic =>
                         <div key={pic.id} className="img-container" onClick={() => this.setBoardBG(pic.full)}>

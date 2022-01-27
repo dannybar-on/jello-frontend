@@ -58,22 +58,11 @@ export class DynamicModal extends React.Component {
             case 'Archive':
                 return <ActionArchiveTask {...this.props} />
 
-            // case 'Delete':
-            //     return <DynamicDelete {...this.props} item={item} />
-
             default:
         }
     }
 
 
-    //    setModalPos = (ev) => {
-    //     // console.log('pos', ev.target.getBoundingClientRect());
-    //     const clickedElementPos = ev.target.getBoundingClientRect()
-    //     // console.log('clickedElementsPos:', clickedElementPos);
-
-    //     const topPos = clickedElementPos.top - clickedElementPos.height
-    //     taskService.getModalPosition(topPos)
-    //     }
 
     render() {
 
