@@ -55,7 +55,6 @@ class _TaskDetailsData extends React.Component {
     render() {
         const { board, currTask } = this.props;
         if (currTask.labelIds) { var taskLabels = taskService.getLabelsById(board, currTask); }
-        console.log('updated', {...currTask});
         // if (!taskLabels) return <></>
 
         return (
