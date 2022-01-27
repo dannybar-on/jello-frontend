@@ -22,18 +22,7 @@ class _AddCover extends React.Component {
         this.onSetSize(size);
     }
 
-    // onSetSize = (size) => {
-    //     let { currTask, board } = this.props;
-    //     const currGroup = taskService.getGroupById(currTask.id);
-    //     if (size === 'full') this.setState({ isFull: true }, () => {
-    //         currTask.isFull = this.state.isFull;
-    //     });
-    //     else if (size === 'half') this.setState({ isFull: false }, () => {
-    //         currTask.isFull = this.state.isFull;
-    //     });
-    //     console.log('12312312', currTask, this.state.isFull)
-    //     this.props.updateTask(board, currGroup, currTask);
-    // };
+
 
     onSetSize = (size) => {
         let { currTask, board } = this.props;
