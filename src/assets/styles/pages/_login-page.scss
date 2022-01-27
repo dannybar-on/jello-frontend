@@ -51,3 +51,27 @@
     left: 0;
   }
 }
+
+
+@media screen and (max-width:580px) {
+    .login-page {
+  
+  
+      .right-svg {
+        display: none;
+      }
+  
+      .left-svg {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 300px;
+        text-align: center;
+  
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
