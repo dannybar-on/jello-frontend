@@ -233,13 +233,17 @@ function getUploadTime(timestamp) {
     }
 }
 
-function getModalPosition(clickedElementPos)  {
+function getModalPosition(clickedElementPos) {
     console.log('clickedElementsPos:', clickedElementPos);
 
-    const topPos = clickedElementPos.top - clickedElementPos.height +10
-    console.log('clickedElementPos.height:', clickedElementPos.height);
-    
-    console.log('topPos:', topPos);
-    
-    return topPos
+    const pos = {
+
+        topPos: clickedElementPos.y - clickedElementPos.height *2
+
+    }
+
+
+    // console.log('topPos:', topPos);
+
+    return pos
 }
