@@ -122,6 +122,7 @@
   background-color: rgba(0, 0, 0, 0.357);
   top: 0;
   left: 0;
+  cursor: pointer;
   // inset: 0;
 }
 
@@ -277,4 +278,25 @@
   transition-duration: 85ms;
   transition-property: background-color, border-color, box-shadow;
   transition-timing-function: ease;
+}
+
+.confirm-delete-btn{
+  cursor: pointer;
+  display: inline-flex;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 20px;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition-duration: 85ms;
+  transition-property: background-color,border-color,box-shadow;
+  transition-timing-function: ease;
+  white-space: normal;
+  box-sizing: border-box;
+  background-color: #b04632;
+    border: none;
+    box-shadow: none;
+    color: #fff;
 }

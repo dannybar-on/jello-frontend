@@ -5,74 +5,96 @@
   overflow: hidden;
   position: relative;
 
-  .attachment-img {
-    background-color: #b6b7cf;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border-radius: 3px;
-    height: 80px;
-    margin-inline-start: auto;
-    left: 0;
-    margin-top: -40px;
-    position: absolute;
-    text-align: center;
-    text-decoration: none;
-    top: 50%;
-    top: 65%;
-    width: 112px;
-    z-index: 1;
-  }
+  .attachment-preview {
+    gap: 17px;
+    margin-bottom: 10px;
+    &:hover{
+      background-color: #091e420a;
+     }
 
-  .attachment-thumbnail-details {
-    box-sizing: border-box;
-    cursor: pointer;
-    margin: 0;
-    min-height: 80px;
-    padding: 8px 8px 8px 128px;
-    z-index: 0;
-  }
 
-  .attachment-title {
-    word-wrap: break-word;
-    font-weight: 700;
-  }
+    .attachment-img img {
+      background-color: #b6b7cf;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      border-radius: 3px;
+      height: 80px;
+      width: 112px;
+      // margin-inline-start: auto;
+      left: 0;
+      // margin-top: -40px;
+      // position: absolute;
+      text-align: center;
+      text-decoration: none;
+      top: 50%;
+      top: 65%;
+      z-index: 1;
 
-  .middle-line {
-    margin-bottom: 8px;
-    color: $silver-blue;
+      &:hover{
+        opacity: 0.8;
+      }
+    }
 
-    & > *:not(:first-child) {
-      text-decoration: underline;
+    .attachment-thumbnail-details {
+      box-sizing: border-box;
+      margin: 0;
+      min-height: 80px;
+      // padding: 8px 8px 8px 0;
+      // padding: 8px 8px 8px 128px;
+      z-index: 0;
+      
+     
+    }
 
+    .attachment-title {
+      word-wrap: break-word;
+      font-weight: 700;
+      margin-block-end: 5px;
+      cursor: pointer;
+
+    }
+
+    .middle-line {
+      cursor: pointer;
+      margin-bottom: 8px;
+      color: $silver-blue;
+
+      & > *:not(:first-child) {
+        text-decoration: underline;
+
+        &:hover {
+          color: $dark-blue;
+        }
+      }
+    }
+    .attachment-cover {
+      border-radius: 3px;
+      cursor: pointer;
+
+      margin-right: 8px;
+      text-decoration: none;
+      color: $silver-blue;
+      margin-top: auto;
+
+      .cover-icon {
+        display: inline-block;
+        font-family: trellicons;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.8;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: bottom;
+      }
+
+      .cover-txt {
+        text-decoration: underline;
+        margin-left: 5px;
+      }
       &:hover {
         color: $dark-blue;
       }
-    }
-  }
-  .attachment-cover {
-    border-radius: 3px;
-    margin-right: 8px;
-    text-decoration: none;
-    color: $silver-blue;
-
-    .cover-icon {
-      display: inline-block;
-      font-family: trellicons;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 1.8;
-      text-align: center;
-      text-decoration: none;
-      vertical-align: bottom;
-    }
-
-    .cover-txt {
-      text-decoration: underline;
-      margin-left: 5px;
-    }
-    &:hover {
-      color: $dark-blue;
     }
   }
 }

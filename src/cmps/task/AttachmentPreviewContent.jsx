@@ -33,19 +33,18 @@ function _AttachmentPreviewContent({ attachment, currTask, board, updateTask }) 
         updateTask(...updatedTask)
     }
 
-    console.log(currTask, 'in Content', attachment)
     return (
         <div className="attachment-preview flex">
-            <a className="attachment-img ml-40" href={attachment.url} target="_blank" rel="noreferrer">
-                <div >
-                    <img src={attachment.url} alt={attachment.title} />
-                </div>
+            <a className="attachment-img " href={attachment.url} target="_blank" rel="noreferrer">
+
+                <img src={attachment.url} alt={attachment.title} />
+
             </a>
 
-            <div className="attachment-thumbnail-details">
+            <div className="attachment-thumbnail-details flex column">
                 <span className="attachment-title">{attachment.title}</span>
                 <div className="middle-line">
-                    <span className="added-at">{addedAt}</span> - 
+                    <span className="added-at">{addedAt}</span> -
                     <span> Comment</span> -
                     <span onClick={onRemoveAttachment}> Delete</span> -
 
