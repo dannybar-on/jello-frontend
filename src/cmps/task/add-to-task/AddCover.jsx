@@ -63,7 +63,7 @@ class _AddCover extends React.Component {
             <section className="modal-cover-edit flex column">
 
                 <div className="size-container flex column">
-                    <h3>Size</h3>
+                    <h4>Size</h4>
                     <div className="size-options flex">
 
                         <div className={`size-option half ${(!isFull) ? 'selected' : ''}  `} onClick={() => this.onSetSize('half')}>
@@ -89,7 +89,7 @@ class _AddCover extends React.Component {
                     </div>
                     <button className="btn-style2" onClick={this.handleColorRemove}>Remove cover</button>
                 </div>
-                <h3>Select a color</h3>
+                <h4>Select a color</h4>
                 <div className="colors-container">
                     {Colors.map((color, idx) => {
                         return <div key={idx} style={{ backgroundColor: color }}

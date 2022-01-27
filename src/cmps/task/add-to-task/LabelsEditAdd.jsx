@@ -8,11 +8,12 @@ export class LabelsEditAdd extends React.Component {
 
     state = {
         label: {
-            id:null,
+            id: null,
             title: '',
             color: '#344563',
 
-        }
+        },
+        // isDeleteModal:false
 
     }
 
@@ -35,45 +36,57 @@ export class LabelsEditAdd extends React.Component {
     }
 
 
+    // openDeleteModal = () => {
+    //     this.setState({ isDeleteModal: !this.state.isDeleteModal })
+         
+    // }
+
+
 
     render() {
         const { label, label: { title } } = this.state
         const { onSaveLabel, onRemoveLabel, setAddEditMode } = this.props
-            
 
 
         return (
+            <>
+            {/* {(!isDeleteOpen) ? */}
+                <div className="labels-edit-add">
+                    <button className="icon-sm back-to-labels-btn" onClick={() => setAddEditMode()}><MdKeyboardArrowLeft /></button>
+                    <h4>Name</h4>
+                    <input
+                        className="modal-search"
+                        type="text"
+                        name="title"
+                        onChange={this.handleInputChange}
+                        autoFocus
+                        value={title}
+                    />
 
-            <div className="labels-edit-add">
-                <button className="icon-sm back-to-labels-btn" onClick={() => setAddEditMode()}><MdKeyboardArrowLeft /></button>
-                <h4>Name</h4>
-                <input
-                    className="modal-search"
-                    type="text"
-                    name="title"
-                    onChange={this.handleInputChange}
-                    autoFocus
-                    value={title}
-                />
+                    <h4>Select a color</h4>
+                    <div className="colors-container">
+                        {labelColors.map((color, idx) => {
+                            return <div key={idx} style={{ backgroundColor: color }}
+                                className="color-div flex"
+                                onClick={() => this.handleColorChange(color)}>
+                                {color === label.color && <span className="icon-sm"><MdDone /></span>}
+                            </div>
+                        })}
+                    </div>
 
-                <h4>Select a color</h4>
-                <div className="colors-container">
-                    {labelColors.map((color, idx) => {
-                        return <div key={idx} style={{ backgroundColor: color }}
-                            className="color-div flex"
-                            onClick={() => this.handleColorChange(color)}>
-                            {color === label.color && <span className="icon-sm"><MdDone /></span>}
-                        </div>
-                    })}
-                </div>
-
-                <div className="edit-add-btns flex row space-between">
-                    <button className="btn-style1" onClick={() => onSaveLabel(label)}>{(label.id)? 'Save':'Create'}</button>
-                    {label.id && <button className="btn-style1 delete-btn" onClick={() => onRemoveLabel(label.id)}>Delete</button>}
-                </div>
-            </div >
+                    <div className="edit-add-btns flex row space-between">
+                        <button className="btn-style1" onClick={() => onSaveLabel(label)}>{(label.id) ? 'Save' : 'Create'}</button>
+                        {label.id && <button className="btn-style1 delete-btn" onClick={() => onRemoveLabel(label.id)}>Delete</button>}
+                    </div>
+                </div > 
+                {/* : <div> Deleteing this is undooable */}
 
 
+                {/* </div> */}
+                
+                {/* } */}
+
+            </>
         )
     }
 }
