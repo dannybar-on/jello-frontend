@@ -49,7 +49,7 @@ export class TaskSideBar extends React.Component {
                 <section className="sidebar-actions-container">
                     <h3 className="sidebar-title">Actions</h3>
                     {TaskActions.map((item, idx) => (
-                        <button key={idx} onClick={(event) => { this.toggleDynamicModal(event); this.setState({ content: item }) }}
+                        <button key={idx} onClick={(event) => { this.toggleDynamicModal(); this.setState({ content: item }); position = event.target.getBoundingClientRect()}}
                             className="add-item-btn flex row align-center">
                             <div className="btn-layover"></div>
                             <span className="flex align-center">{item.icon}</span>

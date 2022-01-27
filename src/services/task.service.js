@@ -119,7 +119,10 @@ function getGroupById(taskId) {
 
 function handleCopyTask(taskId, groupId, idx, title) {
     const initialBoard = store.getState().boardModule.currBoard;
-    const initialGroup = initialBoard.groups.find(group => group.tasks.some(task => task.id === taskId));
+    console.log('initialBoard', initialBoard);
+    // const initialGroup = initialBoard.groups.find(group => group.tasks.some(task => task.id === taskId));
+    const initialGroup = getGroupById(taskId)
+    console.log('initialGroup:', initialGroup.id, 'groupId', groupId);
     const task = getTaskById(taskId, initialGroup.id);
     let newGroup = initialBoard.groups.find(group => group.id === groupId);
     newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title });

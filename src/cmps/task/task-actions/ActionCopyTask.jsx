@@ -14,11 +14,17 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
         setCurrTitle(task.title)
         setCurrGroup(group)
         const idx = group.tasks.findIndex(task => task.id === currTask.id)
+        
         setCurrPosition(idx + 1)
     }, [board, currTask.id])
     
+    useEffect(() =>{
+        console.log(currGroup, 'useEffect');
+    }, [currGroup])
     const handleChange = ({target: {name, value}}) => {
+        
         if (name === 'group') {
+            console.log(name, value);
             const group = board.groups.find(item => item.id === value)
             setCurrGroup(group)
             setCurrPosition(group.tasks.length + 1)
@@ -32,6 +38,7 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
     const getPositions = () => {
         const length = currGroup.tasks.length + 1;
         const positions = [];
+        console.log(currGroup, 'heeeeeeere');
         for (let i = 1; i <= length; i++) {
             positions.push(i)
         }
@@ -50,7 +57,7 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
     return (
         <div className="copy-card">
             <label>Title</label>
-            <textarea name="title" className="search-input" autoFocus value={currTitle} onChange={handleChange} />
+            <textarea name="title" className="modal-search" autoFocus value={currTitle} onChange={handleChange} />
 
             <label>Copy to...</label>
             <div className="select-board">
@@ -65,9 +72,9 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
                 <div className="select-group">
                     <span className="label">List</span>
                     <span className="select-value">{currGroup.title}</span>
-                    <select name="group" onChange={handleChange}>
+                    {currGroup && <select name="group" onChange={handleChange} defaultValue={currGroup.title}>
                         {board.groups.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
-                    </select>
+                    </select>}
                 </div>
 
                 <div className="select-position">
