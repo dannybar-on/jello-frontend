@@ -23,7 +23,7 @@ export const taskService = {
     handleAttachmentEdit,
     getSearchedLabel,
     getModalPosition,
-
+    handleMoveTask
 };
 
 
@@ -96,7 +96,6 @@ function handleToggleLabel(labelId, taskToUpdate) {
 
 
 function handleDueDateChange(timestamp, task) {
-    if (!timestamp) return;
     const res = { ...task, dueDate: timestamp };
     return res;
 }
@@ -119,14 +118,23 @@ function getGroupById(taskId) {
 
 function handleCopyTask(taskId, groupId, idx, title) {
     const initialBoard = store.getState().boardModule.currBoard;
-    console.log('initialBoard', initialBoard);
-    // const initialGroup = initialBoard.groups.find(group => group.tasks.some(task => task.id === taskId));
     const initialGroup = getGroupById(taskId)
-    console.log('initialGroup:', initialGroup.id, 'groupId', groupId);
     const task = getTaskById(taskId, initialGroup.id);
     let newGroup = initialBoard.groups.find(group => group.id === groupId);
     newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title });
+    console.log('LAMAAAAAAAAAA', idx);
     return initialBoard;
+}
+
+function handleMoveTask(taskId, groupId, idx) {
+    const initialBoard = store.getState().boardModule.currBoard;
+    const initialGroup = getGroupById(taskId);
+    const task = getTaskById(taskId, initialGroup.id)
+    const initialTaskIdx = initialGroup.tasks.findIndex(task => task.id === taskId);
+    initialGroup.tasks.splice(initialTaskIdx, 1)
+    let newGroup = initialBoard.groups.find(group => group.id === groupId)
+    newGroup.tasks.splice(idx, 0, task)
+    return initialBoard
 }
 
 function getSearchedMember(board, txt) {
@@ -239,7 +247,6 @@ function getUploadTime(timestamp) {
 }
 
 function getModalPosition(clickedElementPos) {
-    console.log('clickedElementPos:', clickedElementPos);
 
     const position = {
         topPos: clickedElementPos.top + clickedElementPos.height,

@@ -16,6 +16,9 @@ import { ActionMoveTask } from './task/task-actions/ActionMoveTask'
 import { ActionCopyTask } from './task/task-actions/ActionCopyTask';
 import { ActionArchiveTask } from './task/task-actions/ActionArchiveTask';
 
+//GROUP ACTIONS
+import { GroupActions } from './GroupActions';
+
 import { IoMdClose } from 'react-icons/io';
 
 export class DynamicModal extends React.Component {
@@ -58,6 +61,9 @@ export class DynamicModal extends React.Component {
             case 'Archive':
                 return <ActionArchiveTask {...this.props} />
 
+            case 'List actions':
+                return <GroupActions {...this.props} />
+
             // case 'Delete':
             //     return <DynamicDelete {...this.props} item={item} />
 
@@ -79,8 +85,7 @@ export class DynamicModal extends React.Component {
 
         const { item, toggleDynamicModal, position } = this.props
         const { topPos, leftPos } = taskService.getModalPosition(position)
-        console.log('position top:', topPos);
-        console.log('position left:', leftPos);
+        
 
         return (
             <>

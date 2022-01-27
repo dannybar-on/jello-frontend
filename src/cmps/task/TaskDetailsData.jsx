@@ -9,6 +9,7 @@ import { updateTask, updateBoard } from '../../store/board.action.js';
 import { UserAvatar } from '../UserAvatar';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import {DynamicModal} from '../DynamicModal'
 
 
 class _TaskDetailsData extends React.Component {
@@ -16,8 +17,6 @@ class _TaskDetailsData extends React.Component {
     state = {
 
     };
-
- 
 
 
     toggleCompleteStatus = (ev) => {
@@ -53,7 +52,7 @@ class _TaskDetailsData extends React.Component {
     };
 
     render() {
-        const { board, currTask } = this.props;
+        const { board, currTask, isEditOpen, toggleIsEditOpen} = this.props;
         if (currTask.labelIds) { var taskLabels = taskService.getLabelsById(board, currTask); }
         // if (!taskLabels) return <></>
         console.log('taskLabels:', taskLabels);
@@ -97,12 +96,14 @@ class _TaskDetailsData extends React.Component {
                             checked={(currTask.status === 'complete')}
                             onChange={(event) => this.toggleCompleteStatus(event)}
                         />
-                        <div className="duedate-date-container flex">
+                        <div className="duedate-date-container flex" onClick={(event) => {toggleIsEditOpen(); position = event.target.getBoundingClientRect()}}>
                             <span>{utilService.handleTimestamp(currTask.dueDate)} at 12:00 AM </span>
                             {currTask.status && <span className={`${this.getClassStyle(currTask)} duedate-status`} >{currTask.status}</span>}
                             <span className="duedate-arrow"><MdKeyboardArrowDown /></span>
                         </div>
                     </div>
+                            {isEditOpen && <DynamicModal item={'Dates'} {...this.props} toggleDynamicModal={toggleIsEditOpen} position={position}>
+                            </DynamicModal>}
 
                 </div>}
 
@@ -113,6 +114,7 @@ class _TaskDetailsData extends React.Component {
     }
 }
 
+var position
 
 function mapStateToProps({ boardModule }) {
     return {

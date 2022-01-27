@@ -49,8 +49,8 @@ function _AttachmentPreviewContent({ attachment, currTask, board, updateTask }) 
                     <span onClick={onRemoveAttachment}> Delete</span> -
 
                     <span ref={editRef} className="pos-relative">
-                        <span onClick={() => setIsEditOpen(!isEditOpen)}> Edit </span>
-                        {isEditOpen && <DynamicModal item={'Edit Attachment'} attachment={attachment} toggleDynamicModal={toggleDynamicModal}>
+                        <span onClick={(event) => {setIsEditOpen(!isEditOpen); position = event.target.getBoundingClientRect()}}> Edit </span>
+                        {isEditOpen && <DynamicModal item={'Edit Attachment'} attachment={attachment} toggleDynamicModal={toggleDynamicModal} position={position}>
                         </DynamicModal>}
                     </span>
 
@@ -77,3 +77,5 @@ const mapDispatchToProps = {
 }
 
 export const AttachmentPreviewContent = connect(mapStateToProps, mapDispatchToProps)(_AttachmentPreviewContent);
+
+var position
