@@ -52,7 +52,8 @@ class _QuickEditor extends React.Component {
         // this.setState({ currGroup, currTask });
         this.props.onSetCurrTask(currTask);
     };
-
+    
+  
 
     handleChange = ({ target: { name, value } }) => {
         this.setState({ [name]: value });
@@ -124,7 +125,9 @@ class _QuickEditor extends React.Component {
         </section >;
     }
 }
-let position;
+let position 
+// let
+
 
 const addToTaskItems = [
 

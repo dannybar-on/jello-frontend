@@ -16,7 +16,6 @@ import { CgCreditCard } from 'react-icons/cg';
 import { GrTextAlignFull } from 'react-icons/gr';
 import { BsListUl, BsCreditCard } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
-import { getTouchRippleUtilityClass } from '@mui/material';
 import { ChecklistPreview } from '../cmps/task/ChecklistPreview';
 import { AttachmentPreview } from '../cmps/task/AttachmentPreview';
 
@@ -27,32 +26,22 @@ class _TaskDetails extends React.Component {
     state = {
         currTask: null,
         currGroup: null,
-
         isDescriptionOpen: false,
         isEditOpen: false,
-        checkListTitle: '',
+        isCommentOpen: false,
+        comment: '',
+
 
     };
 
 
 
-    async componentDidMount() {
+    componentDidMount() {
         this.setCurrTask();
+
 
     }
 
-    // componentDidUpdate(prevState) {
-    //     if (prevState.currBoard !== this.props.board) {
-    //         console.log(this.props.currTask, 'in did update');
-    //         this.setCurrTask(this.props.currTask);
-    //     }
-    // }
-
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.board !== this.props.board) {
-    //         this.setCurrTask();
-    //     }
-    // }
 
     componentDidUpdate(prevProps) {
         if (prevProps.board !== this.props.board) {
@@ -86,13 +75,16 @@ class _TaskDetails extends React.Component {
         this.setState({ isDescriptionOpen: !this.state.isDescriptionOpen });
     };
 
+    setCommentOpen = (state) => {
+        this.setState({ isCommentOpen: state });
+    };
+
     onCancelChanges = (ev) => {
         ev.preventDefault();
         const { currGroup } = this.state;
         const taskId = this.state.currTask.id;
         const prevTask = currGroup.tasks.find(task => task.id === taskId);
-        this.setState({ currTask: prevTask });
-        this.setState({ isDescriptionOpen: false });
+        this.setState({ currTask: prevTask, isDescriptionOpen: false });
     };
 
 
@@ -105,8 +97,8 @@ class _TaskDetails extends React.Component {
 
         return (
             <React.Fragment>
-               
-                <section onClick={() => history.push('/board/${boardId}')} className="go-back-container" >
+
+                <section onClick={() => history.push(`/board/${boardId}`)} className="go-back-container" >
 
                     <div className="task-details-container" onClick={(ev) => ev.stopPropagation()}>
 
@@ -162,10 +154,11 @@ class _TaskDetails extends React.Component {
                                         <textarea
                                             name="description"
                                             placeholder="Add a more detailed description..."
+
                                             onChange={this.handleChange}
                                             onFocus={this.toggleDescriptionTextArea}
                                             value={this.state.currTask.description}
-                                            rows={(isDescriptionOpen) ? '6' : ''}
+                                            rows={(isDescriptionOpen) ? '4' : ''}
                                             onBlur={() => { this.handleDetailsChange(); }}
                                         // onBlur={() => { this.handleDetailsChange(); this.toggleDescriptionTextArea() }}
 
@@ -206,16 +199,17 @@ class _TaskDetails extends React.Component {
 
                                 <div className="task-activity">
 
-                                    <div className="activity-header flex row space-between">
-                                        <div className="details-section-header">
-                                            <span className="icon-lg header-icon"><BsListUl /></span>
-                                            <h3>Activity</h3>
-                                        </div>
-                                        <button>Hide Details</button>
+                                    <div className="details-section-header flex space-between">
+                                        <span className="icon-lg header-icon t-14"><BsListUl /></span>
+                                        <h3>Activity</h3>
+                                        <button className="btn-style2">Hide Details</button>
                                     </div>
 
                                     <div className="ml-40">
                                         <div className="activity-comment">
+                                            {/* <span className="member-img">
+                                                <UserAvatar sx={{ width: 20, height: 20 }} fullname={member.fullname} url={member.imgUrl} />
+                                            </span> */}
                                             <textarea
                                                 name="comments"
                                                 placeholder="Write a comment..."

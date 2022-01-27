@@ -47,7 +47,7 @@ class _AddMembers extends React.Component {
         const { members } = this.state;
         return (
             <div className="members">
-                <input className="modal-search" type="text" placeholder="Search members" value={this.state.filterBy} name="filterBy" onChange={this.handleChange}></input>
+                <input className="input-style" type="text" placeholder="Search members" value={this.state.filterBy} name="filterBy" onChange={this.handleChange}></input>
                 <h4 className="modal-content-title">Board members</h4>
                 {/* <div className="board-members-container"> */}
                 {members.map((member, idx) => {
