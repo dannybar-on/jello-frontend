@@ -21,7 +21,7 @@ function _EditAttachment({attachment, updateTask, toggleDynamicModal}) {
     return (
         <div onClick={handleSetAttachmentTitle} className="edit-attachment">
             <label>Link Name:</label>
-            <input ref={titleRef} className="modal-search" value={title} onChange={(ev) => setTitle(ev.target.value)} />
+            <input ref={titleRef} className="input-style" value={title} onChange={(ev) => setTitle(ev.target.value)} />
             <button className="btn-style1">Update</button>
         </div>
     )

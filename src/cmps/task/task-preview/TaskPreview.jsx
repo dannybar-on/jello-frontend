@@ -8,15 +8,16 @@ import { TaskPreviewContent } from './TaskPreviewContent.jsx';
 
 class _TaskPreview extends React.Component {
     render() {
-        const { board, group, task, index, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList } = this.props;
+        const { board, group, task, index, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList, onSetCurrTask } = this.props;
+
         if (!board) return <h1>Loading</h1>;
         return (
             <Draggable draggableId={task.id} index={index}>
                 {(provided) => {
                     return (
-                        <div  className="task-preview-container" ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
+                        <div className="task-preview-container" ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
                             <Link to={`${board._id}/${group.id}/${task.id}`} >
-                                <TaskPreviewContent board={board} task={task} toggleEditOpen={toggleEditOpen} isTaskLabelListOpen={isTaskLabelListOpen} toggleTaskLabelList={toggleTaskLabelList} />
+                                <TaskPreviewContent board={board} task={task} toggleEditOpen={toggleEditOpen} isTaskLabelListOpen={isTaskLabelListOpen} toggleTaskLabelList={toggleTaskLabelList}  onSetCurrTask={onSetCurrTask} />
                             </Link>
                         </div>
                     );

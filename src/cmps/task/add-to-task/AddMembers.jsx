@@ -26,11 +26,19 @@ class _AddMembers extends React.Component {
 
 
     onAddMemberToTask(member) {
-        let { board, currTask, currGroup } = this.props;
-        if (!currTask.members) currTask.members = [];
-        else if (currTask.members.includes(member)) currTask.members = currTask.members.filter(currUser => currUser._id !== member._id);
-        else currTask.members.push(member);
+        let { board, currTask } = this.props;
+        const currGroup = taskService.getGroupById(currTask.id);
+        if (!currTask.members || !currTask.members.length) currTask.members = [];
+        const idx = currTask.members.findIndex(user => user._id === member._id);
+        if (idx === -1) {
+            currTask.members.push(member);
+        } else {
+            currTask.members = currTask.members.filter(user => user._id !== member._id);
+        }
         this.props.updateTask(board, currGroup, currTask);
+
+
+        // console.log(currTask.members.some(user => user._id === member._id));
 
     }
 
@@ -39,7 +47,7 @@ class _AddMembers extends React.Component {
         const { members } = this.state;
         return (
             <div className="members">
-                <input className="modal-search" type="text" placeholder="Search members" value={this.state.filterBy} name="filterBy" onChange={this.handleChange}></input>
+                <input className="input-style" type="text" placeholder="Search members" value={this.state.filterBy} name="filterBy" onChange={this.handleChange}></input>
                 <h4 className="modal-content-title">Board members</h4>
                 {/* <div className="board-members-container"> */}
                 {members.map((member, idx) => {
@@ -50,7 +58,7 @@ class _AddMembers extends React.Component {
                             </span>
                             <span>{member.fullname}</span>
                             <span> ({member.username})</span>
-                        {currTask.members && currTask.members.includes(member) && <span className="includes-icon"><MdDone /></span>}
+                            {currTask.members && currTask.members.some(user => user._id === member._id) && <span className="includes-icon"><MdDone /></span>}
                         </div>
                     </div>;
                 })}

@@ -1,151 +1,154 @@
-// import React from 'react';
-// import { connect } from 'react-redux';
-// import Avatar from '@material-ui/core/Avatar';
-// import Button from '@material-ui/core/Button';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import TextField from '@material-ui/core/TextField';
-// import Typography from '@material-ui/core/Typography';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-// import { onSignUp, onLoadUser } from '../store/user.action';
+import React from 'react';
+import { connect } from 'react-redux';
+
+import LoginSvgLeft from '../assets/img/login-svg-left.svg'
+import LoginSvgRight from '../assets/img/login-svg-right.svg'
+import jello from '../assets/img/jello.svg';
 
 
-// class _LoginPage extends React.Component {
-//     state = {
-//         username: '',
-//         fullname: '',
-//         password: '',
-//         isLogin: true
-//     };
+class _LoginPage extends React.Component {
+    state = {
+        username: '',
+        fullname: '',
+        password: '',
+        isLogin: true
+    };
 
-//     handleChange = ({ target }) => {
-//         const name = target.name;
-//         const value = target.value;
-//         this.setState(prevState => ({ ...prevState, [name]: value }));
+    handleChange = ({ target }) => {
+        const name = target.name;
+        const value = target.value;
+        this.setState(prevState => ({ ...prevState, [name]: value }));
 
-//     };
+    };
 
-//     onSubmit = (ev) => {
-//         ev.preventDefault();
-//         const { username, password, fullname, isLogin } = this.state;
+    onSubmit = (ev) => {
+        ev.preventDefault();
+        const { username, password, fullname, isLogin } = this.state;
 
-//         if (isLogin) {
-//             const { onLoadUser } = this.props;
-//             if (!username && !password) return;
-//             const credentials = {
-//                 username,
-//                 password,
-//             };
+        if (isLogin) {
+            const { onLoadUser } = this.props;
+            if (!username && !password) return;
+            const credentials = {
+                username,
+                password,
+            };
 
-//             onLoadUser(credentials)
-//                 .then(() => {
-//                     this.props.history.push('/');
-//                 });
-//         } else {
+            onLoadUser(credentials)
+                .then(() => {
+                    this.props.history.push('/');
+                });
+        } else {
 
-//             const { onSignUp } = this.props;
-//             if (!username && !password && !fullname) return;
+            const { onSignUp } = this.props;
+            if (!username && !password && !fullname) return;
 
-//             const userInfo = {
-//                 username,
-//                 password,
-//                 fullname
-//             };
-//             onSignUp(userInfo)
-//                 .then(() => this.props.history.push('/'));
-//         }
-//     };
+            const userInfo = {
+                username,
+                password,
+                fullname
+            };
+            onSignUp(userInfo)
+                .then(() => this.props.history.push('/'));
+        }
+    };
 
-//     toggleForm = () => {
-//         let { isLogin } = this.state;
-//         this.setState({ isLogin: !isLogin });
-//     };
+    toggleForm = () => {
+        let { isLogin } = this.state;
+        this.setState({ isLogin: !isLogin });
+    };
 
-//     render() {
-//         const { isLogin } = this.state;
-//         return (
+    render() {
+        const { isLogin } = this.state;
+        return (
 
-//             <div className='login-page main-layout flex justify-center'>
-//                 <CssBaseline />
-//                 <div className="login-container flex direction-col">
-//                     <div className='flex direction-col align-center'>
-//                         <Avatar className="avatar" />
-//                         <Typography component="h1" variant="h5">
-//                             {(isLogin) ? `Log-in ` : 'Sign-up '}
-//                             <FontAwesomeIcon icon={faSignInAlt} />
-//                         </Typography>
-//                     </div>
-//                     <form >
-//                         <div className="inputs-container flex direction-col">
-//                             {!isLogin && <TextField
-//                                 autoComplete="fname"
-//                                 name="fullname"
-//                                 variant="outlined"
-//                                 // required
-//                                 fullWidth
-//                                 id="fullName"
-//                                 label="Full Name"
-//                                 autoFocus
-//                                 onChange={this.handleChange}
-
-//                             />}
-
-//                             <TextField
-//                                 variant="outlined"
-//                                 // required
-//                                 fullWidth
-//                                 id="username"
-//                                 label="User name"
-//                                 name="username"
-//                                 autoComplete="username"
-//                                 onChange={this.handleChange}
-
-//                             />
-
-//                             <TextField
-//                                 variant="outlined"
-//                                 required
-//                                 fullWidth
-//                                 name="password"
-//                                 label="Password"
-//                                 type="password"
-//                                 id="password"
-//                                 autoComplete="current-password"
-//                                 onChange={this.handleChange}
-
-//                             />
-//                             <Button
-//                                 className="sign-up-btn"
-//                                 type="submit"
-//                                 fullWidth
-//                                 variant="contained"
-//                                 color="secondary"
-//                                 onClick={this.onSubmit}
-//                             >
-//                                 {(isLogin) ? 'Log-in' : 'Sign-up'}
-//                             </Button>
-//                         </div>
-//                     </form>
-//                     <button className="toggle-login" onClick={() => this.toggleForm()}>
-//                         {(isLogin) ? `Don\'t have an account? Sign-up` : `Already have
-//                         an account? Log-in`}
-
-//                     </button>
-//                 </div>
-//             </div>
-
-//         );
-//     }
-// }
+            <section className='login-page'>
 
 
+                <div className='login-logo-header flex-row-center'>
+                    <img className='jello wobble-top-on-hover' src={jello} />
+                    <h1 className='login-logo'>Jello</h1>
+                </div>
 
-// const mapDispatchToProps = {
-//     // onSignUp,
-//     // onLoadUser,
+                <div className="login-container ">
 
-// };
+                    <h3> {(isLogin) ? `Log in ` : 'Sign-up '} to Jello</h3>
+                    <div className='flex column align-center'>
+
+                        {/* {(isLogin) ? `Login ` : 'Sign-up '} */}
+
+                    </div>
+                    <form >
+                        <div className="inputs-container flex column">
+                            {!isLogin &&
+                                <input
+                                    className="input-style"
+                                    name="fullname"
+
+                                    fullWidth
+                                    id="fullName"
+                                    label="Full Name"
+                                    autoFocus
+                                    onChange={this.handleChange}
+
+                                />}
+
+                            <input
+                                className="input-style"
+                                label="User name"
+                                name="username"
+                                autoComplete="username"
+                                onChange={this.handleChange}
+
+                            />
+
+                            <input
+                                className="input-style"
+                                required
+
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                // autoComplete="current-password"
+                                onChange={this.handleChange}
+
+                            />
+                            <button
+                                className="btn-style2"
+                                type="submit"
+
+                                onClick={this.onSubmit}
+                            >
+                                {(isLogin) ? 'Login' : 'Sign-up'}
+                            </button>
+                        </div>
+                    </form>
+                    <button className="toggle-login" onClick={() => this.toggleForm()}>
+                        {(isLogin) ? `Don\'t have an account? Sign-up` : `Already have
+                        an account? Login`}
+
+                    </button>
+                </div>
+
+                <div className="right-svg">
+                    <img src={LoginSvgRight} alt="LoginSvgRight" />
+                </div>
+                <div className="left-svg">
+                    <img src={LoginSvgLeft} alt="LoginSvgLeft" />
+                </div>
+            </section>
+
+        );
+    }
+}
 
 
 
-// export const LoginPage = connect(null, mapDispatchToProps)(_LoginPage);
+const mapDispatchToProps = {
+
+
+};
+
+
+
+export const LoginPage = connect(null, mapDispatchToProps)(_LoginPage);

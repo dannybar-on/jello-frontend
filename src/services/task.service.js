@@ -61,7 +61,7 @@ function removeLabel(labelId, labels, board) {
         const updatedTasks = group.tasks.map(task => {
             if (task.labelIds) {
                 const newTaskLabels = task.labelIds.filter(label => label !== labelId);
-                console.log('newTaskLabels:', newTaskLabels);
+                // console.log('newTaskLabels:', newTaskLabels);
 
                 task = { ...task, labelIds: newTaskLabels };
             }
@@ -162,7 +162,7 @@ function handleFileAdd(url, title = 'Attachment') {
     const taskId = store.getState().boardModule.currTask.id;
     const board = store.getState().boardModule.currBoard;
     const group = getGroupById(taskId);
-    const task = store.getState().boardModule.currTask
+    const task = store.getState().boardModule.currTask;
     if (!task.attachments) task.attachments = [];
     task.attachments.push({ id: utilService.makeId(), url, title, createdAt: Date.now() });
     if (!task.style) task.style = {};
@@ -186,20 +186,20 @@ function handleFileRemove(fileId) {
     const board = store.getState().boardModule.currBoard;
     const group = getGroupById(taskId);
     const task = getTaskById(taskId, group.id);
-    const idx = task.attachments.findIndex(file => file.id === fileId)
+    const idx = task.attachments.findIndex(file => file.id === fileId);
     task.attachments.splice(idx, 1);
-    return [board, group, task]
+    return [board, group, task];
 }
 
 function handleAttachmentEdit(attachmentId, title) {
-    if (!attachmentId) return
+    if (!attachmentId) return;
     const taskId = store.getState().boardModule.currTask.id;
     const board = store.getState().boardModule.currBoard;
-    const group = getGroupById(taskId)
-    const task = getTaskById(taskId, group.id)
-    const attachment = task.attachments.find(attachment => attachment.id === attachmentId)
+    const group = getGroupById(taskId);
+    const task = getTaskById(taskId, group.id);
+    const attachment = task.attachments.find(attachment => attachment.id === attachmentId);
     attachment.title = title;
-    return [board, group, task]
+    return [board, group, task];
 }
 
 function getEmptyChecklist() {
@@ -219,29 +219,29 @@ function getEmptyTodo() {
 }
 
 function getUploadTime(timestamp) {
-    const timePassed = Date.now() - timestamp
-    if (timePassed < (1000 * 60)) return 'Added a few seconds ago'
-    else if (timePassed < (1000 * 60 * 2)) return 'Added 1 minute ago'
+    const timePassed = Date.now() - timestamp;
+    if (timePassed < (1000 * 60)) return 'Added a few seconds ago';
+    else if (timePassed < (1000 * 60 * 2)) return 'Added 1 minute ago';
     else if (timePassed < 1000 * 60 * 60) {
-        const minutes = Math.floor(timePassed / 1000 / 60)
-        return `Added ${minutes} minutes ago`
+        const minutes = Math.floor(timePassed / 1000 / 60);
+        return `Added ${minutes} minutes ago`;
     }
     else if (timePassed < 1000 * 60 * 60 * 13) {
-        const hours = Math.floor(timePassed / 1000 / 60 / 60)
-        return `Added ${hours} hours ago`
+        const hours = Math.floor(timePassed / 1000 / 60 / 60);
+        return `Added ${hours} hours ago`;
     } else {
-        const date = new Date(timestamp)
-        const minutes = (date.getMinutes() < 10) ? `0${date.getMinutes()}` : date.getMinutes()
+        const date = new Date(timestamp);
+        const minutes = (date.getMinutes() < 10) ? `0${date.getMinutes()}` : date.getMinutes();
         if (timePassed < 1000 * 60 * 60 * 24) {
-            return `Added today at ${date.getHours()}:${minutes} `
+            return `Added today at ${date.getHours()}:${minutes} `;
         } else if (timePassed < 1000 * 60 * 60 * 48) {
-            return `Added yesterday at ${date.getHours()}:${minutes}`
+            return `Added yesterday at ${date.getHours()}:${minutes}`;
         } else {
-            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            const idx = date.getMonth()
-            const month = monthNames[idx]
-            const day = date.getDate()
-            return `Added ${month} ${day} at ${date.getHours()}:${minutes}`
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const idx = date.getMonth();
+            const month = monthNames[idx];
+            const day = date.getDate();
+            return `Added ${month} ${day} at ${date.getHours()}:${minutes}`;
         }
     }
 }
@@ -249,9 +249,11 @@ function getUploadTime(timestamp) {
 function getModalPosition(clickedElementPos) {
 
     const position = {
-        topPos: clickedElementPos.top + clickedElementPos.height,
+        topPos: clickedElementPos.top + clickedElementPos.height +6,
         leftPos: clickedElementPos.left
-    }
+    };
 
-    return position
+    return position;
 }
+
+

@@ -36,7 +36,7 @@ class _AddChecklist extends React.Component {
             <div className="checklist">
                 <form onSubmit={(event) => this.onAddChecklist(event, title)}>
                     <label>Title
-                        <input className='modal-search' type="text" name="title" value={title} onChange={this.handleChange} />
+                        <input className='input-style' type="text" name="title" value={title} onChange={this.handleChange} />
                     </label>
                     <button className='btn-style1' type="submit">Add</button>
                 </form>

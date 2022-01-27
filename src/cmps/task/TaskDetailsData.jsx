@@ -55,7 +55,6 @@ class _TaskDetailsData extends React.Component {
         const { board, currTask, isEditOpen, toggleIsEditOpen} = this.props;
         if (currTask.labelIds) { var taskLabels = taskService.getLabelsById(board, currTask); }
         // if (!taskLabels) return <></>
-        console.log('taskLabels:', taskLabels);
         
         return (
             <div className="task-data ml-40">
@@ -73,7 +72,7 @@ class _TaskDetailsData extends React.Component {
                 </span>}
 
 
-                {(taskLabels && taskLabels?.length) && <div className="task-data-labels data-container">
+                {(taskLabels && !!taskLabels?.length) && <div className="task-data-labels data-container">
                     <h3 className="data-header">Labels</h3>
                     {taskLabels.map((label, idx) => {
                         return <div key={idx} className="data-label" style={(taskLabels) ? { backgroundColor: `${label.color}` } : { backgroundColor: '' }}>

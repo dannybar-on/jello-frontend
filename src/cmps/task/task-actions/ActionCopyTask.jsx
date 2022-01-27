@@ -51,7 +51,7 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
     return (
         <div className="copy-card">
             <label>Title</label>
-            <textarea name="title" className="modal-search" autoFocus value={currTitle} onChange={handleChange} />
+            <textarea name="title" className="input-style" autoFocus value={currTitle} onChange={handleChange} />
 
             <label>Copy to...</label>
             <div className="select-board">

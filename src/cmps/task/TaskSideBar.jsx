@@ -14,28 +14,31 @@ export class TaskSideBar extends React.Component {
 
     state = {
         isModalOpen: false,
-        content: '',
+        item: '',
     }
 
     toggleDynamicModal = (title) => {
         console.log('title:', title);
-        
+
         this.setState({ isModalOpen: !this.state.isModalOpen })
     }
 
 
     render() {
-        const { isModalOpen, content } = this.state
+        const { isModalOpen, item } = this.state
         return (
             <>
                 <button className="close-modal-screen"></button>
                 <section className="sidebar-btns-container ">
                     <h3 className="sidebar-title">Add to card</h3>
                     {addToTaskItems.map((item, idx) => (
-
                         <button
                             key={idx}
-                            onClick={(event) => { this.toggleDynamicModal(item.title); this.setState({ content: item }); position = event.target.getBoundingClientRect() }}
+                            onClick={(event) => {
+                                this.toggleDynamicModal(item.title);
+                                this.setState({ item });
+                                position = event.target.getBoundingClientRect()
+                            }}
                             className="add-item-btn flex row align-center">
                             <div className="btn-layover"></div>
                             <span className="flex align-center">{item.icon}</span>
@@ -49,7 +52,11 @@ export class TaskSideBar extends React.Component {
                 <section className="sidebar-actions-container">
                     <h3 className="sidebar-title">Actions</h3>
                     {TaskActions.map((item, idx) => (
-                        <button key={idx} onClick={(event) => { this.toggleDynamicModal(); this.setState({ content: item }); position = event.target.getBoundingClientRect()}}
+                        <button key={idx} onClick={(event) => {
+                            this.toggleDynamicModal();
+                            this.setState({ item });
+                            position = event.target.getBoundingClientRect()
+                        }}
                             className="add-item-btn flex row align-center">
                             <div className="btn-layover"></div>
                             <span className="flex align-center">{item.icon}</span>
@@ -57,8 +64,8 @@ export class TaskSideBar extends React.Component {
                         </button>
                     ))}
                 </section>
-                
-                    {isModalOpen && <DynamicModal item={content.title} {...this.props} toggleDynamicModal={this.toggleDynamicModal} position={position} />}
+
+                {isModalOpen && <DynamicModal item={item.title} {...this.props} toggleDynamicModal={this.toggleDynamicModal} position={position} />}
             </>
         )
     }
@@ -67,17 +74,17 @@ export class TaskSideBar extends React.Component {
 var position
 
 const addToTaskItems = [
-    { icon: <AiOutlineUser />, title: 'Members' ,position},
-    { icon: <MdLabelOutline />, title: 'Labels' ,position},
-    { icon: <BsCheck2Square />, title: 'Checklist' ,position},
-    { icon: <IoMdTime />, title: 'Dates' ,position},
-    { icon: <ImAttachment />, title: 'Attachment' ,position},
-    { icon: <BsCreditCard />, title: 'Cover' ,position},
+    { icon: <AiOutlineUser />, title: 'Members', position },
+    { icon: <MdLabelOutline />, title: 'Labels', position },
+    { icon: <BsCheck2Square />, title: 'Checklist', position },
+    { icon: <IoMdTime />, title: 'Dates', position },
+    { icon: <ImAttachment />, title: 'Attachment', position },
+    { icon: <BsCreditCard />, title: 'Cover', position },
 ]
 
 
 const TaskActions = [
-    { icon: <AiOutlineArrowRight />, title: 'Move' ,position},
-    { icon: <MdContentCopy />, title: 'Copy' ,position},
-    { icon: <BsArchive />, title: 'Archive' ,position},
+    { icon: <AiOutlineArrowRight />, title: 'Move', position },
+    { icon: <MdContentCopy />, title: 'Copy', position },
+    { icon: <BsArchive />, title: 'Archive', position },
 ]

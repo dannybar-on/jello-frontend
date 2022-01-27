@@ -94,7 +94,7 @@ class _LabelsList extends React.Component {
                 {(!isAddEditMode) ? <div className="labels">
 
                     <input
-                        className="modal-search"
+                        className="input-style"
                         type="text"
                         name="search"
                         placeholder="Search labels..."
