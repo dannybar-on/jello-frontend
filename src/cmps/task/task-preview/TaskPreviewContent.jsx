@@ -28,7 +28,7 @@ export class TaskPreviewContent extends React.Component {
                     </ul>}
                     <p className={`${(task.isFull) ? 'title-full-mod' : ''}`}>{task.title}</p>
 
-                    {!task.style && <button className='edit-btn ' onClick={(event) => toggleEditOpen(event)}><MdOutlineEdit /></button>}
+                     <button className='edit-btn ' onClick={(event) => toggleEditOpen(event, task)}><MdOutlineEdit /></button>
 
                 </div>
                 {!task.isFull && <TaskPreviewFooter board={board} task={task} />}

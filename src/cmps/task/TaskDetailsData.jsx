@@ -73,7 +73,7 @@ class _TaskDetailsData extends React.Component {
                 </span>}
 
 
-                {(taskLabels || taskLabels?.length) && <div className="task-data-labels data-container">
+                {(taskLabels && taskLabels?.length) && <div className="task-data-labels data-container">
                     <h3 className="data-header">Labels</h3>
                     {taskLabels.map((label, idx) => {
                         return <div key={idx} className="data-label" style={(taskLabels) ? { backgroundColor: `${label.color}` } : { backgroundColor: '' }}>

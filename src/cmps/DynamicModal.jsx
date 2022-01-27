@@ -20,6 +20,9 @@ import { IoMdClose } from 'react-icons/io';
 
 export class DynamicModal extends React.Component {
 
+
+    
+
     setDynamicModalContent = () => {
         const { item } = this.props
 
@@ -55,6 +58,9 @@ export class DynamicModal extends React.Component {
             case 'Archive':
                 return <ActionArchiveTask {...this.props} />
 
+            // case 'Delete':
+            //     return <DynamicDelete {...this.props} item={item} />
+
             default:
         }
     }
@@ -72,14 +78,15 @@ export class DynamicModal extends React.Component {
     render() {
 
         const { item, toggleDynamicModal, position } = this.props
-        const topPos = taskService.getModalPosition(position)
-        // console.log('position:', topPos);
+        const { topPos, leftPos } = taskService.getModalPosition(position)
+        console.log('position top:', topPos);
+        console.log('position left:', leftPos);
 
         return (
             <>
-            {/* style={{ top: topPos }} */}
+                {/* style={{ top: topPos }} */}
                 {/* <button className="close-modal-screen"></button> */}
-                <section  style={{ top: topPos }} className="dynamic-modal-container" onBlur={() => console.log('blur')}>
+                <section style={{ top: topPos, }} className="dynamic-modal-container" >
 
                     <div className="modal-header">
                         <span className="modal-header-title">{item}</span>

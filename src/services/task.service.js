@@ -62,7 +62,7 @@ function removeLabel(labelId, labels, board) {
             if (task.labelIds) {
                 const newTaskLabels = task.labelIds.filter(label => label !== labelId);
                 console.log('newTaskLabels:', newTaskLabels);
-                
+
                 task = { ...task, labelIds: newTaskLabels };
             }
             return task;
@@ -238,9 +238,13 @@ function getUploadTime(timestamp) {
     }
 }
 
-function getModalPosition(clickedElementPos)  {
+function getModalPosition(clickedElementPos) {
+    console.log('clickedElementPos:', clickedElementPos);
 
-    const topPos = clickedElementPos.top - clickedElementPos.height +10
-    
-    return topPos
+    const position = {
+        topPos: clickedElementPos.top - 20,
+        leftPos: clickedElementPos.left
+    }
+
+    return position
 }

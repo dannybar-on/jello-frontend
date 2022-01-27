@@ -17,8 +17,9 @@ export class TaskSideBar extends React.Component {
         content: '',
     }
 
-    toggleDynamicModal = () => {
-
+    toggleDynamicModal = (title) => {
+        console.log('title:', title);
+        
         this.setState({ isModalOpen: !this.state.isModalOpen })
     }
 
@@ -34,7 +35,7 @@ export class TaskSideBar extends React.Component {
 
                         <button
                             key={idx}
-                            onClick={(event) => { this.toggleDynamicModal(); this.setState({ content: item }); position = event.target.getBoundingClientRect() }}
+                            onClick={(event) => { this.toggleDynamicModal(item.title); this.setState({ content: item }); position = event.target.getBoundingClientRect() }}
                             className="add-item-btn flex row align-center">
                             <div className="btn-layover"></div>
                             <span className="flex align-center">{item.icon}</span>
@@ -42,7 +43,6 @@ export class TaskSideBar extends React.Component {
                         </button>
 
                     ))}
-                    {isModalOpen && <DynamicModal item={content.title} {...this.props} toggleDynamicModal={this.toggleDynamicModal} position={position} />}
                 </section>
 
 
@@ -57,12 +57,14 @@ export class TaskSideBar extends React.Component {
                         </button>
                     ))}
                 </section>
+                
+                    {isModalOpen && <DynamicModal item={content.title} {...this.props} toggleDynamicModal={this.toggleDynamicModal} position={position} />}
             </>
         )
     }
 }
 
-let position
+var position
 
 const addToTaskItems = [
     { icon: <AiOutlineUser />, title: 'Members' ,position},

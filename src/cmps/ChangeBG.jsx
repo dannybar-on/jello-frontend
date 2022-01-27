@@ -33,10 +33,9 @@ class _ChangeBG extends React.Component {
     }
 
     setBoardBG = (backGround) => {
-        const { board, setCurrBoard, updateBoard } = this.props
+        const { board, setCurrBoard } = this.props
         const style = (backGround[0] === '#') ? { bgColor: backGround } : { bgImg: backGround }
         const boardToUpdate = {...board, style}
-        updateBoard(boardToUpdate)
         setCurrBoard(boardToUpdate)
     }
 

@@ -53,7 +53,6 @@ class _LabelsList extends React.Component {
         const { board, currTask } = this.props;
         const currGroup = taskService.getGroupById(currTask.id);
         const updatedBoard = taskService.handleLabelsChange(newLabel, board);
-        console.log('newLabel', newLabel);
         this.props.updateTask(updatedBoard, currGroup, currTask);
         this.setAddEditMode();
     };
@@ -75,7 +74,6 @@ class _LabelsList extends React.Component {
             currTask.labelIds = currTask.labelIds.filter(id => id !== labelId);
             const currGroup = taskService.getGroupById(currTask.id);
             const boardToUpdate = taskService.removeLabel(labelId, board.labels, board);
-            console.log(boardToUpdate);
             this.props.updateTask(boardToUpdate, currGroup, currTask);
             this.setState({ labels: boardToUpdate.labels });
             this.setAddEditMode();
