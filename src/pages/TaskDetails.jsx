@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
 import { updateTask, onSetCurrTask } from '../store/board.action';
+import { DynamicModal } from '../cmps/DynamicModal';
 
 import { TaskSideBar } from '../cmps/task/TaskSideBar';
 import { TaskDetailsData } from '../cmps/task/TaskDetailsData';
@@ -32,6 +33,7 @@ class _TaskDetails extends React.Component {
         comment: '',
         isLabelsOpen: false,
         isMembersOpen: false,
+        isCoverOpen: false,
     };
 
     componentDidMount() {
@@ -41,6 +43,11 @@ class _TaskDetails extends React.Component {
     toggleIsEditOpen = (event) => {
         const { isEditOpen } = this.state;
         this.setState({ isEditOpen: !isEditOpen })
+    }
+
+    toggleIsCoverOpen = () => {
+        const { isCoverOpen } = this.state;
+        this.setState({ isCoverOpen: !isCoverOpen})
     }
 
     // componentDidUpdate(prevState) {
@@ -112,7 +119,7 @@ class _TaskDetails extends React.Component {
     }
 
     render() {
-        const { currGroup, isDescriptionOpen, isEditOpen, isLabelsOpen, isMembersOpen } = this.state;
+        const { currGroup, isDescriptionOpen, isEditOpen, isLabelsOpen, isMembersOpen, isCoverOpen } = this.state;
         const { boardId } = this.props.match.params;
         const { board, currTask, updateTask, history } = this.props;
         if (!currTask || !this.state.currTask) return <Loader />;
@@ -127,12 +134,14 @@ class _TaskDetails extends React.Component {
                         {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className={`task-cover ${(currTask.style.bgImg) ? 'bg-cover' : ''}`} style={(currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg } : { backgroundColor: currTask.style.bgColor }}>
 
                             <div className={`cover-btn-container ${(currTask.style.bgImg) ? 'bg-img' : ''}`}>
-                                <button className='btn-style2' >
+                                <button className='btn-style2' onClick={(event) => {this.toggleIsCoverOpen(); position = event.target.getBoundingClientRect()}}>
                                     <span className="icon-sm align-center cover-icon"><BsCreditCard /></span>
                                     <span className="">Cover</span>
                                 </button>
-                            </div>
 
+                                {isCoverOpen && <DynamicModal item={'Cover'} {...this.props} toggleDynamicModal={this.toggleIsCoverOpen} position={position}>
+                                </DynamicModal>}
+                            </div>
                         </div>}
 
 
@@ -275,5 +284,7 @@ const mapDispatchToProps = {
 };
 
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails);
+
+var position
 
 
