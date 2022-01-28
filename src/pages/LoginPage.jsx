@@ -159,7 +159,7 @@ class _LoginPage extends React.Component {
 const mapDispatchToProps = {
     login,
     logout,
-
+    signup
 };
 
 
