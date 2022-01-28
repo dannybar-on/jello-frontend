@@ -62,5 +62,29 @@
   }
 }
 
-.label-edit-add-btns {
+.label-delete-modal {
+  
+  button {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .back-to-edit-labels-btn{
+    color: $light-blue;
+    left: 0;
+    padding: 10px 8px 10px 12px;
+    position: absolute;
+    top: -15px;
+    z-index: 2;
+    cursor: pointer;
+
+    &:hover {
+      color: $dark-blue;
+    }
+
+    svg {
+      font-size: 20px;
+     
+    }
+  }
 }

@@ -73,11 +73,26 @@
   &:hover {
     background-color: #091e4214;
   }
-  
+
   &:active {
     background-color: #e4f0f6;
     color: #0079bf;
     outline: 0;
+  }
+
+  &.login-btn {
+    background-color: #5aac44;
+    color: #fff;
+    font-weight: 700;
+    margin: 17px 0;
+
+    &:hover {
+      background-color: #61bd4f;
+    }
+  }
+
+  &.signup-btn {
+    margin: 17px 0;
   }
 }
 

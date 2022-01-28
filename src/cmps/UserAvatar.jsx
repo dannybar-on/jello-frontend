@@ -23,7 +23,8 @@ function stringToColor(string) {
 }
 
 function stringAvatar(name, url) {
-    if (name === 'Guest') return { sx: { bgcolor: stringToColor(name) }, children: `${name.split(' ')[0][0]}` };
+
+    if (name.indexOf(' ') < 0) return { sx: { bgcolor: stringToColor(name.toUpperCase()) }, children: `${name.split(' ')[0][0]}` };
     return {
         sx: {
             bgcolor: stringToColor(name),
@@ -39,7 +40,7 @@ export function UserAvatar({ fullname, url }) {
         <Stack direction="row" spacing={2} >
 
             {/* <Avatar sx={{ width: 28, height: 28 }}  {...stringAvatar(fullname)} className='user-avatar' /> */}
-            <Avatar sx={{ width: 32, height: 32 }}  {...stringAvatar(fullname)} src={url} className='user-avatar' title={fullname} />
+            <Avatar sx={{ width: 32, height: 32 }}  {...stringAvatar(fullname.toUpperCase())} src={url} className='user-avatar' title={fullname} />
         </Stack >
     );
 }

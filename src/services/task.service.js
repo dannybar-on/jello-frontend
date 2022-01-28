@@ -249,12 +249,15 @@ function getUploadTime(timestamp) {
 function getModalPosition(clickedElementPos) {
 console.log('clickedElementPos:', clickedElementPos);
 
-    const position = {
-        topPos: clickedElementPos.top + clickedElementPos.height + 6,
-        leftPos: clickedElementPos.left
-    };
-    let intViewportWidth = window.innerWidth;
-    if(intViewportWidth - position.leftPos <= 40) position.right = 0
+const position = {
+    topPos: clickedElementPos.top + clickedElementPos.height + 6,
+    leftPos: clickedElementPos.left
+};
+let intViewportWidth = window.innerWidth;
+console.log('window:', window.innerHeight);
+    // const isOverflowY = (window.innerHeight - height - 45) < 0
+
+        if(intViewportWidth - position.leftPos <= 40) position.right = 0
     else position.right = null
     return position;
 }

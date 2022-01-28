@@ -38,9 +38,9 @@ class _AppHeader extends React.Component {
                     </NavLink>
                     {/* <nav className="header-nav "> */}
                     <ul className='clean-list flex align-center'>
-                        <li>
+                        {/* <li>
                             <NavLink className="clean-link" to="/"><div>Home</div></NavLink>
-                        </li>
+                        </li> */}
                         <li>
                             <NavLink className="clean-link" to="/board"><div>Board List</div></NavLink>
                         </li>

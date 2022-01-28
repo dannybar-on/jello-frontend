@@ -10,10 +10,10 @@ export const userService = {
     logout,
     signup,
     getLoggedinUser,
+    getGuestUser,
+
 
 };
-
-// window.us = userService
 
 
 async function login({ username, password }) {
@@ -35,6 +35,10 @@ async function logout() {
     return;
 }
 
+
+function getGuestUser(){
+ return { username: 'Guest', password:'guest' }
+}
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN));

@@ -17,10 +17,10 @@ export class TaskSideBar extends React.Component {
         item: '',
     }
 
-    toggleDynamicModal = (title) => {
-        console.log('title:', title);
+    toggleDynamicModal = (state) => {
+        if (!state) state = false
 
-        this.setState({ isModalOpen: !this.state.isModalOpen })
+        this.setState({ isModalOpen: state })
     }
 
 
@@ -28,14 +28,14 @@ export class TaskSideBar extends React.Component {
         const { isModalOpen, item } = this.state
         return (
             <>
-                <button className="close-modal-screen"></button>
+                {/* <button className="close-modal-screen"></button> */}
                 <section className="sidebar-btns-container ">
                     <h3 className="sidebar-title">Add to card</h3>
                     {addToTaskItems.map((item, idx) => (
                         <button
                             key={idx}
                             onClick={(event) => {
-                                this.toggleDynamicModal(item.title);
+                                this.toggleDynamicModal(true);
                                 this.setState({ item });
                                 position = event.target.getBoundingClientRect()
                             }}
@@ -53,7 +53,7 @@ export class TaskSideBar extends React.Component {
                     <h3 className="sidebar-title">Actions</h3>
                     {TaskActions.map((item, idx) => (
                         <button key={idx} onClick={(event) => {
-                            this.toggleDynamicModal();
+                            this.toggleDynamicModal(true);
                             this.setState({ item });
                             position = event.target.getBoundingClientRect()
                         }}

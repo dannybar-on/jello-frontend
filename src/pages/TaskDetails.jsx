@@ -8,6 +8,7 @@ import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
 import { utilService } from '../services/util-service.js';
 import { updateTask, onSetCurrTask } from '../store/board.action';
+import { DynamicModal } from '../cmps/DynamicModal';
 
 import { TaskSideBar } from '../cmps/task/TaskSideBar';
 import { TaskDetailsData } from '../cmps/task/TaskDetailsData';
@@ -36,6 +37,7 @@ class _TaskDetails extends React.Component {
         comment: '',
         isLabelsOpen: false,
         isMembersOpen: false,
+        isCoverOpen: false,
     };
 
     componentDidMount() {
@@ -47,13 +49,10 @@ class _TaskDetails extends React.Component {
         this.setState({ isEditOpen: !isEditOpen });
     };
 
-    // componentDidUpdate(prevState) {
-    //     if (prevState.currBoard !== this.props.board) {
-    //         console.log(this.props.currTask, 'in did update');
-    //         this.setCurrTask(this.props.currTask);
-    //     }
-    // }
-
+    toggleIsCoverOpen = () => {
+        const { isCoverOpen } = this.state;
+        this.setState({ isCoverOpen: !isCoverOpen });
+    };
 
     componentDidUpdate(prevProps) {
         if (prevProps.board !== this.props.board) {
@@ -93,14 +92,15 @@ class _TaskDetails extends React.Component {
 
     onCancelChanges = (ev) => {
         ev.preventDefault();
-        // document.getElementById("textdes").addEventListener("focusout", () => {
-
+        const { board } = this.props;
         const { currGroup } = this.state;
         const taskId = this.state.currTask.id;
         const prevTask = currGroup.tasks.find(task => task.id === taskId);
-        this.setState({ currTask: prevTask, isDescriptionOpen: false });
+        this.setState({ currTask: prevTask, isDescriptionOpen: false }, () => {
+            this.props.updateTask(board, currGroup, prevTask);
 
-        // });
+        });
+
     };
     handleCommentChange = ({ target: { name, value } }) => {
         this.setState({ [name]: value });
@@ -109,8 +109,8 @@ class _TaskDetails extends React.Component {
 
     toggleIsLabelsOpen = () => {
         const { isLabelsOpen } = this.state;
-        this.setState({ isLabelsOpen: !isLabelsOpen })
-    }
+        this.setState({ isLabelsOpen: !isLabelsOpen });
+    };
 
     onAddComment = (ev) => {
         ev.preventDefault();
@@ -137,11 +137,11 @@ class _TaskDetails extends React.Component {
 
     toggleIsMembersOpen = () => {
         const { isMembersOpen } = this.state;
-        this.setState({ isMembersOpen: !isMembersOpen })
-    }
+        this.setState({ isMembersOpen: !isMembersOpen });
+    };
 
     render() {
-        const { currGroup, isDescriptionOpen, isEditOpen, isLabelsOpen, isMembersOpen , comment } = this.state;
+        const { currGroup, isDescriptionOpen, isEditOpen, isLabelsOpen, isMembersOpen, isCoverOpen, comment } = this.state;
         const { boardId } = this.props.match.params;
         const { board, currTask, updateTask, history, user } = this.props;
         if (!currTask || !this.state.currTask) return <Loader />;
@@ -156,12 +156,14 @@ class _TaskDetails extends React.Component {
                         {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className={`task-cover ${(currTask.style.bgImg) ? 'bg-cover' : ''}`} style={(currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg } : { backgroundColor: currTask.style.bgColor }}>
 
                             <div className={`cover-btn-container ${(currTask.style.bgImg) ? 'bg-img' : ''}`}>
-                                <button className='btn-style2' >
+                                <button className='btn-style2' onClick={(event) => { this.toggleIsCoverOpen(); position = event.target.getBoundingClientRect(); }}>
                                     <span className="icon-sm align-center cover-icon"><BsCreditCard /></span>
                                     <span className="">Cover</span>
                                 </button>
-                            </div>
 
+                                {isCoverOpen && <DynamicModal item={'Cover'} {...this.props} toggleDynamicModal={this.toggleIsCoverOpen} position={position}>
+                                </DynamicModal>}
+                            </div>
                         </div>}
 
 
@@ -201,23 +203,24 @@ class _TaskDetails extends React.Component {
                                         <h3>Description</h3>
                                     </div>
                                     <div className="ml-40">
-                                        <textarea
+                                        {(isDescriptionOpen) && <textarea
                                             name="description"
                                             placeholder="Add a more detailed description..."
-                                            id="textdes"
                                             onChange={this.handleChange}
-                                            onFocus={this.toggleDescriptionTextArea}
+                                            autoFocus
+                                            // onFocus={this.toggleDescriptionTextArea}
                                             value={this.state.currTask.description}
                                             rows={(isDescriptionOpen) ? '4' : ''}
                                             onBlur={() => { this.handleDetailsChange(); }}
-                                        // onBlur={() => { this.handleDetailsChange(); this.toggleDescriptionTextArea() }}
 
                                         >
-                                        </textarea>
+                                        </textarea>}
+                                        {(!isDescriptionOpen) && <p onClick={this.toggleDescriptionTextArea}>{this.state.currTask.description || "Add a more detailed description..."}</p>}
+
                                         {(isDescriptionOpen) && <>
-                                            <div className="description-btns ">
+                                            <div className="description-btns flex row">
                                                 <button className="btn-style1" onClick={() => { this.handleDetailsChange(); }} >Save</button>
-                                                <button className="close-btn" onMouseDown={(event) => { this.onCancelChanges(event); }}>
+                                                <button className="close-btn icon-lg" onMouseDown={(event) => { this.onCancelChanges(event); }}>
                                                     <IoMdClose />
                                                 </button>
                                             </div>
@@ -309,5 +312,7 @@ const mapDispatchToProps = {
 };
 
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails);
+
+var position;
 
 

@@ -37,7 +37,13 @@ class _LoginPage extends React.Component {
 
             console.log('in submit');
             login(credentials)
-                .then(() => this.props.history.push('/board'));
+                .then((user) => {
+                    if (user) this.props.history.push('/board')
+
+                })
+
+
+
         } else {
 
             const { signup } = this.props;
@@ -64,7 +70,7 @@ class _LoginPage extends React.Component {
 
     render() {
         const { isLogin } = this.state;
-        console.log(this.state);
+        // console.log(this.state);
         return (
 
             <section className='login-page'>
@@ -119,7 +125,7 @@ class _LoginPage extends React.Component {
                                 />
                             </label>
                             <button
-                                className="btn-style2"
+                                className={`btn-style2 ${(isLogin) ? 'login-btn' : 'signup-btn'}`}
                                 type="submit"
                                 onClick={this.onSubmit}
                             >
@@ -134,6 +140,9 @@ class _LoginPage extends React.Component {
                         onFailure={this.responseGoogle}
                         cookiePolicy={'single_host_origin'}
                     />
+
+                    <hr />
+
                     <button className="toggle-login" onClick={() => this.toggleForm()}>
                         {(isLogin) ? `Don\'t have an account? Sign-up` : `Already have
                         an account? Login`}
@@ -159,7 +168,8 @@ class _LoginPage extends React.Component {
 const mapDispatchToProps = {
     login,
     logout,
-    signup
+    signup,
+
 };
 
 
