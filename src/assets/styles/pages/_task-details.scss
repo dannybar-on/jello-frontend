@@ -141,6 +141,13 @@
       //   }
       // }
       .activity-comment {
+
+        .MuiAvatar-root {
+          height: 32px;
+          width: 32px;
+          font-size: rem(14px);
+        }
+        
         textarea {
           height: 35px;
           //  margin: -8px -12px;

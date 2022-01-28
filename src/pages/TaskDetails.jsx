@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom';
 
 import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
+import { utilService } from '../services/util-service.js';
 import { updateTask, onSetCurrTask } from '../store/board.action';
 
 import { TaskSideBar } from '../cmps/task/TaskSideBar';
 import { TaskDetailsData } from '../cmps/task/TaskDetailsData';
 import { TaskDetailsChecklist } from '../cmps/task/TaskDetailsChecklist.jsx';
+import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
 import { CgCreditCard } from 'react-icons/cg';
 import { GrTextAlignFull } from 'react-icons/gr';
@@ -18,6 +20,8 @@ import { BsListUl, BsCreditCard } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
 import { ChecklistPreview } from '../cmps/task/ChecklistPreview';
 import { AttachmentPreview } from '../cmps/task/AttachmentPreview';
+import { taskService } from '../services/task.service';
+import { TaskDetailsComment } from '../cmps/task/TaskDetailsComment';
 
 // import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
@@ -40,8 +44,8 @@ class _TaskDetails extends React.Component {
 
     toggleIsEditOpen = (event) => {
         const { isEditOpen } = this.state;
-        this.setState({ isEditOpen: !isEditOpen })
-    }
+        this.setState({ isEditOpen: !isEditOpen });
+    };
 
     // componentDidUpdate(prevState) {
     //     if (prevState.currBoard !== this.props.board) {
@@ -59,7 +63,7 @@ class _TaskDetails extends React.Component {
 
     setCurrTask = async () => {
         const { boardId, groupId, taskId } = this.props.match.params;
-        const board = await boardService.getById(boardId)
+        const board = await boardService.getById(boardId);
         const currGroup = board.groups.find(group => group.id === groupId);
         const currTask = currGroup.tasks.find(task => task.id === taskId);
         this.setState({ currGroup, currTask });
@@ -83,28 +87,54 @@ class _TaskDetails extends React.Component {
         this.setState({ isDescriptionOpen: !this.state.isDescriptionOpen });
     };
 
-    setCommentOpen = (state) => {
-        this.setState({ isCommentOpen: state });
+    setCommentOpen = () => {
+        this.setState({ isCommentOpen: !this.state.isCommentOpen });
     };
 
     onCancelChanges = (ev) => {
         ev.preventDefault();
         // document.getElementById("textdes").addEventListener("focusout", () => {
 
-            const { currGroup } = this.state;
-            const taskId = this.state.currTask.id;
-            const prevTask = currGroup.tasks.find(task => task.id === taskId)
-            this.setState({ currTask: prevTask, isDescriptionOpen: false })
+        const { currGroup } = this.state;
+        const taskId = this.state.currTask.id;
+        const prevTask = currGroup.tasks.find(task => task.id === taskId);
+        this.setState({ currTask: prevTask, isDescriptionOpen: false });
 
         // });
     };
+    handleCommentChange = ({ target: { name, value } }) => {
+        this.setState({ [name]: value });
+
+    };
 
 
+    onAddComment = (ev) => {
+        ev.preventDefault();
+        const { comment } = this.state;
+        let { board, currTask, user } = this.props;
+        const group = taskService.getGroupById(currTask.id);
+        if (!currTask.comments || !currTask.comments.length) currTask.comments = [];
+        const id = utilService.makeId();
+        currTask.comments.push({ txt: comment, createdAt: Date.now(), createdBy: { ...user }, id });
+        console.log('currTask', currTask, comment);
+        this.props.updateTask(board, group, currTask);
+    };
+
+
+    onDeleteComment = (commentId) => {
+        let { board, currTask } = this.props;
+        const group = taskService.getGroupById(currTask.id);
+        currTask.comments = currTask.comments.filter(comment => {
+            return comment.id !== commentId;
+        });
+        console.log('inDelete', currTask.comments);
+        this.props.updateTask(board, group, currTask);
+    };
 
     render() {
-        const { currGroup, isDescriptionOpen, isEditOpen } = this.state;
+        const { currGroup, isDescriptionOpen, isEditOpen, isCommentOpen, comment } = this.state;
         const { boardId } = this.props.match.params;
-        const { board, currTask, updateTask, history } = this.props;
+        const { board, currTask, updateTask, history, user } = this.props;
         if (!currTask || !this.state.currTask) return <Loader />;
 
         return (
@@ -217,22 +247,27 @@ class _TaskDetails extends React.Component {
                                     </div>
 
                                     <div className="ml-40">
-                                        <div className="activity-comment">
-                                            {/* <span className="member-img">
-                                                <UserAvatar sx={{ width: 20, height: 20 }} fullname={member.fullname} url={member.imgUrl} />
-                                            </span> */}
-                                            <textarea
-                                                name="comments"
-                                                placeholder="Write a comment..."
-                                                onChange={this.handleChange}
-                                            // value={currTask.description}
-                                            // onBlur={this.handleDetailsChange}
-                                            >
+                                        <div className="activity-comment flex align-center">
+                                            <span className="member-img">
+                                                <UserAvatar sx={{ width: 20, height: 20 }} fullname={user.fullname} />
+                                            </span>
+                                            <form onSubmit={this.onAddComment}>
+                                                <textarea
+                                                    name="comment"
+                                                    placeholder="Write a comment..."
+                                                    onChange={this.handleCommentChange}
+                                                    value={comment}
+                                                />
+                                                <button className="btn-style1" type="submit" >Save</button>
 
-                                            </textarea>
-
+                                            </form>
                                         </div>
+
+
+                                        {currTask.comments && currTask.comments.map((comment, idx) => <TaskDetailsComment comment={comment} key={idx} onDeleteComment={this.onDeleteComment} />)}
                                     </div>
+
+
                                 </div>
                             </div>
 
@@ -251,10 +286,11 @@ class _TaskDetails extends React.Component {
     }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.currBoard,
-        currTask: boardModule.currTask
+        currTask: boardModule.currTask,
+        user: userModule.user,
     };
 }
 
