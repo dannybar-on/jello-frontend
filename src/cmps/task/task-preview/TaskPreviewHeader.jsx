@@ -11,6 +11,7 @@ export class TaskPreviewHeader extends React.Component {
     render() {
         const { task, toggleEditOpen, isFull } = this.props;
         let {position} = this.props
+        // console.log(position,'in header')
         return (
             <>
 
@@ -24,6 +25,5 @@ export class TaskPreviewHeader extends React.Component {
         );
     }
 }
-
 
 

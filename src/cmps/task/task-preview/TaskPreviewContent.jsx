@@ -3,28 +3,32 @@ import { MdOutlineEdit } from 'react-icons/md';
 import { TaskPreviewHeader } from './TaskPreviewHeader.jsx';
 import { TaskPreviewFooter } from './TaskPreviewFooter.jsx';
 import { taskService } from '../../../services/task.service.js';
-import { QuickEditor } from '../../QuickEditor.jsx';
+
 
 export class TaskPreviewContent extends React.Component {
 
-    state = {
-        isEditOpen: false,
-    };
+    // state = {
+    //     isEditOpen: false,
+    // };
 
-    toggleEditOpen = (ev, task) => {
-        ev.preventDefault();
-        
-        const { isEditOpen } = this.state;
-        this.setState({ isEditOpen: !isEditOpen });
-        this.props.onSetCurrTask(task);
+    // toggleEditOpen = (ev, task) => {
+    //     ev.preventDefault();
+    //     ev.stopPropagation();
+    //     const { isEditOpen } = this.state;
+    //     this.setState({ isEditOpen: !isEditOpen });
+    //     this.props.onSetCurrTask(task);
+    // };
+
+    getPos = () => {
+
     };
 
     render() {
         const { board, task, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList } = this.props;
-        const { isEditOpen } = this.state;
+        // const { isEditOpen } = this.state;
+        let { position } = this.props;
         const taskLabels = task.labelIds && taskService.getLabelsById(board, task);
-       
-        
+
         return (
             <>
 
@@ -36,14 +40,14 @@ export class TaskPreviewContent extends React.Component {
                     </ul>}
                     <p className={`${(task.isFull) ? 'title-full-mod' : ''}`}>{task.title}</p>
 
-                    <button className='edit-btn ' onClick={(event) => { this.toggleEditOpen(event, task); position = event.target.getBoundingClientRect(); }}><MdOutlineEdit /></button>
+                    <button className='edit-btn ' onClick={(event) => { toggleEditOpen(event, task); position = event.target.getBoundingClientRect(); event.stopPropagation(); }}><MdOutlineEdit /></button>
 
                 </div>
                 {!task.isFull && <TaskPreviewFooter board={board} task={task} />}
 
-                {isEditOpen && <QuickEditor board={board} position={position} toggleEditOpen={this.toggleEditOpen}
+                {/* {isEditOpen && <QuickEditor board={board} position={position} toggleEditOpen={this.toggleEditOpen}
                     currTask={task}
-                />}
+                />} */}
             </>
         );
 
