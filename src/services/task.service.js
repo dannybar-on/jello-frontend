@@ -118,7 +118,7 @@ function getGroupById(taskId) {
 
 function handleCopyTask(taskId, groupId, idx, title) {
     const initialBoard = store.getState().boardModule.currBoard;
-    const initialGroup = getGroupById(taskId)
+    const initialGroup = getGroupById(taskId);
     const task = getTaskById(taskId, initialGroup.id);
     let newGroup = initialBoard.groups.find(group => group.id === groupId);
     newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title });
@@ -129,12 +129,12 @@ function handleCopyTask(taskId, groupId, idx, title) {
 function handleMoveTask(taskId, groupId, idx) {
     const initialBoard = store.getState().boardModule.currBoard;
     const initialGroup = getGroupById(taskId);
-    const task = getTaskById(taskId, initialGroup.id)
+    const task = getTaskById(taskId, initialGroup.id);
     const initialTaskIdx = initialGroup.tasks.findIndex(task => task.id === taskId);
-    initialGroup.tasks.splice(initialTaskIdx, 1)
-    let newGroup = initialBoard.groups.find(group => group.id === groupId)
-    newGroup.tasks.splice(idx, 0, task)
-    return initialBoard
+    initialGroup.tasks.splice(initialTaskIdx, 1);
+    let newGroup = initialBoard.groups.find(group => group.id === groupId);
+    newGroup.tasks.splice(idx, 0, task);
+    return initialBoard;
 }
 
 function getSearchedMember(board, txt) {
@@ -247,12 +247,15 @@ function getUploadTime(timestamp) {
 }
 
 function getModalPosition(clickedElementPos) {
+console.log('clickedElementPos:', clickedElementPos);
 
     const position = {
-        topPos: clickedElementPos.top + clickedElementPos.height +6,
+        topPos: clickedElementPos.top + clickedElementPos.height + 6,
         leftPos: clickedElementPos.left
     };
-
+    let intViewportWidth = window.innerWidth;
+    if(intViewportWidth - position.leftPos <= 40) position.right = 0
+    else position.right = null
     return position;
 }
 

@@ -3,12 +3,12 @@ import thunk from 'redux-thunk'
 
 
 import { boardReducer } from "./board.reducer.js";
-// import { userReducer } from "./user.reducer.js";
+import { userReducer } from "./user.reducer.js";
 // import { reviewReducer } from "./review.reducer";
 
 const rootReducer = combineReducers({
     boardModule : boardReducer,
-    // userModule : userReducer,
+    userModule : userReducer,
     // reviewModule: reviewReducer
 })
 

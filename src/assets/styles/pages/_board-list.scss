@@ -1,41 +1,83 @@
 .board-list {
-    max-width: rem(980px);
-    margin: 0 auto;
+  margin: 0 auto;
+  max-width: none;
+  padding: 32px;
+  position: relative;
 
-    h1{
-      display: inline-block;
-      flex: 1;
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 24px;
-      margin: 15px 0 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      padding: 0 0 11px;
-      
-      span{
-        font-size: 20px;
-      }
+  .board-list-title {
+    gap: 3px;
+    .board-list-icon {
+      color: $grey-blue;
+      height: 32px;
+      width: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 25px;
     }
+
+    h1 {
+      font-weight: 600;
+      font-size: rem(20px);
+      line-height: 24px;
+    }
+  }
 
   .starred-container,
   .workspace-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  .board-card {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50%;
+    padding: 12px 0;
+    margin: 0 auto 24px auto;
+    max-width: 1250px;
+    justify-content: center;
+
+    .board-cards-container{
+      display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    justify-content: center;
+
+    }
+    .board-card {
+      background-color: #97A0AF;
+      background-size: cover;
+      background-position: center center;
+      border-radius: 3px;
+      color: #FFFFFF;
+      display: block;
+      position: relative;
+      text-decoration: none;
+      height: 96px;
+      flex: 1 0 22%;
+      margin-right: 2%;
+      max-width: 23.5%;
+      min-width: 200px;
+      margin-bottom: 2%;
+
+
+      .board-preview-container{
+        display: flex;
+    height: 80px;
+    position: relative;
+    flex-direction: column;
+    width: 292px;
+    padding: 8px;
+
+    h1{
+      overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    position: relative;
+    font-size: 16px;
+    color: #FFFFFF;
+    font-weight: bold;
     line-height: 20px;
-    background-color: $silver-blue;
-    height: rem(100px);
-    width: rem(200px);
-    padding: 20px;
-    color: #fff;
-    border-radius: 3px;
+    margin: 2px 0 0 0;
+    }
+      }
+    }
   }
 
   .create-board-btn {
@@ -45,9 +87,63 @@
     height: rem(80px);
     width: rem(180px);
     padding: 20px;
-    
+
     &.create-board-btn:hover {
       background-color: rgba(9, 30, 66, 0.078);
     }
   }
 }
+
+// .board-list {
+//   max-width: rem(980px);
+//   margin: 0 auto;
+
+//   h1{
+//     display: inline-block;
+//     flex: 1;
+//     font-size: 16px;
+//     font-weight: 700;
+//     line-height: 24px;
+//     margin: 15px 0 0;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//     padding: 0 0 11px;
+
+//     span{
+//       font-size: 20px;
+//     }
+//   }
+
+// .starred-container,
+// .workspace-container {
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   gap: 20px;
+// }
+// .board-card {
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   background-position: 50%;
+//   line-height: 20px;
+//   background-color: $silver-blue;
+//   height: rem(100px);
+//   width: rem(200px);
+//   padding: 20px;
+//   color: #fff;
+//   border-radius: 3px;
+// }
+
+// .create-board-btn {
+//   background-color: rgba(9, 30, 66, 0.039);
+//   color: $dark-blue;
+//   text-align: center;
+//   height: rem(80px);
+//   width: rem(180px);
+//   padding: 20px;
+
+//   &.create-board-btn:hover {
+//     background-color: rgba(9, 30, 66, 0.078);
+//   }
+// }
+// }

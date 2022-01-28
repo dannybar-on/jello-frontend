@@ -3,6 +3,9 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
+
+import { DynamicModal } from '../cmps/DynamicModal.jsx';
+
 function stringToColor(string) {
     let hash = 0;
     let i;
@@ -24,11 +27,12 @@ function stringToColor(string) {
 }
 
 function stringAvatar(name) {
+    if (name === 'Guest') return { sx: { bgcolor: stringToColor(name) }, children: `${name.split(' ')[0][0]}` };
     return {
         sx: {
             bgcolor: stringToColor(name),
         },
-        children: `${name.split(' ')[0][0]}`,
+        children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
     };
 }
 
@@ -63,10 +67,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
     width: 22,
     height: 22,
-    border: `2px solid ${theme.palette.background.paper}`,
 }));
 
-export function LoggedAvatar({ fullname }) {
+export function LoggedAvatar({ fullname, toggleDynamicModal, isModalOpen }) {
     return (
         <Stack direction="row" spacing={-2}>
             <StyledBadge
@@ -74,9 +77,12 @@ export function LoggedAvatar({ fullname }) {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 variant="dot"
             >
-                <Avatar {...stringAvatar(fullname)} className='loggeduser-avatar' />
+                <Avatar {...stringAvatar(fullname)} className='loggeduser-avatar' onClick={(event) => { toggleDynamicModal(); position = event.target.getBoundingClientRect(); }} />
+                    {isModalOpen && <DynamicModal item={item.title} toggleDynamicModal={toggleDynamicModal} position={position} />}
             </StyledBadge>
         </Stack >
     );
 }
 
+var position;
+const item = { title: 'User Modal' };

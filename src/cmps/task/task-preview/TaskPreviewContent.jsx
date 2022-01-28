@@ -13,7 +13,7 @@ export class TaskPreviewContent extends React.Component {
 
     toggleEditOpen = (ev, task) => {
         ev.preventDefault();
-        // ev.stopPropagation();
+        
         const { isEditOpen } = this.state;
         this.setState({ isEditOpen: !isEditOpen });
         this.props.onSetCurrTask(task);

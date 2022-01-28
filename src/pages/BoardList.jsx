@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { BoardPreview } from '../cmps/board/BoardPreview.jsx';
 import { BoardAdd } from '../cmps/board/BoardAdd.jsx';
 import { loadBoards, addBoard, removeBoard, removeCurrBoard } from '../store/board.action';
+
 import { FaStar } from 'react-icons/fa';
+import { MdDashboard } from 'react-icons/md';
+
 class _BoardList extends React.Component {
     state = {
         isAdd: false,
@@ -33,30 +37,41 @@ class _BoardList extends React.Component {
         const { boards } = this.props;
         const { isAdd, isModal } = this.state;
         return (
-            <section className='board-list'>
-                {isAdd && <BoardAdd toggleIsAdd={this.toggleIsAdd} isModal={isModal} onClose={this.onNew}/>}
-                    <h1> <span><FaStar /></span> Starred Boards</h1>
+            <section className='board-list flex column'>
+                {isAdd && <BoardAdd toggleIsAdd={this.toggleIsAdd} isModal={isModal} onClose={this.onNew} />}
                 <div className='starred-container'>
-                    {boards.map((board, index) => {
+                    <div className="board-list-title flex-row-center">
+                        <span className="board-list-icon"><FaStar /></span>
+                        <h1>Starred Boards</h1>
+                    </div>
+                    <div className="board-cards-container">
+                        {boards.map((board, index) => {
 
-                        return board.isStarred && <div className='board-card' key={board._id} style={(board.style.bgColor) ? { backgroundColor: `${board.style.bgColor}` } : { backgroundImage: `url(${board.style.bgImg})`}}
-                        >
-                            <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
-                            <BoardPreview board={board} index={index}></BoardPreview>
-                        </div>;
-                    })}
-                </div>
-                    <h1>Workspace </h1>
-                <div className='workspace-container'>
-                    {boards.map((board, index) => {
-                        return (
-                            <div className='board-card' key={board._id} style={(board.style.bgColor) ? { backgroundColor: `${board.style.bgColor}` } : { backgroundImage: `url(${board.style.bgImg})`}} >
+                            return board.isStarred && <div className='board-card' key={board._id} style={(board.style.bgColor) ? { backgroundColor: `${board.style.bgColor}` } : { backgroundImage: `url(${board.style.bgImg})` }}
+                            >
                                 <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
                                 <BoardPreview board={board} index={index}></BoardPreview>
-                            </div>
-                        );
-                    })}
-                <button className='board-card' onClick={() => this.toggleIsAdd()}>Create new board</button>
+                            </div>;
+                        })}
+                    </div>
+                </div>
+                <div className='workspace-container'>
+                    <div className="board-list-title flex-row-center">
+                        <span className="board-list-icon"><MdDashboard /></span>
+                        <h1>Workspace</h1>
+                    </div>
+
+                    <div className="board-cards-container">
+                        {boards.map((board, index) => {
+                            return (
+                                <div className='board-card' key={board._id} style={(board.style.bgColor) ? { backgroundColor: `${board.style.bgColor}` } : { backgroundImage: `url(${board.style.bgImg})` }} >
+                                    <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
+                                    <BoardPreview board={board} index={index}></BoardPreview>
+                                </div>
+                            );
+                        })}
+                        <button className='board-card' onClick={() => this.toggleIsAdd()}>Create new board</button>
+                    </div>
                 </div>
             </section>
         );
