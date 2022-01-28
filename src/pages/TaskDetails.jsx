@@ -39,8 +39,8 @@ class _TaskDetails extends React.Component {
     }
 
     toggleIsEditOpen = (event) => {
-        const {isEditOpen} = this.state; 
-        this.setState({isEditOpen: !isEditOpen})
+        const { isEditOpen } = this.state;
+        this.setState({ isEditOpen: !isEditOpen })
     }
 
     // componentDidUpdate(prevState) {
@@ -89,10 +89,14 @@ class _TaskDetails extends React.Component {
 
     onCancelChanges = (ev) => {
         ev.preventDefault();
-        const { currGroup } = this.state;
-        const taskId = this.state.currTask.id;
-        const prevTask = currGroup.tasks.find(task => task.id === taskId);
-        this.setState({ currTask: prevTask, isDescriptionOpen: false });
+        // document.getElementById("textdes").addEventListener("focusout", () => {
+
+            const { currGroup } = this.state;
+            const taskId = this.state.currTask.id;
+            const prevTask = currGroup.tasks.find(task => task.id === taskId)
+            this.setState({ currTask: prevTask, isDescriptionOpen: false })
+
+        // });
     };
 
 
@@ -150,7 +154,7 @@ class _TaskDetails extends React.Component {
 
                             <div className="task-main flex column">
 
-                                <TaskDetailsData currGroup={currGroup} isEditOpen={isEditOpen} toggleIsEditOpen={this.toggleIsEditOpen}/>
+                                <TaskDetailsData currGroup={currGroup} isEditOpen={isEditOpen} toggleIsEditOpen={this.toggleIsEditOpen} />
 
                                 <div className="task-description">
                                     <div className="details-section-header ">
@@ -161,7 +165,7 @@ class _TaskDetails extends React.Component {
                                         <textarea
                                             name="description"
                                             placeholder="Add a more detailed description..."
-
+                                            id="textdes"
                                             onChange={this.handleChange}
                                             onFocus={this.toggleDescriptionTextArea}
                                             value={this.state.currTask.description}

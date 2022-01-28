@@ -52,9 +52,9 @@ export class GroupPreview extends React.Component {
                 {(provided) => (
                     <div className="group-preview-container flex column" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                         <div className="group-header flex space-between align-center">
-                            <textarea className='group-title' dir="auto" wrap="hard" type="text" value={title} name='title' onChange={this.handleChange} onBlur={this.onChangeTitle} />
-                            <div className="group-edit-popper" ref={this.groupEditRef} onClick={(ev) => {this.setState({isPopperOpen: !isPopperOpen}); position = ev.target.getBoundingClientRect()}}>
-                                  <button>
+                            <textarea className="group-title" dir="auto" wrap="hard" type="text" value={title} name='title' onChange={this.handleChange} onBlur={this.onChangeTitle} />
+                            <div className="group-edit-popper " ref={this.groupEditRef} onClick={(ev) => {this.setState({isPopperOpen: !isPopperOpen}); position = ev.target.getBoundingClientRect()}}>
+                                  <button className="icon-sm edit-popper-btn flex-row-center">
                                       <BsThreeDots />
                                   </button>
                                   {isPopperOpen && (
