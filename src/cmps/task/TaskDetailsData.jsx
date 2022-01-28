@@ -52,7 +52,7 @@ class _TaskDetailsData extends React.Component {
     };
 
     render() {
-        const { board, currTask, isEditOpen, toggleIsEditOpen} = this.props;
+        const { board, currTask, isEditOpen, toggleIsEditOpen, isLabelsOpen, toggleIsLabelsOpen, isMembersOpen, toggleIsMembersOpen} = this.props;
         if (currTask.labelIds) { var taskLabels = taskService.getLabelsById(board, currTask); }
         // if (!taskLabels) return <></>
         
@@ -66,9 +66,12 @@ class _TaskDetailsData extends React.Component {
                         {currTask.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />)}
                     </span>
 
-                    <button className="data-add-btn round">
+                    <button className="data-add-btn round" onClick={(event) => {toggleIsMembersOpen(); position = event.target.getBoundingClientRect()}}>
                         <AiOutlinePlus />
                     </button>
+
+                    {isMembersOpen && <DynamicModal item={'Members'} {...this.props} toggleDynamicModal={toggleIsMembersOpen} position={position}>
+                            </DynamicModal>}
                 </span>}
 
 
@@ -80,9 +83,12 @@ class _TaskDetailsData extends React.Component {
                         </div>;
 
                     })}
-                    <button className="data-add-btn">
+                    <button className="data-add-btn" onClick={(event) => {toggleIsLabelsOpen(); position = event.target.getBoundingClientRect()}}>
                         <AiOutlinePlus />
                     </button>
+                    
+                    {isLabelsOpen && <DynamicModal item={'Labels'} {...this.props} toggleDynamicModal={toggleIsLabelsOpen} position={position}>
+                            </DynamicModal>}
                 </div>}
 
                 {currTask.dueDate && <div className="task-data-duedate data-container">
