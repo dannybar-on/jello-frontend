@@ -63,17 +63,15 @@
       background-color: #fff;
       border-radius: 3px;
       color: $grey-blue;
-      float: left;
+   
       padding: 0px 8px;
       font-size: 14px;
-      min-height: rem(32px);
-      line-height: 32px;
-      // margin: 0 4px 4px 8px;
-      //   max-width: 400px;
-      //   overflow: hidden;
-      //   position: relative;
-      //   text-decoration: none;
-      //   text-overflow: ellipsis;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+
+
       &:hover {
         background-color: #ffffffe6;
       }
@@ -92,21 +90,14 @@
       border-radius: 5px;
       min-height: 28px;
       line-height: 32px;
-      // background-color: #ffffff52;
-      // #ffffff3d
+
       min-width: 28px;
       font-size: rem(14px);
       text-align: center;
       background-color: #ffffff3d;
       color: #fff;
-      //   height: rem(32px);
-      //   min-height: rem(32px);
-      //   padding-right: 5px;
-      //   padding-left: 5px;
-      //   float: left;
-      //   display: inline-flex;
-      //   margin-right: 4px;
-      //   white-space: nowrap;
+      white-space: nowrap;
+  
 
       &:not(:first-child) {
         margin-left: 5px;
@@ -117,4 +108,16 @@
       }
     }
   }
+}
+
+
+
+ @media screen and (max-width: 600px) {
+ 
+
+  .board-header-container {
+    flex-direction: column;
+    gap: 10px;
+    
+  }  
 }

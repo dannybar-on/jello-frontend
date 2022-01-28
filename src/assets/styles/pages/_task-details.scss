@@ -20,12 +20,8 @@
     min-height: 116px;
     padding: 0px;
 
-    &.bg-cover{
+    &.bg-cover {
       min-height: 160px;
-      // background-color: #ccc;
-      // &.cover-img{
-      //   top: 113px;
-      // }
     }
 
     .cover-btn-container {
@@ -38,7 +34,7 @@
       position: absolute;
       width: 100%;
 
-      &.bg-img{
+      &.bg-img {
         top: 112px;
       }
 
@@ -51,7 +47,7 @@
           color: $hard-blue;
         }
 
-        &:active{
+        &:active {
           background-color: #0000003d;
         }
       }
@@ -159,6 +155,56 @@
       }
     }
     .task-checklist {
+    }
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .task-details-container {
+    width: 95%;
+
+    .task-main-container {
+      flex-direction: column;
+
+      .task-main {
+        width: auto;
+        padding: 0px 16px 8px 16px;
+      }
+    }
+
+    .task-sidebar {
+      flex-direction: row;
+      padding: 0 22px 22px 22px;
+      margin-block-start: 15px;
+
+      .sidebar-btns-container,
+      .sidebar-actions-container {
+        margin-bottom: 0;
+        flex: 1;
+      }
+
+      .add-item-btn {
+        width: 85%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .task-details-container {
+    .task-sidebar {
+      flex-direction: column;
+      padding: 0 22px 22px 22px;
+      margin-block-start: 15px;
+
+      .sidebar-btns-container,
+      .sidebar-actions-container {
+        width: auto;
+      }
+
+      .add-item-btn {
+        margin: 10px;
+      }
     }
   }
 }

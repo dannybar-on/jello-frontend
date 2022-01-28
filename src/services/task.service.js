@@ -247,6 +247,7 @@ function getUploadTime(timestamp) {
 }
 
 function getModalPosition(clickedElementPos) {
+console.log('clickedElementPos:', clickedElementPos);
 
     const position = {
         topPos: clickedElementPos.top + clickedElementPos.height + 6,
