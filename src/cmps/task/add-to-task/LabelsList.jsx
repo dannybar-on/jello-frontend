@@ -18,6 +18,7 @@ class _LabelsList extends React.Component {
     state = {
         search: '',
         isAddEditMode: false,
+        isDeleteModal: false,
         labels: [],
         label: null,
     };
@@ -67,31 +68,36 @@ class _LabelsList extends React.Component {
 
     };
 
+    openDeleteModal = () => {
+        this.setState({ isDeleteModal: !this.state.isDeleteModal })
+
+    }
+
     onRemoveLabel = (labelId) => {
 
-        if (window.confirm('Are you sure you want to delete this label?')) {
-            let { board, currTask } = this.props;
-            currTask.labelIds = currTask.labelIds.filter(id => id !== labelId);
-            const currGroup = taskService.getGroupById(currTask.id);
-            const boardToUpdate = taskService.removeLabel(labelId, board.labels, board);
-            this.props.updateTask(boardToUpdate, currGroup, currTask);
-            this.setState({ labels: boardToUpdate.labels });
-            this.setAddEditMode();
-        }
+        // if (window.confirm('Are you sure you want to delete this label?')) {
+        let { board, currTask } = this.props;
+        currTask.labelIds = currTask.labelIds.filter(id => id !== labelId);
+        const currGroup = taskService.getGroupById(currTask.id);
+        const boardToUpdate = taskService.removeLabel(labelId, board.labels, board);
+        this.props.updateTask(boardToUpdate, currGroup, currTask);
+        this.setState({ labels: boardToUpdate.labels });
+        this.setAddEditMode();
+        // }
     };
 
 
     render() {
 
-        const { search, isAddEditMode, labels, label } = this.state;
-        // const { board, toggleDynamicModal } = this.props;
+        const { search, isAddEditMode, labels, label, isDeleteModal } = this.state;
+        const { board, toggleDynamicModal } = this.props;
 
 
         if (!labels?.length || !labels) return <Loader />;
 
         return (
             <>
-                {(!isAddEditMode) ? <div className="labels">
+                {(!isAddEditMode && !isDeleteModal) && <div className="labels">
 
                     <input
                         className="input-style"
@@ -122,15 +128,18 @@ class _LabelsList extends React.Component {
 
                     <button className="create-label-btn" onClick={() => this.setAddEditMode()}>Create a new label</button>
 
-                </div>
+                </div>}
 
-                    : <LabelsEditAdd
+                     {(isAddEditMode ) &&<LabelsEditAdd
                         {...this.props}
                         label={label}
+                        isDeleteModal={isDeleteModal}
+                        isAddEditMode={isAddEditMode}
                         onSaveLabel={this.onSaveLabel}
                         onRemoveLabel={this.onRemoveLabel}
-                        setAddEditMode={this.setAddEditMode} />
-                }
+                        setAddEditMode={this.setAddEditMode}
+                        openDeleteModal={this.openDeleteModal} />}
+                {/* } */}
             </>
         );
     }

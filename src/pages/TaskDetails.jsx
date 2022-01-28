@@ -89,14 +89,16 @@ class _TaskDetails extends React.Component {
 
     onCancelChanges = (ev) => {
         ev.preventDefault();
-        // document.getElementById("textdes").addEventListener("focusout", () => {
+        const { board } = this.props;
 
-            const { currGroup } = this.state;
-            const taskId = this.state.currTask.id;
-            const prevTask = currGroup.tasks.find(task => task.id === taskId)
-            this.setState({ currTask: prevTask, isDescriptionOpen: false })
+        const { currGroup } = this.state;
+        const taskId = this.state.currTask.id;
+        const prevTask = currGroup.tasks.find(task => task.id === taskId)
+        this.setState({ currTask: prevTask, isDescriptionOpen: false }, () => {
+            this.props.updateTask(board, currGroup, prevTask)
 
-        // });
+        })
+
     };
 
     toggleIsLabelsOpen = () => {
@@ -170,23 +172,24 @@ class _TaskDetails extends React.Component {
                                         <h3>Description</h3>
                                     </div>
                                     <div className="ml-40">
-                                        <textarea
+                                        {(isDescriptionOpen) && <textarea
                                             name="description"
                                             placeholder="Add a more detailed description..."
-                                            id="textdes"
                                             onChange={this.handleChange}
-                                            onFocus={this.toggleDescriptionTextArea}
+                                            autoFocus
+                                            // onFocus={this.toggleDescriptionTextArea}
                                             value={this.state.currTask.description}
                                             rows={(isDescriptionOpen) ? '4' : ''}
                                             onBlur={() => { this.handleDetailsChange(); }}
-                                        // onBlur={() => { this.handleDetailsChange(); this.toggleDescriptionTextArea() }}
 
                                         >
-                                        </textarea>
+                                        </textarea>}
+                                        {(!isDescriptionOpen) && <p onClick={this.toggleDescriptionTextArea}>{this.state.currTask.description ||"Add a more detailed description..." }</p>}
+
                                         {(isDescriptionOpen) && <>
-                                            <div className="description-btns ">
+                                            <div className="description-btns flex row">
                                                 <button className="btn-style1" onClick={() => { this.handleDetailsChange(); }} >Save</button>
-                                                <button className="close-btn" onMouseDown={(event) => { this.onCancelChanges(event); }}>
+                                                <button className="close-btn icon-lg" onMouseDown={(event) => { this.onCancelChanges(event); }}>
                                                     <IoMdClose />
                                                 </button>
                                             </div>

@@ -15,7 +15,7 @@ class _RemoveBoard extends React.Component {
       <section className="remove-board flex column">
         <p>Remove this board from workspace?</p>
         <p>This action is irreversible</p>
-        <button className="btn-style1 delete-btn" onClick={() => this.onRemoveBoard()}>Remove</button>
+        <button className="btn-style1 delete-btn mt-15" onClick={() => this.onRemoveBoard()}>Remove</button>
       </section>
     );
   }

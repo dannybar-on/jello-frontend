@@ -23,7 +23,8 @@ export class TaskPreviewContent extends React.Component {
         const { board, task, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList } = this.props;
         const { isEditOpen } = this.state;
         const taskLabels = task.labelIds && taskService.getLabelsById(board, task);
-
+       
+        
         return (
             <>
 

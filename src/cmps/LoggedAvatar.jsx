@@ -27,7 +27,7 @@ function stringToColor(string) {
 }
 
 function stringAvatar(name) {
-    if (name.indexOf(' ') < 0) return { sx: { bgcolor: stringToColor(name) }, children: `${name.split(' ')[0][0]}` };
+    if (name.indexOf(' ') < 0) return { sx: { bgcolor: stringToColor(name.toUpperCase()) }, children: `${name.split(' ')[0][0]}` };
     return {
         sx: {
             bgcolor: stringToColor(name),
@@ -77,7 +77,7 @@ export function LoggedAvatar({ fullname, toggleDynamicModal, isModalOpen }) {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 variant="dot"
             >
-                <Avatar {...stringAvatar(fullname)} className='loggeduser-avatar' onClick={(event) => { toggleDynamicModal(); position = event.target.getBoundingClientRect(); }} />
+                <Avatar {...stringAvatar(fullname.toUpperCase())} className='loggeduser-avatar' onClick={(event) => { toggleDynamicModal(); position = event.target.getBoundingClientRect(); }} />
                     {isModalOpen && <DynamicModal item={item.title} toggleDynamicModal={toggleDynamicModal} position={position} />}
             </StyledBadge>
         </Stack >

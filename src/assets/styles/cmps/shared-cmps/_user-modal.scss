@@ -1,13 +1,37 @@
 .user-modal-content {
-color:$dark-blue;
-// position:ab
-// z-index: 90;
-hr{
+  color: $dark-blue;
+
+  .user-info {
+    gap: 10px;
+    span {
+      padding: 4px 8px 4px 0px;
+      cursor: default;
+    }
+
+    .user-fullname {
+      font-size: 12px;
+      color: #b3bac5;
+    }
+
+    .user-username {
+        margin-top: 4px;
+        padding: 0;
+      font-size: rem(14px);
+      line-height: 20px;
+      font-weight: 600;
+    }
+  }
+
+  hr {
     background-color: #091e4221;
     border: 0;
     height: 1px;
     margin: 8px 0;
     padding: 0;
     width: 100%;
+  }
 }
+
+.user-logout-btn{
+    cursor: pointer;
 }

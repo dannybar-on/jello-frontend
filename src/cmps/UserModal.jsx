@@ -19,13 +19,17 @@ export class _UserModal extends React.Component {
 
             <section className="user-modal-content">
                 {user && <div className="log-out-modal">
-                    <div className="flex align-center">
-                        <UserAvatar fullname={user.fullname} url={null} />
-                        <h4>Hello {user.username}!</h4>
+                    <div className="user-info flex align-center">
+                       <span><UserAvatar fullname={user.fullname} url={null} /></span> 
+                       <div className="flex column">
+                       <span className="user-username">{user.username}</span>
+                       <div className="user-fullname">{user.fullname}</div>
+
+                       </div>
                     </div>
                     <hr></hr>
                     <div>
-                        <span onClick={() => logout()}>Log out</span>
+                        <span className="user-logout-btn" onClick={() => logout()}>Log out</span>
                     </div>
                 </div>
                 // :

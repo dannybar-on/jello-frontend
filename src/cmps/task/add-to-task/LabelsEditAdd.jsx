@@ -36,21 +36,23 @@ export class LabelsEditAdd extends React.Component {
     }
 
 
-    // openDeleteModal = () => {
-    //     this.setState({ isDeleteModal: !this.state.isDeleteModal })
-         
-    // }
+    onDeleteConfirm = (labelId) => {
+        const {onRemoveLabel,openDeleteModal,setAddEditMode }=this.props
+        openDeleteModal()
+        setAddEditMode()
+        onRemoveLabel(labelId)
+    }
 
 
 
     render() {
         const { label, label: { title } } = this.state
-        const { onSaveLabel, onRemoveLabel, setAddEditMode } = this.props
+        const { onSaveLabel, onRemoveLabel, setAddEditMode,isDeleteModal,openDeleteModal,isAddEditMode } = this.props
 
 
         return (
             <>
-            {/* {(!isDeleteOpen) ? */}
+            {(!isDeleteModal && isAddEditMode ) ?
                 <div className="labels-edit-add">
                     <button className="icon-sm back-to-labels-btn" onClick={() => setAddEditMode()}><MdKeyboardArrowLeft /></button>
                     <h4>Name</h4>
@@ -76,15 +78,18 @@ export class LabelsEditAdd extends React.Component {
 
                     <div className="edit-add-btns flex row space-between">
                         <button className="btn-style1" onClick={() => onSaveLabel(label)}>{(label.id) ? 'Save' : 'Create'}</button>
-                        {label.id && <button className="btn-style1 delete-btn" onClick={() => onRemoveLabel(label.id)}>Delete</button>}
+                        {label.id && <button className="btn-style1 delete-btn" onClick={() => openDeleteModal() }>Delete</button>}
+                        {/* {label.id && <button className="btn-style1 delete-btn" onClick={() => onRemoveLabel(label.id)}>Delete</button>} */}
                     </div>
                 </div > 
-                {/* : <div> Deleteing this is undooable */}
 
-
-                {/* </div> */}
+                 : <div className="label-delete-modal"> 
+                  <button className="icon-sm back-to-edit-labels-btn" onClick={() => openDeleteModal()}><MdKeyboardArrowLeft /></button>
+                     <span> There is no undo. This will remove this label from all cards and destroy its history.</span>
+                     <button className="btn-style1 delete-btn" onClick={() => this.onDeleteConfirm(label.id)}>Delete</button>
+                 </div>
                 
-                {/* } */}
+                 }
 
             </>
         )

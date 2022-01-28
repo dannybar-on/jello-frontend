@@ -84,7 +84,7 @@ export class DynamicModal extends React.Component {
         return (
             <>
                 {/* style={{ top: topPos }} */}
-                {/* <button className="close-modal-screen"></button> */}
+                {/* <div className="close-modal-screen" onClick={() => toggleDynamicModal()} > */}
                 <section style={{ top: topPos, right }} className="dynamic-modal-container" >
 
                     <div className="modal-header">
@@ -99,6 +99,7 @@ export class DynamicModal extends React.Component {
                     </div>
 
                 </section>
+                {/* </div> */}
             </>
         );
     }
