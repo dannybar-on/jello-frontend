@@ -70,7 +70,7 @@ class _LoginPage extends React.Component {
 
     render() {
         const { isLogin } = this.state;
-        console.log(this.state);
+        // console.log(this.state);
         return (
 
             <section className='login-page'>

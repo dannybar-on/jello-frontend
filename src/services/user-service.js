@@ -15,8 +15,6 @@ export const userService = {
 
 };
 
-// window.us = userService
-
 
 async function login({ username, password }) {
     console.log('sssss', username);

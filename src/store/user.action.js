@@ -46,12 +46,14 @@ export function signup(credentials) {
 export function logout() {
     return async (dispatch) => {
         try {
-            await swalService.onLogoutSwal()
+            // await swalService.onLogoutSwal()
 
             await userService.logout();
 
             const action = { type: 'SET_USER', user: null };
             dispatch(action);
+            console.log('window.location:', window.location);
+            
             window.location.assign('/board/login')
         } catch (err) {
             // swalService.logoutFailedSwal()

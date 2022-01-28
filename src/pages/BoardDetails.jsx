@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { boardService } from '../services/board.service.js';
+import { userService } from '../services/user-service.js';
 import { setCurrBoard, updateBoard, unMountBoard, updateGroup, onSetCurrTask } from '../store/board.action.js';
+import { login } from '../store/user.action.js';
+
 import { Route } from 'react-router-dom';
 
 import { Loader } from '../cmps/Loader.jsx';
@@ -23,7 +26,13 @@ class _BoardDetails extends React.Component {
   };
 
   componentDidMount() {
+    const {user,login} = this.props
     this.loadBoard();
+
+    if (!user) {
+      const guest = userService.getGuestUser()   
+      login(guest)
+    }
   }
 
   loadBoard = () => {
@@ -111,7 +120,7 @@ class _BoardDetails extends React.Component {
 
             <BoardHeader board={this.props.board} />
             <div className='list-container flex'>
-              <GroupList groups={board.groups} board={board} onSetCurrTask={onSetCurrTask} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen} toggleGroupArchive={this.toggleGroupArchive}/>
+              <GroupList groups={board.groups} board={board} onSetCurrTask={onSetCurrTask} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen} toggleGroupArchive={this.toggleGroupArchive} />
               {!isAddOpen && (
                 <div onClick={this.onToggleAdd} className="add-another-group">
                   <button className='add-list-btn flex align-center' >
@@ -148,10 +157,11 @@ class _BoardDetails extends React.Component {
 
 var position;
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.currBoard,
-    currTask: boardModule.currTask
+    currTask: boardModule.currTask,
+    user: userModule.user
   };
 }
 
@@ -161,6 +171,8 @@ const mapDispatchToProps = {
   unMountBoard,
   updateGroup,
   onSetCurrTask,
+  login,
+
 };
 
 export const BoardDetails = connect(
