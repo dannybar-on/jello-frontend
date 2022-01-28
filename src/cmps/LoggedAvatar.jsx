@@ -27,7 +27,7 @@ function stringToColor(string) {
 }
 
 function stringAvatar(name) {
-    if (name === 'Guest') return { sx: { bgcolor: stringToColor(name) }, children: `${name.split(' ')[0][0]}` };
+    if (name.indexOf(' ') < 0) return { sx: { bgcolor: stringToColor(name) }, children: `${name.split(' ')[0][0]}` };
     return {
         sx: {
             bgcolor: stringToColor(name),
@@ -85,4 +85,4 @@ export function LoggedAvatar({ fullname, toggleDynamicModal, isModalOpen }) {
 }
 
 var position;
-const item = { title: 'User Modal' };
+const item = { title: 'Account' };

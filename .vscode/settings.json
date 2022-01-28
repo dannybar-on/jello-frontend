@@ -22,6 +22,8 @@
     "cSpell.words": [
         "btns",
         "datepicker",
-        "duedate"
+        "duedate",
+        "swal",
+        "Swal"
     ]
 }

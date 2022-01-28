@@ -1,14 +1,12 @@
 .login-page {
-  // display: grid;
   height: 100vh;
   background-color: $light-grey1;
-  //   display: block;
   flex-grow: 1;
-  //   grid-template-columns: minmax(20px, 1fr) minmax(auto, 960px) minmax(20px, 1fr);
 
   .login-logo-header {
     margin: 20px auto;
       gap: 12px;
+      margin: 88px auto;
     .jello {
       height: 47px;
       width: 47px;
@@ -44,6 +42,17 @@
       color: $dark-blue;
       text-align: left;
     }
+
+    hr{
+      
+        background-color: #091e4221;
+          border: 0;
+          height: 1px;
+          margin: 25px 0 8px 0;
+          padding: 0;
+          width: 100%;
+      
+    }
   }
 
   .right-svg {
@@ -57,6 +66,8 @@
     bottom: 0;
     left: 0;
   }
+
+
 }
 
 

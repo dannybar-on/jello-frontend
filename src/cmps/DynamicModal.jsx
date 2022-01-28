@@ -65,7 +65,7 @@ export class DynamicModal extends React.Component {
 
             case 'List actions':
                 return <GroupActions {...this.props} />;
-            case 'User Modal':
+            case 'Account':
                 return <UserModal {...this.props} />;
             default:
         }

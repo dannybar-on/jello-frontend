@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+
+import { userService } from '../services/user-service.js';
 import { BoardPreview } from '../cmps/board/BoardPreview.jsx';
 import { BoardAdd } from '../cmps/board/BoardAdd.jsx';
 import { loadBoards, addBoard, removeBoard, removeCurrBoard } from '../store/board.action';
+import { login } from '../store/user.action.js';
+
 
 import { FaStar } from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
@@ -15,8 +19,13 @@ class _BoardList extends React.Component {
     };
 
     componentDidMount() {
-        this.props.loadBoards();
-        if (this.props.board) this.props.removeCurrBoard()
+        const { loadBoards, board, removeCurrBoard, login, user } = this.props
+        loadBoards();
+        if (board) removeCurrBoard()
+        if (!user) {
+            const guest = userService.getGuestUser()
+            login(guest)
+        }
     }
 
     onNew = () => {
@@ -81,7 +90,9 @@ class _BoardList extends React.Component {
 function mapStateToProps(state) {
     return {
         boards: state.boardModule.boards,
-        board: state.boardModule.currBoard
+        board: state.boardModule.currBoard,
+        user: state.userModule.user
+
     };
 }
 
@@ -89,7 +100,9 @@ const mapDispatchToProps = {
     loadBoards,
     addBoard,
     removeBoard,
-    removeCurrBoard
+    removeCurrBoard,
+    login,
+    
 };
 
 export const BoardList = connect(mapStateToProps, mapDispatchToProps)(_BoardList);
