@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 
-import { signup, login, logout } from '../store/user.action.js';
+import { signup, login, logout, googleLogin } from '../store/user.action.js';
 
 import LoginSvgLeft from '../assets/img/login-svg-left.svg';
 import LoginSvgRight from '../assets/img/login-svg-right.svg';
@@ -63,6 +63,21 @@ class _LoginPage extends React.Component {
         let { isLogin } = this.state;
         this.setState({ isLogin: !isLogin });
     };
+
+
+    handleGoogleLogin = (res) => {
+        
+        const { tokenId } = res
+        const { googleLogin } = this.props
+        googleLogin(tokenId)
+        this.props.history.push('/board')
+
+    }
+
+    handleGoogleFailure = (res) => {
+        console.log('Login with google failed', res)
+    }
+
 
     responseGoogle = (response) => {
         console.log(response);
@@ -136,8 +151,8 @@ class _LoginPage extends React.Component {
                     <GoogleLogin
                         clientId="1075713010675-m4s5vqqfj2kdl5t43hpfcao569uq0c4o.apps.googleusercontent.com"
                         buttonText="Log-in with Google"
-                        onSuccess={this.onSubmit}
-                        onFailure={this.responseGoogle}
+                        onSuccess={this.handleGoogleLogin}
+                        onFailure={this.handleGoogleFailure}
                         cookiePolicy={'single_host_origin'}
                     />
 
@@ -169,6 +184,7 @@ const mapDispatchToProps = {
     login,
     logout,
     signup,
+    googleLogin,
 
 };
 

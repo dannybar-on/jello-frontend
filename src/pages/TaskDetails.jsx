@@ -156,7 +156,7 @@ class _TaskDetails extends React.Component {
                         {(currTask.style?.bgColor || currTask.style?.bgImg) && <div className={`task-cover ${(currTask.style.bgImg) ? 'bg-cover' : ''}`} style={(currTask.style.bgImg) ? { backgroundImage: currTask.style.bgImg } : { backgroundColor: currTask.style.bgColor }}>
 
                             <div className={`cover-btn-container ${(currTask.style.bgImg) ? 'bg-img' : ''}`}>
-                                <button className='btn-style2' onClick={(event) => { this.toggleIsCoverOpen(); position = event.target.getBoundingClientRect(); }}>
+                                <button className='btn-style2 details-cover-btn' onClick={(event) => { this.toggleIsCoverOpen(); position = event.target.getBoundingClientRect(); }}>
                                     <span className="icon-sm align-center cover-icon"><BsCreditCard /></span>
                                     <span className="">Cover</span>
                                 </button>
@@ -208,7 +208,6 @@ class _TaskDetails extends React.Component {
                                             placeholder="Add a more detailed description..."
                                             onChange={this.handleChange}
                                             autoFocus
-                                            // onFocus={this.toggleDescriptionTextArea}
                                             value={this.state.currTask.description}
                                             rows={(isDescriptionOpen) ? '4' : ''}
                                             onBlur={() => { this.handleDetailsChange(); }}

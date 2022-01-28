@@ -11,6 +11,7 @@ export const userService = {
     signup,
     getLoggedinUser,
     getGuestUser,
+    googleLogin
 
 
 };
@@ -21,6 +22,21 @@ async function login({ username, password }) {
     const user = await httpService.post('auth/login', { username, password });
     _setLoggedinUser(user);
     return user;
+}
+
+async function googleLogin(tokenId) {
+    console.log('tokenId:', tokenId);
+    
+    try {
+
+        const user = await httpService.post('auth/googlelogin', { tokenId })
+        if (user) {
+            _setLoggedinUser(user);
+            return user
+        }
+    } catch (err) {
+        throw err
+    }
 }
 
 async function signup(newUser) {
@@ -36,8 +52,8 @@ async function logout() {
 }
 
 
-function getGuestUser(){
- return { username: 'Guest', password:'guest' }
+function getGuestUser() {
+    return { username: 'Guest', password: 'guest' }
 }
 
 function getLoggedinUser() {
