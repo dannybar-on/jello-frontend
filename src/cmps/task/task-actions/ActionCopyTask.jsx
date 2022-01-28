@@ -67,7 +67,7 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
                     <span className="label">List</span>
                     <span className="select-value">{currGroup.title}</span>
                     {currGroup && <select name="group" onChange={handleChange} value={currGroup.id}>
-                        {board.groups.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
+                        {board.groups.map(item => {return !item.isArchive && <option key={item.id} value={item.id}>{item.title}</option> })}
                     </select>}
                 </div>
 
