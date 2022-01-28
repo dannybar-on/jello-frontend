@@ -29,7 +29,6 @@ export function addBoard(board) {
         try {
             const savedBoard = await boardService.save(board);
             dispatch({ type: 'ADD_BOARD', board: savedBoard });
-            // dispatch({type: 'SET_CURR_BOARD', board: savedBoard})
             return savedBoard;
         } catch (err) {
             console.log('Cannot add board', err);

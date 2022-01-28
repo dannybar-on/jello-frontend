@@ -16,7 +16,6 @@
   // top: 0;
   textarea {
     z-index: 70;
-    
   }
 
   .task-preview-container1 {
@@ -168,26 +167,19 @@
 // }
 
 .quick-edit-btns {
-  // background: #0009;
-  //   border-radius: 3px;
-  //   clear: both;
-  // color: #e6e6e6;
-  //   display: block;
-  //   float: left;
-  //   margin: 0 0 4px 8px;
-  //   padding: 6px 12px 6px 8px;
-  //   text-decoration: none;
-  //   transition: transform 85ms ease-in;
+  // transform: translateX(-20px);
+  // transition: opacity 85ms ease-in, transform 85ms ease-in;
+  // width: 240px;
+  // z-index: 0;
 
   // left: 100%;
-  // opacity: 0;
+  // opacity: 1;
   position: absolute;
-  // top: 0;
+  top: 0;
   transform: translateX(-20px);
   transition: opacity 85ms ease-in, transform 85ms ease-in;
   width: 240px;
-  z-index: 0;
-
+  z-index: 50;
   button,
   a {
     // display: flex;
@@ -195,10 +187,10 @@
     opacity: 1;
     background: #0009;
     border-radius: 3px;
-    clear: both;
+    // clear: both;
     color: #e6e6e6;
     display: block;
-    float: left;
+    // float: left;
     margin: 0 0 4px 8px;
     padding: 6px 12px 6px 8px;
     text-decoration: none;

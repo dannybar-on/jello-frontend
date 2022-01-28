@@ -43,13 +43,24 @@ class _AddMembers extends React.Component {
     }
 
     render() {
-        const { currTask } = this.props;
+        const { currTask, user } = this.props;
         const { members } = this.state;
         return (
             <div className="members">
                 <input className="input-style" type="text" placeholder="Search members" value={this.state.filterBy} name="filterBy" onChange={this.handleChange}></input>
                 <h4 className="modal-content-title">Board members</h4>
                 {/* <div className="board-members-container"> */}
+                {user && <div onClick={() => this.onAddMemberToTask(user)} className="board-member-container">
+                    <div>
+                        <span className="member-img">
+                            <UserAvatar sx={{ width: 20, height: 20 }} fullname={user.fullname} url={user?.imgUrl} />
+                        </span>
+                        <span>{user.fullname}</span>
+                        <span> ({user.username})</span>
+                        {currTask.members && currTask.members.some(member => member._id === user._id) && <span className="includes-icon"><MdDone /></span>}
+                    </div>
+                </div>}
+
                 {members.map((member, idx) => {
                     return <div key={idx} onClick={() => this.onAddMemberToTask(member)} className="board-member-container">
                         <div>
@@ -70,8 +81,9 @@ class _AddMembers extends React.Component {
 }
 
 
-const mapStateToProps = ({ boardModule }) => {
+const mapStateToProps = ({ boardModule, userModule }) => {
     return {
+        user: userModule.user,
         board: boardModule.currBoard,
         currTask: boardModule.currTask,
     };

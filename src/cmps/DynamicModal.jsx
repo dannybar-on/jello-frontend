@@ -19,6 +19,9 @@ import { ActionArchiveTask } from './task/task-actions/ActionArchiveTask';
 //GROUP ACTIONS
 import { GroupActions } from './GroupActions';
 
+//USER
+import { UserModal } from './UserModal.jsx';
+
 import { IoMdClose } from 'react-icons/io';
 
 export class DynamicModal extends React.Component {
@@ -58,11 +61,12 @@ export class DynamicModal extends React.Component {
                 return <ActionCopyTask {...this.props} />;
 
             case 'Archive':
-                return <ActionArchiveTask {...this.props} />
+                return <ActionArchiveTask {...this.props} />;
 
             case 'List actions':
-                return <GroupActions {...this.props} />
-
+                return <GroupActions {...this.props} />;
+            case 'User Modal':
+                return <UserModal {...this.props} />;
             default:
         }
     };
@@ -71,15 +75,17 @@ export class DynamicModal extends React.Component {
 
     render() {
 
-        const { item, toggleDynamicModal, position } = this.props
-        const { topPos, leftPos } = taskService.getModalPosition(position)
-        
-
+        const { item, toggleDynamicModal, position } = this.props;
+        const { topPos, leftPos, right } = taskService.getModalPosition(position);
+        // const size = useWindowDimensions();
+        // const width = size.width;
+        // let intViewportWidth = window.innerWidth;
+        // console.log(intViewportWidth)
         return (
             <>
                 {/* style={{ top: topPos }} */}
                 {/* <button className="close-modal-screen"></button> */}
-                <section style={{ top: topPos, }} className="dynamic-modal-container" >
+                <section style={{ top: topPos, right }} className="dynamic-modal-container" >
 
                     <div className="modal-header">
                         <span className="modal-header-title">{item}</span>

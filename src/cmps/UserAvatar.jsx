@@ -23,6 +23,7 @@ function stringToColor(string) {
 }
 
 function stringAvatar(name, url) {
+    if (name === 'Guest') return { sx: { bgcolor: stringToColor(name) }, children: `${name.split(' ')[0][0]}` };
     return {
         sx: {
             bgcolor: stringToColor(name),
