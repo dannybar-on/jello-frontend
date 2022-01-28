@@ -31,9 +31,12 @@ function _AddDueDate({ updateTask, currTask, board, toggleDynamicModal }) {
         const currGroup = taskService.getGroupById(res.id);
         // await onSetCurrTask(res);
         updateTask(board, currGroup, res);
-        toggleDynamicModal();
     };
     
+    const submitDueDate = () => {
+        toggleDynamicModal();
+    }
+
     console.log(dueDate);
     return (
         <div className="date-picker">
@@ -46,7 +49,7 @@ function _AddDueDate({ updateTask, currTask, board, toggleDynamicModal }) {
                 formatWeekDay={nameOfDay => nameOfDay.substr(0, 3)}
             />
             <div className="date-btns flex column">
-                <button className='date-picker-btns save-btn' onClick={handleDueDate}>Save</button>
+                <button className='date-picker-btns save-btn' onClick={submitDueDate}>Save</button>
                 <button className='date-picker-btns reset-btn' onClick={cleanDate}>Remove</button>
             </div>
         </div>

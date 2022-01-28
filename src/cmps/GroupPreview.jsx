@@ -44,10 +44,10 @@ export class GroupPreview extends React.Component {
     };
 
     render() {
-        const { group, index, board, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList, onSetCurrTask } = this.props;
+        const { group, index, board, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList, onSetCurrTask, toggleGroupArchive } = this.props;
         const { title, isAddOpen, isPopperOpen } = this.state;
-        //   <div className="group-wrapper">
         return (
+            // <div className="group-wrap" style={(group.isArchive) ? {display: 'none'} : {display: 'unset'}}>
             <Draggable draggableId={group.id} index={index}>
                 {(provided) => (
                     <div className="group-preview-container flex column" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
@@ -58,7 +58,7 @@ export class GroupPreview extends React.Component {
                                       <BsThreeDots />
                                   </button>
                                   {isPopperOpen && (
-                                      <DynamicModal item={'List actions'} toggleDynamicModal={this.toggleDynamicModal} onToggleAdd={this.onToggleAdd} position={position} ref={this.groupEditRef}/>
+                                      <DynamicModal item={'List actions'} toggleDynamicModal={this.toggleDynamicModal} onToggleAdd={this.onToggleAdd} toggleGroupArchive={toggleGroupArchive} groupId={group.id} position={position} ref={this.groupEditRef}/>
                                   )}
                               </div>
                         </div>
@@ -88,7 +88,7 @@ export class GroupPreview extends React.Component {
                     </div>
                 )}
             </Draggable>
-
+            // </div>                
         );
     }
 }

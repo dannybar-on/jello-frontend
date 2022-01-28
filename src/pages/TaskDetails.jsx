@@ -34,8 +34,8 @@ class _TaskDetails extends React.Component {
         isEditOpen: false,
         isCommentOpen: false,
         comment: '',
-
-
+        isLabelsOpen: false,
+        isMembersOpen: false,
     };
 
     componentDidMount() {
@@ -107,6 +107,10 @@ class _TaskDetails extends React.Component {
 
     };
 
+    toggleIsLabelsOpen = () => {
+        const { isLabelsOpen } = this.state;
+        this.setState({ isLabelsOpen: !isLabelsOpen })
+    }
 
     onAddComment = (ev) => {
         ev.preventDefault();
@@ -131,8 +135,13 @@ class _TaskDetails extends React.Component {
         this.props.updateTask(board, group, currTask);
     };
 
+    toggleIsMembersOpen = () => {
+        const { isMembersOpen } = this.state;
+        this.setState({ isMembersOpen: !isMembersOpen })
+    }
+
     render() {
-        const { currGroup, isDescriptionOpen, isEditOpen, isCommentOpen, comment } = this.state;
+        const { currGroup, isDescriptionOpen, isEditOpen, isLabelsOpen, isMembersOpen , comment } = this.state;
         const { boardId } = this.props.match.params;
         const { board, currTask, updateTask, history, user } = this.props;
         if (!currTask || !this.state.currTask) return <Loader />;
@@ -184,7 +193,7 @@ class _TaskDetails extends React.Component {
 
                             <div className="task-main flex column">
 
-                                <TaskDetailsData currGroup={currGroup} isEditOpen={isEditOpen} toggleIsEditOpen={this.toggleIsEditOpen} />
+                                <TaskDetailsData currGroup={currGroup} isEditOpen={isEditOpen} toggleIsEditOpen={this.toggleIsEditOpen} isLabelsOpen={isLabelsOpen} toggleIsLabelsOpen={this.toggleIsLabelsOpen} isMembersOpen={isMembersOpen} toggleIsMembersOpen={this.toggleIsMembersOpen} />
 
                                 <div className="task-description">
                                     <div className="details-section-header ">

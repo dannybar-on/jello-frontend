@@ -92,6 +92,12 @@ class _BoardDetails extends React.Component {
     this.props.unMountBoard();
   }
 
+  toggleGroupArchive = (groupId) => {
+    const groupToUpdate = this.props.board.groups.find((group) => groupId === group.id);
+    groupToUpdate.isArchive = (groupToUpdate.isArchive) ? !groupToUpdate.isArchive : true;
+    this.props.updateGroup(this.props.board, groupToUpdate)
+  }
+
   render() {
     const { isAddOpen, isEditOpen, isTaskLabelListOpen } = this.state;
     const { board, updateGroup, onSetCurrTask } = this.props;
@@ -105,7 +111,7 @@ class _BoardDetails extends React.Component {
 
             <BoardHeader board={this.props.board} />
             <div className='list-container flex'>
-              <GroupList groups={board.groups} board={board} onSetCurrTask={onSetCurrTask} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen} />
+              <GroupList groups={board.groups} board={board} onSetCurrTask={onSetCurrTask} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen} toggleGroupArchive={this.toggleGroupArchive}/>
               {!isAddOpen && (
                 <div onClick={this.onToggleAdd} className="add-another-group">
                   <button className='add-list-btn flex align-center' >

@@ -1,8 +1,8 @@
-export function GroupActions({ onToggleAdd }) {
+export function GroupActions({ onToggleAdd, groupId, toggleGroupArchive }) {
     return (
         <div className="group-actions flex column">
             <button onClick={ onToggleAdd }>Add card...</button>
-            <button>Archive this list...</button>
+            <button onClick={() => toggleGroupArchive(groupId)}>Archive this list...</button>
         </div>
     )
 }
