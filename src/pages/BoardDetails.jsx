@@ -16,6 +16,7 @@ import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { BoardHeader } from '../cmps/board/BoardHeader.jsx';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { QuickEditor } from '../cmps/QuickEditor.jsx';
+import {Dashboard} from '../cmps/Dashboard.jsx';
 
 class _BoardDetails extends React.Component {
   state = {
@@ -140,6 +141,10 @@ class _BoardDetails extends React.Component {
               <Route
                 component={TaskDetails}
                 path="/board/:boardId/:groupId/:taskId"
+              />
+              <Route
+                component={Dashboard}
+                path="/board/:boardId/dashboard"
               />
             </div>
 

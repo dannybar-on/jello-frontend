@@ -113,7 +113,7 @@ class _TaskDetails extends React.Component {
     };
 
     onAddComment = (ev) => {
-        ev.preventDefault();
+        // ev.preventDefault();
         const { comment } = this.state;
         let { board, currTask, user } = this.props;
         const group = taskService.getGroupById(currTask.id);

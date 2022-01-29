@@ -11,6 +11,7 @@ import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import {SideMenu} from '../SideMenu.jsx'
 import { DynamicModal } from '../DynamicModal'
 import { loadUsers } from '../../store/user.action'
+import { Link } from 'react-router-dom'
 
 class _BoardHeader extends React.Component {
 
@@ -79,7 +80,9 @@ class _BoardHeader extends React.Component {
                                 </DynamicModal>}
             </div>
             <div className='board-header-right flex row' >
+                <Link to={`/board/${board._id}/dashboard`} className='clean-link'>
                 <button className='dashboard-btn flex align-center justify-center'> Dashboard</button>
+                </Link>
                 <button className='show-more-btn flex align-center justify-center' onClick={() => this.toggleMenu()}><BiDotsHorizontalRounded /> Show menu</button>
             </div>
             <SideMenu isMenuOpen={isMenuOpen} toggleMenu={this.toggleMenu} />

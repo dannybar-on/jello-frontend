@@ -15,19 +15,33 @@ class _InviteMembers extends React.Component {
         return boardMembersIds
     }
 
-    inviteToBoard = (user) => {
-        const { board, updateBoard } = this.props
-        const memberIds = this.getMembersIds()
-        const memberToAdd = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl }
-        const PrevMembers = board.members
-        const boardToUpdate = {...board, members:[...board.members, memberToAdd]}
-        if (memberIds.includes(memberToAdd._id)) {
-            updateBoard(boardToUpdate)
-            return
+    // inviteToBoard = (user) => {
+    //     const { board, updateBoard } = this.props
+    //     const memberIds = this.getMembersIds()
+    //     const memberToAdd = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl }
+    //     const PrevMembers = board.members
+    //     const boardToUpdate = {...board, members:[...board.members, memberToAdd]}
+    //     if (memberIds.includes(memberToAdd._id)) {
+    //         updateBoard(boardToUpdate)
+    //         return
+    //     }
+    //     updateBoard(boardToUpdate)
+    //     console.log(board.members)
+    // }
+
+    inviteToBoard = (member) => {
+        let { board } = this.props;
+        if (!board.members || !board.members.length) board.members = [];
+        const idx = board.members.findIndex(user => user._id === member._id);
+        if (idx === -1) {
+            board.members.push(member);
+        } else {
+            board.members = board.members.filter(user => user._id !== member._id);
         }
-        updateBoard(boardToUpdate)
-        console.log(board.members)
+
+        this.props.updateBoard(board)
     }
+
 
     handleChange = (ev) => {
         const field = ev.target.name;
