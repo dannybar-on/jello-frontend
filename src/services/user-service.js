@@ -25,7 +25,6 @@ async function login({ username, password }) {
 }
 
 async function googleLogin(tokenId) {
-    console.log('tokenId:', tokenId);
     
     try {
 

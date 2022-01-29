@@ -11,7 +11,7 @@
   // // z-index: 35;
   // place-content: center;
   position: fixed;
-   display: flex;
+  display: flex;
   background-color: rgba(0, 0, 0, 0.357);
   cursor: pointer;
   inset: 0;
@@ -28,7 +28,16 @@
   // textarea {
   // }
 
-  .task-preview-container1 {
+  .edit-preview-container {
+    height: fit-content;
+
+    .quick-editor-save{
+      padding-left: 24px;
+    padding-right: 24px;
+    margin: 8px 4px 0 0;
+    }
+  }
+  .edit-task-preview-container {
     background-color: #fff;
     border-radius: 3px;
     box-shadow: 0 1px 0 #091e4240;
@@ -36,8 +45,9 @@
     display: block;
     margin-bottom: 8px;
     width: 256px;
+    height: fit-content;
     min-height: 20px;
-    position: absolute;
+    // position: absolute;
     text-decoration: none;
     // z-index: 70;
     // padding: 6px 8px 2px;
@@ -122,7 +132,8 @@
       line-height: 16px;
       padding: 0;
       text-shadow: none;
-      width: auto;
+      min-width: 40px;
+      max-width: 40px;
       border-radius: 3px;
     }
     &.close {
@@ -199,7 +210,8 @@
     border-radius: 3px;
     // clear: both;
     color: #e6e6e6;
-    display: block;
+    // display: block;
+    gap: 5px;
     // float: left;
     margin: 0 0 4px 8px;
     padding: 6px 12px 6px 8px;

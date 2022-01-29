@@ -262,16 +262,16 @@ class _TaskDetails extends React.Component {
                                             <span className="member-img">
                                                 <UserAvatar sx={{ width: 20, height: 20 }} fullname={user.fullname} />
                                             </span>
-                                            <form onSubmit={this.onAddComment}>
+                                            {/* <form onSubmit={this.onAddComment}> */}
                                                 <textarea
                                                     name="comment"
                                                     placeholder="Write a comment..."
                                                     onChange={this.handleCommentChange}
                                                     value={comment}
                                                 />
-                                                <button className="btn-style1" type="submit" >Save</button>
+                                                <button className="btn-style1" type="submit" onClick={()=>this.onAddComment()}>Save</button>
 
-                                            </form>
+                                            {/* </form> */}
                                         </div>
 
 
