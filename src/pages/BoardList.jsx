@@ -60,7 +60,7 @@ class _BoardList extends React.Component {
 
                             return board.isStarred && <div className='board-card' key={board._id} style={(board.style.bgColor) ? { backgroundColor: `${board.style.bgColor}` } : { backgroundImage: `url(${board.style.bgImg})` }}
                             >
-                                <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
+                                {/* <button onClick={() => this.onRemoveBoard(board._id)} >X</button> */}
                                 <BoardPreview board={board} index={index}></BoardPreview>
                             </div>;
                         })}
@@ -76,12 +76,12 @@ class _BoardList extends React.Component {
                         {boards.map((board, index) => {
                             return (
                                 <div className='board-card' key={board._id} style={(board.style.bgColor) ? { backgroundColor: `${board.style.bgColor}` } : { backgroundImage: `url(${board.style.bgImg})` }} >
-                                    <button onClick={() => this.onRemoveBoard(board._id)} >X</button>
+                                    {/* <button onClick={() => this.onRemoveBoard(board._id)} >X</button> */}
                                     <BoardPreview board={board} index={index}></BoardPreview>
                                 </div>
                             );
                         })}
-                        <button className='board-card' onClick={() => this.toggleIsAdd()}>Create new board</button>
+                        <button className='board-card create-board-btn' onClick={() => this.toggleIsAdd()}>Create new board</button>
                     </div>
                 </div>
             </section>

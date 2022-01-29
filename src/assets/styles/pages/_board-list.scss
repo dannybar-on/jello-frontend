@@ -49,8 +49,8 @@
       height: 96px;
       flex: 1 0 22%;
       margin-right: 2%;
-      max-width: 23.5%;
       min-width: 200px;
+      width: 292px;
       margin-bottom: 2%;
 
       .board-preview-container {
@@ -85,69 +85,22 @@
   }
 
   .create-board-btn {
-    background-color: rgba(9, 30, 66, 0.039);
-    color: $dark-blue;
+    background-color: #091e420a;
+    border: none;
+    box-shadow: none;
+    color: $dark-blue !important;
+    display: table-cell;
+    font-weight: 600;
+    height: 80px;
     text-align: center;
-    height: rem(80px);
-    width: rem(180px);
-    padding: 20px;
+    transition-duration: 85ms;
+    transition-property: background-color,border-color,box-shadow;
+    transition-timing-function: ease;
+    vertical-align: middle;
+    width: inherit;
 
     &.create-board-btn:hover {
-      background-color: rgba(9, 30, 66, 0.078);
+      background-color: #091e4245;
     }
   }
 }
-
-// .board-list {
-//   max-width: rem(980px);
-//   margin: 0 auto;
-
-//   h1{
-//     display: inline-block;
-//     flex: 1;
-//     font-size: 16px;
-//     font-weight: 700;
-//     line-height: 24px;
-//     margin: 15px 0 0;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//     white-space: nowrap;
-//     padding: 0 0 11px;
-
-//     span{
-//       font-size: 20px;
-//     }
-//   }
-
-// .starred-container,
-// .workspace-container {
-//   display: grid;
-//   grid-template-columns: repeat(4, 1fr);
-//   gap: 20px;
-// }
-// .board-card {
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   background-position: 50%;
-//   line-height: 20px;
-//   background-color: $silver-blue;
-//   height: rem(100px);
-//   width: rem(200px);
-//   padding: 20px;
-//   color: #fff;
-//   border-radius: 3px;
-// }
-
-// .create-board-btn {
-//   background-color: rgba(9, 30, 66, 0.039);
-//   color: $dark-blue;
-//   text-align: center;
-//   height: rem(80px);
-//   width: rem(180px);
-//   padding: 20px;
-
-//   &.create-board-btn:hover {
-//     background-color: rgba(9, 30, 66, 0.078);
-//   }
-// }
-// }
