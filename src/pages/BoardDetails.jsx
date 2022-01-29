@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
+import { socketService } from '../services/socket.service.js';
 import { boardService } from '../services/board.service.js';
 import { userService } from '../services/user-service.js';
-import { setCurrBoard, updateBoard, unMountBoard, updateGroup, onSetCurrTask } from '../store/board.action.js';
+import { setCurrBoard, updateBoard, unMountBoard, updateGroup, onSetCurrTask, outputUpdateBoard } from '../store/board.action.js';
 import { login } from '../store/user.action.js';
 
 import { Route } from 'react-router-dom';
@@ -16,6 +17,7 @@ import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { BoardHeader } from '../cmps/board/BoardHeader.jsx';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { QuickEditor } from '../cmps/QuickEditor.jsx';
+import {Dashboard} from '../cmps/Dashboard.jsx';
 
 class _BoardDetails extends React.Component {
   state = {
@@ -26,14 +28,30 @@ class _BoardDetails extends React.Component {
   };
 
   componentDidMount() {
-    const {user,login} = this.props
-    this.loadBoard();
+    const { boardId } = this.props.match.params;
 
+    const {user,login,outputUpdateBoard} = this.props
+    this.loadBoard();
+    
     if (!user) {
       const guest = userService.getGuestUser()   
       login(guest)
     }
+    socketService.emit('member-joined', boardId);
+    socketService.on('board-update', updatedBoard => {
+      // const boardToSend = action.board || this.props.board;
+      outputUpdateBoard(updatedBoard);
+      
+    });
   }
+
+//   componentDidUpdate(prevProps) {
+//     const { board } = this.props;
+//     if (prevProps.board !== this.props.board) {
+//         this.setState({ board })
+//     }
+// }
+
 
   loadBoard = () => {
     const boardId = this.props.match.params.boardId;
@@ -49,16 +67,10 @@ class _BoardDetails extends React.Component {
     this.setState({ isAddOpen: !isAddOpen });
   };
 
-  // toggleEditOpen = (ev, task) => {
-  //   ev.preventDefault();
-
-  //   const { isEditOpen } = this.state;
-  //   this.setState({ isEditOpen: !isEditOpen });
-  //   this.props.onSetCurrTask(task)
-  // };
 
   toggleTaskLabelList = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
+    event.stopPropagation()
     this.setState({ isTaskLabelListOpen: !this.state.isTaskLabelListOpen });
   };
 
@@ -141,6 +153,10 @@ class _BoardDetails extends React.Component {
                 component={TaskDetails}
                 path="/board/:boardId/:groupId/:taskId"
               />
+              <Route
+                component={Dashboard}
+                path="/board/:boardId/dashboard"
+              />
             </div>
 
           </div>
@@ -172,6 +188,7 @@ const mapDispatchToProps = {
   updateGroup,
   onSetCurrTask,
   login,
+  outputUpdateBoard,
 
 };
 

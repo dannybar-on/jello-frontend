@@ -1,0 +1,154 @@
+.dashboard-overlay {
+    z-index: 9;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.87);
+    overflow-y: auto;
+    justify-content: center;
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #fff;
+      font-size: 30px;
+    }
+    .dashboard-container {
+      align-items: center;
+      position: relative;
+      margin:0;
+      padding:0;
+      top:350px;
+      gap: 20px;
+      justify-content: center;
+      @include for-normal-layout {
+        align-items: flex-start;
+        top:0px;
+        width:100%;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+  
+      }
+      .dash-title {
+        color: rgba(255, 255, 255, 0.897);
+        z-index: 10;
+        font-size: rem(42px);
+        margin-bottom: 10px;
+        text-align: center;
+        @include for-normal-layout {
+          text-align: unset;
+  
+        }
+  
+      }
+      .date {
+        color: rgba(255, 255, 255, 0.897);
+        font-size: 1rem;
+      }
+      .info-container {
+        text-align: center;
+        gap: 20px;
+        flex-direction: column;
+        @include for-normal-layout {
+          flex-direction: row;
+          gap: 30px;
+  
+      }}
+      .info-box {
+        max-width: auto;
+        padding: 20px 15px;
+        align-items: center;
+        justify-content:space-around;
+        width:225px;
+        height:120px;
+        max-height:150px;
+        gap: 0px;
+        border-radius: 3px;
+        background-color: rgba(7, 27, 39, 0.541);
+        border: 2px solid rgba(255, 255, 255, 0.192);
+  
+        .big-num-box {
+        //   gap: 30px;
+          height: 100%;
+          position: relative;
+          top: -30px;
+          min-width:100px;
+          align-items: center;
+          p {
+            color: rgb(255, 255, 255);
+            z-index: 1;
+            text-shadow: 0px 0px 4px rgb(0, 0, 0);
+  
+            &.below-num {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              gap:1px;
+              .icon {
+                color: rgba(255, 255, 255, 0.575);
+                align-self: center;
+                z-index: 0;
+                padding:4px;
+              }
+            }
+          }
+        }
+        .details {
+          align-items: flex-start;
+          position:absolute;
+          .icon { 
+            height:100px;
+            width:100px;
+            color:#f1f1f1a2;
+          }
+          p {
+            margin: 0;
+            font-weight: 400;
+            font-size:rem(14px);
+          }
+          .green-task {
+            color: rgba(156, 240, 156, 0.87);
+          }
+          .red-task {
+            color: rgb(255, 137, 137);
+            font-weight: 600;
+          }
+          .yellow-task {
+            color: #ffce56;
+          }
+          position: relative;
+        }
+        p {
+          margin: 0;
+          color: rgba(255, 255, 255, 0.897);
+          font-size: 1rem;
+          font-weight: 500;
+          &.info-num {
+            font-size: rem(75px);
+            font-weight: bold;
+          }
+        }
+      }
+  
+      .chart-container {
+        max-height: 100vh;
+        justify-content: center;
+        align-items: center;
+        gap: 45px;
+        flex-wrap: wrap;
+        .chart {
+          width: 90%;
+          max-height: 400px;
+          padding: 40px 20px;
+          border-radius: 25px;
+          background-color: rgba(7, 27, 39, 0.541);
+          border: 2px solid rgba(255, 255, 255, 0.192);
+          @include for-normal-layout {
+            width: 400px;
+            height: fit-content;
+  
+          }
+        }
+      }
+    }
+  }

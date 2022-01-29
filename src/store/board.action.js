@@ -5,6 +5,8 @@ export function loadBoards() {
     return async (dispatch) => {
         try {
             const boards = await boardService.query();
+            // socketService.emit('boards-update', boards)
+
             dispatch({ type: 'SET_BOARDS', boards });
         } catch (err) {
             console.log('Cannot load boards', err);
@@ -25,7 +27,7 @@ export function removeBoard(boardId) {
     };
 }
 
-export function addBoard(board) {
+export function addBoard(board) { // diffrrent socket   socketService.emit('update', true)
     return async (dispatch) => {
         try {
             const savedBoard = await boardService.save(board);
@@ -41,11 +43,22 @@ export function updateBoard(boardToUpdate) {
     return async (dispatch) => {
         try {
             const updatedBoard = await boardService.save(boardToUpdate);
+            socketService.emit('board-update', updatedBoard)
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
             console.log('Cannot update board', err);
         }
     };
+}
+
+// SOCKET INCOMING BOARD SET
+export function outputUpdateBoard(boardToUpdate) {
+    return async (dispatch) => {
+        const updatedBoard = await boardService.save(boardToUpdate);
+
+        dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+
+    }
 }
 
 export function updateGroup(board, group) {
@@ -54,6 +67,7 @@ export function updateGroup(board, group) {
         boardToUpdate.groups = boardToUpdate.groups.map(currGroup => (currGroup.id === group.id) ? group : currGroup);
         try {
             const updatedBoard = await boardService.save(boardToUpdate);
+            socketService.emit('board-update', updatedBoard)
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
             console.log('Cannot update Group', err);
@@ -65,7 +79,8 @@ export function setCurrBoard(board) {
     return async (dispatch) => {
         try {
             const updatedBoard = await boardService.save(board);
-            dispatch({ type: 'SET_CURR_BOARD', board:updatedBoard });
+            socketService.emit('board-update', updatedBoard)
+            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
             document.body.style.background = (board.style.bgColor) ? board.style.bgColor : `url("${board.style.bgImg}")`;
             document.body.style.backgroundRepeat = 'no-repeat';
             document.body.style.backgroundPosition = 'center';
@@ -100,6 +115,7 @@ export function addGroup(newGroup, board) {
         board.groups.push(newGroup);
         try {
             const updatedBoard = await boardService.save(board);
+            socketService.emit('board-update', updatedBoard)
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
             console.log(err);
@@ -117,6 +133,7 @@ export function addTask(task, groupId, board) {
         boardToUpdate.groups = boardToUpdate.groups.map(currGroup => (currGroup.id === groupId) ? group : currGroup);
         try {
             const updatedBoard = await boardService.save(boardToUpdate);
+            socketService.emit('board-update', updatedBoard)
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
             console.log(err);
@@ -136,6 +153,7 @@ export function updateTask(board, groupToSave, taskToSave) {
 
         try {
             const updatedBoard = await boardService.save(boardToUpdate);
+            socketService.emit('board-update', updatedBoard)
             dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
         } catch (err) {
             console.log('cant update task', err);

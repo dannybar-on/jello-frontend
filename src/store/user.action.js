@@ -31,11 +31,12 @@ export function googleLogin(tokenId) {
 
         try {
             const user = await userService.googleLogin(tokenId)
+            swalService.onLoginSwal(user.username)
             const action = { type: 'SET_USER', user }
             dispatch(action)
         } catch (err) {
             console.log('login with google failed:', err);
-
+            swalService.FailLoginSwal()
         }
 
 
@@ -76,4 +77,15 @@ export function logout() {
             // swalService.logoutFailedSwal()
         }
     };
+}
+
+export function loadUsers() {
+    return async (dispatch) => {
+        try {
+            const users = await userService.getUsers()
+            dispatch({ type: 'SET_USERS', users})
+        } catch (err) {
+            console.log('Cannot loadUsers', err);
+        }
+    }
 }

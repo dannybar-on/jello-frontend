@@ -33,7 +33,7 @@ class _TaskPreview extends React.Component {
                     return (
                         <>
                             <div className="task-preview-container" ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
-                                <div onClick={() => this.props.history.push(`${board._id}/${group.id}/${task.id}`)}>
+                                <div className="cursor-p" onClick={() => this.props.history.push(`${board._id}/${group.id}/${task.id}`)}>
                                     <TaskPreviewContent board={board} task={task} toggleEditOpen={this.toggleEditOpen} isTaskLabelListOpen={isTaskLabelListOpen} toggleTaskLabelList={toggleTaskLabelList} onSetCurrTask={onSetCurrTask} position={position} />
                                 </div>
                             </div>

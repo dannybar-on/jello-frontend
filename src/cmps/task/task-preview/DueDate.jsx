@@ -25,7 +25,8 @@ class _DueDate extends React.Component {
   
 
     toggleCompleteStatus = (ev) => {
-        ev.preventDefault();
+        ev.stopPropagation()
+        // ev.preventDefault();
         const { board, task } = this.props;
         const group = taskService.getGroupById(task.id)
         const { isClicked } = this.state;
@@ -56,7 +57,6 @@ class _DueDate extends React.Component {
         //none of the above
         return null;
     };
-
     render() {
         const { task } = this.props;
         const { isHover, isClicked } = this.state;

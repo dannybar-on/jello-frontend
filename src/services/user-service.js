@@ -11,6 +11,7 @@ export const userService = {
     signup,
     getLoggedinUser,
     getGuestUser,
+    getUsers,
     googleLogin
 
 
@@ -64,6 +65,10 @@ function _setLoggedinUser(user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
 }
 
+async function getUsers() {
+    const users = await httpService.get(`user`)
+    return users
+}
 
 // Test Data
 // userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Noya', score: 22})
