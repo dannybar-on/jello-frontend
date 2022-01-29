@@ -21,6 +21,7 @@ import { GroupActions } from './GroupActions';
 
 //USER
 import { UserModal } from './UserModal.jsx';
+import { InviteMembers } from './InviteMembers.jsx';
 
 import { IoMdClose } from 'react-icons/io';
 
@@ -65,8 +66,12 @@ export class DynamicModal extends React.Component {
 
             case 'List actions':
                 return <GroupActions {...this.props} />;
+
             case 'Account':
                 return <UserModal {...this.props} />;
+
+            case 'Invite Members':
+                return <InviteMembers {...this.props} />;
             default:
         }
     };

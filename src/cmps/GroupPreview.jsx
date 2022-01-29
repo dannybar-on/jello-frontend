@@ -47,7 +47,7 @@ export class GroupPreview extends React.Component {
         const { group, index, board, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList, onSetCurrTask, toggleGroupArchive } = this.props;
         const { title, isAddOpen, isPopperOpen } = this.state;
         return (
-            // <div className="group-wrap" style={(group.isArchive) ? {display: 'none'} : {display: 'unset'}}>
+            <div className="group-wrap" style={(group.isArchive) ? {display: 'none'} : {display: 'unset'}}>
             <Draggable draggableId={group.id} index={index}>
                 {(provided) => (
                     <div className="group-preview-container flex column" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
@@ -88,7 +88,7 @@ export class GroupPreview extends React.Component {
                     </div>
                 )}
             </Draggable>
-            // </div>                
+            </div>                
         );
     }
 }

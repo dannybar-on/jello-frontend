@@ -9,6 +9,8 @@ import { FaStar } from 'react-icons/fa';
 import { RiUserAddLine } from 'react-icons/ri';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import {SideMenu} from '../SideMenu.jsx'
+import { DynamicModal } from '../DynamicModal'
+import { loadUsers } from '../../store/user.action'
 
 class _BoardHeader extends React.Component {
 
@@ -17,11 +19,13 @@ class _BoardHeader extends React.Component {
         isStarHover: false,
         boardTitle: '',
         isMenuOpen: false,
+        isInviteOpen: false,
     };
 
     componentDidMount(){
-        const {board} = this.props;
+        const {board, users} = this.props;
         this.setState({boardTitle: board.title})
+        this.props.loadUsers()
     }
 
     toggleMenu = () => {
@@ -51,9 +55,14 @@ class _BoardHeader extends React.Component {
         this.setState({ isStarHover: !isStarHover });
     };
 
+    toggleIsInviteOpen = () => {
+        const { isInviteOpen } = this.state;
+        this.setState({ isInviteOpen: !isInviteOpen })
+    }
+
     render() {
         const { board } = this.props;
-        const { isClicked, isStarHover, boardTitle, isMenuOpen } = this.state;
+        const { isClicked, isStarHover, boardTitle, isMenuOpen, isInviteOpen } = this.state;
         if (!board) return <h1>Loading</h1>;
         return <section className='board-header-container flex align-center space-between'>
             <div className='board-header-left flex'>
@@ -65,7 +74,9 @@ class _BoardHeader extends React.Component {
                 <AvatarGroup max={4} >
                     {board.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />)}
                 </AvatarGroup>
-                <button className='invite-btn'><RiUserAddLine /> Invite</button>
+                <button className='invite-btn' onClick={(event) => {this.toggleIsInviteOpen(); position = event.target.getBoundingClientRect()}}><RiUserAddLine /> Invite</button>
+                {isInviteOpen && <DynamicModal item={'Invite Members'} {...this.props} toggleDynamicModal={this.toggleIsInviteOpen} position={position}>
+                                </DynamicModal>}
             </div>
             <div className='board-header-right flex row' >
                 <button className='dashboard-btn flex align-center justify-center'> Dashboard</button>
@@ -76,15 +87,19 @@ class _BoardHeader extends React.Component {
     }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.currBoard,
+        users: userModule.users
     };
 }
 
 const mapDispatchToProps = {
     updateBoard,
-    setCurrBoard
+    setCurrBoard,
+    loadUsers
 };
 
 export const BoardHeader = connect(mapStateToProps, mapDispatchToProps)(_BoardHeader);
+
+var position
