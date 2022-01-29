@@ -12,9 +12,9 @@ export function login(credentials) {
             const action = { type: 'SET_USER', user }
             dispatch(action)
             console.log('credentials.username:', credentials.username);
-            
-            if(credentials.username !== 'Guest'){
-                swalService. onLoginSwal(credentials.username)
+
+            if (credentials.username !== 'Guest') {
+                swalService.onLoginSwal(credentials.username)
             }
             return user;
 
@@ -25,6 +25,24 @@ export function login(credentials) {
         }
     };
 }
+
+
+export function googleLogin(tokenId) {
+    return async (dispatch) => {
+
+        try {
+            const user = await userService.googleLogin(tokenId)
+            const action = { type: 'SET_USER', user }
+            dispatch(action)
+        } catch (err) {
+            console.log('login with google failed:', err);
+
+        }
+
+
+    }
+}
+
 
 
 export function signup(credentials) {
@@ -53,7 +71,7 @@ export function logout() {
             const action = { type: 'SET_USER', user: null };
             dispatch(action);
             console.log('window.location:', window.location);
-            
+
             window.location.assign('/board/login')
         } catch (err) {
             // swalService.logoutFailedSwal()

@@ -13,7 +13,9 @@ export class GroupPreview extends React.Component {
     state = {
         title: '',
         isAddOpen: false,
+        isEditOpen: false,
         isPopperOpen: false,
+
     };
 
     groupEditRef = React.createRef();
@@ -26,14 +28,16 @@ export class GroupPreview extends React.Component {
         this.setState((prevState) => ({ ...prevState, [name]: value }));
     };
 
+
+
     onToggleAdd = (ev) => {
         let { isAddOpen } = this.state;
         this.setState({ isAddOpen: !isAddOpen });
     };
 
     toggleDynamicModal = () => {
-        this.setState({ isPopperOpen: !this.state.isPopperOpen })
-    }
+        this.setState({ isPopperOpen: !this.state.isPopperOpen });
+    };
 
     onChangeTitle = () => {
         const { board } = this.props;
@@ -44,7 +48,7 @@ export class GroupPreview extends React.Component {
     };
 
     render() {
-        const { group, index, board, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList, onSetCurrTask, toggleGroupArchive } = this.props;
+        const { group, index, board, toggleEditOpen, isEditOpen, isTaskLabelListOpen, toggleTaskLabelList, onSetCurrTask, toggleGroupArchive } = this.props;
         const { title, isAddOpen, isPopperOpen } = this.state;
         return (
             <div className="group-wrap" style={(group.isArchive) ? {display: 'none'} : {display: 'unset'}}>
@@ -53,21 +57,21 @@ export class GroupPreview extends React.Component {
                     <div className="group-preview-container flex column" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                         <div className="group-header flex space-between align-center">
                             <textarea className="group-title" dir="auto" wrap="hard" type="text" value={title} name='title' onChange={this.handleChange} onBlur={this.onChangeTitle} />
-                            <div className="group-edit-popper " ref={this.groupEditRef} onClick={(ev) => {this.setState({isPopperOpen: !isPopperOpen}); position = ev.target.getBoundingClientRect()}}>
-                                  <button className="icon-sm edit-popper-btn flex-row-center">
-                                      <BsThreeDots />
-                                  </button>
-                                  {isPopperOpen && (
-                                      <DynamicModal item={'List actions'} toggleDynamicModal={this.toggleDynamicModal} onToggleAdd={this.onToggleAdd} toggleGroupArchive={toggleGroupArchive} groupId={group.id} position={position} ref={this.groupEditRef}/>
-                                  )}
-                              </div>
+                            <div className="group-edit-popper " ref={this.groupEditRef} onClick={(ev) => { this.setState({ isPopperOpen: !isPopperOpen }); position = ev.target.getBoundingClientRect(); }}>
+                                <button className="icon-sm edit-popper-btn flex-row-center">
+                                    <BsThreeDots />
+                                </button>
+                                {isPopperOpen && (
+                                    <DynamicModal item={'List actions'} toggleDynamicModal={this.toggleDynamicModal} onToggleAdd={this.onToggleAdd} toggleGroupArchive={toggleGroupArchive} groupId={group.id} position={position} ref={this.groupEditRef} />
+                                )}
+                            </div>
                         </div>
                         <Droppable droppableId={group.id}>
                             {(provided) => (
                                 <div className='group-content' {...provided.droppableProps} ref={provided.innerRef}>
                                     {group.tasks && group.tasks.map((task, index) => {
                                         return (
-                                            <TaskPreview key={task.id} task={task} index={index} group={group} groupId={group.id} board={board} toggleEditOpen={toggleEditOpen} isTaskLabelListOpen={isTaskLabelListOpen} toggleTaskLabelList={toggleTaskLabelList}  onSetCurrTask={onSetCurrTask} />
+                                            <TaskPreview key={task.id} task={task} isEditOpen={isEditOpen} index={index} group={group} groupId={group.id} board={board} toggleEditOpen={toggleEditOpen} isTaskLabelListOpen={isTaskLabelListOpen} toggleTaskLabelList={toggleTaskLabelList} onSetCurrTask={onSetCurrTask} position={position} />
                                         );
                                     })}
                                     {provided.placeholder}

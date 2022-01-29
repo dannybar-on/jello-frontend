@@ -21,7 +21,7 @@ class _BoardDetails extends React.Component {
   state = {
     board: null,
     isAddOpen: false,
-    isEditOpen: false,
+    // isEditOpen: false,
     isTaskLabelListOpen: false,
   };
 
@@ -49,13 +49,13 @@ class _BoardDetails extends React.Component {
     this.setState({ isAddOpen: !isAddOpen });
   };
 
-  toggleEditOpen = (ev, task) => {
-    ev.preventDefault();
+  // toggleEditOpen = (ev, task) => {
+  //   ev.preventDefault();
 
-    const { isEditOpen } = this.state;
-    this.setState({ isEditOpen: !isEditOpen });
-    this.props.onSetCurrTask(task)
-  };
+  //   const { isEditOpen } = this.state;
+  //   this.setState({ isEditOpen: !isEditOpen });
+  //   this.props.onSetCurrTask(task)
+  // };
 
   toggleTaskLabelList = (event) => {
     event.preventDefault();
@@ -116,11 +116,11 @@ class _BoardDetails extends React.Component {
       <>
         <DragDropContext onDragEnd={this.onDragEnd}>
           <div className={`board-details-container `}>
-            <div className={(isEditOpen) ? 'pencil-edit-screen' : ''}></div>
+            {/* <div className={(isEditOpen) ? 'pencil-edit-screen' : ''}></div> */}
 
             <BoardHeader board={this.props.board} />
             <div className='list-container flex'>
-              <GroupList groups={board.groups} board={board} onSetCurrTask={onSetCurrTask} toggleEditOpen={this.toggleEditOpen} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen} toggleGroupArchive={this.toggleGroupArchive} />
+              <GroupList groups={board.groups} board={board} onSetCurrTask={onSetCurrTask} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen} toggleGroupArchive={this.toggleGroupArchive} />
               {!isAddOpen && (
                 <div onClick={this.onToggleAdd} className="add-another-group">
                   <button className='add-list-btn flex align-center' >

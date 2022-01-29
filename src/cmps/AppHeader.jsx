@@ -23,6 +23,7 @@ class _AppHeader extends React.Component {
     render() {
         const { user, logout } = this.props;
         const {isModalOpen} = this.state
+        // const url = win
         return (
             <header className="app-header ">
 
