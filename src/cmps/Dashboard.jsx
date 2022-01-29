@@ -13,7 +13,10 @@ export function _Dashboard(props) {
   };
 
   useEffect(() => {
-    props.setCurrBoard(board);
+    if (!props.board){
+        props.setCurrBoard(board);
+    }
+    console.log('test');
   }, [props]);
 
   const { board } = props;
