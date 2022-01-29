@@ -13,7 +13,7 @@ export const boardService = {
 };
 
 function query(){
-    return httpService.get('board/')
+    return httpService.get('board')
 }
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { RootCmp } from './RootCmp.jsx';
+import { _RootCmpWithRouter } from './RootCmp.jsx';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -11,7 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <RootCmp />
+        <_RootCmpWithRouter />
       </Router>
     </Provider>
   </React.StrictMode>,
