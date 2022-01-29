@@ -16,7 +16,6 @@ export function _Dashboard(props) {
     if (!props.board){
         props.setCurrBoard(board);
     }
-    console.log('test');
   }, [props]);
 
   const { board } = props;
