@@ -7,25 +7,9 @@ import { taskService } from '../../../services/task.service.js';
 
 export class TaskPreviewContent extends React.Component {
 
-    // state = {
-    //     isEditOpen: false,
-    // };
-
-    // toggleEditOpen = (ev, task) => {
-    //     ev.preventDefault();
-    //     ev.stopPropagation();
-    //     const { isEditOpen } = this.state;
-    //     this.setState({ isEditOpen: !isEditOpen });
-    //     this.props.onSetCurrTask(task);
-    // };
-
-    getPos = () => {
-
-    };
 
     render() {
         const { board, task, toggleEditOpen, isTaskLabelListOpen, toggleTaskLabelList } = this.props;
-        // const { isEditOpen } = this.state;
         let { position } = this.props;
         const taskLabels = task.labelIds && taskService.getLabelsById(board, task);
 
@@ -45,9 +29,7 @@ export class TaskPreviewContent extends React.Component {
                 </div>
                 {!task.isFull && <TaskPreviewFooter board={board} task={task} />}
 
-                {/* {isEditOpen && <QuickEditor board={board} position={position} toggleEditOpen={this.toggleEditOpen}
-                    currTask={task}
-                />} */}
+        
             </>
         );
 

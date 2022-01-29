@@ -116,7 +116,7 @@ class _QuickEditor extends React.Component {
                                     autoFocus
                                     onFocus={this.handleFocus}
                                     style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor } : { backgroundColor: 'inherit' }}
-                                    value={taskTitle} onChange={this.handleChange} onBlur={(event) => this.onSaveTitle(event, taskTitle)} />
+                                    value={taskTitle} onChange={this.handleChange} />
                             </div>
                         </div>
                         {!currTask.isFull && <TaskPreviewFooter board={board} task={currTask} />}
@@ -125,10 +125,10 @@ class _QuickEditor extends React.Component {
                 </div>
 
                 <div className="quick-edit-btns">
-                    {/* <Link className="flex align-center row" to={`${board._id}/${group.id}/${currTask.id}`} >
+                    <Link className="add-item-btn flex align-center row" to={`${board._id}/${group.id}/${currTask.id}`} >
                     <span className="flex align-center"><CgCreditCard /></span>
                     <p>Open card</p>
-                </Link> */}
+                </Link>
                     {addToTaskItems.map((item, idx) => (
                         <button key={idx} onClick={(event) => { this.toggleDynamicModal(event); this.setState({ item }); position = event.target.getBoundingClientRect(); }}
                             className="add-item-btn flex row align-center">

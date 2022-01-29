@@ -4,22 +4,29 @@ import { taskService } from '../../services/task.service';
 
 export class TaskDetailsComment extends React.Component {
 
-  
+
 
     render() {
-        const { comment, onDeleteComment} = this.props;
+        const { comment, onDeleteComment } = this.props;
         const addedAt = taskService.getUploadTime(comment.createdAt);
-        return <div>
-            <UserAvatar fullname={comment.createdBy.fullname} />
+        return <div className="comments-container flex align-center">
 
-            <div>
-                <span>{comment.createdBy.fullname}</span>
-                <span>{addedAt}</span>
-                <div>
-                    <p>{comment.txt}</p>
+            {/* <span className="creator-img"> */}
+                <UserAvatar sx={{ width: 20, height: 20 }} fullname={comment.createdBy.fullname} />
+            {/* </span> */}
+
+            {/* <span className="member-img">
+                <UserAvatar sx={{ width: 20, height: 20 }} fullname={user.fullname} />
+            </span> */}
+
+            <div className="comment-box">
+                <span className="comment-creator">{comment.createdBy.fullname} </span>
+                <span className="comment-time">{addedAt}</span>
+                <div className="comment-background">
+                    <p className="comment-txt">{comment.txt}</p>
                 </div>
                 <div>
-                    <span onClick={() => onDeleteComment(comment.id)}>Delete</span>
+                    <span className="delete-span" onClick={() => onDeleteComment(comment.id)}>Delete</span>
                 </div>
             </div>
 

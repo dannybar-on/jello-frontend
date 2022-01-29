@@ -38,6 +38,7 @@ class _TaskDetails extends React.Component {
         isLabelsOpen: false,
         isMembersOpen: false,
         isCoverOpen: false,
+        isFocus: false
     };
 
     componentDidMount() {
@@ -91,7 +92,7 @@ class _TaskDetails extends React.Component {
     };
 
     onCancelChanges = (ev) => {
-        ev.preventDefault();
+        // ev.preventDefault();
         const { board } = this.props;
         const { currGroup } = this.state;
         const taskId = this.state.currTask.id;
@@ -104,6 +105,7 @@ class _TaskDetails extends React.Component {
     };
     handleCommentChange = ({ target: { name, value } }) => {
         this.setState({ [name]: value });
+console.log('this.state.comment:', this.state.comment);
 
     };
 
@@ -113,8 +115,13 @@ class _TaskDetails extends React.Component {
     };
 
     onAddComment = (ev) => {
-        ev.preventDefault();
+        ev.stopPropagation()
+        console.log('ev:', ev);
+        
         const { comment } = this.state;
+        if(!comment) return
+
+        console.log('Sending commnet');
         let { board, currTask, user } = this.props;
         const group = taskService.getGroupById(currTask.id);
         if (!currTask.comments || !currTask.comments.length) currTask.comments = [];
@@ -122,6 +129,8 @@ class _TaskDetails extends React.Component {
         currTask.comments.push({ txt: comment, createdAt: Date.now(), createdBy: { ...user }, id });
         console.log('currTask', currTask, comment);
         this.props.updateTask(board, group, currTask);
+        this.setState({ isFocus: false, comment: '' })
+
     };
 
 
@@ -141,7 +150,7 @@ class _TaskDetails extends React.Component {
     };
 
     render() {
-        const { currGroup, isDescriptionOpen, isEditOpen, isLabelsOpen, isMembersOpen, isCoverOpen, comment } = this.state;
+        const { currGroup, isDescriptionOpen, isEditOpen, isLabelsOpen, isMembersOpen, isCoverOpen, comment, isFocus } = this.state;
         const { boardId } = this.props.match.params;
         const { board, currTask, updateTask, history, user } = this.props;
         if (!currTask || !this.state.currTask) return <Loader />;
@@ -262,16 +271,19 @@ class _TaskDetails extends React.Component {
                                             <span className="member-img">
                                                 <UserAvatar sx={{ width: 20, height: 20 }} fullname={user.fullname} />
                                             </span>
-                                            {/* <form onSubmit={this.onAddComment}> */}
+                                            <div className="write-comment-container" style={{ width: '100%', height: isFocus ? 84 : 36, backgroundColor: '#fff' }} onClick={() => this.setState({ isFocus: true })}>
                                                 <textarea
+                                                    style={{ width: '100%', height: isFocus ? '50%' : '100%' }}
                                                     name="comment"
                                                     placeholder="Write a comment..."
                                                     onChange={this.handleCommentChange}
+                                                    // onBlur={() => this.setState({ isFocus: false })}
                                                     value={comment}
                                                 />
-                                                <button className="btn-style1" type="submit" onClick={()=>this.onAddComment()}>Save</button>
 
-                                            {/* </form> */}
+                                                {isFocus && <button className="btn-style1"  onClick={this.onAddComment}>Save</button>}
+                                            </div>
+
                                         </div>
 
 

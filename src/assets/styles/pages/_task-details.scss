@@ -107,7 +107,7 @@
 
     .task-main {
       min-height: 24px;
-      padding: 0 8px 8px 16px;
+      padding: 0 8px 45px 16px;
       position: relative;
       flex: 3 1;
       gap: 24px;
@@ -157,37 +157,124 @@
     }
 
     .task-activity {
-      // .activity-header {
-      //   margin-bottom: 15px;
+      margin-bottom: 24px;
+      position: relative;
 
-      //   h3 {
-      //     font-size: 16px;
-      //     font-weight: 600;
-      //   }
-      // }
       .activity-comment {
-
+        gap: 8px;
+        margin-top: 16px;
+        align-items: center;
+        margin-bottom: 24px;
         .MuiAvatar-root {
           height: 32px;
           width: 32px;
           font-size: rem(14px);
         }
-        
-        textarea {
-          height: 35px;
-          //  margin: -8px -12px;
-          padding: 8px 12px;
+
+        .write-comment-container {
+          margin-left: 8px;
+          overflow: hidden;
+          overflow-wrap: break-word;
+          height: 20px;
+
+          box-shadow: 0 0px 5px 1px #dfe1e6;
+          background-color: #fff;
+          border-radius: 3px;
+
+          min-height: 20px;
+          line-height: 20px;
+          transition-duration: 85ms;
+          transition-property: background-color, border-color, box-shadow;
+          transition-timing-function: ease;
+          transition-duration: 85ms;
+          transition-property: padding-bottom;
+          transition-timing-function: ease;
+          color: #172b4d;
+          font-size: 14px;
+          font-weight: 400;
+          height: 36px;
           box-shadow: 0 1px 1px #0000002f;
+
+          button {
+            margin-left: 8px;
+          }
 
           &:hover {
             box-shadow: 2px 2px 5px 1px #dfe1e6;
             cursor: pointer;
           }
+
+          textarea {
+            height: 35px;
+            overflow: hidden;
+            overflow-wrap: break-word;
+
+            //  margin: -8px -12px;
+            padding: 8px 12px;
+            // box-shadow: 0 1px 1px #0000002f;
+          }
         }
       }
     }
-    .task-checklist {
+  }
+}
+
+.comments-container {
+  // margin-left: 40px;
+  min-height: 32px;
+  padding: 8px 0;
+  position: relative;
+  gap: 8px;
+
+  .MuiAvatar-root {
+    height: 32px;
+    width: 32px;
+    font-size: rem(14px);
+  }
+
+  .comment-box {
+    flex: 1;
+
+    .comment-creator {
+      font-weight: 700;
     }
+
+    .comment-time {
+      color: $silver-blue;
+      font-size: 12px;
+      font-weight: 400;
+      margin-left: 5px;
+    }
+
+  
+
+    .comment-background {
+      background-color: #fff;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px -1px #091e4240, 0 0 0 1px #091e4214;
+      box-sizing: border-box;
+      clear: both;
+
+      margin: 4px 2px 4px 0;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      .comment-txt {
+        padding: 8px 12px;
+      }
+    }
+  
+  .delete-span{
+    color: $silver-blue;
+    font-size: rem(12px);
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover{
+      color: $dark-blue;
+    }
+  }
   }
 }
 
