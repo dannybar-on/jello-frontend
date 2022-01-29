@@ -18,7 +18,6 @@ export function login(credentials) {
             return user;
 
         } catch (err) {
-            swalService.FailLoginSwal()
             console.log('Cannot log in', err);
 
         }
@@ -36,7 +35,6 @@ export function googleLogin(tokenId) {
             dispatch(action)
         } catch (err) {
             console.log('login with google failed:', err);
-            swalService.FailLoginSwal()
         }
 
 

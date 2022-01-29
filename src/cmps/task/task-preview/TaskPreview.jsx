@@ -12,7 +12,7 @@ class _TaskPreview extends React.Component {
         isEditOpen: false,
     };
 
-    toggleEditOpen = (ev, task) => {
+    toggleEditOpen = (ev, task=null) => {
 
         ev.preventDefault();
         position = ev.target.parentNode.parentNode.parentNode.getBoundingClientRect();

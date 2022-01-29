@@ -4,5 +4,9 @@ export function Loader() {
         <div className="loader">
             <img src={loader} alt="" />
         </div>
+        // <div id="loader">
+        //     <div id="shadow"></div>
+        //     <div id="box"></div>
+        // </div>
     )
 }

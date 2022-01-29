@@ -72,6 +72,7 @@ class _QuickEditor extends React.Component {
         const group = taskService.getGroupById(currTask.id);
         currTask.title = title;
         this.props.updateTask(board, group, currTask);
+        this.props.toggleEditOpen(ev)
 
     };
 

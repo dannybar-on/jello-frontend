@@ -51,7 +51,7 @@ class _AddBoardItem extends React.Component {
         return (
             <section className={`add-board-item ${renderedType}`}>
                 <form onSubmit={this.onAddItem}>
-                    <textarea 
+                    <textarea  
                     className={`textarea ${renderedType}`}
                     placeholder={`Enter a title for this ${renderedType}`} 
                     name="title" value={title}
@@ -60,7 +60,7 @@ class _AddBoardItem extends React.Component {
                      onBlur={this.onAddItem} />
                     <div className="form-btns flex">
                         <button className="btn-style1" type='submit'>Add {renderedType}</button>
-                        <button className="close-add icon-lg" onClick={() => onToggleAdd()}><IoMdClose /></button>
+                        <button className="close-add icon-lg"  onClick={() => onToggleAdd()}><IoMdClose /></button>
                     </div>
                 </form>
             </section>

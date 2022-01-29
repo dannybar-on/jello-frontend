@@ -10,7 +10,7 @@ import { IoMdClose } from 'react-icons/io';
 
 class _TaskDetailsChecklist extends React.Component {
     state = {
-        perecentage: 0,
+        percentage: 0,
         isAddOpen: false,
         todoTitle: '',
     };

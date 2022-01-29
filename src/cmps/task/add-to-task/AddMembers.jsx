@@ -68,7 +68,7 @@ class _AddMembers extends React.Component {
                                 <UserAvatar sx={{ width: 20, height: 20 }} fullname={member.fullname} url={member.imgUrl} />
                             </span>
                             <span>{member.fullname}</span>
-                            <span> ({member.username})</span>
+                            {/* <span> ({member.username})</span> */}
                             {currTask.members && currTask.members.some(user => user._id === member._id) && <span className="includes-icon"><MdDone /></span>}
                         </div>
                     </div>;

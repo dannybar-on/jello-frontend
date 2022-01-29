@@ -105,7 +105,6 @@ class _TaskDetails extends React.Component {
     };
     handleCommentChange = ({ target: { name, value } }) => {
         this.setState({ [name]: value });
-console.log('this.state.comment:', this.state.comment);
 
     };
 
