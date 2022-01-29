@@ -32,11 +32,12 @@ export function googleLogin(tokenId) {
 
         try {
             const user = await userService.googleLogin(tokenId)
+            swalService.onLoginSwal(user.username)
             const action = { type: 'SET_USER', user }
             dispatch(action)
         } catch (err) {
             console.log('login with google failed:', err);
-
+            swalService.FailLoginSwal()
         }
 
 

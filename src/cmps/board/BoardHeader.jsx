@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { updateBoard, setCurrBoard } from '../../store/board.action.js';
 import { UserAvatar } from '../UserAvatar.jsx';
 import AvatarGroup from '@mui/material/AvatarGroup';
-// import {Loader} from '../Loader.jsx'
+import {Loader} from '../Loader.jsx'
 import { FiStar } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 import { RiUserAddLine } from 'react-icons/ri';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
-import {SideMenu} from '../SideMenu.jsx'
+import { SideMenu } from '../SideMenu.jsx'
 
 class _BoardHeader extends React.Component {
 
@@ -19,13 +19,20 @@ class _BoardHeader extends React.Component {
         isMenuOpen: false,
     };
 
-    componentDidMount(){
-        const {board} = this.props;
-        this.setState({boardTitle: board.title})
+    componentDidMount() {
+        const { board } = this.props;
+        this.setState({ boardTitle: board.title })
+    }
+
+    componentDidUpdate(prevProps) {
+        const { board } = this.props;
+        if (prevProps.board.title !== this.props.board.title) {
+            this.setState({ boardTitle: board.title })
+        }
     }
 
     toggleMenu = () => {
-        this.setState((prevState) => ({...prevState, isMenuOpen: !this.state.isMenuOpen}))
+        this.setState((prevState) => ({ ...prevState, isMenuOpen: !this.state.isMenuOpen }))
     }
 
     toggleIsStarred = () => {
@@ -41,9 +48,15 @@ class _BoardHeader extends React.Component {
     }
 
     onChangeBoardTitle = () => {
-        const {board, updateBoard} = this.props;
-        board.title = this.state.boardTitle;
-        updateBoard(board);
+        const { board, updateBoard } = this.props;
+        const { boardTitle } = this.state
+        // board.title = this.state.boardTitle;
+        const boardToUpdate = {
+            ...board,
+            title: boardTitle
+        }
+
+        updateBoard(boardToUpdate);
     }
 
     toggleStarHover = () => {
@@ -54,10 +67,11 @@ class _BoardHeader extends React.Component {
     render() {
         const { board } = this.props;
         const { isClicked, isStarHover, boardTitle, isMenuOpen } = this.state;
-        if (!board) return <h1>Loading</h1>;
+        
+        if (!board) return <Loader/>;
         return <section className='board-header-container flex align-center space-between'>
             <div className='board-header-left flex'>
-                    <input className="board-header-title" type='text' name='boardTitle' value={boardTitle} onChange={this.handleChange} onBlur={this.onChangeBoardTitle} />
+                <input className="board-header-title" type='text' name='boardTitle' value={boardTitle} onChange={this.handleChange} onBlur={this.onChangeBoardTitle} />
                 <button className='star-btn' onMouseEnter={this.toggleStarHover} onMouseLeave={this.toggleStarHover} onClick={this.toggleIsStarred}>
                     {(board.isStarred || isStarHover) ? <FaStar /> : <FiStar />}
                 </button>

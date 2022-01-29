@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { socketService } from '../services/socket.service.js';
 
 import { userService } from '../services/user-service.js';
 import { BoardPreview } from '../cmps/board/BoardPreview.jsx';
@@ -26,6 +27,7 @@ class _BoardList extends React.Component {
             const guest = userService.getGuestUser()
             login(guest)
         }
+
     }
 
     onNew = () => {

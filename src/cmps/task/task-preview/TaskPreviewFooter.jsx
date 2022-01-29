@@ -12,7 +12,7 @@ export class TaskPreviewFooter extends React.Component {
     render() {
         const { board, task } = this.props;
         return (
-            <div  className='task-footer flex align-center'>
+            <div  className='task-footer flex align-center' >
                 {task.dueDate && <DueDate task={task} />}
                 
                 {task.description && (
