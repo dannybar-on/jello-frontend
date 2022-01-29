@@ -157,6 +157,7 @@
     }
 
     .task-activity {
+      // width: 100%;
       // .activity-header {
       //   margin-bottom: 15px;
 
@@ -166,13 +167,12 @@
       //   }
       // }
       .activity-comment {
-
         .MuiAvatar-root {
           height: 32px;
           width: 32px;
           font-size: rem(14px);
         }
-        
+
         textarea {
           height: 35px;
           //  margin: -8px -12px;
@@ -188,6 +188,23 @@
     }
     .task-checklist {
     }
+  }
+}
+
+.comments-container {
+  width: 100%;
+  //  position: relative;
+  .MuiAvatar-root {
+    height: 32px;
+    width: 32px;
+    font-size: rem(14px);
+  }
+
+  .comment-background {
+    padding: 8px 12px;
+    background-color: #fff;
+    width: 100%;
+    position: relative;
   }
 }
 

@@ -9,13 +9,13 @@ export class TaskDetailsComment extends React.Component {
     render() {
         const { comment, onDeleteComment} = this.props;
         const addedAt = taskService.getUploadTime(comment.createdAt);
-        return <div>
+        return <div className="comments-container flex align-center">
             <UserAvatar fullname={comment.createdBy.fullname} />
 
             <div>
-                <span>{comment.createdBy.fullname}</span>
+                <span>{comment.createdBy.fullname} </span>
                 <span>{addedAt}</span>
-                <div>
+                <div className="comment-background">
                     <p>{comment.txt}</p>
                 </div>
                 <div>

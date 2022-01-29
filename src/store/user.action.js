@@ -1,6 +1,6 @@
 import { userService } from '../services/user-service.js';
 import { swalService } from '../services/swal-service.js'
-
+import {socketService} from '../services/socket.service.js'
 
 export function login(credentials) {
 
@@ -12,7 +12,6 @@ export function login(credentials) {
             const action = { type: 'SET_USER', user }
             dispatch(action)
             console.log('credentials.username:', credentials.username);
-
             if (credentials.username !== 'Guest') {
                 swalService.onLoginSwal(credentials.username)
             }

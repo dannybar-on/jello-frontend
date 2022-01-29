@@ -1,4 +1,5 @@
 import { boardService } from "../services/board.service.js";
+import { socketService } from "../services/socket.service.js";
 
 export function loadBoards() {
     return async (dispatch) => {

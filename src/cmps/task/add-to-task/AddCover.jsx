@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { taskService } from '../../../services/task.service';
+import { activityTxt } from '../../../services/activity.service';
 import { updateBoard, updateTask } from '../../../store/board.action.js';
 
 class _AddCover extends React.Component {
@@ -28,10 +29,10 @@ class _AddCover extends React.Component {
         let { currTask, board } = this.props;
         const currGroup = taskService.getGroupById(currTask.id);
         if (size === 'full') {
-            currTask.isFull = true
+            currTask.isFull = true;
             this.setState({ isFull: true });
         } else if (size === 'half') {
-            currTask.isFull = false
+            currTask.isFull = false;
             this.setState({ isFull: false });
 
         }
@@ -45,6 +46,13 @@ class _AddCover extends React.Component {
         if (!currTask.style) currTask.style = {};
         currTask.style.bgColor = color;
         currTask.style.bgImg = null;
+        const activity = {
+            txt: activityTxt({ type: 'CHANGE_COLOR', data: color }),
+            task: currTask,
+            group: currGroup,
+        };
+        console.log(activity);
+        console.log(board);
         this.props.updateTask(board, currGroup, currTask);
     };
 
