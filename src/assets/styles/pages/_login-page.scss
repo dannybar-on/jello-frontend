@@ -8,6 +8,11 @@
       gap: 12px;
       margin: 88px auto;
     .jello {
+      background-color: $hard-blue;
+      padding: 5px;
+      border-radius: 5px;
+      width: 35px;
+      height: 35px;
       height: 47px;
       width: 47px;
       color: #fff;
@@ -16,11 +21,12 @@
     }
     .login-logo {
       
-        color: $dark-blue;
-        font-size: rem(35px);
+        color: $hard-blue;
+        font-size: rem(51px);
         font-weight: 700;
     }
   }
+
 
   .login-container {
     text-align: center;

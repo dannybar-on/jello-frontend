@@ -1,27 +1,87 @@
 .home-page {
   width: 100vw;
-  font-family: Chalie, sans-serif;
-  background: rgb(235, 231, 254);
-  background: linear-gradient(
-    180deg,
-    rgba(235, 231, 254, 1) 0%,
-    rgba(243, 240, 254, 1) 60%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  //   padding-top: 50px;
-  overflow-y: scroll;
+  // font-family: Chalie, sans-serif;
+  // overflow-y: scroll;
+
+  background: linear-gradient(1deg, #ffffff 0%, #eae6ff 80%);
+  color: #091e42;
+
+  .home-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #eae6ff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+
+    transition: all 1s;
+
+    &.bg-visible {
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    .logo-container {
+      margin-left: 0.5rem;
+      img {
+        background-color: #091e42;
+        padding: 5px;
+        border-radius: 5px;
+        /* padding: 10px; */
+        width: 35px;
+        height: 35px;
+    
+
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+       
+        letter-spacing: 1px;
+        gap: 10px;
+        font-size: rem(40px);
+        font-weight: bold;
+      }
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 10px;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 500 !important;
+        font-size: rem(18px);
+        gap: 5px;
+        background-color: #dfe0db3c;
+        height: 32px;
+        padding: 2px 8px;
+        color: white;
+        border-radius: 3px;
+        transition: all 0.3s;
+        min-width: fit-content;
+      }
+
+      .login-btn {
+        background-color: transparent;
+        color: #0065ff;
+      }
+
+      .signup-btn {
+        background-color: #0065ff;
+        color: white;
+      }
+    }
+  }
+
   .home-layout {
     max-width: 1080px;
     margin: 0 auto;
   }
-  .jello {
-    height: 30px;
-    width: 30px;
-    color: #fff;
-    // margin-left: 0.5rem;
-    top: 2px;
-    position: relative;
-  }
+
 
   .logo {
     margin-left: 0.5rem;
@@ -48,10 +108,9 @@
     }
   }
 
-
-
   .hero-container {
     height: 575px;
+    padding-top: 98px;
     img {
       width: 380px;
       height: 480px;

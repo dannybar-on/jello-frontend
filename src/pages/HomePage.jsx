@@ -6,11 +6,43 @@ import board from '../assets/img/board.jpg';
 import { Hero } from '../cmps/Hero.jsx';
 
 export class HomePage extends React.Component {
+
+  state = {
+    isPageScrolled: false,
+  }
+
+  componentDidMount() {
+    const ElHomePage = document.querySelector('.home-page')
+    ElHomePage.addEventListener('scroll', this.changeHeaderStyle)
+    ElHomePage.style.overflowY = 'scroll'
+  }
+
+  componentWillUnmount() {
+    const ElHomePage = document.querySelector('.home-page')
+    ElHomePage.removeEventListener('scroll', this.changeHeaderStyle)
+    ElHomePage.style.overflowY = 'hidden'
+  }
+
+  changeHeaderStyle = () => {
+    const ElHomePage = document.querySelector('.home-page')
+
+    const { isPageScrolled } = this.state
+    if (ElHomePage.scrollTop > 50 && !isPageScrolled) {
+      this.setState({ isPageScrolled: true })
+    } else if (ElHomePage.scrollTop < 50 && isPageScrolled) {
+      this.setState({ isPageScrolled: false })
+    }
+  }
+
+
   render() {
+
+    const { isPageScrolled } = this.state
+
     return (
       <section className="home-page">
 
-        <header className="flex space-between">
+        {/* <header className={`home-header ${(isPageScrolled) ? 'bg-visible' : ''}`}>
           <div className="flex align-center">
             <img className='jello wobble-top-on-hover' src={jello} />
             <h1 className='logo '>Jello</h1>
@@ -20,6 +52,19 @@ export class HomePage extends React.Component {
             <button>Sign-up</button>
           </nav>
 
+        </header> */}
+        <header className={`home-header ${(isPageScrolled) ? 'bg-visible' : ''}`}>
+
+          <div className=" logo-container flex align-center">
+
+            <img className='jello wobble-top-on-hover' src={jello} />
+
+            <span className="logo">  Jello</span>
+          </div>
+          <div className="header-buttons">
+            <Link to="board/login"><button className="login-btn nav-button">Log in</button></Link>
+            <Link to="board/login"><button className="signup-btn nav-button">Sign up</button></Link>
+          </div>
         </header>
 
         <Hero />
@@ -38,3 +83,5 @@ export class HomePage extends React.Component {
     );
   }
 }
+
+
