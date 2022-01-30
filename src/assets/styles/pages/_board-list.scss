@@ -4,6 +4,7 @@
   padding: 32px;
   position: relative;
 
+
   .board-list-title {
     gap: 3px;
     .board-list-icon {
@@ -26,7 +27,8 @@
   .starred-container,
   .workspace-container {
     padding: 12px 0;
-    margin: 0 auto 24px auto;
+    // margin: 0 0 24px 0;
+    // margin: 0 auto 24px auto;
     max-width: 1250px;
     justify-content: center;
 
@@ -47,9 +49,9 @@
       position: relative;
       text-decoration: none;
       height: 96px;
-      flex: 1 0 22%;
+      // flex: 1 0 22%;
       margin-right: 2%;
-      min-width: 200px;
+      // min-width: 200px;
       width: 292px;
       margin-bottom: 2%;
 
@@ -103,4 +105,45 @@
       background-color: #091e4245;
     }
   }
+}
+
+
+
+.scroll-y{
+  overflow-y: auto;
+  margin-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+   
+  &::-webkit-scrollbar {
+    width: 9px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #bfc4ce;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    margin-bottom: 2px;
+    background-color: #dadbe2;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .board-list{
+
+    .starred-container,
+    .workspace-container {
+    
+    .board-card{
+      width: 100%;
+      margin-bottom: 3%;
+      min-width: 250px;
+    }
+    
+    }
+  }
+
+  
 }

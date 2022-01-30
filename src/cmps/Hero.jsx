@@ -17,7 +17,7 @@ export function Hero() {
                         peaks. From high rises to the home office,
                         the way your team works is unique—
                         accomplish it all with Jello.</p>
-                        <Link className="get-started-btn clean-link" to="/board/" >Get started !</Link>
+                        <Link className="get-started-btn clean-link" to="/board/" >Try demo</Link>
                 </div>
                 <img src={hero}></img>
 
