@@ -61,7 +61,7 @@ class _DueDate extends React.Component {
         const { task } = this.props;
         const { isHover, isClicked } = this.state;
         // if (!className) return <h1>Loading....</h1>;
-        // console.log(task ,'in Due Date');
+  
         return <div onMouseLeave={this.toggleHover}>
             {(isHover) ?
                 <div onClick={(event) => this.toggleCompleteStatus(event)}

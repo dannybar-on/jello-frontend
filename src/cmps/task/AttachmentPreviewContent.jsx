@@ -44,12 +44,12 @@ function _AttachmentPreviewContent({ attachment, currTask, board, updateTask }) 
             <div className="attachment-thumbnail-details flex column">
                 <span className="attachment-title">{attachment.title}</span>
                 <div className="middle-line">
-                    <span className="added-at">{addedAt}</span> -
-                    <span> Comment</span> -
-                    <span onClick={onRemoveAttachment}> Delete</span> -
+                    <span className="added-at ">{addedAt}</span> -&ensp;
+                    <span className="under-line">Comment</span> -&ensp;
+                    <span className="under-line" onClick={onRemoveAttachment}>Delete</span> -&ensp;
 
                     <span ref={editRef} className="pos-relative">
-                        <span onClick={(event) => {setIsEditOpen(!isEditOpen); position = event.target.getBoundingClientRect()}}> Edit </span>
+                        <span className="under-line" onClick={(event) => {setIsEditOpen(!isEditOpen); position = event.target.getBoundingClientRect()}}>Edit</span>
                         {isEditOpen && <DynamicModal item={'Edit Attachment'} attachment={attachment} toggleDynamicModal={toggleDynamicModal} position={position}>
                         </DynamicModal>}
                     </span>

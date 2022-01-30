@@ -6,6 +6,7 @@ import jello from '../assets/img/jello.svg';
 import { logout } from '../store/user.action.js';
 // import {DynamicModal} from '../cmps/DynamicModal.jsx'
 // import { ReactComponent as Jello } from '../assets/img/jello.svg'
+import { MdDashboard } from 'react-icons/md';
 
 class _AppHeader extends React.Component {
 
@@ -17,12 +18,12 @@ class _AppHeader extends React.Component {
     toggleDynamicModal = (ev) => {
         this.setState({ isModalOpen: !this.state.isModalOpen });
     };
-  
+
 
 
     render() {
         const { user, logout } = this.props;
-        const {isModalOpen} = this.state
+        const { isModalOpen } = this.state
         // const url = win
         return (
             <header className="app-header ">
@@ -42,13 +43,16 @@ class _AppHeader extends React.Component {
                             <NavLink className="clean-link" to="/"><div>Home</div></NavLink>
                         </li> */}
                         <li>
-                            <NavLink className="clean-link" to="/board"><div>Board List</div></NavLink>
+                            <NavLink className="clean-link boards-link" to="/board">
+                                <span className="board-list-icon"><MdDashboard /></span>
+                                <span>Boards</span>
+                            </NavLink>
                         </li>
-                        <li>
+                        {/* <li>
                             <NavLink className="clean-link" to="/board/login"><div>Login</div></NavLink>
-                        </li>
+                        </li> */}
                         <li>
-                            {user ? <LoggedAvatar fullname={user.fullname} toggleDynamicModal={this.toggleDynamicModal} isModalOpen={isModalOpen}/> :
+                            {user ? <LoggedAvatar fullname={user.fullname} toggleDynamicModal={this.toggleDynamicModal} isModalOpen={isModalOpen} /> :
                                 <LoggedAvatar fullname={'Guest'} toggleDynamicModal={this.toggleDynamicModal} isModalOpen={isModalOpen} />}
                         </li>
 

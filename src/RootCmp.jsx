@@ -12,7 +12,7 @@ class _RootCmp extends React.Component {
 
     render() {
         const { pathname } = this.props.location;
-        console.log(pathname);
+        
         return (
             <div className="app-container flex column">
                 {(pathname.includes('board') ) ? <AppHeader /> : ''}

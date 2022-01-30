@@ -51,8 +51,7 @@ class _AddCover extends React.Component {
             task: currTask,
             group: currGroup,
         };
-        console.log(activity);
-        console.log(board);
+
         this.props.updateTask(board, currGroup, currTask);
     };
 

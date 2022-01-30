@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { socketService } from '../services/socket.service.js';
 
 import { userService } from '../services/user-service.js';
 import { BoardPreview } from '../cmps/board/BoardPreview.jsx';

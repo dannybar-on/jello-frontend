@@ -31,6 +31,30 @@ z-index: 5;
      
     }
 
+    .boards-link{
+      padding: 5px 8px;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      grid-gap: 5px;
+      gap: 5px;
+      background-color: #dfe0db3c;
+      color: #fff;
+      border-radius: 3px;
+      transition: all .3s;
+      min-width: fit-content;
+
+      &:hover{
+        background-color: #dfe0db60;
+      }
+
+      .board-list-icon{
+        display: flex;
+        align-self: center;
+      }
+    }
+
     .MuiAvatar-root {
       height: 32px;
       width: 32px;

@@ -67,7 +67,7 @@ class _QuickEditor extends React.Component {
 
     onSaveTitle = (ev, title) => {
         ev.preventDefault();
-        console.log(title);
+
         let { currTask, board } = this.props;
         const group = taskService.getGroupById(currTask.id);
         currTask.title = title;
@@ -77,7 +77,6 @@ class _QuickEditor extends React.Component {
     };
 
     toggleDynamicModal = (ev) => {
-        console.log(ev);
         // ev.preventDefault();
         // ev.stopPropagation();
         this.setState({ isModalOpen: !this.state.isModalOpen });
@@ -87,9 +86,7 @@ class _QuickEditor extends React.Component {
         const { taskTitle, isModalOpen, item } = this.state;
         const { board, currTask, toggleEditOpen, } = this.props;
         let { position } = this.props;
-        console.log(position);
-        // const { topPos, leftPos } = taskService.getModalPosition(position);
-        // console.log(position, 'IN QUICK EDITOR');
+ 
         const group = currTask && taskService.getGroupById(currTask.id);
         const taskLabels = currTask.labelIds && taskService.getLabelsById(board, currTask);
         return <div className="pencil-edit-screen" onClick={(ev) => toggleEditOpen(ev)} >

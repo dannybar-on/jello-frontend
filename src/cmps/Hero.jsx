@@ -10,17 +10,16 @@ export function Hero() {
 
         <React.Fragment>
             <div className="hero-container flex align-center home-layout">
-                <div >
+                <div className="hero-text flex column" >
                     <h1 className="hero-title">Jello helps teams move work forward.</h1>
 
                     <p>Collaborate, manage projects, and reach new productivity
                         peaks. From high rises to the home office,
                         the way your team works is unique—
                         accomplish it all with Jello.</p>
-                    <Link className="clean-link login-link " to="/board/login">Sign up-it's free!</Link>
+                        <Link className="get-started-btn clean-link" to="/board/" >Get started !</Link>
                 </div>
                 <img src={hero}></img>
-                {/* </div> */}
 
             </div>
         </React.Fragment>

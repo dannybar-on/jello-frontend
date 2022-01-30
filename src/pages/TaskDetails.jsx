@@ -115,18 +115,17 @@ class _TaskDetails extends React.Component {
 
     onAddComment = (ev) => {
         ev.stopPropagation()
-        console.log('ev:', ev);
-        
+
         const { comment } = this.state;
         if(!comment) return
 
-        console.log('Sending commnet');
+   
         let { board, currTask, user } = this.props;
         const group = taskService.getGroupById(currTask.id);
         if (!currTask.comments || !currTask.comments.length) currTask.comments = [];
         const id = utilService.makeId();
         currTask.comments.push({ txt: comment, createdAt: Date.now(), createdBy: { ...user }, id });
-        console.log('currTask', currTask, comment);
+    
         this.props.updateTask(board, group, currTask);
         this.setState({ isFocus: false, comment: '' })
 

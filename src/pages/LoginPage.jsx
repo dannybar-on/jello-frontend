@@ -35,7 +35,7 @@ class _LoginPage extends React.Component {
                 password,
             };
 
-            console.log('in submit');
+        
             login(credentials)
                 .then((user) => {
                     if (user) this.props.history.push('/board')

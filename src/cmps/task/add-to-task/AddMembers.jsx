@@ -38,8 +38,6 @@ class _AddMembers extends React.Component {
         this.props.updateTask(board, currGroup, currTask);
 
 
-        // console.log(currTask.members.some(user => user._id === member._id));
-
     }
 
     render() {

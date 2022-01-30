@@ -9,10 +9,9 @@
   .attachment-preview {
     gap: 17px;
     margin-bottom: 10px;
-    &:hover{
+    &:hover {
       background-color: #091e420a;
-     }
-
+    }
 
     .attachment-img img {
       background-color: #b6b7cf;
@@ -32,7 +31,7 @@
       top: 65%;
       z-index: 1;
 
-      &:hover{
+      &:hover {
         opacity: 0.8;
       }
     }
@@ -44,8 +43,6 @@
       // padding: 8px 8px 8px 0;
       // padding: 8px 8px 8px 128px;
       z-index: 0;
-      
-     
     }
 
     .attachment-title {
@@ -53,7 +50,6 @@
       font-weight: 700;
       margin-block-end: 5px;
       cursor: pointer;
-
     }
 
     .middle-line {
@@ -61,8 +57,14 @@
       margin-bottom: 8px;
       color: $silver-blue;
 
+      // &:not(:last-child) {
+      //   ::after {
+      //     content: " - ";
+      //   }
+      // }
+
       & > *:not(:first-child) {
-        text-decoration: underline;
+        // text-decoration: underline;
 
         &:hover {
           color: $dark-blue;

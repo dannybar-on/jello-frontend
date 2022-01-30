@@ -42,17 +42,6 @@ export class HomePage extends React.Component {
     return (
       <section className="home-page">
 
-        {/* <header className={`home-header ${(isPageScrolled) ? 'bg-visible' : ''}`}>
-          <div className="flex align-center">
-            <img className='jello wobble-top-on-hover' src={jello} />
-            <h1 className='logo '>Jello</h1>
-          </div>
-          <nav className="flex align-center">
-            <button>Login</button>
-            <button>Sign-up</button>
-          </nav>
-
-        </header> */}
         <header className={`home-header ${(isPageScrolled) ? 'bg-visible' : ''}`}>
 
           <div className=" logo-container flex align-center">
@@ -68,7 +57,7 @@ export class HomePage extends React.Component {
         </header>
 
         <Hero />
-        <div className="product home-layout">
+        <div className="product flex column home-layout">
           <h2 className="product-title">It’s more than work. It’s a way of working together.</h2>
           <p>
             Start with a Jello board, lists, and cards.
@@ -76,7 +65,8 @@ export class HomePage extends React.Component {
             Manage projects, organize tasks,
             and build team spirit—all in one place.
           </p>
-          <Link className="start-doing-btn clean-link" to="/board/" >Start Doing →</Link>
+            <Link className="clean-link login-link" to="/board/login">Sign up-it's free!</Link>
+          {/* <Link className="start-doing-btn clean-link" to="/board/" >Start Doing →</Link> */}
           <img className="board-img" src={board} alt="" />
         </div>
       </section>

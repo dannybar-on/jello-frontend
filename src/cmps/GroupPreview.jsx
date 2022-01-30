@@ -43,7 +43,7 @@ export class GroupPreview extends React.Component {
         const { board } = this.props;
         const group = this.props.group;
         group.title = this.state.title;
-        console.log(group.title);
+  
         this.props.updateGroup(board, group);
     };
 

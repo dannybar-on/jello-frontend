@@ -82,10 +82,7 @@ export class DynamicModal extends React.Component {
 
         const { item, toggleDynamicModal, position } = this.props;
         const { topPos, leftPos, right } = taskService.getModalPosition(position);
-        // const size = useWindowDimensions();
-        // const width = size.width;
-        // let intViewportWidth = window.innerWidth;
-        // console.log(intViewportWidth)
+
         return (
             <>
                 {/* style={{ top: topPos }} */}
