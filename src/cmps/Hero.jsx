@@ -15,7 +15,7 @@ export function Hero() {
 
                     <p>Collaborate, manage projects, and reach new productivity
                         peaks. From high rises to the home office,
-                        the way your team works is unique—
+                        the way your team works is unique 
                         accomplish it all with Jello.</p>
                         <Link className="get-started-btn clean-link" to="/board/" >Try demo</Link>
                 </div>
