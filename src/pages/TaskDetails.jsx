@@ -261,7 +261,7 @@ class _TaskDetails extends React.Component {
                                     <div className="details-section-header flex space-between">
                                         <span className="icon-lg header-icon t-14"><BsListUl /></span>
                                         <h3>Activity</h3>
-                                        <button className="btn-style2">Hide Details</button>
+                                        <button className="btn-style2">Hide details</button>
                                     </div>
 
                                     <div className="ml-40">
