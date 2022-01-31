@@ -8,6 +8,7 @@ import { FiStar } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 import { RiUserAddLine } from 'react-icons/ri';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
+import { BsBarChartFill } from 'react-icons/bs';
 import { SideMenu } from '../SideMenu.jsx'
 import { DynamicModal } from '../DynamicModal'
 import { loadUsers } from '../../store/user.action'
@@ -96,7 +97,7 @@ class _BoardHeader extends React.Component {
             </div>
             <div className='board-header-right flex row' >
                 <Link to={`/board/${board._id}/dashboard`} className='clean-link'>
-                <button className='dashboard-btn flex align-center justify-center'> Dashboard</button>
+                <button className='dashboard-btn flex align-center justify-center'><BsBarChartFill/> Dashboard</button>
                 </Link>
                 <button className='show-more-btn flex align-center justify-center' onClick={() => this.toggleMenu()}><BiDotsHorizontalRounded /> Show menu</button>
             </div>
