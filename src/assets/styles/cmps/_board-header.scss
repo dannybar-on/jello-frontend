@@ -101,6 +101,11 @@
 
       &:not(:first-child) {
         margin-left: 5px;
+        gap: 5px;
+      }
+
+      .dashboard-btn{
+        gap: 5px;
       }
 
       &:hover {

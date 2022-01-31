@@ -5,6 +5,8 @@ import jello from '../assets/img/jello.svg';
 import board from '../assets/img/board.jpg';
 import { Hero } from '../cmps/Hero.jsx';
 
+import { Loader } from '../cmps/Loader';
+
 export class HomePage extends React.Component {
 
   state = {
@@ -55,7 +57,6 @@ export class HomePage extends React.Component {
             <Link to="board/login"><button className="signup-btn nav-button">Sign up</button></Link>
           </div>
         </header>
-
         <Hero />
         <div className="product flex column home-layout">
           <h2 className="product-title">It’s more than work. It’s a way of working together.</h2>

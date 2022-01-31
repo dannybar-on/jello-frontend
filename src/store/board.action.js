@@ -78,14 +78,17 @@ export function updateGroup(board, group) {
 export function setCurrBoard(board) {
     return async (dispatch) => {
         try {
-            const updatedBoard = await boardService.save(board);
-            socketService.emit('board-update', updatedBoard)
-            dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
-            document.body.style.background = (board.style.bgColor) ? board.style.bgColor : `url("${board.style.bgImg}")`;
-            document.body.style.backgroundRepeat = 'no-repeat';
-            document.body.style.backgroundPosition = 'center';
-            document.body.style.backgroundSize = 'cover';
-            document.body.style.backgroundAttachment = 'fixed';
+            setTimeout( async () => {
+                const updatedBoard = await boardService.save(board);
+                socketService.emit('board-update', updatedBoard)
+                dispatch({ type: 'SET_CURR_BOARD', board: updatedBoard });
+                document.body.style.background = (board.style.bgColor) ? board.style.bgColor : `url("${board.style.bgImg}")`;
+                document.body.style.backgroundRepeat = 'no-repeat';
+                document.body.style.backgroundPosition = 'center';
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundAttachment = 'fixed';
+                
+            }, 2000);
 
         } catch (err) {
             console.log('Couldnt update curr board');
