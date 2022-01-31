@@ -3,6 +3,8 @@
   max-width: none;
   padding: 32px;
   position: relative;
+  align-items: center;
+  width: 100vw;
 
 
   .board-list-title {
@@ -114,6 +116,7 @@
   margin-right: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
+  overflow-x: hidden;
    
   &::-webkit-scrollbar {
     width: 9px;
