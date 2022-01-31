@@ -32,6 +32,7 @@ export function _Dashboard(props) {
 
     if (board.groups.length) {
       board.groups.forEach((group) => {
+        tasks += group.tasks.length;
         group?.tasks.forEach((task) => {
           if (task.checklists) {
             checklists += task.checklists.length;
