@@ -35,7 +35,7 @@ class _LoginPage extends React.Component {
                 password,
             };
 
-        
+
             login(credentials)
                 .then((user) => {
                     if (user) this.props.history.push('/board')
@@ -66,7 +66,7 @@ class _LoginPage extends React.Component {
 
 
     handleGoogleLogin = (res) => {
-        
+
         const { tokenId } = res
         const { googleLogin } = this.props
         googleLogin(tokenId)
@@ -149,6 +149,7 @@ class _LoginPage extends React.Component {
                         </div>
                     </form>
                     <GoogleLogin
+                        className="google-login"
                         clientId="1075713010675-m4s5vqqfj2kdl5t43hpfcao569uq0c4o.apps.googleusercontent.com"
                         buttonText="Log-in with Google"
                         onSuccess={this.handleGoogleLogin}

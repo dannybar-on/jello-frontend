@@ -51,7 +51,9 @@ class _AddMembers extends React.Component {
                 {user && <div onClick={() => this.onAddMemberToTask(user)} className="board-member-container">
                     <div>
                         <span className="member-img">
+                        <div className="member-img-container">
                             <UserAvatar sx={{ width: 20, height: 20 }} fullname={user.fullname} url={user?.imgUrl} />
+                            </div>
                         </span>
                         <span>{user.fullname}</span>
                         <span> ({user.username})</span>
@@ -63,7 +65,10 @@ class _AddMembers extends React.Component {
                     return <div key={idx} onClick={() => this.onAddMemberToTask(member)} className="board-member-container">
                         <div>
                             <span className="member-img">
+                        <div className="member-img-container">
                                 <UserAvatar sx={{ width: 20, height: 20 }} fullname={member.fullname} url={member.imgUrl} />
+                            </div>
+
                             </span>
                             <span>{member.fullname}</span>
                             {/* <span> ({member.username})</span> */}

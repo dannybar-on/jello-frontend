@@ -1,6 +1,4 @@
 import { userService } from '../services/user-service.js';
-import { swalService } from '../services/swal-service.js'
-import {socketService} from '../services/socket.service.js'
 
 export function login(credentials) {
 
@@ -13,7 +11,6 @@ export function login(credentials) {
             dispatch(action)
             console.log('credentials.username:', credentials.username);
             if (credentials.username !== 'Guest') {
-                swalService.onLoginSwal(credentials.username)
             }
             return user;
 
@@ -30,7 +27,6 @@ export function googleLogin(tokenId) {
 
         try {
             const user = await userService.googleLogin(tokenId)
-            swalService.onLoginSwal(user.username)
             const action = { type: 'SET_USER', user }
             dispatch(action)
         } catch (err) {
@@ -50,10 +46,8 @@ export function signup(credentials) {
 
             const action = { type: 'SET_USER', user: newUser };
             dispatch(action);
-            swalService.onSignupSwal(credentials.fullname)
             // })
         } catch (err) {
-            swalService.FailedSignupSwal(credentials.username)
             console.log('err:', err);
 
         }
@@ -62,17 +56,14 @@ export function signup(credentials) {
 export function logout() {
     return async (dispatch) => {
         try {
-            // await swalService.onLogoutSwal()
 
             await userService.logout();
 
             const action = { type: 'SET_USER', user: null };
             dispatch(action);
-            console.log('window.location:', window.location);
 
             window.location.assign('/board/login')
         } catch (err) {
-            // swalService.logoutFailedSwal()
         }
     };
 }

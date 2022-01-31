@@ -47,6 +47,7 @@ class _BoardList extends React.Component {
         const { boards } = this.props;
         const { isAdd, isModal } = this.state;
         return (
+            <div className="scroll-y">
             <section className='board-list flex column'>
                 {isAdd && <BoardAdd toggleIsAdd={this.toggleIsAdd} isModal={isModal} onClose={this.onNew} />}
                 <div className='starred-container'>
@@ -84,6 +85,7 @@ class _BoardList extends React.Component {
                     </div>
                 </div>
             </section>
+            </div>
         );
     }
 }
