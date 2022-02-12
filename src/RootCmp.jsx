@@ -1,14 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { withRouter } from "react-router";
+import routes from './routes.js';
 import 'react-responsive-modal/styles.css';
 import './assets/styles/styles.scss';
+
 import { AppHeader } from './cmps/AppHeader.jsx';
-import routes from './routes.js';
 
 class _RootCmp extends React.Component {
-
-
 
     render() {
         const { pathname } = this.props.location;

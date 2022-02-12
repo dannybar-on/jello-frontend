@@ -24,7 +24,6 @@ class _AddChecklist extends React.Component {
         const group = taskService.getGroupById(currTask.id);
 
         currTask.checklists.push(newChecklist);
-        // console.log(...currTask.checklists)
         this.props.updateTask(board, group, currTask);
         this.props.toggleDynamicModal();
     };

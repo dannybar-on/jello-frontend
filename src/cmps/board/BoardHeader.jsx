@@ -1,18 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
+import { loadUsers } from '../../store/user.action'
 import { updateBoard, setCurrBoard } from '../../store/board.action.js';
-import { UserAvatar } from '../UserAvatar.jsx';
-import AvatarGroup from '@mui/material/AvatarGroup';
+
 import { Loader } from '../Loader.jsx'
+import { SideMenu } from '../SideMenu.jsx'
+import { UserAvatar } from '../UserAvatar.jsx';
+import { DynamicModal } from '../DynamicModal'
+
+import AvatarGroup from '@mui/material/AvatarGroup';
 import { FiStar } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 import { RiUserAddLine } from 'react-icons/ri';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { BsBarChartFill } from 'react-icons/bs';
-import { SideMenu } from '../SideMenu.jsx'
-import { DynamicModal } from '../DynamicModal'
-import { loadUsers } from '../../store/user.action'
-import { Link } from 'react-router-dom'
 
 class _BoardHeader extends React.Component {
 
@@ -57,7 +59,6 @@ class _BoardHeader extends React.Component {
     onChangeBoardTitle = () => {
         const { board, updateBoard } = this.props;
         const { boardTitle } = this.state
-        // board.title = this.state.boardTitle;
         const boardToUpdate = {
             ...board,
             title: boardTitle
@@ -78,7 +79,7 @@ class _BoardHeader extends React.Component {
 
     render() {
         const { board } = this.props;
-        const { isClicked, isStarHover, boardTitle, isMenuOpen,isInviteOpen } = this.state;
+        const { isStarHover, boardTitle, isMenuOpen,isInviteOpen } = this.state;
 
         if (!board) return <Loader />;
         return <section className='board-header-container flex align-center space-between'>
@@ -87,7 +88,6 @@ class _BoardHeader extends React.Component {
                 <button className='star-btn' onMouseEnter={this.toggleStarHover} onMouseLeave={this.toggleStarHover} onClick={this.toggleIsStarred}>
                     {(board.isStarred || isStarHover) ? <FaStar /> : <FiStar />}
                 </button>
-                {/* <h1>User avatars</h1> */}
                 <AvatarGroup max={4} >
                     {board.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />)}
                 </AvatarGroup>

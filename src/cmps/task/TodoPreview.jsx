@@ -38,7 +38,6 @@ export class TodoPreview extends React.Component {
         const { isEditOpen, todoTitle } = this.state;
         const { todo, handleCheckbox, onRemoveTodo } = this.props;
         return <div className="items-container">
-            {/* <div  className="items-container"> */}
 
             {(!isEditOpen) ? <div className="checklist-preview">
                 <input className="checklist-checkbox" type="checkbox" name={todo.id} checked={todo.isDone} onChange={(event) => handleCheckbox(event, todo)} />
@@ -49,20 +48,17 @@ export class TodoPreview extends React.Component {
             </div>
                 : <div className="checklist-preview-edit">
                     <input className="checklist-checkbox" type="checkbox" name={todo.id} checked={todo.isDone} onChange={(event) => handleCheckbox(event, todo)} />
-                    {/* <div className="checklist-edit"> */}
                     <textarea className='checklist-edit-textarea' id={todo.id}
                         type="text"
                         name="todoTitle"
                         value={todoTitle}
                         onChange={this.handleChange}
                     />
-                    {/* </div> */}
                     <div className="form-btns flex">
                         <button className='btn-style1' type='submit' onClick={(event) => this.onEditTodo(event, todo.id, todoTitle)}>Save</button>
                         <button className="close-add" onClick={() => this.toggleEditTodo()}><IoMdClose /></button>
                     </div>
                 </div>}
-            {/* <button className="delete-item" onClick={() => onRemoveTodo(todo.id)}>Delete</button> */}
         </div>;
     }
 }

@@ -12,7 +12,6 @@ function makeId(length = 6) {
     for (var i = 0; i < length; i++) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length));
     }
-
     return txt;
 }
 
@@ -35,12 +34,9 @@ function getRandomIntInclusive(min, max) {
 
 
 function handleTimestamp(timestamp) {
-
-
     const date = new Date(+timestamp);
     const day = date.getDate();
     const month = date.toLocaleString('en', { month: 'short' });
 
     return month + ' ' + day;
-
 }

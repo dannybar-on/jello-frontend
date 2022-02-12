@@ -1,9 +1,9 @@
-import React, { useEffect, useState} from 'react';
-import {connect} from 'react-redux';
-import {taskService} from '../../../services/task.service.js'
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { taskService } from '../../../services/task.service.js'
 import { updateBoard } from '../../../store/board.action';
 
-function _ActionCopyTask({board, currTask, updateBoard}) {
+function _ActionCopyTask({ board, currTask, updateBoard }) {
     const [currTitle, setCurrTitle] = useState('');
     const [currGroup, setCurrGroup] = useState(null);
     const [currPosition, setCurrPosition] = useState(1)
@@ -13,14 +13,11 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
         const task = taskService.getTaskById(currTask.id, group.id)
         setCurrTitle(task.title)
         setCurrGroup(group)
-        
     }, [board, currTask.id])
-    
-    
-    const handleChange = ({target: {name, value}}) => {
-        
+
+
+    const handleChange = ({ target: { name, value } }) => {
         if (name === 'group') {
-            console.log(name, value);
             const group = board.groups.find(item => item.id === value)
             setCurrGroup(group)
         } else if (name === 'position') {
@@ -36,7 +33,6 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
         for (let i = 1; i <= length; i++) {
             positions.push(i)
         }
-
         return positions;
     }
 
@@ -67,7 +63,7 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
                     <span className="label">List</span>
                     <span className="select-value">{currGroup.title}</span>
                     {currGroup && <select name="group" onChange={handleChange} value={currGroup.id}>
-                        {board.groups.map(item => {return !item.isArchive && <option key={item.id} value={item.id}>{item.title}</option> })}
+                        {board.groups.map(item => { return !item.isArchive && <option key={item.id} value={item.id}>{item.title}</option> })}
                     </select>}
                 </div>
 
@@ -84,8 +80,7 @@ function _ActionCopyTask({board, currTask, updateBoard}) {
     )
 }
 
-
-const mapStateToProps = ({boardModule}) => {
+const mapStateToProps = ({ boardModule }) => {
     return {
         boards: boardModule.boards,
         board: boardModule.currBoard,
@@ -94,7 +89,7 @@ const mapStateToProps = ({boardModule}) => {
 }
 
 const mapDispatchToProps = {
-   updateBoard
+    updateBoard
 }
 
 export const ActionCopyTask = connect(mapStateToProps, mapDispatchToProps)(_ActionCopyTask)

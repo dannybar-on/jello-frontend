@@ -15,14 +15,14 @@ class _LoginPage extends React.Component {
         fullname: '',
         password: '',
         isLogin: true
-    };
+    }
 
     handleChange = ({ target }) => {
         const name = target.name;
         const value = target.value;
         this.setState(prevState => ({ ...prevState, [name]: value }));
 
-    };
+    }
 
     onSubmit = (ev) => {
         ev.preventDefault();
@@ -33,8 +33,7 @@ class _LoginPage extends React.Component {
             const credentials = {
                 username,
                 password,
-            };
-
+            }
 
             login(credentials)
                 .then((user) => {
@@ -66,12 +65,10 @@ class _LoginPage extends React.Component {
 
 
     handleGoogleLogin = (res) => {
-
         const { tokenId } = res
         const { googleLogin } = this.props
         googleLogin(tokenId)
         this.props.history.push('/board')
-
     }
 
     handleGoogleFailure = (res) => {
@@ -85,23 +82,16 @@ class _LoginPage extends React.Component {
 
     render() {
         const { isLogin } = this.state;
-        // console.log(this.state);
         return (
-
             <section className='login-page'>
-
-
                 <div className='login-logo-header flex-row-center'>
                     <img className='jello wobble-top-on-hover' src={jello} />
                     <h1 className='login-logo'>Jello</h1>
                 </div>
-
                 <div className="login-container ">
 
                     <h3> {(isLogin) ? `Log in ` : 'Sign-up '} to Jello</h3>
                     <div className='flex column align-center'>
-
-                        {/* {(isLogin) ? `Login ` : 'Sign-up '} */}
 
                     </div>
                     <form >
@@ -158,7 +148,6 @@ class _LoginPage extends React.Component {
                     />
 
                     <hr />
-
                     <button className="toggle-login" onClick={() => this.toggleForm()}>
                         {(isLogin) ? `Don\'t have an account? Sign-up` : `Already have
                         an account? Login`}
@@ -172,14 +161,10 @@ class _LoginPage extends React.Component {
                 <div className="left-svg">
                     <img src={LoginSvgLeft} alt="LoginSvgLeft" />
                 </div>
-
             </section>
-
-        );
+        )
     }
 }
-
-
 
 const mapDispatchToProps = {
     login,
@@ -188,7 +173,5 @@ const mapDispatchToProps = {
     googleLogin,
 
 };
-
-
 
 export const LoginPage = connect(null, mapDispatchToProps)(_LoginPage);

@@ -2,33 +2,26 @@ import React from 'react'
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
-
 export class LabelsEditAdd extends React.Component {
-
 
     state = {
         label: {
             id: null,
             title: '',
             color: '#344563',
-
         },
-        // isDeleteModal:false
-
     }
 
 
     componentDidMount() {
         const { label } = this.props
         if (label) this.setState({ label })
-
     }
 
     handleInputChange = (ev) => {
         const field = ev.target.name
         const value = ev.target.value
         this.setState((prevState) => ({ label: { ...prevState.label, [field]: value } }))
-
     }
 
     handleColorChange = (color) => {
@@ -47,7 +40,7 @@ export class LabelsEditAdd extends React.Component {
 
     render() {
         const { label, label: { title } } = this.state
-        const { onSaveLabel, onRemoveLabel, setAddEditMode,isDeleteModal,openDeleteModal,isAddEditMode } = this.props
+        const { onSaveLabel, setAddEditMode,isDeleteModal,openDeleteModal,isAddEditMode } = this.props
 
 
         return (
@@ -79,7 +72,6 @@ export class LabelsEditAdd extends React.Component {
                     <div className="edit-add-btns flex row space-between">
                         <button className="btn-style1" onClick={() => onSaveLabel(label)}>{(label.id) ? 'Save' : 'Create'}</button>
                         {label.id && <button className="btn-style1 delete-btn" onClick={() => openDeleteModal() }>Delete</button>}
-                        {/* {label.id && <button className="btn-style1 delete-btn" onClick={() => onRemoveLabel(label.id)}>Delete</button>} */}
                     </div>
                 </div > 
 
@@ -90,7 +82,6 @@ export class LabelsEditAdd extends React.Component {
                  </div>
                 
                  }
-
             </>
         )
     }

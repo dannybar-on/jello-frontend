@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { taskService } from '../../../services/task.service.js';
 import { updateTask } from '../../../store/board.action';
-import { FiPaperclip } from 'react-icons/fi';
 import { uploadImg } from '../../../services/cloudinary.service.js';
 
 function _AddAttachment({ updateTask, toggleDynamicModal }) {

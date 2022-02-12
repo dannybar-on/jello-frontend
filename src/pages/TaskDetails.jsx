@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
-
 import { Loader } from '../cmps/Loader';
 import { boardService } from '../services/board.service.js';
 import { utilService } from '../services/util-service.js';
@@ -24,7 +23,6 @@ import { AttachmentPreview } from '../cmps/task/AttachmentPreview';
 import { taskService } from '../services/task.service';
 import { TaskDetailsComment } from '../cmps/task/TaskDetailsComment';
 
-// import { UserAvatar } from '../cmps/UserAvatar.jsx';
 
 class _TaskDetails extends React.Component {
 
@@ -72,7 +70,6 @@ class _TaskDetails extends React.Component {
 
     handleChange = ({ target: { name, value } }) => {
         this.setState((prevState) => ({ currTask: { ...prevState.currTask, [name]: value } }));
-
     };
 
     handleDetailsChange = () => {
@@ -115,17 +112,14 @@ class _TaskDetails extends React.Component {
 
     onAddComment = (ev) => {
         ev.stopPropagation()
-
         const { comment } = this.state;
-        if(!comment) return
-
-   
+        if (!comment) return
         let { board, currTask, user } = this.props;
         const group = taskService.getGroupById(currTask.id);
         if (!currTask.comments || !currTask.comments.length) currTask.comments = [];
         const id = utilService.makeId();
         currTask.comments.push({ txt: comment, createdAt: Date.now(), createdBy: { ...user }, id });
-    
+
         this.props.updateTask(board, group, currTask);
         this.setState({ isFocus: false, comment: '' })
 
@@ -138,7 +132,6 @@ class _TaskDetails extends React.Component {
         currTask.comments = currTask.comments.filter(comment => {
             return comment.id !== commentId;
         });
-        console.log('inDelete', currTask.comments);
         this.props.updateTask(board, group, currTask);
     };
 
@@ -197,11 +190,8 @@ class _TaskDetails extends React.Component {
                         <div className="group-name">
                             <p>in list <span>{currGroup.title}</span></p>
                         </div>
-
                         <div className="task-main-container flex">
-
                             <div className="task-main flex column">
-
                                 <TaskDetailsData currGroup={currGroup} isEditOpen={isEditOpen} toggleIsEditOpen={this.toggleIsEditOpen} isLabelsOpen={isLabelsOpen} toggleIsLabelsOpen={this.toggleIsLabelsOpen} isMembersOpen={isMembersOpen} toggleIsMembersOpen={this.toggleIsMembersOpen} />
 
                                 <div className="task-description">
@@ -230,10 +220,8 @@ class _TaskDetails extends React.Component {
                                                     <IoMdClose />
                                                 </button>
                                             </div>
-                                        </>
-                                        }
+                                        </>}
                                     </div>
-
                                 </div>
 
                                 {currTask.attachments && currTask.attachments.length > 0 && (
@@ -242,19 +230,12 @@ class _TaskDetails extends React.Component {
 
 
                                 {currTask.checklists && currTask.checklists.map(checklist => {
-
                                     return <div key={checklist.id}>
-
                                         <ChecklistPreview checklist={checklist}
                                             currTask={currTask} board={board} updateTask={updateTask} />
-
-
-
                                         <TaskDetailsChecklist board={board} currTask={currTask} checklist={checklist} />
                                     </div>;
                                 })}
-
-
 
                                 <div className="task-activity">
 
@@ -275,19 +256,16 @@ class _TaskDetails extends React.Component {
                                                     name="comment"
                                                     placeholder="Write a comment..."
                                                     onChange={this.handleCommentChange}
-                                                    // onBlur={() => this.setState({ isFocus: false })}
                                                     value={comment}
                                                 />
 
-                                                {isFocus && <button className="btn-style1"  onClick={this.onAddComment}>Save</button>}
+                                                {isFocus && <button className="btn-style1" onClick={this.onAddComment}>Save</button>}
                                             </div>
 
                                         </div>
 
-
                                         {currTask.comments && currTask.comments.map((comment, idx) => <TaskDetailsComment comment={comment} key={idx} onDeleteComment={this.onDeleteComment} />)}
                                     </div>
-
 
                                 </div>
                             </div>
@@ -307,6 +285,8 @@ class _TaskDetails extends React.Component {
     }
 }
 
+var position;
+
 function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.currBoard,
@@ -321,7 +301,3 @@ const mapDispatchToProps = {
 };
 
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails);
-
-var position;
-
-

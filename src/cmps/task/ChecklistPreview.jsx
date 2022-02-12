@@ -53,7 +53,6 @@ export class ChecklistPreview extends React.Component {
                     <button className="btn-style2" onClick={() => this.onDeleteChecklist(checklist.id)}>Delete</button>
                 </div>
             </div>
-           
                 :
                 <div className="details-section-header block">
                     <span className="icon-lg header-icon">< BsCheck2Square /> </span>
@@ -67,6 +66,3 @@ export class ChecklistPreview extends React.Component {
         </div>
     }
 }
-
-
-

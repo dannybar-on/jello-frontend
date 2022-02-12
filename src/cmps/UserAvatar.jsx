@@ -6,7 +6,6 @@ function stringToColor(string) {
     let hash = 0;
     let i;
 
-    /* eslint-disable no-bitwise */
     for (i = 0; i < string.length; i += 1) {
         hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
@@ -17,7 +16,6 @@ function stringToColor(string) {
         const value = (hash >> (i * 8)) & 0xff;
         color += `00${value.toString(16)}`.substr(-2);
     }
-    /* eslint-enable no-bitwise */
 
     return color;
 }
@@ -34,12 +32,9 @@ function stringAvatar(name, url) {
 }
 
 
-
 export function UserAvatar({ fullname, url }) {
     return (
         <Stack direction="row" spacing={2} >
-
-            {/* <Avatar sx={{ width: 28, height: 28 }}  {...stringAvatar(fullname)} className='user-avatar' /> */}
             <Avatar sx={{ width: 32, height: 32 }}  {...stringAvatar(fullname.toUpperCase())} src={url} className='user-avatar' title={fullname} />
         </Stack >
     );

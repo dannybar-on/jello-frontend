@@ -8,7 +8,6 @@ import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 class _AddMembers extends React.Component {
 
     state = {
-
         members: [],
         filterBy: ''
     };
@@ -47,12 +46,11 @@ class _AddMembers extends React.Component {
             <div className="members">
                 <input className="input-style" type="text" placeholder="Search members" value={this.state.filterBy} name="filterBy" onChange={this.handleChange}></input>
                 <h4 className="modal-content-title">Board members</h4>
-                {/* <div className="board-members-container"> */}
                 {user && <div onClick={() => this.onAddMemberToTask(user)} className="board-member-container">
                     <div>
                         <span className="member-img">
-                        <div className="member-img-container">
-                            <UserAvatar sx={{ width: 20, height: 20 }} fullname={user.fullname} url={user?.imgUrl} />
+                            <div className="member-img-container">
+                                <UserAvatar sx={{ width: 20, height: 20 }} fullname={user.fullname} url={user?.imgUrl} />
                             </div>
                         </span>
                         <span>{user.fullname}</span>
@@ -65,19 +63,17 @@ class _AddMembers extends React.Component {
                     return <div key={idx} onClick={() => this.onAddMemberToTask(member)} className="board-member-container">
                         <div>
                             <span className="member-img">
-                        <div className="member-img-container">
-                                <UserAvatar sx={{ width: 20, height: 20 }} fullname={member.fullname} url={member.imgUrl} />
-                            </div>
+                                <div className="member-img-container">
+                                    <UserAvatar sx={{ width: 20, height: 20 }} fullname={member.fullname} url={member.imgUrl} />
+                                </div>
 
                             </span>
                             <span>{member.fullname}</span>
-                            {/* <span> ({member.username})</span> */}
                             {currTask.members && currTask.members.some(user => user._id === member._id) && <span className="includes-icon"><MdDone /></span>}
                         </div>
                     </div>;
                 })}
 
-                {/* </div> */}
             </div>
         );
     }

@@ -1,9 +1,7 @@
-import reactRouterDom from "react-router-dom";
 import { store } from '../store/store';
 import { utilService } from "./util-service";
 
 export const taskService = {
-
     getLabelsById,
     handleDueDateChange,
     getGroupById,
@@ -28,7 +26,6 @@ export const taskService = {
 
 
 function getLabelsById(board, task) {
-
     if (!task.labelIds) return [];
     return task.labelIds.map(labelId => board.labels && board.labels.find(label => label.id === labelId));
 }
@@ -36,7 +33,6 @@ function getLabelsById(board, task) {
 
 function handleLabelsChange(newLabel, board) {
     let updatedLabels;
-
     if (!newLabel.id) {
         newLabel.id = utilService.makeId();
         board.labels.push(newLabel);
@@ -52,7 +48,6 @@ function handleLabelsChange(newLabel, board) {
             labels: [...updatedLabels]
         };
     }
-
 }
 
 
@@ -61,22 +56,20 @@ function removeLabel(labelId, labels, board) {
         const updatedTasks = group.tasks.map(task => {
             if (task.labelIds) {
                 const newTaskLabels = task.labelIds.filter(label => label !== labelId);
-                // console.log('newTaskLabels:', newTaskLabels);
 
                 task = { ...task, labelIds: newTaskLabels };
             }
             return task;
         });
         return { ...group, tasks: updatedTasks };
-    });
+    })
 
     let newLabels = labels.filter(label => label.id !== labelId);
     const boardToUpdate = {
         ...board,
         groups: updatedGroups,
         labels: newLabels
-    };
-
+    }
     return boardToUpdate;
 }
 
@@ -90,7 +83,6 @@ function handleToggleLabel(labelId, taskToUpdate) {
     else {
         taskToUpdate.labelIds.push(labelId);
     }
-
     return taskToUpdate;
 }
 
@@ -122,7 +114,6 @@ function handleCopyTask(taskId, groupId, idx, title) {
     const task = getTaskById(taskId, initialGroup.id);
     let newGroup = initialBoard.groups.find(group => group.id === groupId);
     newGroup.tasks.splice(idx, 0, { ...task, id: utilService.makeId(), title });
-    console.log('LAMAAAAAAAAAA', idx);
     return initialBoard;
 }
 
@@ -148,7 +139,6 @@ function getSearchedMember(board, txt) {
 }
 
 function getSearchedLabel(board, txt) {
-    // if (!board.labels) return;
     let filtered = board.labels.filter(label => {
         return label.title.toLowerCase().includes(txt.toLowerCase());
     });
@@ -248,16 +238,14 @@ function getUploadTime(timestamp) {
 
 function getModalPosition(clickedElementPos) {
 
-
-const position = {
-    topPos: clickedElementPos.top + clickedElementPos.height + 6,
-    leftPos: clickedElementPos.left
-};
-let intViewportWidth = window.innerWidth;
-
+    const position = {
+        topPos: clickedElementPos.top + clickedElementPos.height + 6,
+        leftPos: clickedElementPos.left
+    };
+    let intViewportWidth = window.innerWidth;
     // const isOverflowY = (window.innerHeight - height - 45) < 0
 
-        if(intViewportWidth - position.leftPos <= 40) position.right = 0
+    if (intViewportWidth - position.leftPos <= 40) position.right = 0
     else position.right = null
     return position;
 }

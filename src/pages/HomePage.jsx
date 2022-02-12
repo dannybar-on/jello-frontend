@@ -43,13 +43,9 @@ export class HomePage extends React.Component {
 
     return (
       <section className="home-page">
-
         <header className={`home-header ${(isPageScrolled) ? 'bg-visible' : ''}`}>
-
           <div className=" logo-container flex align-center">
-
             <img className='jello wobble-top-on-hover' src={jello} />
-
             <span className="logo">  Jello</span>
           </div>
           <div className="header-buttons">
@@ -66,8 +62,7 @@ export class HomePage extends React.Component {
             Manage projects, organize tasks,
             and build team spirit—all in one place.
           </p>
-            <Link className="clean-link login-link" to="/board/login">Sign up-it's free!</Link>
-          {/* <Link className="start-doing-btn clean-link" to="/board/" >Start Doing →</Link> */}
+          <Link className="clean-link login-link" to="/board/login">Sign up-it's free!</Link>
           <img className="board-img" src={board} alt="" />
         </div>
       </section>

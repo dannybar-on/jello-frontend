@@ -65,7 +65,7 @@ export class DynamicModal extends React.Component {
             <section style={{ top, right }} className="dynamic-modal-container" >
                 <div className="modal-header">
                     <span className="modal-header-title">{item}</span>
-                    <button className="modal-close-btn icon-sm" onClick={() => toggleDynamicModal()}><IoMdClose /></button>
+                    <button className="modal-close-btn icon-sm" onClick={toggleDynamicModal}><IoMdClose /></button>
                 </div>
 
                 <div className="modal-content">

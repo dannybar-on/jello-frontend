@@ -45,12 +45,9 @@ class _QuickEditor extends React.Component {
     }
 
     setCurrTask = async () => {
-        // const { boardId } = this.props.match.params;
         let { currTask } = this.props;
-        // const board = await boardService.getById(boardId);
         const currGroup = taskService.getGroupById(currTask.id);
         currTask = currGroup.tasks.find(task => task.id === currTask.id);
-        // this.setState({ currGroup, currTask });
         this.props.onSetCurrTask(currTask);
     };
 
@@ -61,7 +58,6 @@ class _QuickEditor extends React.Component {
     };
 
     handleFocus = (event) => {
-       
         setTimeout(() => event.target.select(), 5);
       };
 
@@ -73,12 +69,9 @@ class _QuickEditor extends React.Component {
         currTask.title = title;
         this.props.updateTask(board, group, currTask);
         this.props.toggleEditOpen(ev)
-
     };
 
     toggleDynamicModal = (ev) => {
-        // ev.preventDefault();
-        // ev.stopPropagation();
         this.setState({ isModalOpen: !this.state.isModalOpen });
     };
 
@@ -100,7 +93,6 @@ class _QuickEditor extends React.Component {
             }}>
                 <div className="edit-preview-container">
                     <div className="edit-task-preview-container flex column" style={(currTask?.isFull) ? { backgroundColor: currTask?.style?.bgColor, width: position.width } : { backgroundColor: '#fff', width: position.width }}>
-
 
                         {!currTask.isFull && (currTask?.style?.bgColor || currTask?.style?.bgImg) && <TaskPreviewHeader board={board} task={currTask} toggleEditOpen={toggleEditOpen} />}
                         <div style={{ padding: '7px 8px 2px' }}>
@@ -141,9 +133,6 @@ class _QuickEditor extends React.Component {
         </div>
     }
 }
-// let position;
-// let
-
 
 const addToTaskItems = [
 
@@ -164,13 +153,8 @@ function mapStateToProps({ boardModule }) {
 }
 
 const mapDispatchToProps = {
-    // setCurrBoard,
-    // updateBoard,
-    // unMountBoard,
-    // updateGroup,
     onSetCurrTask,
     updateTask,
 };
 
 export const QuickEditor = connect(mapStateToProps, mapDispatchToProps)(_QuickEditor);
-{/* onClick={(event) => toggleTaskLabelList(event)}> */ }

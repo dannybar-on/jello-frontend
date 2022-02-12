@@ -34,7 +34,6 @@ class _SideMenu extends React.Component {
     getViewById = () => {
         const { currViewIdx } = this.state
         const currView = this._cmpsToRender[currViewIdx]
-        console.log('selected view: ', currView)
         return currView.component
     }
 

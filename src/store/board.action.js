@@ -5,7 +5,6 @@ export function loadBoards() {
     return async (dispatch) => {
         try {
             const boards = await boardService.query();
-            // socketService.emit('boards-update', boards)
 
             dispatch({ type: 'SET_BOARDS', boards });
         } catch (err) {
@@ -27,7 +26,7 @@ export function removeBoard(boardId) {
     };
 }
 
-export function addBoard(board) { // diffrrent socket   socketService.emit('update', true)
+export function addBoard(board) { 
     return async (dispatch) => {
         try {
             const savedBoard = await boardService.save(board);

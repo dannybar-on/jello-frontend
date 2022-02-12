@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { taskService } from '../../../services/task.service.js';
+import { updateTask, onSetCurrTask } from '../../../store/board.action.js';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { taskService } from '../../../services/task.service.js';
-import { utilService } from '../../../services/util-service.js';
-import { updateTask, onSetCurrTask } from '../../../store/board.action.js';
 
 function _AddDueDate({ updateTask, currTask, board, toggleDynamicModal }) {
     const [startDate] = useState(new Date());
@@ -29,7 +28,6 @@ function _AddDueDate({ updateTask, currTask, board, toggleDynamicModal }) {
     const handleDueDate = () => {
         const res = taskService.handleDueDateChange(dueDate, currTask);
         const currGroup = taskService.getGroupById(res.id);
-        // await onSetCurrTask(res);
         updateTask(board, currGroup, res);
     };
     
@@ -37,7 +35,6 @@ function _AddDueDate({ updateTask, currTask, board, toggleDynamicModal }) {
         toggleDynamicModal();
     }
 
-    console.log(dueDate);
     return (
         <div className="date-picker">
             <DatePicker
