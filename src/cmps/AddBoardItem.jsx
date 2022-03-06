@@ -31,7 +31,6 @@ class _AddBoardItem extends React.Component {
         if (this.props.type === 'group') {
             if (!newItem.tasks) newItem.tasks = [];
             this.props.addGroup(newItem, this.props.board);
-            // this.props.loadBoard();
 
         } else if (this.props.type === 'card') {
             const newTask = { ...newItem };

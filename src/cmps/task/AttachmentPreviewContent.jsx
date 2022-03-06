@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react';
-import { taskService } from '../../services/task.service'
-import { BsCreditCard } from 'react-icons/bs';
 import { connect } from 'react-redux';
+import { taskService } from '../../services/task.service'
 import { updateTask } from '../../store/board.action';
+
 import { DynamicModal } from '../DynamicModal';
+
+import { BsCreditCard } from 'react-icons/bs';
 import { MdLowPriority } from 'react-icons/md';
 
 function _AttachmentPreviewContent({ attachment, currTask, board, updateTask }) {
@@ -24,7 +26,6 @@ function _AttachmentPreviewContent({ attachment, currTask, board, updateTask }) 
     }
 
     const checkIfCover = () => {
-        // console.log('imhere', (currTask?.style?.bgImg === `url(${attachment.url})`));
         return (currTask?.style?.bgImg === `url(${attachment.url})`)
     }
 
@@ -36,9 +37,7 @@ function _AttachmentPreviewContent({ attachment, currTask, board, updateTask }) 
     return (
         <div className="attachment-preview flex">
             <a className="attachment-img " href={attachment.url} target="_blank" rel="noreferrer">
-
                 <img src={attachment.url} alt={attachment.title} />
-
             </a>
 
             <div className="attachment-thumbnail-details flex column">
@@ -60,10 +59,11 @@ function _AttachmentPreviewContent({ attachment, currTask, board, updateTask }) 
                     <span className="cover-txt" onClick={toggleCover}>{checkIfCover() ? 'Remove cover' : 'Make cover'}</span>
                 </div>
             </div>
-
         </div>
     )
 }
+
+var position
 
 const mapStateToProps = ({ boardModule }) => {
     return {
@@ -77,5 +77,3 @@ const mapDispatchToProps = {
 }
 
 export const AttachmentPreviewContent = connect(mapStateToProps, mapDispatchToProps)(_AttachmentPreviewContent);
-
-var position

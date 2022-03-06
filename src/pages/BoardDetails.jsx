@@ -17,41 +17,31 @@ import { TaskDetails } from '../pages/TaskDetails.jsx';
 import { BoardHeader } from '../cmps/board/BoardHeader.jsx';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { QuickEditor } from '../cmps/QuickEditor.jsx';
-import {Dashboard} from '../cmps/Dashboard.jsx';
+import { Dashboard } from '../cmps/Dashboard.jsx';
 
 class _BoardDetails extends React.Component {
   state = {
     board: null,
     isAddOpen: false,
-    // isEditOpen: false,
     isTaskLabelListOpen: false,
   };
 
   componentDidMount() {
     const { boardId } = this.props.match.params;
 
-    const {user,login,outputUpdateBoard} = this.props
+    const { user, login, outputUpdateBoard } = this.props
     this.loadBoard();
-    
+
     if (!user) {
-      const guest = userService.getGuestUser()   
+      const guest = userService.getGuestUser()
       login(guest)
     }
     socketService.emit('member-joined', boardId);
     socketService.on('board-update', updatedBoard => {
-      // const boardToSend = action.board || this.props.board;
       outputUpdateBoard(updatedBoard);
-      
+
     });
   }
-
-//   componentDidUpdate(prevProps) {
-//     const { board } = this.props;
-//     if (prevProps.board !== this.props.board) {
-//         this.setState({ board })
-//     }
-// }
-
 
   loadBoard = () => {
     const boardId = this.props.match.params.boardId;
@@ -69,7 +59,6 @@ class _BoardDetails extends React.Component {
 
 
   toggleTaskLabelList = (event) => {
-    // event.preventDefault();
     event.stopPropagation()
     this.setState({ isTaskLabelListOpen: !this.state.isTaskLabelListOpen });
   };
@@ -120,7 +109,7 @@ class _BoardDetails extends React.Component {
   }
 
   render() {
-    const { isAddOpen, isEditOpen, isTaskLabelListOpen } = this.state;
+    const { isAddOpen, isTaskLabelListOpen } = this.state;
     const { board, updateGroup, onSetCurrTask } = this.props;
 
     if (!board) return <Loader />;
@@ -128,8 +117,6 @@ class _BoardDetails extends React.Component {
       <>
         <DragDropContext onDragEnd={this.onDragEnd}>
           <div className={`board-details-container `}>
-            {/* <div className={(isEditOpen) ? 'pencil-edit-screen' : ''}></div> */}
-
             <BoardHeader board={this.props.board} />
             <div className='list-container flex'>
               <GroupList groups={board.groups} board={board} onSetCurrTask={onSetCurrTask} updateGroup={updateGroup} toggleTaskLabelList={this.toggleTaskLabelList} isTaskLabelListOpen={isTaskLabelListOpen} toggleGroupArchive={this.toggleGroupArchive} />
@@ -161,13 +148,9 @@ class _BoardDetails extends React.Component {
 
           </div>
         </DragDropContext >
-        {/* {isEditOpen && <QuickEditor board={board} toggleEditOpen={this.toggleEditOpen}
-         task={currTask} toggleTaskLabelList={this.toggleTaskLabelList} position={position}
-          isTaskLabelListOpen={isTaskLabelListOpen}
-          />} */}
 
       </>
-    );
+    )
   }
 }
 

@@ -4,20 +4,12 @@ import { taskService } from '../../services/task.service';
 
 export class TaskDetailsComment extends React.Component {
 
-
-
     render() {
         const { comment, onDeleteComment } = this.props;
         const addedAt = taskService.getUploadTime(comment.createdAt);
         return <div className="comments-container flex align-center">
 
-            {/* <span className="creator-img"> */}
                 <UserAvatar sx={{ width: 20, height: 20 }} fullname={comment.createdBy.fullname} />
-            {/* </span> */}
-
-            {/* <span className="member-img">
-                <UserAvatar sx={{ width: 20, height: 20 }} fullname={user.fullname} />
-            </span> */}
 
             <div className="comment-box">
                 <span className="comment-creator">{comment.createdBy.fullname} </span>

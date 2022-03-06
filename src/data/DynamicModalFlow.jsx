@@ -17,10 +17,8 @@ export class TaskSideBar extends React.Component {
                             <span className="flex align-center">{item.icon}</span>
                             <p>{item.title}</p>
                         </button>
-
                     ))}
                 </section>
-
                 {isModalOpen && <DynamicModal
                     item={item.title}
                     toggleDynamicModal={this.toggleDynamicModal}
@@ -32,7 +30,6 @@ export class TaskSideBar extends React.Component {
     }
 }
 
-
 const addToTaskItems = [
     { icon: <AiOutlineUser />, title: 'Members', position },
     { icon: <MdLabelOutline />, title: 'Labels', position },
@@ -42,11 +39,9 @@ const addToTaskItems = [
     { icon: <BsCreditCard />, title: 'Cover', position },
 ]
 
-
 export class DynamicModal extends React.Component {
     setDynamicModalContent = () => {
         const { item } = this.props;
-
         switch (item) {
             case 'Members':
                 return <AddMembers {...this.props} />
@@ -59,28 +54,18 @@ export class DynamicModal extends React.Component {
 
             case 'Dates':
                 return <AddDueDate {...this.props} />
-
-            case 'Attachment':
-                return <AddAttachment {...this.props} />
-
-            case 'Edit Attachment':
-                return <EditAttachment {...this.props} />
-
-            case 'Cover':
-                return <AddCover {...this.props} />
         }
     }
 
-
     render() {
         const { item, toggleDynamicModal, position } = this.props
-        const { topPos, right } = taskService.getModalPosition(position)
+        const { top, right } = taskService.getModalPosition(position)
 
         return (
-            <section style={{ top: topPos, right }} className="dynamic-modal-container" >
+            <section style={{ top, right }} className="dynamic-modal-container" >
                 <div className="modal-header">
                     <span className="modal-header-title">{item}</span>
-                    <button className="modal-close-btn icon-sm" onClick={() => toggleDynamicModal()}><IoMdClose /></button>
+                    <button className="modal-close-btn icon-sm" onClick={toggleDynamicModal}><IoMdClose /></button>
                 </div>
 
                 <div className="modal-content">

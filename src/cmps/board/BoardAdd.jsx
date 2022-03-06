@@ -70,7 +70,7 @@ class _BoardAdd extends React.Component {
             ? (boardToAdd.style.bgImg = this.bgcs[this.state.markedId].bgc.substring(0, this.bgcs[this.state.markedId].bgc.length - 6))
             : (boardToAdd.style.bgColor = this.bgcs[this.state.markedId].bgc);
             this.props.addBoard(boardToAdd)
-            .then(board => this.props.history.push(`board/${board._id}`))
+            .then(board => this.props.history.push(`/board/${board._id}`))
             this.onCloseModal()
     };
 

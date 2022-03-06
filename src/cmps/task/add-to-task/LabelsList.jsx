@@ -2,18 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { updateBoard, updateTask } from '../../../store/board.action.js';
+import { taskService } from '../../../services/task.service.js';
 
 import { LabelsEditAdd } from './LabelsEditAdd';
 import { Loader } from '../../Loader';
 
 import { MdOutlineEdit } from 'react-icons/md';
-import { taskService } from '../../../services/task.service.js';
-
-
-
 
 class _LabelsList extends React.Component {
-
 
     state = {
         search: '',
@@ -41,9 +37,7 @@ class _LabelsList extends React.Component {
         this.setState({ ...this.state, [field]: value });
         const filtered = taskService.getSearchedLabel(board, value);
         this.setState({ labels: filtered });
-
     };
-
 
     setAddEditMode = (label) => {
         this.setState({ label }, () => this.setState({ isAddEditMode: !this.state.isAddEditMode }));
@@ -62,20 +56,15 @@ class _LabelsList extends React.Component {
     toggleLabelAdd = (labelId) => {
         const { currTask, board } = this.props;
         const updatedTask = taskService.handleToggleLabel(labelId, currTask);
-
         const currGroup = taskService.getGroupById(currTask.id);
         this.props.updateTask(board, currGroup, updatedTask);
-
     };
 
     openDeleteModal = () => {
         this.setState({ isDeleteModal: !this.state.isDeleteModal })
-
     }
 
     onRemoveLabel = (labelId) => {
-
-        // if (window.confirm('Are you sure you want to delete this label?')) {
         let { board, currTask } = this.props;
         currTask.labelIds = currTask.labelIds.filter(id => id !== labelId);
         const currGroup = taskService.getGroupById(currTask.id);
@@ -83,22 +72,18 @@ class _LabelsList extends React.Component {
         this.props.updateTask(boardToUpdate, currGroup, currTask);
         this.setState({ labels: boardToUpdate.labels });
         this.setAddEditMode();
-        // }
     };
 
 
     render() {
 
         const { search, isAddEditMode, labels, label, isDeleteModal } = this.state;
-        const { board, toggleDynamicModal } = this.props;
-
 
         if (!labels?.length || !labels) return <Loader />;
 
         return (
             <>
                 {(!isAddEditMode && !isDeleteModal) && <div className="labels">
-
                     <input
                         className="input-style"
                         type="text"
@@ -125,21 +110,18 @@ class _LabelsList extends React.Component {
                         </ul>}
 
                     </div>
-
                     <button className="create-label-btn" onClick={() => this.setAddEditMode()}>Create a new label</button>
-
                 </div>}
 
-                     {(isAddEditMode ) &&<LabelsEditAdd
-                        {...this.props}
-                        label={label}
-                        isDeleteModal={isDeleteModal}
-                        isAddEditMode={isAddEditMode}
-                        onSaveLabel={this.onSaveLabel}
-                        onRemoveLabel={this.onRemoveLabel}
-                        setAddEditMode={this.setAddEditMode}
-                        openDeleteModal={this.openDeleteModal} />}
-                {/* } */}
+                {(isAddEditMode) && <LabelsEditAdd
+                    {...this.props}
+                    label={label}
+                    isDeleteModal={isDeleteModal}
+                    isAddEditMode={isAddEditMode}
+                    onSaveLabel={this.onSaveLabel}
+                    onRemoveLabel={this.onRemoveLabel}
+                    setAddEditMode={this.setAddEditMode}
+                    openDeleteModal={this.openDeleteModal} />}
             </>
         );
     }

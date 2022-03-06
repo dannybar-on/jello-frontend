@@ -4,7 +4,6 @@ import {BoardList} from './pages/BoardList.jsx'
 import {HomePage} from './pages/HomePage.jsx'
 
 const routes  = [
-    
     {
         path:'/board/login',
         component: LoginPage,
@@ -20,8 +19,7 @@ const routes  = [
     {
         path:'/',
         component: HomePage,
-    },
-    
+    }, 
 ]
 
 export default routes;

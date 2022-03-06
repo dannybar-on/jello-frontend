@@ -1,12 +1,9 @@
 import React from 'react'
 
-
-
 export class SideBarTaskActions extends React.Component {
-
+    
     state={
         isPopoverOpen:false,
-        
         }
 
         togglePopOver = () => {

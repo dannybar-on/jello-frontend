@@ -1,8 +1,5 @@
 import { httpService } from './http.service';
 
-
-
-
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser';
 
 export const userService = {
@@ -13,22 +10,18 @@ export const userService = {
     getGuestUser,
     getUsers,
     googleLogin
-
-
-};
+}
 
 
 async function login({ username, password }) {
-    console.log('sssss', username);
     const user = await httpService.post('auth/login', { username, password });
     _setLoggedinUser(user);
     return user;
 }
 
-async function googleLogin(tokenId) {
-    
-    try {
 
+async function googleLogin(tokenId) {
+    try {
         const user = await httpService.post('auth/googlelogin', { tokenId })
         if (user) {
             _setLoggedinUser(user);
@@ -70,6 +63,3 @@ async function getUsers() {
     return users
 }
 
-// Test Data
-// userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Noya', score: 22})
-// userService.login({ username: 'muki', password: 'muki1' })

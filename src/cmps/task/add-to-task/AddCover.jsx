@@ -1,4 +1,3 @@
-// import { useThemeWithoutDefault } from '@mui/system';
 import React from 'react';
 import { connect } from 'react-redux';
 import { taskService } from '../../../services/task.service';
@@ -8,10 +7,8 @@ import { updateBoard, updateTask } from '../../../store/board.action.js';
 class _AddCover extends React.Component {
 
     state = {
-
         color: '#344563',
         isFull: false,
-
     };
 
 
@@ -22,7 +19,6 @@ class _AddCover extends React.Component {
         else size = 'half';
         this.onSetSize(size);
     }
-
 
 
     onSetSize = (size) => {
@@ -68,7 +64,6 @@ class _AddCover extends React.Component {
         const { color, isFull } = this.state;
         return (
             <section className="modal-cover-edit flex column">
-
                 <div className="size-container flex column">
                     <h4>Size</h4>
                     <div className="size-options flex">
@@ -102,20 +97,15 @@ class _AddCover extends React.Component {
                         return <div key={idx} style={{ backgroundColor: color }}
                             className="color-div flex"
                             onClick={() => this.handleColorChange(color)}>
-                            {/* {color === label.color && <span className="icon-sm"><MdDone /></span>} */}
                         </div>;
                     })}
                 </div>
-
-
-
             </section >
         );
     }
 }
 
-
-
+const Colors = ['#61bd4f', '#f2d600', '#ff9f1a', '#eb5a46', '#c377e0', '#0079bf', '#00c2e0', '#51e898', '#ff78cb', '#344563'];
 
 function mapStateToProps({ boardModule }) {
     return {
@@ -126,11 +116,8 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
     updateBoard,
     updateTask,
-
 };
 
 export const AddCover = connect(mapStateToProps, mapDispatchToProps)(_AddCover);
 
-
-const Colors = ['#61bd4f', '#f2d600', '#ff9f1a', '#eb5a46', '#c377e0', '#0079bf', '#00c2e0', '#51e898', '#ff78cb', '#344563'];
 

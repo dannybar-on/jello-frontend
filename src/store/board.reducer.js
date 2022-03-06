@@ -26,6 +26,5 @@ export function boardReducer(state = initialState, action) {
             newState = { ...state, currTask: {...action.currTask}};
             break;
     }
-    // console.log('NEW STATE', newState)
     return newState;
 }

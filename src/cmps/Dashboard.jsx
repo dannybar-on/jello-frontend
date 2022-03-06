@@ -80,7 +80,7 @@ export function _Dashboard(props) {
       </button>
       <div className="dashboard-container flex column ">
         <div className="header flex column justify-center align-center">
-          <h1 className="dash-title">{board.title}</h1>
+          <h1 className="dash-title">Dashboard: {board.title}</h1>
           <p className="date">
             Created at {new Date(board.createdAt).toLocaleString()}
           </p>

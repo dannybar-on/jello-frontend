@@ -122,15 +122,25 @@
   flex-wrap: wrap;
   
   .MuiAvatar-root {
-    width: 32px;
-    height: 32px;
-    font-size: rem(14px);
+    width: 28px;
+    height: 28px;
+    font-size: rem(12px);
     border: none;
+    margin-left: 3px;
   }
   .members-footer{
     // margin-left: auto;
+    border:none;
     padding: 0;
     margin: 0 0px 3px auto;
+
+    .member-avatar {
+      gap: 5px;
+   
+      &div{
+      border: none;
+    }
+  }
   }
 }
 

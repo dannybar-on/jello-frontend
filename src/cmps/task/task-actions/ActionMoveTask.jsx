@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 export class ActionMoveTask extends React.Component {
 
     render() {

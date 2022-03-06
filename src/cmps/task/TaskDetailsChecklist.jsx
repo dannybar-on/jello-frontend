@@ -98,20 +98,19 @@ class _TaskDetailsChecklist extends React.Component {
                     <button className='btn-style2 ml-40 mt-8' onClick={() => this.toggleAddTodo()}>Add an item</button>
                 }
             </div>
-        );
-
+        )
     }
-};
+}
 
 const mapStateToProps = ({ boardModule }) => {
     return {
         board: boardModule.currBoard,
         currTask: boardModule.currTask,
-    };
-};
+    }
+}
 
 const mapDispatchToProps = {
     updateTask,
-};
+}
 
 export const TaskDetailsChecklist = connect(mapStateToProps, mapDispatchToProps)(_TaskDetailsChecklist);;

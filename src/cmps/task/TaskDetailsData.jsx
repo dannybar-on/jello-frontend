@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-
 import { taskService } from '../../services/task.service.js';
 import { utilService } from '../../services/util-service.js';
 import { updateTask, updateBoard } from '../../store/board.action.js';
@@ -13,11 +12,6 @@ import {DynamicModal} from '../DynamicModal'
 
 
 class _TaskDetailsData extends React.Component {
-
-    state = {
-
-    };
-
 
     toggleCompleteStatus = (ev) => {
         ev.preventDefault();
@@ -52,10 +46,10 @@ class _TaskDetailsData extends React.Component {
     };
 
     render() {
+        
         const { board, currTask, isEditOpen, toggleIsEditOpen, isLabelsOpen, toggleIsLabelsOpen, isMembersOpen, toggleIsMembersOpen} = this.props;
         if (currTask.labelIds) { var taskLabels = taskService.getLabelsById(board, currTask); }
-        // if (!taskLabels) return <></>
-        
+
         return (
             <div className="task-data ml-40">
 

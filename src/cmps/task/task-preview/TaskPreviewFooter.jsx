@@ -38,9 +38,11 @@ export class TaskPreviewFooter extends React.Component {
                 {task.checklists && <Checklists checklists={task.checklists} />}
 
                 {task.members && (
-                    <div className="members-footer flex">
+                    <div className="members-footer flex row">
                         <AvatarGroup max={3} >
-                        {task.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />)}
+                           
+                        {task.members.map((member, idx) => <span className="member-avatar" key={idx}> <UserAvatar  fullname={member.fullname} url={member.imgUrl} /></span>)}
+                        
                          </AvatarGroup>
                     </div>
                 )}
