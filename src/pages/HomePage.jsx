@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import jello from '../assets/img/jello.svg';
-import board from '../assets/img/board.jpg';
+import board from '../assets/img/board.png';
 import { Hero } from '../cmps/Hero.jsx';
 
 export class HomePage extends React.Component {
