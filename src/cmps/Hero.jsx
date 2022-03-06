@@ -4,8 +4,8 @@ import hero from '../assets/img/hero.png';
 
 export function Hero() {
   return (
-    <React.Fragment>
-      <div className="hero-container flex align-center home-layout">
+    // <React.Fragment>
+      <div className="home-layout hero-container flex align-center justify-center">
         <div className="hero-text flex column">
           <h1 className="hero-title">Jello helps teams move work forward.</h1>
 
@@ -20,6 +20,6 @@ export function Hero() {
         </div>
         <img className="hero-img" src={hero}></img>
       </div>
-    </React.Fragment>
+    // </React.Fragment>
   );
 }
