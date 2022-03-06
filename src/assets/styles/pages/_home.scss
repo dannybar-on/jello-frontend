@@ -31,13 +31,11 @@
         /* padding: 10px; */
         width: 35px;
         height: 35px;
-    
-
       }
       .logo {
         display: flex;
         align-items: center;
-       
+
         letter-spacing: 1px;
         gap: 10px;
         font-size: rem(40px);
@@ -78,10 +76,9 @@
   }
 
   .home-layout {
-    max-width: 1080px;
+    // max-width: 1080px;
     margin: 0 auto;
   }
-
 
   .logo {
     margin-left: 0.5rem;
@@ -113,25 +110,24 @@
     padding-top: 98px;
     margin-bottom: 44px;
     img {
-      width: 380px;
-      height: 480px;
+      // width: 380px;
+      // height: 480px;
     }
     .hero-title {
-      font-size: 3rem;
+      // font-size: 3rem;
       line-height: 1.25;
       color: $hard-blue;
       text-align: left;
       font-weight: bold;
     }
     p {
-      width: 55ch;
+      // width: 55ch;
       font-size: 20px;
       font-weight: 400;
       line-height: 1.5;
       text-align: left;
       margin: 0;
     }
-
   }
 
   .demo-btn {
@@ -179,5 +175,70 @@
     margin-top: 15px;
     width: 100%;
     height: 100%;
+  }
+}
+
+@media screen and (max-width: $break-narrow) {
+  .hero-container {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-img {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: $break-narrow) {
+  .hero-container {
+    p {
+      width: 35ch;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-img {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 780px) {
+  .home-layout {
+    max-width: 740px;
+  }
+
+  .hero-container {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-img {
+      display: block;
+      width: 150px;
+      height: 200px;
+    }
+
+    p {
+      width: 55ch;
+    }
+  }
+}
+
+@media screen and (min-width: $break-wide) {
+  .home-layout {
+    max-width: 1080px;
+  }
+  .hero-container {
+    .hero-title {
+      font-size: 3rem;
+    }
+    .hero-img {
+      width: 330px;
+      height: 480px;
+    }
   }
 }
