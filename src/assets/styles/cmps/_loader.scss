@@ -1,21 +1,19 @@
 .loader-container {
-    margin: auto 0;
-    position: absolute;
-    top: 40%;
-    left: 45%;
-    background-color: #091e42;
-    color: #fff ;
-    padding: 24px;
-    border-radius: 5px;
-
-   
+  margin: auto 0;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  background-color: #091e42;
+  color: #fff;
+  padding: 15px;
+  border-radius: 10px;
 
 
     img {
-        width: 200px;
-        height: 189px;
-        left: 8px;
-        position: relative;
+      width: 70px;
+      height: 70px;
+      left: 45px;
+      position: relative;
   
     }
     .logo {
@@ -128,7 +126,7 @@
     animation: dotStretching 2s infinite ease-in;
     margin-left: 23px;
     margin-right: 23px;
-    top: 14px;
+    top: 8px;
   }
   
   .dot-stretching::before, .dot-stretching::after {

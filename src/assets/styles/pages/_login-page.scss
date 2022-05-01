@@ -2,6 +2,7 @@
   height: 100vh;
   background-color: $light-grey1;
   flex-grow: 1;
+  overflow-y: auto;
 
 .google-login{
   width: 100%;
@@ -99,8 +100,12 @@
         text-align: center;
   
         img {
-          width: 100%;
+         display: none;
         }
+      }
+
+      .login-logo-header {
+        margin: 10px auto;
       }
     }
   }

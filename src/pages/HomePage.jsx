@@ -40,6 +40,7 @@ export class HomePage extends React.Component {
 
     return (
       <section className="home-page">
+        <Loader></Loader>
         <header className={`home-header ${isPageScrolled ? 'bg-visible' : ''}`}>
           <div className=" logo-container flex align-center">
             <img className="jello wobble-top-on-hover" src={jello} />

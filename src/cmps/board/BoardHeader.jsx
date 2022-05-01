@@ -83,17 +83,19 @@ class _BoardHeader extends React.Component {
 
         if (!board) return <Loader />;
         return <section className='board-header-container flex align-center space-between'>
-            <div className='board-header-left flex'>
+            <div className='board-header-left flex wrap'>
                 <input className="board-header-title" type='text' name='boardTitle' value={boardTitle} onChange={this.handleChange} onBlur={this.onChangeBoardTitle} />
                 <button className='star-btn' onMouseEnter={this.toggleStarHover} onMouseLeave={this.toggleStarHover} onClick={this.toggleIsStarred}>
                     {(board.isStarred || isStarHover) ? <FaStar /> : <FiStar />}
                 </button>
+                <div className="flex-row-center gap-10">
                 <AvatarGroup max={4} >
                     {board.members.map((member, idx) => <UserAvatar key={idx} fullname={member.fullname} url={member.imgUrl} />)}
                 </AvatarGroup>
                 <button className='invite-btn' onClick={(event) => { this.toggleIsInviteOpen(); position = event.target.getBoundingClientRect() }}><RiUserAddLine /> Invite</button>
                 {isInviteOpen && <DynamicModal item={'Invite Members'} {...this.props} toggleDynamicModal={this.toggleIsInviteOpen} position={position}>
                 </DynamicModal>}
+                </div>
             </div>
             <div className='board-header-right flex row' >
                 <Link to={`/board/${board._id}/dashboard`} className='clean-link'>
